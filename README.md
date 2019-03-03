@@ -1,4 +1,4 @@
 Kingsbury
 =========
 
-The start of a new component library
+The start of a new component library for personal use.
