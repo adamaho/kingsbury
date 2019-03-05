@@ -1,12 +1,17 @@
 {
+  "presets": [
+      "@babel/env",
+      "@babel/typescript",
+      "@babel/react"
+  ],
   "plugins": [
-    [
-      "styled-components",
-      {
-        "ssr": true,
-        "displayName": true,
-        "preprocess": false
-      }
-    ]
+      "@babel/proposal-class-properties",
+      "@babel/proposal-object-rest-spread",
+      [
+        "babel-plugin-styled-components",
+        {
+          "ssr": false
+        }
+      ]
   ]
 }
