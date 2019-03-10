@@ -4,7 +4,8 @@ import {
   createGlobalStyle,
   keyframes,
   ThemeProvider,
-  ServerStyleSheet
+  ServerStyleSheet,
+  ITheme
 } from './styles/theme';
 
 import styled from './styles/theme';
@@ -18,5 +19,6 @@ export {
   keyframes,
   ThemeProvider,
   ServerStyleSheet,
-  styled
+  styled,
+  ITheme
 };
