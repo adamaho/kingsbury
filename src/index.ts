@@ -1,2 +1,22 @@
+import {
+  css,
+  theme,
+  createGlobalStyle,
+  keyframes,
+  ThemeProvider,
+  ServerStyleSheet
+} from './styles/theme';
+
+import styled from './styles/theme';
+
 export * from './components';
-export * from './styles/theme';
+
+export {
+  css,
+  theme,
+  createGlobalStyle,
+  keyframes,
+  ThemeProvider,
+  ServerStyleSheet,
+  styled
+};
