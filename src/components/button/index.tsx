@@ -12,7 +12,7 @@ export interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEleme
   theme: ITheme;
 }
 
-const ButtonComponent: React.FunctionComponent<IButtonProps> = (props) => {
+const ButtonComponent: React.FunctionComponent<IButtonProps> = (props: IButtonProps) => {
   return (
     <button
       className={'kb-button'}
@@ -37,7 +37,7 @@ const Button = styled(ButtonComponent)`
   border: ${(props: IButtonProps) => props.theme.buttons[props.type].border};
   border-radius: 4px;
 
-  padding: 5px 0px 0px 0px;
+  padding: 5px 10px 0px 10px;
   box-shadow: ${(props: IButtonProps) => props.theme.buttons[props.type].boxShadow};
 
   cursor: pointer;
