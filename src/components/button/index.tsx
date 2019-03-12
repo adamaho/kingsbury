@@ -15,7 +15,7 @@ export interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEleme
 const ButtonComponent: React.FunctionComponent<IButtonProps> = (props: IButtonProps) => {
   return (
     <button
-      className={'kb-button'}
+      className={props.className}
       {...props}
     >
       {props.children}

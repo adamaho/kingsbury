@@ -36,8 +36,8 @@ const colors: IColors = {
   whiteRGB: '255, 255, 255',
   black: '#000000',
   blackRGB: '0, 0, 0',
-  lightGrey: '#E7E7E7',
-  lightGreyRGB: '231, 231, 231',
+  lightGrey: '#C4C4C4',
+  lightGreyRGB: '196, 196, 196',
   darkGrey: '#C4C4C4',
   darkGreyRGB: '196, 196, 196'
 }
@@ -85,11 +85,12 @@ export const theme: ITheme = {
   },
   input: {
     height: '38px',
+    color: `${colors.black}`,
     background: 'transparent',
     border: '1px solid',
-    borderColor: `rgba(${colors.whiteRGB}, 0.1)`,
+    borderColor: `${colors.lightGrey}`,
     borderRadius: '5px',
-    placeholderColor: `rgba(${colors.whiteRGB}, 0.1)`,
+    placeholderColor: `${colors.lightGrey}`,
   },
   display: {
     desktop: '880px',
