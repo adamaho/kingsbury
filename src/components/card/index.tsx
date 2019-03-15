@@ -7,10 +7,10 @@ import {
 } from '../../styles/theme';
 
 interface ICardProps {
-  header?: React.ReactNode,
-  footer?: React.ReactNode,
+  header?: React.ReactNode;
+  footer?: React.ReactNode;
   className?: string;
-  theme: ITheme
+  theme: ITheme;
 }
 
 class CardComponent extends React.Component<ICardProps> {

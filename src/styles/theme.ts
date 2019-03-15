@@ -1,6 +1,11 @@
 import * as styledComponents from 'styled-components';
 
 export interface ITheme {
+  animations: {
+    [key: string]: {
+      [key: string]: string | any
+    }
+  };
   buttons: {
     [key: string]: {
       [key: string]: string | any
@@ -12,6 +17,9 @@ export interface ITheme {
   colors: {
     [key: string]: string
   };
+  display: {
+    [key: string]: string
+  };
   fontFamily: string;
   header: {
     [key: string]: string
@@ -19,12 +27,7 @@ export interface ITheme {
   input: {
     [key: string]: string
   };
-  animations: {
-    [key: string]: {
-      [key: string]: string | any
-    }
-  };
-  display: {
+  notice: {
     [key: string]: string
   };
 }
@@ -46,42 +49,21 @@ const colors: IColors = {
   lightGreyRGB: '196, 196, 196',
   darkGrey: '#C4C4C4',
   darkGreyRGB: '196, 196, 196',
-  border: '#C4C4C4'
+  border: '#C4C4C4',
+  danger: 'red',
+  info: 'blue',
+  warning: 'yellow',
+  success: 'green',
+  default: '#C4C4C4'
 }
 
 export const theme: ITheme = {
-  fontFamily: "'Nunito', sans-serif",
-  header: {
-    height: '50px;'
-  },
-  card: {
-    background: colors.white,
-    borderRadius: '5px',
-    boxShadow: `0px 4px 4px rgba(${colors.blackRGB}, 0.25)`,
-    footerHeight: 'auto',
-    footerBackground: colors.white,
-    headerHeight: '50px',
-    headerBackground: colors.white,
-    height: 'auto',
-    innerBorder: `1px solid ${colors.lightGrey}`,
-    outerBorder: 'none',
-    width: '100%'
-  },
-  colors: {
-    white: colors.white,
-    whiteRGB: colors.whiteRGB,
-    lightGrey: colors.lightGrey,
-    lightGreyRGB: colors.lightGreyRGB,
-    darkGrey: colors.darkGrey,
-    darkGreyRGB: colors.darkGreyRGB,
-    black: colors.black,
-    blackRGB: colors.blackRGB,
-    primary: colors.primary,
-    primaryRGB: colors.primaryRGB,
-    secondary: colors.secondary,
-    secondaryRGB: colors.secondaryRGB,
-    title: colors.white,
-    border: colors.border
+  animations: {
+    time: {
+      fast: '0.25s',
+      medium: '0.5s',
+      slow: '1s'
+    }
   },
   buttons: {
     default: {
@@ -108,6 +90,50 @@ export const theme: ITheme = {
       cursor: 'pointer'
     }
   },
+  card: {
+    background: colors.white,
+    borderRadius: '5px',
+    boxShadow: `0px 4px 4px rgba(${colors.blackRGB}, 0.25)`,
+    footerHeight: 'auto',
+    footerBackground: colors.white,
+    headerHeight: '50px',
+    headerBackground: colors.white,
+    height: 'auto',
+    innerBorder: `1px solid ${colors.lightGrey}`,
+    outerBorder: 'none',
+    width: '100%'
+  },
+  colors: {
+    black: colors.black,
+    blackRGB: colors.blackRGB,
+    border: colors.border,
+    danger: colors.danger,
+    darkGrey: colors.darkGrey,
+    darkGreyRGB: colors.darkGreyRGB,
+    default: colors.default,
+    info: colors.info,
+    lightGrey: colors.lightGrey,
+    lightGreyRGB: colors.lightGreyRGB,
+    primary: colors.primary,
+    primaryRGB: colors.primaryRGB,
+    secondary: colors.secondary,
+    secondaryRGB: colors.secondaryRGB,
+    success: colors.success,
+    title: colors.white,
+    warning: colors.warning,
+    white: colors.white,
+    whiteRGB: colors.whiteRGB,
+    
+  },
+  display: {
+    desktop: '880px',
+    tablet: '670px',
+    phone: '475px'
+  },
+  fontFamily: "'Nunito', sans-serif",
+  header: {
+    height: '50px;'
+  },
   input: {
     height: '38px',
     color: `${colors.black}`,
@@ -117,17 +143,8 @@ export const theme: ITheme = {
     borderRadius: '5px',
     placeholderColor: `${colors.lightGrey}`,
   },
-  animations: {
-    time: {
-      fast: '0.25s',
-      medium: '0.5s',
-      slow: '1s'
-    }
-  },
-  display: {
-    desktop: '880px',
-    tablet: '670px',
-    phone: '475px'
+  notice: {
+
   }
 }
 
