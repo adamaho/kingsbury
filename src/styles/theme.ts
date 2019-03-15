@@ -17,6 +17,11 @@ export interface ITheme {
   },
   input: {
     [key: string]: string
+  },
+  animations: {
+    [key: string]: {
+      [key: string]: string | any
+    }
   }
   display: {
     [key: string]: string
@@ -43,7 +48,7 @@ const colors: IColors = {
 }
 
 export const theme: ITheme = {
-  fontFamily: 'Tajawal',
+  fontFamily: "'Nunito' sans-serif",
   header: {
     height: '50px;'
   },
@@ -64,23 +69,27 @@ export const theme: ITheme = {
   },
   buttons: {
     default: {
-      height: 38
+      borderRadius: '4px',
+      height: 38,
+      padding: '5px 15px 5px 15px'
     },
     primary: {
       background: colors.primary,
+      backgroundDisabled: colors.lightGrey,
       border: 'none',
-      color: '#FFFFFF',
-      boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.5)'
+      borderDisabled: 'none',
+      boxShadow: `0px 2px 4px rgba(${colors.blackRGB} 0.5)`,
+      color: colors.white,
+      cursor: 'pointer'
     },
     ghost: {
       background: 'transparent',
-      border: '1px solid #FFFFFF',
-      color: '#FFFFFF',
-      boxShadow: 'none'
-    },
-    disabled: {
-      background: 'grey',
-      border: 'none'
+      backgroundDisabled: 'transparent',
+      border: `1px solid ${colors.white}`,
+      borderDisabled: `1px solid ${colors.lightGrey}`, 
+      boxShadow: 'none',
+      color: colors.white,
+      cursor: 'pointer'
     }
   },
   input: {
@@ -91,6 +100,13 @@ export const theme: ITheme = {
     borderColor: `${colors.lightGrey}`,
     borderRadius: '5px',
     placeholderColor: `${colors.lightGrey}`,
+  },
+  animations: {
+    time: {
+      fast: '0.25s',
+      medium: '0.5s',
+      slow: '1s'
+    }
   },
   display: {
     desktop: '880px',
