@@ -55,9 +55,11 @@ export const theme: ITheme = {
     height: '50px;'
   },
   card: {
+    background: colors.white,
     borderRadius: '5px',
     boxShadow: `0px 4px 4px rgba(${colors.blackRGB}, 0.25)`,
     footerHeight: 'auto',
+    footerBackground: colors.white,
     headerHeight: '50px',
     headerBackground: colors.white,
     height: 'auto',
