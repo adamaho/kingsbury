@@ -2,7 +2,8 @@ import * as React from 'react';
 import styled from '../../styles/theme';
 
 import {
-  ITheme
+  ITheme,
+  theme
 } from '../../styles/theme';
 
 interface IInputProps {
@@ -77,5 +78,9 @@ const Input = styled(InputComponent)`
     outline: none;
   }
 `;
+
+Input.defaultProps = {
+  theme: theme
+}
 
 export default Input;

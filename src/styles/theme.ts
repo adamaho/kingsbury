@@ -1,31 +1,32 @@
 import * as styledComponents from 'styled-components';
 
 export interface ITheme {
-  fontFamily: string;
-  header: {
-    [key: string]: string
-  }
-
-  colors: {
-    [key: string]: string
-  }
-
   buttons: {
     [key: string]: {
       [key: string]: string | any
     }
-  },
+  };
+  card: {
+    [key: string]: string
+  };
+  colors: {
+    [key: string]: string
+  };
+  fontFamily: string;
+  header: {
+    [key: string]: string
+  };
   input: {
     [key: string]: string
-  },
+  };
   animations: {
     [key: string]: {
       [key: string]: string | any
     }
-  }
+  };
   display: {
     [key: string]: string
-  }
+  };
 }
 
 interface IColors {
@@ -44,13 +45,25 @@ const colors: IColors = {
   lightGrey: '#C4C4C4',
   lightGreyRGB: '196, 196, 196',
   darkGrey: '#C4C4C4',
-  darkGreyRGB: '196, 196, 196'
+  darkGreyRGB: '196, 196, 196',
+  border: '#C4C4C4'
 }
 
 export const theme: ITheme = {
-  fontFamily: "'Nunito' sans-serif",
+  fontFamily: "'Nunito', sans-serif",
   header: {
     height: '50px;'
+  },
+  card: {
+    borderRadius: '5px',
+    boxShadow: `0px 4px 4px rgba(${colors.blackRGB}, 0.25)`,
+    footerHeight: 'auto',
+    headerHeight: '50px',
+    headerBackground: colors.white,
+    height: 'auto',
+    innerBorder: `1px solid ${colors.lightGrey}`,
+    outerBorder: 'none',
+    width: '100%'
   },
   colors: {
     white: colors.white,
@@ -65,7 +78,8 @@ export const theme: ITheme = {
     primaryRGB: colors.primaryRGB,
     secondary: colors.secondary,
     secondaryRGB: colors.secondaryRGB,
-    title: colors.white
+    title: colors.white,
+    border: colors.border
   },
   buttons: {
     default: {
@@ -78,7 +92,7 @@ export const theme: ITheme = {
       backgroundDisabled: colors.lightGrey,
       border: 'none',
       borderDisabled: 'none',
-      boxShadow: `0px 2px 4px rgba(${colors.blackRGB} 0.5)`,
+      boxShadow: `0px 2px 4px rgba(${colors.blackRGB}, 0.5)`,
       color: colors.white,
       cursor: 'pointer'
     },

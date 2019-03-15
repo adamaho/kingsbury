@@ -17,8 +17,6 @@ export interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEleme
 class ButtonComponent extends React.Component<IButtonProps> {
 
   static defaultProps = {
-    theme: theme,
-    type: 'primary',
     disabled: false
   }
 
