@@ -23,8 +23,7 @@ class NoticeComponent extends React.Component<INoticeProps> {
       title,
       description,
       avatar,
-      actions,
-      children
+      actions
     } = this.props;
 
     return (
@@ -34,20 +33,24 @@ class NoticeComponent extends React.Component<INoticeProps> {
             {avatar}
           </div>
         }
-        <div className="pill" />
         <div className="content" >
-          {title &&
-            <div className="title">{title}</div>
-          }
-          {description &&
-            <div className="description">{description}</div>
-          }
-        </div>
-        {actions &&
-          <div className="actions">
-            {actions}
+          <div className="pill" />
+          <div className="right-content">
+            <div className="title-content">
+              {title &&
+                <div className="title">{title}</div>
+              }
+              {description &&
+                <div className="description">{description}</div>
+              }
+            </div>
+            {actions &&
+              <div className="actions">
+                {actions}
+              </div>
+            }
           </div>
-        }
+        </div>
       </div>
     );
   }
@@ -56,19 +59,47 @@ class NoticeComponent extends React.Component<INoticeProps> {
 const Notice = styled(NoticeComponent)`
   display: flex;
   align-items: center;
-  min-height: 75px;
+  height: 100%;
   width: 100%;
+  padding: 10px 0px;
 
   .avatar {
-    height: 50px;
-    width: 50px;
+    height: ${(props: INoticeProps) => props.theme.notice.avatarHeight};
+    width: ${(props: INoticeProps) => props.theme.notice.avatarWidth};
   }
 
-  .pill {
-    background: ${(props: INoticeProps) => props.theme.colors[props.type]};
-    width: 4px;
-    border-radius: 2px;
-    height: 100%;
+  .content {
+    display: flex;
+    flex: 1;
+
+    .right-content {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      height: 100%;
+    }
+
+    .pill {
+      background: ${(props: INoticeProps) => props.theme.colors[props.type]};
+      width: ${(props: INoticeProps) => props.theme.notice.pillWidth};
+      border-radius: ${(props: INoticeProps) => props.theme.notice.pillRadius};
+      min-height: ${(props: INoticeProps) => props.theme.notice.pillMinHeight};
+      margin: 0px 5px;
+    }
+
+    .title-content {
+      .title {
+        font-size: ${(props: INoticeProps) => props.theme.notice.titleFontSize};
+        font-weight: ${(props: INoticeProps) => props.theme.notice.titleFontWeight};
+        color: ${(props: INoticeProps) => props.theme.notice.titleFontColor};
+      }
+
+      .description {
+        font-size: ${(props: INoticeProps) => props.theme.notice.descriptionFontSize};
+        font-weight: ${(props: INoticeProps) => props.theme.notice.descriptionFontWeight};
+        color: ${(props: INoticeProps) => props.theme.notice.descriptionFontColor};
+      } 
+    }
   }
 `;
 

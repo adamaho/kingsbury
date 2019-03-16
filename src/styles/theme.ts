@@ -50,10 +50,10 @@ const colors: IColors = {
   darkGrey: '#C4C4C4',
   darkGreyRGB: '196, 196, 196',
   border: '#C4C4C4',
-  danger: 'red',
-  info: 'blue',
-  warning: 'yellow',
-  success: 'green',
+  danger: '#FF130D',
+  info: '#0C95FF',
+  warning: '#FF9F0C',
+  success: '#0BE894',
   default: '#C4C4C4'
 }
 
@@ -144,7 +144,17 @@ export const theme: ITheme = {
     placeholderColor: `${colors.lightGrey}`,
   },
   notice: {
-
+    avatarwidth: '25px',
+    avatarheight: '25px',
+    pillWidth: '4px',
+    pillRadius: '2px',
+    pillMinHeight: '20px',
+    titleFontSize: '16px',
+    titleFontWeight: '700',
+    titleFontColor: colors.black,
+    descriptionFontSize: '16px',
+    descriptionFontWeight: '400',
+    descriptionFontColor: colors.lightGrey
   }
 }
 
