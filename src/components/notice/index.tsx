@@ -7,23 +7,30 @@ import {
 } from '../../styles/theme';
 
 interface INoticeProps {
-  title?: React.ReactNode;
-  description?: React.ReactNode;
   avatar?: React.ReactNode;
-  type: 'info' | 'default' | 'warning' | 'success' | 'danger';
-  actions?: React.ReactNode;
   className?: string;
+  contentRight?: React.ReactNode;
+  description?: React.ReactNode;
+  hidePill?: boolean;
   theme: ITheme;
+  title?: React.ReactNode;
+  type: 'info' | 'default' | 'warning' | 'success' | 'danger';
 }
 
 class NoticeComponent extends React.Component<INoticeProps> {
+
+  static defaultProps = {
+    hidePill: false
+  }
+
   render() {
     const {
       className,
       title,
       description,
       avatar,
-      actions
+      hidePill,
+      contentRight
     } = this.props;
 
     return (
@@ -34,7 +41,9 @@ class NoticeComponent extends React.Component<INoticeProps> {
           </div>
         }
         <div className="content" >
-          <div className="pill" />
+          {!hidePill &&
+            <div className="pill" />
+          }
           <div className="right-content">
             <div className="title-content">
               {title &&
@@ -44,9 +53,9 @@ class NoticeComponent extends React.Component<INoticeProps> {
                 <div className="description">{description}</div>
               }
             </div>
-            {actions &&
-              <div className="actions">
-                {actions}
+            {contentRight &&
+              <div className="content-right">
+                {contentRight}
               </div>
             }
           </div>
@@ -66,6 +75,7 @@ const Notice = styled(NoticeComponent)`
   .avatar {
     height: ${(props: INoticeProps) => props.theme.notice.avatarHeight};
     width: ${(props: INoticeProps) => props.theme.notice.avatarWidth};
+    margin-right: 5px;
   }
 
   .content {
@@ -84,7 +94,7 @@ const Notice = styled(NoticeComponent)`
       width: ${(props: INoticeProps) => props.theme.notice.pillWidth};
       border-radius: ${(props: INoticeProps) => props.theme.notice.pillRadius};
       min-height: ${(props: INoticeProps) => props.theme.notice.pillMinHeight};
-      margin: 0px 5px;
+      margin-right: 5px;
     }
 
     .title-content {
