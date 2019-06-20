@@ -27,6 +27,7 @@ stories.add(
   'default',
   wInfo()(() => (
     <Button
+      type="primary"
       disabled={boolean('Disabled', false)}
       onClick={action('onClick')}
     >
@@ -39,7 +40,7 @@ stories.add(
   'ghost',
   wInfo()(() => (
     <Button
-      type={'ghost'}
+      type="ghost"
       disabled={boolean('Disabled', false)}
       onClick={action('onClick')}
     >
