@@ -10,7 +10,7 @@
     "build": "npm run build:types && npm run build:js",
     "build:types": "tsc --emitDeclarationOnly",
     "build:js": "babel src --out-dir lib --extensions \".ts,.tsx\" --source-maps inline",
-    "storybook": "start-storybook --quiet",
+    "storybook": "start-storybook -p 9000 --quiet",
     "storybook:build": "build-storybook -o build/storybook/static"
   },
   "dependencies": {

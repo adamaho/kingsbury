@@ -1,8 +1,4 @@
 import {
-  setOptions
-} from '@storybook/addon-options';
-
-import {
   addDecorator,
   addParameters,
   configure
@@ -11,11 +7,6 @@ import {
 import themeDecorator from './themeDecorator';
 
 import yourTheme from './yourTheme';
-
-setOptions({
-  addonPanelInRight: true,
-  name: "Kingsbury",
-});
 
 addParameters({
   options: {
