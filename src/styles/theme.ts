@@ -7,9 +7,7 @@ export interface ITheme {
     }
   };
   buttons: {
-    [key: string]: {
-      [key: string]: string | any
-    }
+    [key: string]: any
   };
   card: {
     [key: string]: string
@@ -66,28 +64,24 @@ export const theme: ITheme = {
     }
   },
   buttons: {
-    default: {
-      borderRadius: '4px',
-      height: 38,
-      padding: '5px 15px 5px 15px'
-    },
+    backgroundDisabled: colors.lightGrey,
+    border: 'none',
+    borderRadius: '4px',
+    boxShadow: `0px 2px 4px rgba(${colors.blackRGB}, 0.5)`,
+    color: colors.white,
+    height: 38,
+    padding: '5px 15px 5px 15px',
     primary: {
-      background: colors.primary,
-      backgroundDisabled: colors.lightGrey,
-      border: 'none',
-      borderDisabled: 'none',
-      boxShadow: `0px 2px 4px rgba(${colors.blackRGB}, 0.5)`,
-      color: colors.white,
-      cursor: 'pointer'
+      color: colors.white
     },
-    ghost: {
-      background: 'transparent',
-      backgroundDisabled: 'transparent',
-      border: `1px solid ${colors.white}`,
-      borderDisabled: `1px solid ${colors.lightGrey}`, 
-      boxShadow: 'none',
-      color: colors.white,
-      cursor: 'pointer'
+    success: {
+      color: colors.black
+    },
+    danger: {
+      color: colors.white
+    },
+    warning: {
+      color: colors.black
     }
   },
   card: {

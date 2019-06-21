@@ -19,10 +19,6 @@ interface INoticeProps {
 
 class NoticeComponent extends React.Component<INoticeProps> {
 
-  static defaultProps = {
-    hidePill: false
-  }
-
   render() {
     const {
       className,
@@ -70,6 +66,7 @@ const Notice = styled(NoticeComponent)`
   align-items: center;
   height: 100%;
   width: 100%;
+  max-width: 400px;
   padding: 10px 0px;
 
   .avatar {
@@ -115,6 +112,7 @@ const Notice = styled(NoticeComponent)`
 
 Notice.defaultProps = {
   theme: theme,
+  hidePill: false,
   type: 'default'
 }
 
