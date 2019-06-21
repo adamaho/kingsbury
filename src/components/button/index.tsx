@@ -42,6 +42,7 @@ const Button = styled(ButtonComponent)`
   height: ${(props: IButtonProps) => `${props.theme.buttons.height}px`};
 
   font-weight: 400;
+  font-family: ${(props: IButtonProps) => props.theme.fontFamily};
   font-size: 16px;
   text-decoration: none;
 
