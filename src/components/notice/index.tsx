@@ -66,6 +66,7 @@ const Notice = styled(NoticeComponent)`
   align-items: center;
   height: 100%;
   width: 100%;
+  max-width: 400px;
   padding: 10px 0px;
 
   .avatar {

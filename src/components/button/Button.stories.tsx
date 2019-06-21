@@ -33,11 +33,19 @@ stories.add(
           Danger
         </Button>
       </span>
-      <span>
+      <span style={{ marginRight: '10px' }}>
         <Button
           type="warning"
         >
           Warning
+        </Button>
+      </span>
+      <span>
+        <Button
+          type="primary"
+          disabled
+        >
+          Disabled
         </Button>
       </span>
     </div>

@@ -4,7 +4,16 @@ import {
   storiesOf
 } from '@storybook/react';
 
+import styled from '../../styles/theme';
+
 import Notice from '.';
+
+const Avatar = styled.div`
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background-color: hotpink;
+`;
 
 const stories = storiesOf('Components/Notice', module);
 
@@ -57,7 +66,7 @@ stories.add(
     <Notice
       title="Default"
       description="Description of notice"
-      avatar={<div>A</div>}
+      avatar={<Avatar />}
       type="default"
     />
   )
@@ -81,7 +90,7 @@ stories.add(
     <Notice
       title="Default"
       description="Description of notice"
-      avatar={<div>A</div>}
+      avatar={<Avatar />}
       contentRight={<div>Content</div>}
       type="default"
     />
