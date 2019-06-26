@@ -8,9 +8,8 @@ module.exports = ({ config, mode }) => {
       path.resolve(__dirname, "../.storybook")
     ],
     use: [
-      require.resolve("cache-loader"),
       {
-        loader: require.resolve("ts-loader"),
+        loader: require.resolve('awesome-typescript-loader'),
         options: {
           reportFiles: ["../src"]
         }

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import styled from '../../styles/theme';
 
 import {
@@ -6,7 +7,7 @@ import {
   theme
 } from '../../styles/theme';
 
-interface INoticeProps {
+export interface INoticeProps {
   avatar?: React.ReactNode;
   className?: string;
   contentRight?: React.ReactNode;
@@ -18,6 +19,10 @@ interface INoticeProps {
 }
 
 class NoticeComponent extends React.Component<INoticeProps> {
+
+  static propTypes = {
+    title: PropTypes.string
+  }
 
   render() {
     const {

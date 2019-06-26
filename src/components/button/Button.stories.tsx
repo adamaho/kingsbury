@@ -6,7 +6,7 @@ import {
 
 import Button from '.';
 
-const stories = storiesOf('Components/Button', module);
+const stories = storiesOf('Button', module);
 
 stories.add(
   'Type',
