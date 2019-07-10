@@ -13,5 +13,8 @@
           "ssr": false
         }
       ]
+  ],
+  "ignore": [
+    "**/*.stories.tsx"
   ]
 }
