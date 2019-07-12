@@ -100,3 +100,16 @@ stories.add(
     />
   )
 );
+
+stories.add(
+  'User (Avatar no pill)',
+  () => (
+    <Notice
+      title="Default"
+      description="Description of notice"
+      avatar={<Avatar />}
+      type="default"
+      hidePill
+    />
+  )
+);
