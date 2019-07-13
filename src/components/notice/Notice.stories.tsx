@@ -102,7 +102,7 @@ stories.add(
 );
 
 stories.add(
-  'User (Avatar no pill)',
+  'Avatar no pill',
   () => (
     <Notice
       title="Default"
