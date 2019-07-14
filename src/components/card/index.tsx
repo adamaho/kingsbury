@@ -13,36 +13,33 @@ interface ICardProps {
   theme: ITheme;
 }
 
-class CardComponent extends React.Component<ICardProps> {
-  render() {
-    const {
-      className,
-      header,
-      footer,
-      children
-    } = this.props;
-
-    return (
-      <div className={className}>
-        {header &&
-          <div className="header">
-            {header}
-          </div>
-        }
-        <div>
-          {children}
-        </div>
-        {footer &&
-          <div className="footer">
-            {footer}
-          </div>
-        }
+const CardComponent: React.FunctionComponent<ICardProps> = ({
+  className,
+  header,
+  footer,
+  children
+}) => (
+  <div className={className}>
+    {header &&
+      <div className="card-header">
+        {header}
       </div>
-    );
-  }
-}
+    }
+    <div className="card-content">
+      {children}
+    </div>
+    {footer &&
+      <div className="card-footer">
+        {footer}
+      </div>
+    }
+  </div>
+)
 
 const Card = styled(CardComponent)`
+  display: flex;
+  flex-direction: column;
+
   height: ${(props: ICardProps) => props.theme.card.height};
   width: ${(props: ICardProps) => props.theme.card.width};
 
@@ -51,7 +48,7 @@ const Card = styled(CardComponent)`
   box-shadow: ${(props: ICardProps) => props.theme.card.boxShadow};
   border-radius: ${(props: ICardProps) => props.theme.card.borderRadius};
 
-  .header {
+  .card-header {
     background: ${(props: ICardProps) => props.theme.card.headerBackground};
     height: ${(props: ICardProps) => props.theme.card.headerHeight};
     border-bottom: ${(props: ICardProps) => props.theme.card.innerBorder};
@@ -59,7 +56,11 @@ const Card = styled(CardComponent)`
     border-top-right-radius: ${(props: ICardProps) => props.theme.card.borderRadius};
   }
 
-  .footer {
+  .card-content {
+    flex: 1
+  }
+
+  .card-footer {
     background: ${(props: ICardProps) => props.theme.card.footerBackground};
     height: ${(props: ICardProps) => props.theme.card.footerHeight};
     border-top: ${(props: ICardProps) => props.theme.card.innerBorder};
@@ -69,7 +70,7 @@ const Card = styled(CardComponent)`
 `;
 
 Card.defaultProps = {
-  theme: theme
+  theme
 }
 
 export default Card;

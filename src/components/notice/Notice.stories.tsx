@@ -15,11 +15,7 @@ const Avatar = styled.div`
   background-color: hotpink;
 `;
 
-const stories = storiesOf('Notice', module).addParameters({
-  info: {
-    propTables: [Notice]
-  }
-})
+const stories = storiesOf('Notice', module);
 
 stories.add(
   'Type',

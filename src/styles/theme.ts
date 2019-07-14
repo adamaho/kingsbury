@@ -87,12 +87,12 @@ export const theme: ITheme = {
   card: {
     background: colors.white,
     borderRadius: '5px',
-    boxShadow: `0px 4px 4px rgba(${colors.blackRGB}, 0.25)`,
-    footerHeight: 'auto',
+    boxShadow: `0px 0px 8px rgba(${colors.blackRGB}, 0.25)`,
+    footerHeight: '33px',
     footerBackground: colors.white,
-    headerHeight: '50px',
+    headerHeight: '33px',
     headerBackground: colors.white,
-    height: 'auto',
+    height: '100%',
     innerBorder: `1px solid ${colors.lightGrey}`,
     outerBorder: 'none',
     width: '100%'
