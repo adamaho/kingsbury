@@ -1,9 +1,8 @@
 import * as React from 'react';
-import styled from '../../styles/theme';
 
-import {
+import styled, {
   ITheme,
-  theme
+  theme,
 } from '../../styles/theme';
 
 export interface IButtonProps {
