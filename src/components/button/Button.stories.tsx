@@ -15,6 +15,7 @@ stories.add(
       <span style={{ marginRight: '10px' }}>
         <Button
           type="primary"
+          onClick={() => console.log('primary')}
         >
           Primary
         </Button>
@@ -22,6 +23,7 @@ stories.add(
       <span style={{ marginRight: '10px' }}>
         <Button
           type="success"
+          onClick={() => console.log('success')}
         >
           Success
         </Button>
@@ -29,6 +31,7 @@ stories.add(
       <span style={{ marginRight: '10px' }}>
         <Button
           type="danger"
+          onClick={() => console.log('danger')}
         >
           Danger
         </Button>
@@ -36,6 +39,7 @@ stories.add(
       <span style={{ marginRight: '10px' }}>
         <Button
           type="warning"
+          onClick={() => console.log('warning')}
         >
           Warning
         </Button>
@@ -43,6 +47,7 @@ stories.add(
       <span>
         <Button
           type="primary"
+          onClick={() => console.log('disabled')}
           disabled
         >
           Disabled

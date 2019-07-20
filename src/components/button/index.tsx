@@ -7,28 +7,32 @@ import styled, {
 
 export interface IButtonProps {
   type: 'primary' | 'ghost' | 'success' | 'danger' | 'warning';
-  disabled: boolean;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  disabled?: boolean;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
   className?: string;
   theme: ITheme;
 }
 
-class ButtonComponent extends React.Component<IButtonProps> {
+const ButtonComponent: React.FunctionComponent<IButtonProps> = ({
+  className,
+  children,
+  onClick,
+  disabled
+}) => (
+  <button
+    className={`king-button ${className}`}
+    onClick={onClick}
+    disabled={disabled}
+  >
+    {children}
+  </button>
+);
 
-  static defaultProps = {
-    disabled: false
-  }
-
-  render() {
-    return (
-      <button
-        className={this.props.className}
-      >
-        {this.props.children}
-      </button>
-    );
-  }
-}
+ButtonComponent.defaultProps = {
+  disabled: false,
+  type: 'primary',
+  theme,
+};
 
 const Button = styled(ButtonComponent)`
   background: ${(props: IButtonProps) => (
@@ -77,8 +81,9 @@ const Button = styled(ButtonComponent)`
 `
 
 Button.defaultProps = {
-  theme: theme,
-  type: 'primary'
+  disabled: false,
+  type: 'primary',
+  theme,
 }
 
 export default Button;
