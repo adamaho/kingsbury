@@ -52,7 +52,6 @@ const Input = styled(InputComponent)`
   height: ${(props: IInputProps) => props.theme.input.height};
   width: 100%;
   -webkit-appearance: none;
-  font-family: ${(props: IInputProps) => props.theme.fontFamily};
   font-size: 16px;
   background-color: ${(props: IInputProps) => props.theme.input.background};
   color: ${(props: IInputProps) => props.theme.input.color};
