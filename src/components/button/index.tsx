@@ -48,6 +48,7 @@ const Button = styled(ButtonComponent)`
 
   font-weight: 400;
   font-size: 16px;
+  font-family: inherit;
   text-decoration: none;
 
   border: ${(props: IButtonProps) => props.theme.buttons.border};

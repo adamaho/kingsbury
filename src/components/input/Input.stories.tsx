@@ -21,7 +21,7 @@ stories.add(
   'Disabled',
   () => (
     <div>
-      <Input disabled />
+      <Input disabled placeholder="this is a test"/>
     </div>
   )
 );
