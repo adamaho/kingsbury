@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as _ from 'lodash';
 
 import styled, {
   ITheme,
@@ -8,7 +9,7 @@ import styled, {
 export interface IButtonProps {
   type: 'primary' | 'ghost' | 'success' | 'danger' | 'warning';
   disabled?: boolean;
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
   className?: string;
   theme: ITheme;
 }
@@ -31,6 +32,7 @@ const ButtonComponent: React.FunctionComponent<IButtonProps> = ({
 ButtonComponent.defaultProps = {
   disabled: false,
   type: 'primary',
+  onClick: () => _.noop(),
   theme,
 };
 
@@ -45,7 +47,6 @@ const Button = styled(ButtonComponent)`
   height: ${(props: IButtonProps) => `${props.theme.buttons.height}px`};
 
   font-weight: 400;
-  font-family: ${(props: IButtonProps) => props.theme.fontFamily};
   font-size: 16px;
   text-decoration: none;
 

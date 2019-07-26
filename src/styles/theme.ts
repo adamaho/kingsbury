@@ -18,7 +18,6 @@ export interface ITheme {
   display: {
     [key: string]: string
   };
-  fontFamily: string;
   header: {
     [key: string]: string
   };
@@ -124,7 +123,6 @@ export const theme: ITheme = {
     tablet: '670px',
     phone: '475px'
   },
-  fontFamily: "'Nunito', sans-serif",
   header: {
     height: '50px;'
   },
