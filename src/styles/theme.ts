@@ -27,6 +27,23 @@ export interface ITheme {
   notice: {
     [key: string]: string
   };
+  typeography: {
+    h1: {
+      [key: string]: string
+    },
+    h2: {
+      [key: string]: string
+    },
+    h3: {
+      [key: string]: string
+    },
+    h4: {
+      [key: string]: string
+    },
+    p: {
+      [key: string]: string
+    }
+  };
 }
 
 interface IColors {
@@ -147,6 +164,23 @@ export const theme: ITheme = {
     descriptionFontSize: '16px',
     descriptionFontWeight: '400',
     descriptionFontColor: colors.lightGrey
+  },
+  typeography: {
+    h1: {
+      margin: '0px'
+    },
+    h2: {
+      margin: '0px'
+    },
+    h3: {
+      margin: '0px'
+    },
+    h4: {
+      margin: '0px'
+    },
+    p: {
+      margin: '0px'
+    }
   }
 }
 
