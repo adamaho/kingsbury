@@ -8,6 +8,9 @@ import {
 
 interface IInputProps {
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  type?: string;
+  id?: string; // to be used with formik
+  name?: string // to be used with formik
   className?: string;
   placeholder?: string;
   disabled: boolean;
@@ -32,6 +35,8 @@ class InputComponent extends React.Component<IInputProps> {
 
   render() {
     const {
+      id,
+      name,
       className,
       disabled,
       placeholder
@@ -39,6 +44,8 @@ class InputComponent extends React.Component<IInputProps> {
 
     return (      
       <input
+        id={id}
+        name={name}
         className={className}
         placeholder={placeholder}
         onChange={this.onInputChange}
