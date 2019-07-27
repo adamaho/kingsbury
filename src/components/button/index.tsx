@@ -7,7 +7,8 @@ import styled, {
 } from '../../styles/theme';
 
 export interface IButtonProps {
-  type: 'primary' | 'ghost' | 'success' | 'danger' | 'warning';
+  type?: undefined | 'button' | 'submit'
+  buttonType: 'primary' | 'ghost' | 'success' | 'danger' | 'warning';
   disabled?: boolean;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   className?: string;
@@ -15,12 +16,14 @@ export interface IButtonProps {
 }
 
 const ButtonComponent: React.FunctionComponent<IButtonProps> = ({
+  type,
   className,
   children,
   onClick,
   disabled
 }) => (
   <button
+    type={type}
     className={`king-button ${className}`}
     onClick={onClick}
     disabled={disabled}
@@ -31,7 +34,8 @@ const ButtonComponent: React.FunctionComponent<IButtonProps> = ({
 
 ButtonComponent.defaultProps = {
   disabled: false,
-  type: 'primary',
+  type: undefined,
+  buttonType: 'primary',
   onClick: () => _.noop(),
   theme,
 };
@@ -40,10 +44,10 @@ const Button = styled(ButtonComponent)`
   background: ${(props: IButtonProps) => (
     props.disabled ?
       props.theme.buttons.backgroundDisabled :
-      props.theme.colors[props.type]
+      props.theme.colors[props.buttonType]
   )};
 
-  color: ${(props: IButtonProps) => props.theme.buttons[props.type].color};
+  color: ${(props: IButtonProps) => props.theme.buttons[props.buttonType].color};
   height: ${(props: IButtonProps) => `${props.theme.buttons.height}px`};
 
   font-weight: 400;
@@ -84,7 +88,7 @@ const Button = styled(ButtonComponent)`
 
 Button.defaultProps = {
   disabled: false,
-  type: 'primary',
+  buttonType: 'primary',
   theme,
 }
 
