@@ -1,26 +1,29 @@
 import * as React from 'react';
-import styled from '../../styles/theme';
 
-import {
+import styled, {
   ITheme,
   theme
 } from '../../styles/theme';
 
 interface IInputProps {
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
-  type?: string;
-  id?: string; // to be used with formik
-  name?: string // to be used with formik
   className?: string;
-  placeholder?: string;
   disabled: boolean;
+  error?: string;
+  errorComponent?: (error: string) => React.ReactNode;
+  id?: string; // to be used with formik
+  label?: React.ReactNode;
+  name?: string // to be used with formik
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  placeholder?: string;
+  type?: string;
   theme: ITheme;
 }
 
 class InputComponent extends React.Component<IInputProps> {
 
   static defaultProps = {
-    disabled: false
+    disabled: false,
+    errorComponent: (error: string) => <div>{error}</div> 
   }
 
   onInputChange  = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,20 +40,31 @@ class InputComponent extends React.Component<IInputProps> {
     const {
       id,
       name,
+      label,
+      error,
+      errorComponent,
       className,
       disabled,
       placeholder
     } = this.props;
 
-    return (      
-      <input
-        id={id}
-        name={name}
-        className={className}
-        placeholder={placeholder}
-        onChange={this.onInputChange}
-        disabled={disabled}
-      />
+    return (
+      <React.Fragment>
+        {label &&
+          label
+        }
+        <input
+          id={id}
+          name={name}
+          className={className}
+          placeholder={placeholder}
+          onChange={this.onInputChange}
+          disabled={disabled}
+        />
+        {(error && errorComponent) &&
+          errorComponent(error)
+        }
+      </React.Fragment>
     );
   }
 }
@@ -67,7 +81,11 @@ const Input = styled(InputComponent)`
   color: ${(props: IInputProps) => props.theme.input.color};
 
   border: ${(props: IInputProps) => props.theme.input.border};
-  border-color: ${(props: IInputProps) => props.theme.input.borderColor};
+  border-color: ${(props: IInputProps) => props.error ?
+    props.theme.colors.danger :
+    props.theme.input.borderColor
+  };
+
   border-radius: ${(props: IInputProps) => props.theme.input.borderRadius};
   box-sizing: border-box;
 

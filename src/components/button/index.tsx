@@ -7,12 +7,12 @@ import styled, {
 } from '../../styles/theme';
 
 export interface IButtonProps {
-  type?: undefined | 'button' | 'submit'
   buttonType: 'primary' | 'ghost' | 'success' | 'danger' | 'warning';
+  className?: string;
   disabled?: boolean;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  className?: string;
   theme: ITheme;
+  type?: undefined | 'button' | 'submit'
 }
 
 const ButtonComponent: React.FunctionComponent<IButtonProps> = ({

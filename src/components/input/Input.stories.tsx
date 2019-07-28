@@ -26,3 +26,44 @@ stories.add(
   )
 );
 
+stories.add(
+  'With Label',
+  () => (
+    <div>
+      <Input
+        placeholder="this is a test"
+        label={<div>This is a label</div>}
+      />
+    </div>
+  )
+);
+
+
+stories.add(
+  'With Label and Error',
+  () => (
+    <div>
+      <Input
+        placeholder="this is a test"
+        label={<div>This is a label</div>}
+        error={'im errored'}
+      />
+    </div>
+  )
+);
+
+stories.add(
+  'With Label and Error and Error Component',
+  () => (
+    <div>
+      <Input
+        placeholder="this is a test"
+        label={<div>This is a label</div>}
+        error={'This is the error'}
+        errorComponent={(error) => <div style={{ color: 'red' }}>{error}</div>}
+      />
+    </div>
+  )
+);
+
+

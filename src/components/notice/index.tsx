@@ -11,7 +11,7 @@ export interface INoticeProps {
   avatar?: React.ReactNode;
   className?: string;
   contentRight?: React.ReactNode;
-  description?: React.ReactNode;
+  description?: React.ReactNode | string;
   hidePill?: boolean;
   theme: ITheme;
   title?: React.ReactNode;
