@@ -49,14 +49,13 @@ class InputComponent extends React.Component<IInputProps> {
     } = this.props;
 
     return (
-      <React.Fragment>
+      <div className={className}>
         {label &&
           <label>{label}</label>
         }
         <input
           id={id}
           name={name}
-          className={className}
           placeholder={placeholder}
           onChange={this.onInputChange}
           disabled={disabled}
@@ -64,45 +63,51 @@ class InputComponent extends React.Component<IInputProps> {
         {(error && errorComponent) &&
           errorComponent(error)
         }
-      </React.Fragment>
+      </div>
     );
   }
 }
 
 const Input = styled(InputComponent)`
-  height: ${(props: IInputProps) => props.theme.input.height};
-  width: 100%;
-  -webkit-appearance: none;
+  input {
+    height: ${(props: IInputProps) => props.theme.input.height};
+    width: 100%;
+    -webkit-appearance: none;
 
-  font-family: inherit;
-  font-size: ${(props: IInputProps) => props.theme.input.fontSize};
+    font-family: inherit;
+    font-size: ${(props: IInputProps) => props.theme.input.fontSize};
 
-  background-color: ${(props: IInputProps) => props.theme.input.background};
-  color: ${(props: IInputProps) => props.theme.input.color};
+    background-color: ${(props: IInputProps) => props.theme.input.background};
+    color: ${(props: IInputProps) => props.theme.input.color};
 
-  border: ${(props: IInputProps) => props.theme.input.border};
-  border-color: ${(props: IInputProps) => props.error ?
-    props.theme.colors.danger :
-    props.theme.input.borderColor
-  };
+    border: ${(props: IInputProps) => props.theme.input.border};
+    border-color: ${(props: IInputProps) => props.error ?
+      props.theme.colors.danger :
+      props.theme.input.borderColor
+    };
 
-  border-radius: ${(props: IInputProps) => props.theme.input.borderRadius};
-  box-sizing: border-box;
+    border-radius: ${(props: IInputProps) => props.theme.input.borderRadius};
+    box-sizing: border-box;
 
-  line-height: 38px;
-  padding: 10px 0px 10px 10px;
+    line-height: 38px;
+    padding: 10px 0px 10px 10px;
 
-  &::placeholder {
-    color: ${(props: IInputProps) => props.theme.input.placeholderColor};
+    &::placeholder {
+      color: ${(props: IInputProps) => props.theme.input.placeholderColor};
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+
+    &:focus {
+      border: ${(props: IInputProps) => `1px solid ${props.theme.colors.primary}`};
+      outline: none;
+    }
   }
 
-  &:disabled {
-    cursor: not-allowed;
-  }
-
-  &:focus {
-    border: ${(props: IInputProps) => `1px solid ${props.theme.colors.primary}`};
-    outline: none;
+  label {
+    font-size: 12px;
   }
 `;
 

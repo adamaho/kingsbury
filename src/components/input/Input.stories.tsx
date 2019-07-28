@@ -4,6 +4,8 @@ import {
   storiesOf
 } from '@storybook/react';
 
+import styled from '../../styles/theme';
+
 import Input from '.';
 
 const stories = storiesOf('Input', module);
@@ -63,6 +65,26 @@ stories.add(
         errorComponent={(error) => <div style={{ color: 'red' }}>{error}</div>}
       />
     </div>
+  )
+);
+
+
+const InputExtended = styled(Input)`
+  margin-bottom: 50px;
+`;
+
+stories.add(
+  'Input Extended',
+  () => (
+    <React.Fragment>
+      <InputExtended
+        placeholder="this is a test"
+        label={<div>This is a label</div>}
+        error={'This is the error'}
+        errorComponent={(error) => <div style={{ color: 'red' }}>{error}</div>}
+      />
+      <div>confirming margin works</div>
+    </React.Fragment>
   )
 );
 
