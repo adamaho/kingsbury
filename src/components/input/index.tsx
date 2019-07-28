@@ -15,7 +15,7 @@ interface IInputProps {
   name?: string // to be used with formik
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   placeholder?: string;
-  type?: string;
+  type?: 'password' | undefined;
   theme: ITheme;
 }
 
@@ -23,6 +23,7 @@ class InputComponent extends React.Component<IInputProps> {
 
   static defaultProps = {
     disabled: false,
+    type: undefined,
     errorComponent: (error: string) => <div>{error}</div> 
   }
 
@@ -45,6 +46,7 @@ class InputComponent extends React.Component<IInputProps> {
       errorComponent,
       className,
       disabled,
+      type,
       placeholder
     } = this.props;
 
@@ -56,6 +58,7 @@ class InputComponent extends React.Component<IInputProps> {
         <input
           id={id}
           name={name}
+          type={type}
           placeholder={placeholder}
           onChange={this.onInputChange}
           disabled={disabled}

@@ -40,6 +40,19 @@ stories.add(
   )
 );
 
+stories.add(
+  'Password',
+  () => (
+    <div>
+      <Input
+        type="password"
+        placeholder="this is a test"
+        label={'Password'}
+      />
+    </div>
+  )
+);
+
 
 stories.add(
   'With Label and Error',
