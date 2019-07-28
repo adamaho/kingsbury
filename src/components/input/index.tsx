@@ -51,7 +51,7 @@ class InputComponent extends React.Component<IInputProps> {
     return (
       <React.Fragment>
         {label &&
-          label
+          <label>{label}</label>
         }
         <input
           id={id}
