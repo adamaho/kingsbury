@@ -103,7 +103,7 @@ export const theme: ITheme = {
   card: {
     background: colors.white,
     borderRadius: '5px',
-    boxShadow: `0px 4px 4px rgba(${colors.blackRGB}, 0.25)`,
+    boxShadow: `0px 0px 7px rgba(${colors.blackRGB}, 0.20)`,
     footerHeight: 'auto',
     footerBackground: colors.white,
     headerHeight: '50px',
