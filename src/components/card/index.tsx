@@ -12,6 +12,7 @@ import {
 interface ICardProps {
   header?: React.ReactNode;
   footer?: React.ReactNode;
+  meta?: object;
   className?: string;
   onClick?: () => void;
   theme: ITheme;
