@@ -1,5 +1,8 @@
 import * as React from 'react';
-import styled from '../../styles/theme';
+
+import styled, {
+  css
+} from '../../styles/theme';
 
 import {
   ITheme,
@@ -52,6 +55,27 @@ const Card = styled(CardComponent)`
   border: ${(props: ICardProps) => props.theme.card.outerBorder};
   box-shadow: ${(props: ICardProps) => props.theme.card.boxShadow};
   border-radius: ${(props: ICardProps) => props.theme.card.borderRadius};
+
+  opacity: ${(props: ICardProps) => props.onClick ?
+    0.8 :
+    1
+  };
+
+  cursor: ${(props: ICardProps) => props.onClick ?
+    'pointer' :
+    'default'
+  };
+
+  transition: .35s cubic-bezier(.19, 1, .4, 1);
+
+  ${(props: ICardProps) => props.onClick && css`
+      &:hover {
+        opacity: 1;
+        transform: translateY(-1%);
+        box-shadow: 0 7px 21px 0 rgba(0,0,0,.07);
+      }
+    `
+  }
 
   .header {
     background: ${(props: ICardProps) => props.theme.card.headerBackground};
