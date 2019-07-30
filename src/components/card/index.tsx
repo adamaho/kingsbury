@@ -9,7 +9,7 @@ import {
   theme
 } from '../../styles/theme';
 
-interface ICardProps {
+interface ICardProps extends React.HTMLAttributes<HTMLDivElement> {
   header?: React.ReactNode;
   footer?: React.ReactNode;
   className?: string;

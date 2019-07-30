@@ -26,7 +26,7 @@ stories.add(
 stories.add(
   'With Click',
   () => (
-    <Card onClick={() => console.log('asdfasdf')}>
+    <Card style={{ borderLeft: '1px solid red' }} onClick={() => console.log('asdfasdf')}>
       <TestContent>
         adasd
       </TestContent>
