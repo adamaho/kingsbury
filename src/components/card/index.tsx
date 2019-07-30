@@ -10,6 +10,7 @@ interface ICardProps {
   header?: React.ReactNode;
   footer?: React.ReactNode;
   className?: string;
+  onClick?: () => void;
   theme: ITheme;
 }
 
@@ -19,11 +20,12 @@ class CardComponent extends React.Component<ICardProps> {
       className,
       header,
       footer,
+      onClick,
       children
     } = this.props;
 
     return (
-      <div className={className}>
+      <div className={className} onClick={onClick}>
         {header &&
           <div className="header">
             {header}
