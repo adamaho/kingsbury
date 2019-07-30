@@ -29,7 +29,7 @@ class CardComponent extends React.Component<ICardProps> {
             {header}
           </div>
         }
-        <div>
+        <div className="content">
           {children}
         </div>
         {footer &&
