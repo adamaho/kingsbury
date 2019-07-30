@@ -9,10 +9,14 @@ import {
   theme
 } from '../../styles/theme';
 
+interface IMeta {
+  [key: string]: any;
+};
+
 interface ICardProps {
   header?: React.ReactNode;
   footer?: React.ReactNode;
-  meta?: object;
+  meta?: IMeta;
   className?: string;
   onClick?: () => void;
   theme: ITheme;
