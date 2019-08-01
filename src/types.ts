@@ -1,0 +1,1 @@
+export type ItemType = 'primary' | 'info' | 'warning' | 'success' | 'danger';

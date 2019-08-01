@@ -1,8 +1,6 @@
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
-import styled from '../../styles/theme';
 
-import {
+import styled, {
   ITheme,
   theme
 } from '../../styles/theme';
@@ -19,11 +17,6 @@ export interface INoticeProps {
 }
 
 class NoticeComponent extends React.Component<INoticeProps> {
-
-  static propTypes = {
-    title: PropTypes.string
-  }
-
   render() {
     const {
       className,
