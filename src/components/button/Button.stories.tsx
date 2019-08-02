@@ -13,15 +13,13 @@ stories.add(
   () => (
     <div>
       <span style={{ marginRight: '10px' }}>
-        <Button
-          type="primary"
-        >
+        <Button buttonType="primary">
           Primary
         </Button>
       </span>
       <span style={{ marginRight: '10px' }}>
         <Button
-          type="success"
+          buttonType="success"
           onClick={() => console.log('success')}
         >
           Success
@@ -29,7 +27,7 @@ stories.add(
       </span>
       <span style={{ marginRight: '10px' }}>
         <Button
-          type="danger"
+          buttonType="danger"
           onClick={() => console.log('danger')}
         >
           Danger
@@ -37,7 +35,7 @@ stories.add(
       </span>
       <span style={{ marginRight: '10px' }}>
         <Button
-          type="warning"
+          buttonType="warning"
           onClick={() => console.log('warning')}
         >
           Warning
@@ -45,7 +43,7 @@ stories.add(
       </span>
       <span>
         <Button
-          type="primary"
+          buttonType="primary"
           onClick={() => console.log('disabled')}
           disabled
         >

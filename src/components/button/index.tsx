@@ -6,13 +6,18 @@ import styled, {
   theme,
 } from '../../styles/theme';
 
-export interface IButtonProps {
-  buttonType: 'primary' | 'ghost' | 'success' | 'danger' | 'warning';
+import {
+  ItemType
+} from '../../types';
+
+const REQUIRE_DARK_TEXT = new Set(['success', 'warning', 'disabled']);
+
+interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  buttonType: ItemType;
   className?: string;
   disabled?: boolean;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   theme: ITheme;
-  type?: undefined | 'button' | 'submit'
 }
 
 const ButtonComponent: React.FunctionComponent<IButtonProps> = ({
@@ -24,21 +29,13 @@ const ButtonComponent: React.FunctionComponent<IButtonProps> = ({
 }) => (
   <button
     type={type}
-    className={`king-button ${className}`}
+    className={`kingsbury-button ${className}`}
     onClick={onClick}
     disabled={disabled}
   >
     {children}
   </button>
 );
-
-ButtonComponent.defaultProps = {
-  disabled: false,
-  type: undefined,
-  buttonType: 'primary',
-  onClick: () => _.noop(),
-  theme,
-};
 
 const Button = styled(ButtonComponent)`
   background: ${(props: IButtonProps) => (
@@ -47,7 +44,13 @@ const Button = styled(ButtonComponent)`
       props.theme.colors[props.buttonType]
   )};
 
-  color: ${(props: IButtonProps) => props.theme.buttons[props.buttonType].color};
+  color: ${(props: IButtonProps) => {
+    if (REQUIRE_DARK_TEXT.has(props.buttonType) || props.disabled) {
+      return props.theme.colors.black
+    }
+    return props.theme.colors.white;
+  }};
+
   height: ${(props: IButtonProps) => `${props.theme.buttons.height}px`};
 
   font-weight: 400;
@@ -88,7 +91,8 @@ const Button = styled(ButtonComponent)`
 
 Button.defaultProps = {
   disabled: false,
-  buttonType: 'primary',
+  type: undefined,
+  onClick: () => _.noop(),
   theme,
 }
 

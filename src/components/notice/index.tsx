@@ -5,7 +5,11 @@ import styled, {
   theme
 } from '../../styles/theme';
 
-export interface INoticeProps {
+import {
+  ItemType
+} from '../../types';
+
+interface INoticeProps {
   avatar?: React.ReactNode;
   className?: string;
   contentRight?: React.ReactNode;
@@ -13,7 +17,7 @@ export interface INoticeProps {
   hidePill?: boolean;
   theme: ITheme;
   title?: React.ReactNode;
-  type: 'info' | 'default' | 'warning' | 'success' | 'danger';
+  type: ItemType;
 }
 
 class NoticeComponent extends React.Component<INoticeProps> {
@@ -28,7 +32,7 @@ class NoticeComponent extends React.Component<INoticeProps> {
     } = this.props;
 
     return (
-      <div className={className}>
+      <div className={`kingsbury-notice ${className}`}>
         {avatar &&
           <div className="avatar">
             {avatar}

@@ -9,7 +9,7 @@ import {
   theme
 } from '../../styles/theme';
 
-export interface ICardProps extends React.HTMLAttributes<HTMLDivElement> {
+interface ICardProps extends React.HTMLAttributes<HTMLDivElement> {
   header?: React.ReactNode;
   footer?: React.ReactNode;
   className?: string;
@@ -28,7 +28,7 @@ class CardComponent extends React.Component<ICardProps> {
     } = this.props;
 
     return (
-      <div className={className} onClick={onClick}>
+      <div className={`kingsbury-card ${className}`} onClick={onClick}>
         {header &&
           <div className="header">
             {header}
@@ -48,27 +48,27 @@ class CardComponent extends React.Component<ICardProps> {
 }
 
 const Card = styled(CardComponent)`
-  height: ${(props: ICardProps) => props.theme.card.height};
-  width: ${(props: ICardProps) => props.theme.card.width};
+  height: ${(props) => props.theme.card.height};
+  width: ${(props) => props.theme.card.width};
 
-  background: ${(props: ICardProps) => props.theme.card.background};
-  border: ${(props: ICardProps) => props.theme.card.outerBorder};
-  box-shadow: ${(props: ICardProps) => props.theme.card.boxShadow};
-  border-radius: ${(props: ICardProps) => props.theme.card.borderRadius};
+  background: ${(props) => props.theme.card.background};
+  border: ${(props) => props.theme.card.outerBorder};
+  box-shadow: ${(props) => props.theme.card.boxShadow};
+  border-radius: ${(props) => props.theme.card.borderRadius};
 
-  opacity: ${(props: ICardProps) => props.onClick ?
+  opacity: ${(props) => props.onClick ?
     0.8 :
     1
   };
 
-  cursor: ${(props: ICardProps) => props.onClick ?
+  cursor: ${(props) => props.onClick ?
     'pointer' :
     'default'
   };
 
   transition: .35s cubic-bezier(.19, 1, .4, 1);
 
-  ${(props: ICardProps) => props.onClick && css`
+  ${(props) => props.onClick && css`
       &:hover {
         opacity: 1;
         transform: translateY(-1%);
@@ -78,19 +78,19 @@ const Card = styled(CardComponent)`
   }
 
   .header {
-    background: ${(props: ICardProps) => props.theme.card.headerBackground};
-    height: ${(props: ICardProps) => props.theme.card.headerHeight};
-    border-bottom: ${(props: ICardProps) => props.theme.card.innerBorder};
-    border-top-left-radius: ${(props: ICardProps) => props.theme.card.borderRadius};
-    border-top-right-radius: ${(props: ICardProps) => props.theme.card.borderRadius};
+    background: ${(props) => props.theme.card.headerBackground};
+    height: ${(props) => props.theme.card.headerHeight};
+    border-bottom: ${(props) => props.theme.card.innerBorder};
+    border-top-left-radius: ${(props) => props.theme.card.borderRadius};
+    border-top-right-radius: ${(props) => props.theme.card.borderRadius};
   }
 
   .footer {
-    background: ${(props: ICardProps) => props.theme.card.footerBackground};
-    height: ${(props: ICardProps) => props.theme.card.footerHeight};
-    border-top: ${(props: ICardProps) => props.theme.card.innerBorder};
-    border-bottom-left-radius: ${(props: ICardProps) => props.theme.card.borderRadius};
-    border-bottom-right-radius: ${(props: ICardProps) => props.theme.card.borderRadius};
+    background: ${(props) => props.theme.card.footerBackground};
+    height: ${(props) => props.theme.card.footerHeight};
+    border-top: ${(props) => props.theme.card.innerBorder};
+    border-bottom-left-radius: ${(props) => props.theme.card.borderRadius};
+    border-bottom-right-radius: ${(props) => props.theme.card.borderRadius};
   }
 `;
 

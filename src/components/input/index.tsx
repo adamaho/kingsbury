@@ -51,7 +51,7 @@ class InputComponent extends React.Component<IInputProps> {
     } = this.props;
 
     return (
-      <div className={className}>
+      <div className={`kingsbury-input ${className}`}>
         {label &&
           <label>{label}</label>
         }

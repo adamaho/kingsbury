@@ -27,6 +27,9 @@ export interface ITheme {
   notice: {
     [key: string]: string
   };
+  tag: {
+    [key: string]: string
+  };
   typeography: {
     h1: {
       [key: string]: string
@@ -59,16 +62,19 @@ const colors: IColors = {
   whiteRGB: '255, 255, 255',
   black: '#000000',
   blackRGB: '0, 0, 0',
-  lightGrey: '#E5E5E5',
-  lightGreyRGB: '229, 229, 229',
+  lightGrey: '#C4C4C4',
+  lightGreyRGB: '196, 196, 196',
   darkGrey: '#C4C4C4',
   darkGreyRGB: '196, 196, 196',
   border: '#C4C4C4',
   danger: '#FF130D',
+  dangerRGB: '255, 19, 13',
   info: '#0C95FF',
+  infoRGB: '12, 149, 255',
   warning: '#FF9F0C',
+  warningRGB: '255, 159, 12',
   success: '#0BE894',
-  default: '#C4C4C4'
+  successRGB: '11, 232, 148',
 }
 
 export const theme: ITheme = {
@@ -86,19 +92,7 @@ export const theme: ITheme = {
     boxShadow: `0px 2px 4px rgba(${colors.blackRGB}, 0.5)`,
     color: colors.white,
     height: 38,
-    padding: '5px 15px 5px 15px',
-    primary: {
-      color: colors.white
-    },
-    success: {
-      color: colors.black
-    },
-    danger: {
-      color: colors.white
-    },
-    warning: {
-      color: colors.black
-    }
+    padding: '5px 15px 5px 15px'
   },
   card: {
     background: colors.white,
@@ -118,10 +112,13 @@ export const theme: ITheme = {
     blackRGB: colors.blackRGB,
     border: colors.border,
     danger: colors.danger,
+    dangerRGB: colors.dangerRGB,
     darkGrey: colors.darkGrey,
     darkGreyRGB: colors.darkGreyRGB,
-    default: colors.default,
+    default: colors.lightGrey,
+    defaultRGB: colors.lightGreyRGB,
     info: colors.info,
+    infoRGB: colors.infoRGB,
     lightGrey: colors.lightGrey,
     lightGreyRGB: colors.lightGreyRGB,
     primary: colors.primary,
@@ -129,11 +126,12 @@ export const theme: ITheme = {
     secondary: colors.secondary,
     secondaryRGB: colors.secondaryRGB,
     success: colors.success,
+    successRGB: colors.successRGB,
     title: colors.white,
     warning: colors.warning,
+    warningRGB: colors.warningRGB,
     white: colors.white,
-    whiteRGB: colors.whiteRGB,
-    
+    whiteRGB: colors.whiteRGB
   },
   display: {
     desktop: '880px',
@@ -165,6 +163,13 @@ export const theme: ITheme = {
     descriptionFontSize: '16px',
     descriptionFontWeight: '400',
     descriptionFontColor: colors.lightGrey
+  },
+  tag: {
+    padding: '0px 10px',
+    height: '20px',
+    color: colors.black,
+    borderRadius: '10px',
+    textFontSize: '14px'
   },
   typeography: {
     h1: {
