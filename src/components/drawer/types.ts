@@ -22,6 +22,8 @@ export interface IContainerProps {
 export interface IDrawerProps {
   drawerType: 'vertical'
   drawerState: DrawerState;
+  setDrawerState?: (drawerState: DrawerState) => void;
+  showToggle?: boolean;
   className?: string;
   children?: React.ReactNode;
   theme?: ITheme;

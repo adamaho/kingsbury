@@ -148,7 +148,8 @@ export const theme: ITheme = {
   },
   drawer: {
     borderRadius: '8px',
-    boxShadow: `0px 0px 7px rgba(${colors.blackRGB}, 0.20)`
+    boxShadow: `0px 0px 7px rgba(${colors.blackRGB}, 0.20)`,
+    toggleColor: colors.darkGrey
   },
   header: {
     height: '50px;'

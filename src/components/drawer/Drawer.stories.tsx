@@ -14,26 +14,24 @@ import Button from '../button';
 const stories = storiesOf('Drawer', module);
 
 const VerticalDrawer = () => {
-  const [drawerState, setDrawerState] = React.useState<DrawerState>('PARTIAL');
+
+  const [drawerState, setDrawerState] = React.useState<DrawerState>('CLOSED');
 
   return (
-    <Drawer
-      drawerType={'vertical'}
-      drawerState={drawerState}
-    >
-      <Button
-        buttonType="primary"
-        onClick={() => setDrawerState('PARTIAL')}
-      >
-        Partial
-      </Button>
-      <Button
-        buttonType="primary"
-        onClick={() => setDrawerState('OPEN')}
-      >
+    <React.Fragment>
+      <Button buttonType="primary" onClick={() => setDrawerState('OPEN')}>
         Open
       </Button>
-    </Drawer>
+      <Drawer
+        drawerType={'vertical'}
+        drawerState={drawerState}
+        setDrawerState={setDrawerState}
+      >
+        <Button buttonType="warning" onClick={() => setDrawerState('CLOSED')}>
+          Close
+        </Button>
+      </Drawer>
+    </React.Fragment>
   );
 };
 

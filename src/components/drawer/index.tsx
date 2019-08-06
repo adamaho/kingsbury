@@ -8,16 +8,25 @@ import {
   theme
 } from '../../styles/theme';
 
-import VertDrawer from './VerticalDrawer';
+import {
+  DrawerState
+} from './types';
 
-const Drawer: React.FunctionComponent<IDrawerProps> = (props) => (
-  <VertDrawer {...props}>
-    {props.children}
-  </VertDrawer>
-);
+import VertDrawer from './components/VerticalDrawer';
+
+const Drawer: React.FunctionComponent<IDrawerProps> = (props) => {
+  return (
+    <VertDrawer
+      {...props}
+    >
+      {props.children}
+    </VertDrawer>
+  );
+}
 
 Drawer.defaultProps = {
-  theme
+  theme,
+  showToggle: true
 };
 
 export default Drawer;
