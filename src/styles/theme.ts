@@ -18,6 +18,9 @@ export interface ITheme {
   display: {
     [key: string]: string
   };
+  drawer: {
+    [key: string]: string
+  };
   header: {
     [key: string]: string
   };
@@ -137,6 +140,10 @@ export const theme: ITheme = {
     desktop: '880px',
     tablet: '670px',
     phone: '475px'
+  },
+  drawer: {
+    borderRadius: '8px',
+    boxShadow: `0px 0px 7px rgba(${colors.blackRGB}, 0.20)`
   },
   header: {
     height: '50px;'
