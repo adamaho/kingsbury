@@ -3,6 +3,7 @@ import Card from './card';
 import Input from './input';
 import Notice from './notice';
 import Tag from './tag';
+import Drawer from './drawer';
 
 import {
   H1,
@@ -17,6 +18,7 @@ export {
   Card,
   Input,
   Notice,
+  Drawer,
   Tag,
   H1,
   H2,
