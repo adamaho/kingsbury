@@ -4,6 +4,7 @@ import Input from './input';
 import Notice from './notice';
 import Tag from './tag';
 import Drawer from './drawer';
+import * as Icon from './icons';
 
 import {
   H1,
@@ -24,5 +25,7 @@ export {
   H2,
   H3,
   H4,
-  P
+  P,
+  Icon
 };
+

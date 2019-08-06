@@ -24,6 +24,11 @@ export interface ITheme {
   header: {
     [key: string]: string
   };
+  icons: {
+    [key: string]: {
+      [key: string]: string
+    }
+  };
   input: {
     [key: string]: string
   };
@@ -157,6 +162,11 @@ export const theme: ITheme = {
     fontSize: '16px',
     height: '40px',
     placeholderColor: `${colors.lightGrey}`,
+  },
+  icons: {
+    close: {
+      color: colors.darkGrey
+    }
   },
   notice: {
     avatarwidth: '25px',
