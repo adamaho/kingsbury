@@ -33,37 +33,28 @@ const Container = styled.div<IContainerProps>`
   transition: all ${(props) => props.theme.animations.time.fast} cubic-bezier(0,1.04,.47,.98);
 `;
 
-const ToggleContainer = styled.div`
-  position: absolute;
-  top: 0px;
-  right: 200px;
-
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-`;
-
 const VertDrawer: React.FunctionComponent<IDrawerProps> = (props) => {
+
   function setDrawerState(drawerState: DrawerState) {
     if (props.setDrawerState) {
       props.setDrawerState(drawerState);
     }
   }
+
   return (
     <Container
       {...props}
       drawerState={props.drawerState}
     >
       {props.showToggle &&
-        <ToggleContainer 
+        <Toggle
           onClick={
             (props.drawerState === 'OPEN') ?
               () => setDrawerState('PARTIAL') :
               () => setDrawerState('OPEN')
           }
-        >
-          <Toggle drawerState={props.drawerState} />
-        </ToggleContainer>
+          drawerState={props.drawerState}
+        />
       }
       {props.children}
     </Container>

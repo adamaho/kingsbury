@@ -18,14 +18,27 @@ interface IToggleItemProps {
 
 interface IToggleProps {
   drawerState: DrawerState;
+  onClick: () => void;
   theme?: ITheme;
 }
 
+const ToggleContainer = styled.div`
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+`;
+
+const ToggleItemContainer = styled.div`
+  height: 20px;
+  cursor: pointer;
+`;
+
 const ToggleItem = styled.div<IToggleItemProps>`
+  display: inline-block;
   height: 6px;
   width: 25px;
   border-radius: 3px;
-  margin-top: ${(props) => props.open ? '15px' : '10px'};
 
   background-color: ${(props) => props.theme.drawer.toggleColor};
 
@@ -48,12 +61,15 @@ ToggleItem.defaultProps = {
 };
 
 const Toggle: React.FunctionComponent<IToggleProps> = ({
-  drawerState
+  drawerState,
+  onClick
 }) => (
-  <React.Fragment>
-    <ToggleItem side="left" open={drawerState === 'OPEN'} />
-    <ToggleItem side="right" open={drawerState === 'OPEN'} />
-  </React.Fragment>
+  <ToggleContainer>
+    <ToggleItemContainer onClick={onClick}>
+      <ToggleItem side="left" open={drawerState === 'OPEN'} />
+      <ToggleItem side="right" open={drawerState === 'OPEN'} />
+    </ToggleItemContainer>
+  </ToggleContainer>
 );
 
 Toggle.defaultProps = {
