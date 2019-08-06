@@ -14,7 +14,7 @@ const Drawer: React.FunctionComponent<IDrawerProps> = (props) => (
   <VertDrawer {...props}>
     {props.children}
   </VertDrawer>
-)
+);
 
 Drawer.defaultProps = {
   theme
