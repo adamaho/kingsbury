@@ -8,10 +8,6 @@ import {
   theme
 } from '../../styles/theme';
 
-import {
-  DrawerState
-} from './types';
-
 import VertDrawer from './components/VerticalDrawer';
 
 const Drawer: React.FunctionComponent<IDrawerProps> = (props) => {

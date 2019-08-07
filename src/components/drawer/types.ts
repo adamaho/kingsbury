@@ -23,6 +23,7 @@ export interface IDrawerProps {
   drawerType: 'vertical'
   drawerState: DrawerState;
   setDrawerState?: (drawerState: DrawerState) => void;
+  drawerHeaderContent?: React.ReactNode;
   showToggle?: boolean;
   className?: string;
   children?: React.ReactNode;

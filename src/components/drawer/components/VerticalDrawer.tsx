@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as _ from 'lodash';
 
 import styled, {
   theme
@@ -15,7 +14,8 @@ import {
   VERT_DRAWER_CONFIG_MAP
 } from '../common';
 
-import Toggle from './Toggle';
+import DrawerToggle from './DrawerToggle';
+import DrawerHeader from './DrawerHeader';
 
 const Container = styled.div<IContainerProps>`
   position: fixed;
@@ -47,7 +47,7 @@ const VertDrawer: React.FunctionComponent<IDrawerProps> = (props) => {
       drawerState={props.drawerState}
     >
       {props.showToggle &&
-        <Toggle
+        <DrawerToggle
           onClick={
             (props.drawerState === 'OPEN') ?
               () => setDrawerState('PARTIAL') :
@@ -56,6 +56,9 @@ const VertDrawer: React.FunctionComponent<IDrawerProps> = (props) => {
           drawerState={props.drawerState}
         />
       }
+      <DrawerHeader onClose={() => setDrawerState('CLOSED')}>
+        {props.drawerHeaderContent}
+      </DrawerHeader>
       {props.children}
     </Container>
   );

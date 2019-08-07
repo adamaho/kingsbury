@@ -26,6 +26,7 @@ const VerticalDrawer = () => {
         drawerType={'vertical'}
         drawerState={drawerState}
         setDrawerState={setDrawerState}
+        drawerHeaderContent={<Button buttonType="primary">Right Content</Button>}
       >
         <Button buttonType="warning" onClick={() => setDrawerState('CLOSED')}>
           Close

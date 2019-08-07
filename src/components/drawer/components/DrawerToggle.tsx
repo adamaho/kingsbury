@@ -60,7 +60,7 @@ ToggleItem.defaultProps = {
   theme
 };
 
-const Toggle: React.FunctionComponent<IToggleProps> = ({
+const DrawerToggle: React.FunctionComponent<IToggleProps> = ({
   drawerState,
   onClick
 }) => (
@@ -72,10 +72,10 @@ const Toggle: React.FunctionComponent<IToggleProps> = ({
   </ToggleContainer>
 );
 
-Toggle.defaultProps = {
+DrawerToggle.defaultProps = {
   theme
 };
 
-export default Toggle;
+export default DrawerToggle;
 
 
