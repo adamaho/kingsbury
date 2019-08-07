@@ -160,8 +160,10 @@ export const theme: ITheme = {
     borderColor: `${colors.lightGrey}`,
     borderRadius: '7px',
     color: `${colors.black}`,
-    fontSize: '16px',
-    height: '40px',
+    fontSizeSmall: '16px',
+    fontSizeLarge: '20px',
+    heightSmall: '40px',
+    heightLarge: '50px',
     placeholderColor: `${colors.lightGrey}`,
   },
   icons: {

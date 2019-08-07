@@ -43,7 +43,6 @@ const VertDrawer: React.FunctionComponent<IDrawerProps> = (props) => {
 
   return (
     <Container
-      {...props}
       drawerState={props.drawerState}
     >
       {props.showToggle &&
@@ -67,6 +66,6 @@ const VertDrawer: React.FunctionComponent<IDrawerProps> = (props) => {
 VertDrawer.defaultProps = {
   theme: theme,
   showToggle: true
-}
+};
 
 export default VertDrawer;

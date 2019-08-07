@@ -16,6 +16,8 @@ interface IInputProps {
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   placeholder?: string;
   type?: 'password' | undefined;
+  size?: 'small' | 'large';
+  showBorder?: boolean;
   theme: ITheme;
 }
 
@@ -24,6 +26,8 @@ class InputComponent extends React.Component<IInputProps> {
   static defaultProps = {
     disabled: false,
     type: undefined,
+    size: 'small',
+    showBorder: true,
     errorComponent: (error: string) => <div>{error}</div> 
   }
 
@@ -73,17 +77,27 @@ class InputComponent extends React.Component<IInputProps> {
 
 const Input = styled(InputComponent)`
   input {
-    height: ${(props: IInputProps) => props.theme.input.height};
+    height: ${(props: IInputProps) => props.size === 'small' ?
+      props.theme.input.heightSmall :
+      props.theme.input.heightLarge
+    };
     width: 100%;
     -webkit-appearance: none;
 
     font-family: inherit;
-    font-size: ${(props: IInputProps) => props.theme.input.fontSize};
+    font-size: ${(props: IInputProps) => props.size === 'small' ?
+      props.theme.input.fontSizeSmall :
+      props.theme.input.fontSizeLarge
+    };
 
     background-color: ${(props: IInputProps) => props.theme.input.background};
     color: ${(props: IInputProps) => props.theme.input.color};
 
-    border: ${(props: IInputProps) => props.theme.input.border};
+    border: ${(props: IInputProps) => props.showBorder ?
+      props.theme.input.border :
+      'none'
+    };
+
     border-color: ${(props: IInputProps) => props.error ?
       props.theme.colors.danger :
       props.theme.input.borderColor
@@ -104,7 +118,10 @@ const Input = styled(InputComponent)`
     }
 
     &:focus {
-      border: ${(props: IInputProps) => `1px solid ${props.theme.colors.primary}`};
+      border: ${(props: IInputProps) => props.showBorder ?
+        `1px solid ${props.theme.colors.primary}` :
+        'none'
+      };
       outline: none;
     }
   }
@@ -115,7 +132,9 @@ const Input = styled(InputComponent)`
 `;
 
 Input.defaultProps = {
-  theme: theme
+  theme: theme,
+  size: 'small',
+  showBorder: true
 }
 
 export default Input;

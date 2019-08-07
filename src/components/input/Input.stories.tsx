@@ -14,7 +14,7 @@ stories.add(
   'Default',
   () => (
     <div>
-      <Input />
+      <Input showBorder={false} size="large" placeholder="This is a large input"/>
     </div>
   )
 );
