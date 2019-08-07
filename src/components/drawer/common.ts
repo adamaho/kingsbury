@@ -12,7 +12,7 @@ export const VERT_DRAWER_CONFIG_MAP: IModeConfig = {
     borderRadius: '0px'
   },
   PARTIAL: {
-    top: '70%',
+    top: '65%',
     borderRadius: theme.drawer.borderRadius
   },
   OPEN: {
