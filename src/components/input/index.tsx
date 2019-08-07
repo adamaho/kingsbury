@@ -107,7 +107,7 @@ const Input = styled(InputComponent)`
     box-sizing: border-box;
 
     line-height: 38px;
-    padding: 10px 0px 10px 10px;
+    padding: ${(props: IInputProps) => props.showBorder ? '10px 0px 10px 10px' : '0px 0px 10px 10px'};
 
     &::placeholder {
       color: ${(props: IInputProps) => props.theme.input.placeholderColor};

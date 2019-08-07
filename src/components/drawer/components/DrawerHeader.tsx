@@ -11,7 +11,7 @@ interface IDrawerHeaderProps {
 };
 
 const Container = styled.div`
-  height: 60px;
+  height: auto;
   padding: 0px 15px;
   
   display: flex;
