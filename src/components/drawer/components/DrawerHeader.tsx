@@ -12,17 +12,16 @@ interface IDrawerHeaderProps {
 
 const Container = styled.div`
   height: 60px;
-
   padding: 0px 15px;
   
   display: flex;
+  align-items: center;
   justify-content: space-between;
 `;
 
 const CloseContainer = styled.div`
+  margin-left: 10px;
   cursor: pointer;
-
-  align-self: flex-start;
 `;
 
 const DrawerHeader: React.FunctionComponent<IDrawerHeaderProps> = ({
