@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { configure } from '@storybook/react';
 
 const PROPTYPE_STRINGS = {
   bool: 'boolean',
@@ -10,6 +11,15 @@ const PROPTYPE_STRINGS = {
 
 const Title = styled.h3`
   padding: 12px;
+`;
+
+const Table = styled.table`
+  width: 100%;
+`;
+
+const THead = styled.thead`
+  background-color: rgba(196, 196, 196, 0.2);
+  border-bottom: 2px solid black;
 `;
 
 const Type = styled.span`
@@ -43,8 +53,9 @@ const TDProperty = styled(TD)`
   font-family: Consolas,"courier new";
 `;
 
-const TableComponent = ({ propDefinitions }) => {
-  const props = propDefinitions.map(({
+const TableComponent = (config) => {
+  const props = config.propDefinitions.filter((p) => !config.excludedPropTypes.includes(p.property))
+  .map(({
     property,
     propType,
     description,
@@ -66,17 +77,17 @@ const TableComponent = ({ propDefinitions }) => {
   return (
     <div>
       <Title>API</Title>
-      <table>
-        <thead>
+      <Table>
+        <THead>
           <tr>
             <TH>Property</TH>
             <TH>Description</TH>
             <TH>Type</TH>
             <TH>Default</TH>
           </tr>
-        </thead>
+        </THead>
         <tbody>{props}</tbody>
-      </table>
+      </Table>
     </div>
   );
 };
