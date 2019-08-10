@@ -25,7 +25,7 @@ const StyledButton = styled.button`
     return props.theme.colors.white;
   }};
 
-  height: ${(props) => `${props.theme.button.height}px`};
+  height: ${(props) => `${props.theme.button.height}`};
 
   font-weight: 400;
   font-size: 16px;
@@ -73,6 +73,7 @@ const Button = (props) => {
 Button.defaultProps = {
   buttonType: 'primary',
   children: '',
+  className: '',
   disabled: false,
   onClick: () => undefined,
   theme,
@@ -84,6 +85,9 @@ Button.propTypes = {
 
   /** Content to show in the button */
   children: PropTypes.node,
+
+  /** classname for the button */
+  className: PropTypes.string,
 
   /** Disabled state of the button */
   disabled: PropTypes.bool,

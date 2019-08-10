@@ -5,7 +5,8 @@ const PROPTYPE_STRINGS = {
   bool: 'boolean',
   func: 'function',
   node: 'ReactNode',
-  enum: 'Enum'
+  enum: 'Enum',
+  string: 'string'
 };
 
 const Title = styled.h3`

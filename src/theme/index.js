@@ -12,7 +12,7 @@ export const theme = {
     border: 'none',
     borderRadius: '4px',
     color: colors.white,
-    height: 38,
+    height: '38px',
     padding: '5px 15px 5px 15px'
   },
   card: {
@@ -26,7 +26,7 @@ export const theme = {
     height: 'auto',
     innerBorder: `1px solid ${colors.lightGrey}`,
     outerBorder: 'none',
-    width: '100%'
+    width: 'auto'
   },
   colors: {
     ...colors

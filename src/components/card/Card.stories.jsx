@@ -13,12 +13,40 @@ const TestContent = styled.div`
   height: 110px;
 `;
 
+const Container = styled.div`
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 10px;
+  padding: 0px 20px;
+`;
+
+const CardMockContent = styled.div`
+  height: 100px;
+`;
+
 stories.add(
   'Default',
   () => (
-    <Card>
-      asdfasdf
-    </Card>
+    <Container>
+      <Card style={{ height: '100px' }}>
+        aasdfasdf
+      </Card>
+      <Card>
+        asdfasdf
+      </Card>
+      <Card>
+        asdfasdf
+      </Card>
+      <Card>
+        asdfasdf
+      </Card>
+      <Card>
+        asdfasdf
+      </Card>
+      <Card>
+        asdfasdf
+      </Card>
+    </Container>
   )
 );
 

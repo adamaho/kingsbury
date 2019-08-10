@@ -19,7 +19,7 @@ addParameters({
 });
 
 function loadStories() {
-  const req = require.context('../src', true, /Button\.stories\.jsx$/);
+  const req = require.context('../src', true, /Card\.stories\.jsx$/);
   req.keys().forEach(filename => req(filename));
 }
 
