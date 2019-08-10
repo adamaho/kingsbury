@@ -37,6 +37,11 @@ stories.add(
           Info
         </Button>
       </div>
+      <div style={{ marginRight: '5px', display: 'inline-block' }}>
+        <Button disabled>
+          Disabled
+        </Button>
+      </div>
     </div>
   )
 );

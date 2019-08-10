@@ -31,7 +31,7 @@ addDecorator(withInfo({
     ...stylesheet,
     infoBody: {
       ...stylesheet.infoBody,
-      fontFamily: 'unset'
+      fontFamily: 'unset',
     },
     propTableHead: {
       display: 'none'
