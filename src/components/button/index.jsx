@@ -1,23 +1,25 @@
 import React from 'react';
-import styled from 'styled-components';
-
 import PropTypes from 'prop-types';
+
+import styled, {
+  css
+} from 'styled-components';
 
 import {
   theme
 } from '../../theme';
 
-const REQUIRE_DARK_TEXT = new Set(['success', 'warning', 'disabled']);
+const REQUIRE_DARK_TEXT = new Set(['success', 'warning', '']);
 
 const StyledButton = styled.button`
   background: ${(props) => (
     props.disabled ?
-      props.theme.button.backgroundDisabled :
+      props.theme.colors.disabled :
       props.theme.colors[props.buttonType]
   )};
 
   color: ${(props) => {
-    if (REQUIRE_DARK_TEXT.has(props.buttonType) || props.disabled) {
+    if (REQUIRE_DARK_TEXT.has(props.buttonType)) {
       return props.theme.colors.black;
     }
     return props.theme.colors.white;
@@ -41,9 +43,11 @@ const StyledButton = styled.button`
 
   transition: ${(props) => props.theme.animations.time.fast} cubic-bezier(.19, 1, .4, 1);
 
-  &:hover {
-    opacity: 0.85;
-  }
+  ${(props) => !props.disabled && css`
+    &:hover {
+      opacity: 0.85;
+    }
+  `}
 
   &:active {
     opacity: 1;
@@ -75,19 +79,19 @@ Button.defaultProps = {
 };
 
 Button.propTypes = {
-  /** type of the button */
+  /** Type of the button */
   buttonType: PropTypes.oneOf(['primary', 'success', 'danger', 'warning', 'info']),
 
-  /** content to show in the button */
+  /** Content to show in the button */
   children: PropTypes.node,
 
-  /** disabled state of the button */
+  /** Disabled state of the button */
   disabled: PropTypes.bool,
 
-  /** Set the handler to handle click event */
+  /** Function to handle click event */
   onClick: PropTypes.func,
 
-  /** global theme in ThemeProvider */
+  /** Global theme in ThemeProvider */
   theme: PropTypes.object
 };
 

@@ -9,7 +9,6 @@ export const theme = {
     }
   },
   button: {
-    backgroundDisabled: colors.lightGrey,
     border: 'none',
     borderRadius: '4px',
     color: colors.white,
@@ -30,30 +29,7 @@ export const theme = {
     width: '100%'
   },
   colors: {
-    black: colors.black,
-    blackRGB: colors.blackRGB,
-    border: colors.border,
-    danger: colors.danger,
-    dangerRGB: colors.dangerRGB,
-    darkGrey: colors.darkGrey,
-    darkGreyRGB: colors.darkGreyRGB,
-    default: colors.lightGrey,
-    defaultRGB: colors.lightGreyRGB,
-    info: colors.info,
-    infoRGB: colors.infoRGB,
-    lightGrey: colors.lightGrey,
-    lightGreyRGB: colors.lightGreyRGB,
-    primary: colors.primary,
-    primaryRGB: colors.primaryRGB,
-    secondary: colors.secondary,
-    secondaryRGB: colors.secondaryRGB,
-    success: colors.success,
-    successRGB: colors.successRGB,
-    title: colors.white,
-    warning: colors.warning,
-    warningRGB: colors.warningRGB,
-    white: colors.white,
-    whiteRGB: colors.whiteRGB
+    ...colors
   },
   display: {
     desktop: '880px',
