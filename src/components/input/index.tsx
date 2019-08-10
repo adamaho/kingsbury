@@ -31,7 +31,7 @@ class InputComponent extends React.Component<IInputProps> {
     errorComponent: (error: string) => <div>{error}</div> 
   }
 
-  onInputChange  = (e: React.ChangeEvent<HTMLInputElement>) => {
+  onInputChange  = (e) => {
     const {
       onChange
     } = this.props;

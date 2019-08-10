@@ -1,28 +1,18 @@
-import * as React from 'react';
+import React from 'react';
 
 import styled, {
-  ITheme,
-  css,
-  theme
-} from '../../styles/theme';
+  css
+} from 'styled-components';
 
 import {
-  ItemType
-} from '../../types';
+  theme
+} from '../../styles/theme';
 
 import {
   P
 } from '../typeography';
 
-interface ITagProps extends React.HTMLAttributes<HTMLDivElement> {
-  text: React.ReactNode;
-  className?: string;
-  onClick?: () => void;
-  tagType: ItemType;
-  theme: ITheme;
-};
-
-const TagComponent: React.FunctionComponent<ITagProps> = ({
+const TagComponent = ({
   text,
   onClick,
   className

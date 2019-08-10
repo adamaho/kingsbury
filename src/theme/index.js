@@ -1,91 +1,6 @@
-import * as styledComponents from 'styled-components';
+import colors from './colors';
 
-export interface ITheme {
-  animations: {
-    [key: string]: {
-      [key: string]: string | any
-    }
-  };
-  buttons: {
-    [key: string]: any
-  };
-  card: {
-    [key: string]: string
-  };
-  colors: {
-    [key: string]: string
-  };
-  display: {
-    [key: string]: string
-  };
-  drawer: {
-    [key: string]: string
-  };
-  header: {
-    [key: string]: string
-  };
-  icons: {
-    [key: string]: {
-      [key: string]: string
-    }
-  };
-  input: {
-    [key: string]: string
-  };
-  notice: {
-    [key: string]: string
-  };
-  tag: {
-    [key: string]: string
-  };
-  typeography: {
-    h1: {
-      [key: string]: string
-    },
-    h2: {
-      [key: string]: string
-    },
-    h3: {
-      [key: string]: string
-    },
-    h4: {
-      [key: string]: string
-    },
-    p: {
-      [key: string]: string
-    }
-  };
-}
-
-interface IColors {
-  [key: string]: string;
-}
-
-const colors: IColors = {
-  primary: '#5C6AC4',
-  primaryRGB: '92, 106, 196',
-  secondary: '#0B1D35',
-  secondaryRGB: '11, 29, 33',
-  white: '#FFFFFF',
-  whiteRGB: '255, 255, 255',
-  black: '#000000',
-  blackRGB: '0, 0, 0',
-  lightGrey: '#C4C4C4',
-  lightGreyRGB: '196, 196, 196',
-  darkGrey: '#C4C4C4',
-  darkGreyRGB: '196, 196, 196',
-  border: '#C4C4C4',
-  danger: '#FF130D',
-  dangerRGB: '255, 19, 13',
-  info: '#0C95FF',
-  infoRGB: '12, 149, 255',
-  warning: '#FF9F0C',
-  warningRGB: '255, 159, 12',
-  success: '#0BE894',
-  successRGB: '11, 232, 148',
-}
-
-export const theme: ITheme = {
+export const theme = {
   animations: {
     time: {
       fast: '0.25s',
@@ -93,11 +8,10 @@ export const theme: ITheme = {
       slow: '1s'
     }
   },
-  buttons: {
+  button: {
     backgroundDisabled: colors.lightGrey,
     border: 'none',
     borderRadius: '4px',
-    boxShadow: `0px 2px 4px rgba(${colors.blackRGB}, 0.5)`,
     color: colors.white,
     height: 38,
     padding: '5px 15px 5px 15px'
@@ -208,19 +122,4 @@ export const theme: ITheme = {
       margin: '0px'
     }
   }
-}
-
-// Adds types for the theme to the ThemeProvider context
-// see https://www.styled-components.com/docs/api#typescript
-
-const {
-  default: styled,
-  css,
-  createGlobalStyle,
-  keyframes,
-  ThemeProvider,
-  ServerStyleSheet
-} = styledComponents as styledComponents.ThemedStyledComponentsModule<ITheme>;
-
-export { css, createGlobalStyle, keyframes, ThemeProvider, ServerStyleSheet };
-export default styled;
+};

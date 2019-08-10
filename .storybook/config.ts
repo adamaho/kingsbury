@@ -4,21 +4,45 @@ import {
   configure
 } from '@storybook/react';
 
-import themeDecorator from './themeDecorator';
+import {
+  withInfo
+} from '@storybook/addon-info';
 
 import yourTheme from './yourTheme';
+import PropTable from './PropTable';
 
 addParameters({
   options: {
     theme: yourTheme,
+    showPanel: false
   },
 });
 
-const req = require.context("../src", true, /.stories.tsx$/);
 function loadStories() {
-  req.keys().forEach((filename: string) => req(filename));
+  const req = require.context('../src', true, /Button\.stories\.jsx$/);
+  req.keys().forEach(filename => req(filename));
 }
 
-addDecorator(themeDecorator);
+addDecorator(withInfo({
+  inline: true,
+  source: false,
+  excludedPropTypes: ['theme'],
+  styles: (stylesheet) => ({
+    ...stylesheet,
+    infoBody: {
+      ...stylesheet.infoBody,
+      fontFamily: 'unset'
+    },
+    propTableHead: {
+      display: 'none'
+    },
+    source: {
+      h1: {
+        display: 'none'
+      },
+    },
+  }),
+  TableComponent: PropTable
+}));
 
 configure(loadStories, module);

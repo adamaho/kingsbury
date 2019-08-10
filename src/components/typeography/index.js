@@ -1,10 +1,4 @@
-import styled, {
-  ITheme,
-} from '../../styles/theme';
-
-export interface ITypeographyProps {
-  theme: ITheme;
-}
+import styled from 'styled-components';
 
 export const H1 = styled.span`
   font-size: 32px;
@@ -15,7 +9,7 @@ export const H2 = styled.span`
 `;
 
 export const H3 = styled.span`
-  font-size: 18px
+  font-size: 18px;
 `;
 
 export const H4 = styled.span`

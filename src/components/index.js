@@ -28,4 +28,3 @@ export {
   P,
   Icon
 };
-
