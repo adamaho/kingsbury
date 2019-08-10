@@ -25,7 +25,6 @@ function loadStories() {
 
 addDecorator(withInfo({
   inline: true,
-  source: false,
   excludedPropTypes: ['theme'],
   styles: (stylesheet) => ({
     ...stylesheet,
