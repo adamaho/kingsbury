@@ -3,9 +3,9 @@ import renderer from 'react-test-renderer';
 
 import {
   theme
-} from '../../src/theme';
+} from '../../theme';
 
-import Button from '../../src/components/button';
+import Button from '.';
 
 test('it renders without children', () => {
   const tree = renderer.create(<Button />).toJSON();

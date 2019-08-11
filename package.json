@@ -58,6 +58,6 @@
     "stylelint-processor-styled-components": "^1.8.0"
   },
   "jest": {
-    "setupFilesAfterEnv": ["./test/setupTest.js"]
+    "setupFilesAfterEnv": ["./setupTest.js"]
   }
 }
