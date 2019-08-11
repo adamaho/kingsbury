@@ -1,5 +1,6 @@
 module.exports = {
   parser: "babel-eslint",
+  plugins: ['jest'],
   extends: [
     'airbnb',
     'plugin:react/recommended',
@@ -14,5 +15,8 @@ module.exports = {
     'import/no-extraneous-dependencies': 'off',
     'import/prefer-default-export': 'off',
     'react/forbid-prop-types': 'off'
+  },
+  env: {
+    'jest/globals': true
   }
 };
