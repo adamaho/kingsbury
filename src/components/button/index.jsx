@@ -9,7 +9,7 @@ import {
   theme
 } from '../../theme';
 
-const REQUIRE_DARK_TEXT = new Set(['success', 'warning', '']);
+const REQUIRE_DARK_TEXT = new Set(['success', 'warning']);
 
 const StyledButton = styled.button`
   background: ${(props) => (
@@ -75,7 +75,7 @@ Button.defaultProps = {
   children: '',
   className: '',
   disabled: false,
-  onClick: () => undefined,
+  onClick: undefined,
   theme,
 };
 
