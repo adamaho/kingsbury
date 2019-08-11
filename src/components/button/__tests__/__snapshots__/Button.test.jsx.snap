@@ -1,0 +1,126 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`it calls onClick 1`] = `
+.c0 {
+  background: #5C6AC4;
+  color: #FFFFFF;
+  height: 38px;
+  font-weight: 400;
+  font-size: 16px;
+  font-family: inherit;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 15px 5px 15px;
+  cursor: pointer;
+  -webkit-transition: 0.25s cubic-bezier(.19,1,.4,1);
+  transition: 0.25s cubic-bezier(.19,1,.4,1);
+}
+
+.c0:hover {
+  opacity: 0.85;
+}
+
+.c0:active {
+  opacity: 1;
+}
+
+.c0:focus {
+  outline: none;
+}
+
+<button
+  className="c0"
+  disabled={false}
+  onClick={[Function]}
+>
+  test
+</button>
+`;
+
+exports[`it calls onClick 2`] = `
+<button
+  className="button__StyledButton-NiLSb jeuqvP"
+  disabled={false}
+  onClick={[Function]}
+>
+  test
+</button>
+`;
+
+exports[`it renders with children 1`] = `
+.c0 {
+  background: #5C6AC4;
+  color: #FFFFFF;
+  height: 38px;
+  font-weight: 400;
+  font-size: 16px;
+  font-family: inherit;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 15px 5px 15px;
+  cursor: pointer;
+  -webkit-transition: 0.25s cubic-bezier(.19,1,.4,1);
+  transition: 0.25s cubic-bezier(.19,1,.4,1);
+}
+
+.c0:hover {
+  opacity: 0.85;
+}
+
+.c0:active {
+  opacity: 1;
+}
+
+.c0:focus {
+  outline: none;
+}
+
+<button
+  className="c0"
+  disabled={false}
+>
+  test
+</button>
+`;
+
+exports[`it renders without children 1`] = `
+.c0 {
+  background: #5C6AC4;
+  color: #FFFFFF;
+  height: 38px;
+  font-weight: 400;
+  font-size: 16px;
+  font-family: inherit;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 15px 5px 15px;
+  cursor: pointer;
+  -webkit-transition: 0.25s cubic-bezier(.19,1,.4,1);
+  transition: 0.25s cubic-bezier(.19,1,.4,1);
+}
+
+.c0:hover {
+  opacity: 0.85;
+}
+
+.c0:active {
+  opacity: 1;
+}
+
+.c0:focus {
+  outline: none;
+}
+
+<button
+  className="c0"
+  disabled={false}
+>
+  
+</button>
+`;

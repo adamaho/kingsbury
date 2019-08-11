@@ -3,9 +3,9 @@ import renderer from 'react-test-renderer';
 
 import {
   theme
-} from '../../theme';
+} from '../../../theme';
 
-import Button from '.';
+import Button from '..';
 
 test('it renders without children', () => {
   const tree = renderer.create(<Button />).toJSON();
@@ -23,7 +23,7 @@ test('it renders with children', () => {
 
 test('it calls onClick', () => {
   const tree = renderer.create(
-    <Button onClick={() => console.log('test')}>
+    <Button onClick={() => undefined}>
       test
     </Button>
   ).toJSON();
