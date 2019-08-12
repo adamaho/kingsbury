@@ -9,10 +9,10 @@ import {
 
 const StyledHeader = styled.div`
   background: ${(props) => props.theme.card.headerBackground};
-  height: ${(props) => props.theme.card.headerHeight};
   border-bottom: ${(props) => props.theme.card.innerBorder};
   border-top-left-radius: ${(props) => props.theme.card.borderRadius};
   border-top-right-radius: ${(props) => props.theme.card.borderRadius};
+  height: ${(props) => props.theme.card.headerHeight};
 `;
 
 /** Card.Header */

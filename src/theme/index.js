@@ -18,7 +18,7 @@ export const theme = {
   card: {
     background: colors.white,
     borderRadius: '20px',
-    boxShadow: `0px 0px 7px rgba(${colors.blackRGB}, 0.20)`,
+    boxShadow: `0px 0px 7px rgba(${colors.blackRGB},0.20)`,
     footerHeight: 'auto',
     footerMinHeight: '50px',
     footerBackground: colors.white,
@@ -39,7 +39,7 @@ export const theme = {
   },
   drawer: {
     borderRadius: '8px',
-    boxShadow: `0px 0px 7px rgba(${colors.blackRGB}, 0.20)`,
+    boxShadow: `0px 0px 7px rgba(${colors.blackRGB},0.20)`,
     toggleColor: colors.darkGrey
   },
   header: {

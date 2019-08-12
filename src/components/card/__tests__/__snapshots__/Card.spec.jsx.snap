@@ -26,71 +26,29 @@ exports[`Card it calls onClick 1`] = `
   className="c0"
   onClick={[Function]}
 >
-  
-  <div
-    className=""
-  >
-    test
-  </div>
-  
+  test
 </div>
 `;
 
 exports[`Card it calls onClick 2`] = `
 <div
-  className="card__Container-cRoeWX eryscv"
+  className="card__Container-cRoeWX jKcjlX"
   onClick={[Function]}
 >
-  
-  <div
-    className="card__Content-kjqxCj issmzC"
-  >
-    test
-  </div>
-  
+  test
 </div>
 `;
 
 exports[`Card it renders footer 1`] = `
-.c0 {
-  height: auto;
-  width: auto;
-  background: #FFFFFF;
-  border: none;
-  box-shadow: 0px 0px 7px rgba(0,0,0,0.20);
-  border-radius: 20px;
-  opacity: 1;
-  cursor: default;
-  -webkit-transition: 0.25s cubic-bezier(.19,1,.4,1);
-  transition: 0.25s cubic-bezier(.19,1,.4,1);
-}
-
 .c1 {
   background: #FFFFFF;
   height: auto;
+  min-height: 50px;
   border-top: 1px solid #C4C4C4;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
 }
 
-<div
-  className="c0"
->
-  
-  <div
-    className=""
-  >
-    
-  </div>
-  <div
-    className="c1"
-  >
-    footer
-  </div>
-</div>
-`;
-
-exports[`Card it renders header 1`] = `
 .c0 {
   height: auto;
   width: auto;
@@ -104,12 +62,37 @@ exports[`Card it renders header 1`] = `
   transition: 0.25s cubic-bezier(.19,1,.4,1);
 }
 
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    
+  </div>
+</div>
+`;
+
+exports[`Card it renders header 1`] = `
 .c1 {
   background: #FFFFFF;
-  height: 50px;
   border-bottom: 1px solid #C4C4C4;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+  height: 50px;
+}
+
+.c0 {
+  height: auto;
+  width: auto;
+  background: #FFFFFF;
+  border: none;
+  box-shadow: 0px 0px 7px rgba(0,0,0,0.20);
+  border-radius: 20px;
+  opacity: 1;
+  cursor: default;
+  -webkit-transition: 0.25s cubic-bezier(.19,1,.4,1);
+  transition: 0.25s cubic-bezier(.19,1,.4,1);
 }
 
 <div
@@ -118,14 +101,8 @@ exports[`Card it renders header 1`] = `
   <div
     className="c1"
   >
-    header
-  </div>
-  <div
-    className=""
-  >
     
   </div>
-  
 </div>
 `;
 
@@ -146,12 +123,6 @@ exports[`Card it renders without children 1`] = `
 <div
   className="c0"
 >
-  
-  <div
-    className=""
-  >
-    
-  </div>
   
 </div>
 `;
