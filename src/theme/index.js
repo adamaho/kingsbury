@@ -20,6 +20,7 @@ export const theme = {
     borderRadius: '20px',
     boxShadow: `0px 0px 7px rgba(${colors.blackRGB}, 0.20)`,
     footerHeight: 'auto',
+    footerMinHeight: '50px',
     footerBackground: colors.white,
     headerHeight: '50px',
     headerBackground: colors.white,

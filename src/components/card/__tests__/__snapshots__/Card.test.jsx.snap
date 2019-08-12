@@ -1,6 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Button it renders without children 1`] = `
+exports[`Card it calls onClick 1`] = `
+.c0 {
+  height: auto;
+  width: auto;
+  background: #FFFFFF;
+  border: none;
+  box-shadow: 0px 0px 7px rgba(0,0,0,0.20);
+  border-radius: 20px;
+  opacity: 0.8;
+  cursor: pointer;
+  -webkit-transition: 0.25s cubic-bezier(.19,1,.4,1);
+  transition: 0.25s cubic-bezier(.19,1,.4,1);
+}
+
+.c0:hover {
+  opacity: 1;
+  -webkit-transform: translateY(-1%);
+  -ms-transform: translateY(-1%);
+  transform: translateY(-1%);
+  box-shadow: 0 7px 21px 0 rgba(0,0,0,.07);
+}
+
+<div
+  className="c0"
+  onClick={[Function]}
+>
+  
+  <div
+    className=""
+  >
+    test
+  </div>
+  
+</div>
+`;
+
+exports[`Card it calls onClick 2`] = `
+<div
+  className="card__Container-cRoeWX eryscv"
+  onClick={[Function]}
+>
+  
+  <div
+    className="card__Content-kjqxCj issmzC"
+  >
+    test
+  </div>
+  
+</div>
+`;
+
+exports[`Card it renders footer 1`] = `
 .c0 {
   height: auto;
   width: auto;
@@ -10,8 +61,86 @@ exports[`Button it renders without children 1`] = `
   border-radius: 20px;
   opacity: 1;
   cursor: default;
-  -webkit-transition: .35s cubic-bezier(.19,1,.4,1);
-  transition: .35s cubic-bezier(.19,1,.4,1);
+  -webkit-transition: 0.25s cubic-bezier(.19,1,.4,1);
+  transition: 0.25s cubic-bezier(.19,1,.4,1);
+}
+
+.c1 {
+  background: #FFFFFF;
+  height: auto;
+  border-top: 1px solid #C4C4C4;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+<div
+  className="c0"
+>
+  
+  <div
+    className=""
+  >
+    
+  </div>
+  <div
+    className="c1"
+  >
+    footer
+  </div>
+</div>
+`;
+
+exports[`Card it renders header 1`] = `
+.c0 {
+  height: auto;
+  width: auto;
+  background: #FFFFFF;
+  border: none;
+  box-shadow: 0px 0px 7px rgba(0,0,0,0.20);
+  border-radius: 20px;
+  opacity: 1;
+  cursor: default;
+  -webkit-transition: 0.25s cubic-bezier(.19,1,.4,1);
+  transition: 0.25s cubic-bezier(.19,1,.4,1);
+}
+
+.c1 {
+  background: #FFFFFF;
+  height: 50px;
+  border-bottom: 1px solid #C4C4C4;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    header
+  </div>
+  <div
+    className=""
+  >
+    
+  </div>
+  
+</div>
+`;
+
+exports[`Card it renders without children 1`] = `
+.c0 {
+  height: auto;
+  width: auto;
+  background: #FFFFFF;
+  border: none;
+  box-shadow: 0px 0px 7px rgba(0,0,0,0.20);
+  border-radius: 20px;
+  opacity: 1;
+  cursor: default;
+  -webkit-transition: 0.25s cubic-bezier(.19,1,.4,1);
+  transition: 0.25s cubic-bezier(.19,1,.4,1);
 }
 
 <div

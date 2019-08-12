@@ -76,7 +76,7 @@ const TableComponent = (config) => {
 
   return (
     <div>
-      <Title>API</Title>
+      <Title>{config.type.__docgenInfo.description || config.type.displayName}</Title>
       <Table>
         <THead>
           <tr>

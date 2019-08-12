@@ -9,6 +9,9 @@ import {
   theme
 } from '../../theme';
 
+import Header from './Header';
+import Footer from './Footer';
+
 const Container = styled.div`
   height: ${(props) => props.theme.card.height};
   width: ${(props) => props.theme.card.width};
@@ -22,7 +25,7 @@ const Container = styled.div`
 
   cursor: ${(props) => (props.onClick ? 'pointer' : 'default')};
 
-  transition: .35s cubic-bezier(.19, 1, .4, 1);
+  transition: ${(props) => props.theme.animations.time.fast} cubic-bezier(.19, 1, .4, 1);
 
   ${(props) => props.onClick && css`
     &:hover {
@@ -33,29 +36,9 @@ const Container = styled.div`
   `}
 `;
 
-const Header = styled.div`
-  background: ${(props) => props.theme.card.headerBackground};
-  height: ${(props) => props.theme.card.headerHeight};
-  border-bottom: ${(props) => props.theme.card.innerBorder};
-  border-top-left-radius: ${(props) => props.theme.card.borderRadius};
-  border-top-right-radius: ${(props) => props.theme.card.borderRadius};
-`;
-
-const Footer = styled.div`
-  background: ${(props) => props.theme.card.footerBackground};
-  height: ${(props) => props.theme.card.footerHeight};
-  border-top: ${(props) => props.theme.card.innerBorder};
-  border-bottom-left-radius: ${(props) => props.theme.card.borderRadius};
-  border-bottom-right-radius: ${(props) => props.theme.card.borderRadius};
-`;
-
-const Content = styled.div``;
-
 const Card = (props) => {
   const {
     className,
-    header,
-    footer,
     onClick,
     children,
     theme: themeProp,
@@ -68,28 +51,14 @@ const Card = (props) => {
       theme={themeProp}
       {...props}
     >
-      {header &&
-        <Header theme={theme}>
-          {header}
-        </Header>
-      }
-      <Content>
-        {children}
-      </Content>
-      {footer &&
-        <Footer theme={theme}>
-          {footer}
-        </Footer>
-      }
+      {children}
     </Container>
   );
-}
+};
 
 Card.defaultProps = {
   children: '',
   className: '',
-  footer: '',
-  header: '',
   onClick: undefined,
   theme,
 };
@@ -101,17 +70,14 @@ Card.propTypes = {
   /** classname for the card */
   className: PropTypes.string,
 
-  /** Content to show in the footer */
-  footer: PropTypes.node,
-
-  /** Content to show in the header */
-  header: PropTypes.node,
-
   /** Function to handle click event */
   onClick: PropTypes.func,
 
   /** Global theme in ThemeProvider */
   theme: PropTypes.object
 };
+
+Card.Header = Header;
+Card.Footer = Footer;
 
 export default Card;
