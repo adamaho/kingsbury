@@ -9,49 +9,59 @@ import Card from '.';
 
 const stories = storiesOf('Card', module);
 
-const TestContent = styled.div`
+const Container = styled.div`
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 20px;
+  padding: 0px 20px;
+`;
+
+const CardContent = styled.div`
   height: 110px;
+`;
+
+const CardHeader = styled.div`
+`;
+
+const CardFooter = styled.div`
+  height: 50px;
 `;
 
 stories.add(
   'Default',
   () => (
-    <div style={{
-      display: 'grid',
-      gridTemplateColumns: 'auto auto auto',
-      gridGap: '10px',
-      padding: '0px 20px'
-    }}
-    >
-      <Card style={{ height: '100px' }}>
-        aasdfasdf
+    <Container>
+      <Card>
+        <CardContent />
       </Card>
-      <Card style={{ height: '100px' }}>
-        asdfasdf
-      </Card>
-      <Card style={{ height: '100px' }}>
-        asdfasdf
-      </Card>
-      <Card style={{ height: '100px' }}>
-        asdfasdf
-      </Card>
-      <Card style={{ height: '100px' }}>
-        asdfasdf
-      </Card>
-      <Card style={{ height: '100px' }}>
-        asdfasdf
-      </Card>
-    </div>
-  )
+    </Container>
+  ),
+  { info: { propTablesExclude: [Container, CardContent]} } 
 );
 
 stories.add(
   'Clickable',
   () => (
-    <Card style={{ borderLeft: '1px solid red' }} onClick={() => console.log('asdfasdf')}>
-      <TestContent>
-        adasd
-      </TestContent>
-    </Card>
-  )
+    <Container>
+      <Card onClick={() => undefined}>
+        <CardContent />
+      </Card>
+    </Container>
+  ),
+  { info: { propTablesExclude: [Container, CardContent]} } 
+);
+
+stories.add(
+  'Header and Footer',
+  () => (
+    <Container>
+      <Card
+        header={<CardHeader />}
+        footer={<CardFooter />}
+      >
+        <CardContent />
+      </Card>
+    </Container>
+  ),
+  { info: { propTablesExclude: [Container, CardContent, CardHeader, CardFooter]} } 
 );
