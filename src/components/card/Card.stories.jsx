@@ -13,45 +13,40 @@ const TestContent = styled.div`
   height: 110px;
 `;
 
-const Container = styled.div`
-  display: grid;
-  grid-template-columns: auto auto auto;
-  grid-gap: 10px;
-  padding: 0px 20px;
-`;
-
-const CardMockContent = styled.div`
-  height: 100px;
-`;
-
 stories.add(
   'Default',
   () => (
-    <Container>
+    <div style={{
+      display: 'grid',
+      gridTemplateColumns: 'auto auto auto',
+      gridGap: '10px',
+      padding: '0px 20px'
+    }}
+    >
       <Card style={{ height: '100px' }}>
         aasdfasdf
       </Card>
-      <Card>
+      <Card style={{ height: '100px' }}>
         asdfasdf
       </Card>
-      <Card>
+      <Card style={{ height: '100px' }}>
         asdfasdf
       </Card>
-      <Card>
+      <Card style={{ height: '100px' }}>
         asdfasdf
       </Card>
-      <Card>
+      <Card style={{ height: '100px' }}>
         asdfasdf
       </Card>
-      <Card>
+      <Card style={{ height: '100px' }}>
         asdfasdf
       </Card>
-    </Container>
+    </div>
   )
 );
 
 stories.add(
-  'With Click',
+  'Clickable',
   () => (
     <Card style={{ borderLeft: '1px solid red' }} onClick={() => console.log('asdfasdf')}>
       <TestContent>
@@ -60,4 +55,3 @@ stories.add(
     </Card>
   )
 );
-

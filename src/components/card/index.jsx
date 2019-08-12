@@ -51,34 +51,39 @@ const Footer = styled.div`
 
 const Content = styled.div``;
 
-const Card = ({
-  className,
-  header,
-  footer,
-  onClick,
-  children,
-  theme: themeProp
-}) => (
-  <Container
-    className={className}
-    onClick={onClick}
-    theme={themeProp}
-  >
-    {header &&
-      <Header theme={theme}>
-        {header}
-      </Header>
-    }
-    <Content>
-      {children}
-    </Content>
-    {footer &&
-      <Footer theme={theme}>
-        {footer}
-      </Footer>
-    }
-  </Container>
-);
+const Card = (props) => {
+  const {
+    className,
+    header,
+    footer,
+    onClick,
+    children,
+    theme: themeProp,
+  } = props;
+
+  return (
+    <Container
+      className={className}
+      onClick={onClick}
+      theme={themeProp}
+      {...props}
+    >
+      {header &&
+        <Header theme={theme}>
+          {header}
+        </Header>
+      }
+      <Content>
+        {children}
+      </Content>
+      {footer &&
+        <Footer theme={theme}>
+          {footer}
+        </Footer>
+      }
+    </Container>
+  );
+}
 
 Card.defaultProps = {
   children: '',
