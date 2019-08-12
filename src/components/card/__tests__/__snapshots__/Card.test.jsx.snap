@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button it renders without children 1`] = `
+.c0 {
+  height: auto;
+  width: auto;
+  background: #FFFFFF;
+  border: none;
+  box-shadow: 0px 0px 7px rgba(0,0,0,0.20);
+  border-radius: 20px;
+  opacity: 1;
+  cursor: default;
+  -webkit-transition: .35s cubic-bezier(.19,1,.4,1);
+  transition: .35s cubic-bezier(.19,1,.4,1);
+}
+
+<div
+  className="c0"
+>
+  
+  <div
+    className=""
+  >
+    
+  </div>
+  
+</div>
+`;

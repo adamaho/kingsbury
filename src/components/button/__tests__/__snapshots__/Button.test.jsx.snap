@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`it calls onClick 1`] = `
+exports[`Button it calls onClick 1`] = `
 .c0 {
   background: #5C6AC4;
   color: #FFFFFF;
@@ -39,7 +39,7 @@ exports[`it calls onClick 1`] = `
 </button>
 `;
 
-exports[`it calls onClick 2`] = `
+exports[`Button it calls onClick 2`] = `
 <button
   className="button__StyledButton-NiLSb jeuqvP"
   disabled={false}
@@ -49,7 +49,7 @@ exports[`it calls onClick 2`] = `
 </button>
 `;
 
-exports[`it renders with children 1`] = `
+exports[`Button it renders with children 1`] = `
 .c0 {
   background: #5C6AC4;
   color: #FFFFFF;
@@ -87,7 +87,7 @@ exports[`it renders with children 1`] = `
 </button>
 `;
 
-exports[`it renders without children 1`] = `
+exports[`Button it renders without children 1`] = `
 .c0 {
   background: #5C6AC4;
   color: #FFFFFF;
