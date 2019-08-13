@@ -1,6 +1,6 @@
 import {
   theme
-} from './styles/theme';
+} from './theme';
 
 import * as components from './components';
 
