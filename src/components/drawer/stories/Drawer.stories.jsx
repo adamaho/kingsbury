@@ -10,7 +10,7 @@ import {
 
 import Drawer from '..';
 
-const stories = storiesOf('Card', module);
+const stories = storiesOf('Drawer', module);
 
 stories.add(
   'Default',

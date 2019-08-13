@@ -6,7 +6,8 @@ const PROPTYPE_STRINGS = {
   func: 'function',
   node: 'ReactNode',
   enum: 'Enum',
-  string: 'string'
+  string: 'string',
+  union: 'union' // TODO: Make this a function that returns the proper types
 };
 
 const Title = styled.h3`
