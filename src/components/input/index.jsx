@@ -30,13 +30,16 @@ const StyledInput = styled.input`
   background-color: ${(props) => props.theme.input.background};
   color: ${(props) => props.theme.input.color};
 
-  padding: 10px 0px 10px 10px;
-  border: ${(props) => props.theme.input.border};
-  border-color: ${(props) => props.theme.input.borderColor};
-  border-radius: ${(props) => props.theme.input.borderRadius};
-
   ${(props) => props.error && css`
     border-color: ${props.theme.colors.danger};
+  `};
+
+  ${(props) => props.borderType === 'full' && css`
+    padding: 10px 0px 10px 10px;
+    border: ${props.theme.input.border};
+    border-color: ${props.theme.input.borderColor};
+    border-radius: ${props.theme.input.borderRadius};
+    border-color: ${props.error ? props.theme.colors.danger : props.theme.input.borderColor};
   `};
 
   ${(props) => props.borderType === 'bottom' && css`
@@ -56,7 +59,6 @@ const StyledInput = styled.input`
   box-sizing: border-box;
 
   line-height: 38px;
-  padding: ${(props) => (props.showBorder ? '10px 0px 10px 10px' : '10px 0px')};
 
   &::placeholder {
     color: ${(props) => props.theme.input.placeholderColor};
@@ -72,6 +74,10 @@ const StyledInput = styled.input`
       border: none;
       border-bottom: 1px solid ${props.theme.colors.primary};
       border-radius: 0px;
+    `};
+
+    ${(props) => props.borderType === 'none' && css`
+      border: none;
     `};
 
     outline: none;
@@ -94,6 +100,8 @@ const Input = (props) => {
     borderType,
     theme: themeProp
   } = props;
+
+  console.log(borderType);
 
   return (
     <Container className={className}>
