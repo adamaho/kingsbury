@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 
 import {
   storiesOf
@@ -7,21 +6,18 @@ import {
 
 import Input from '..';
 
+import {
+  Container,
+  Spacer
+} from './story.components';
+
 const stories = storiesOf('Input', module);
-
-const Container = styled.div`
-  max-width: 350px;
-`;
-
-const Spacer = styled.div`
-  height: 20px;
-`;
 
 stories.add(
   'Default',
   () => (
     <Container>
-      <Input />
+      <Input placeholder="placeholder" />
     </Container>
   ),
   { info: { propTablesExclude: [Container] } }
@@ -43,9 +39,11 @@ stories.add(
   'Border',
   () => (
     <Container>
-      <Input />
+      <Input placeholder="Input with border" />
       <Spacer />
-      <Input showBorder={false} />
+      <Input borderType="bottom" placeholder="Input with bottom border" />
+      <Spacer />
+      <Input borderType="none" placeholder="Input without border" />
     </Container>
   ),
   { info: { propTablesExclude: [Container, Spacer] } }
