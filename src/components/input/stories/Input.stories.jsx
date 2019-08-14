@@ -53,7 +53,7 @@ stories.add(
   'Label',
   () => (
     <Container>
-      <Input label="This is a label" />
+      <Input label="This is a label" value="This is the value of the input" />
     </Container>
   ),
   { info: { propTablesExclude: [Container] } }

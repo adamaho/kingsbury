@@ -98,7 +98,8 @@ const Input = (props) => {
     placeholder,
     size,
     borderType,
-    theme: themeProp
+    theme: themeProp,
+    value
   } = props;
 
   return (
@@ -116,6 +117,7 @@ const Input = (props) => {
           borderType={borderType}
           size={size}
           theme={themeProp}
+          value={value}
         />
       </Label>
       {(error && errorComponent) &&
@@ -140,7 +142,8 @@ Input.defaultProps = {
   onChange: () => undefined,
   placeholder: '',
   size: 'small',
-  theme
+  theme,
+  value: undefined
 };
 
 Input.propTypes = {
@@ -182,7 +185,10 @@ Input.propTypes = {
   size: PropTypes.oneOf(['small', 'large']),
 
   /** Global theme in ThemeProvider */
-  theme: PropTypes.object
+  theme: PropTypes.object,
+
+  /** value of the input */
+  value: PropTypes.string,
 };
 
 export default Input;
