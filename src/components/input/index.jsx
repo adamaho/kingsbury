@@ -101,8 +101,6 @@ const Input = (props) => {
     theme: themeProp
   } = props;
 
-  console.log(borderType);
-
   return (
     <Container className={className}>
       <Label>
