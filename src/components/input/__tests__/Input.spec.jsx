@@ -2,10 +2,6 @@ import React from 'react';
 import enzyme from 'enzyme';
 import renderer from 'react-test-renderer';
 
-import {
-  theme
-} from '../../../theme';
-
 import Input from '..';
 
 describe('Input', () => {
@@ -20,14 +16,13 @@ describe('Input', () => {
   });
 
 
-  test.skip('it calls onChange', () => {
+  test('it calls onChange', () => {
     const onChangeMock = jest.fn();
     const component = enzyme.mount(
-      <Input onChange={onChangeMock} value="custom_value" />
+      <Input onChange={onChangeMock} />
     );
-    component.find('input').simulate('change', event);
 
-    console.log(onChangeMock.mock);
-    expect(onChangeMock.mock.results[0].value).toEqual('custom_value');
+    component.find('input').simulate('change');
+    expect(onChangeMock).toHaveBeenCalled();
   });
 });

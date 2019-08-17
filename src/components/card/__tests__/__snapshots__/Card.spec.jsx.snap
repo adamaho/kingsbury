@@ -1,44 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Card it calls onClick 1`] = `
-.c0 {
-  height: auto;
-  width: auto;
-  background: #FFFFFF;
-  border: none;
-  box-shadow: 0px 0px 7px rgba(0,0,0,0.20);
-  border-radius: 20px;
-  opacity: 0.8;
-  cursor: pointer;
-  -webkit-transition: 0.25s cubic-bezier(.19,1,.4,1);
-  transition: 0.25s cubic-bezier(.19,1,.4,1);
-}
-
-.c0:hover {
-  opacity: 1;
-  -webkit-transform: translateY(-1%);
-  -ms-transform: translateY(-1%);
-  transform: translateY(-1%);
-  box-shadow: 0 7px 21px 0 rgba(0,0,0,.07);
-}
-
-<div
-  className="c0"
-  onClick={[Function]}
->
-  test
-</div>
-`;
-
-exports[`Card it calls onClick 2`] = `
-<div
-  className="card__Container-cRoeWX jKcjlX"
-  onClick={[Function]}
->
-  test
-</div>
-`;
-
 exports[`Card it renders footer 1`] = `
 .c1 {
   background: #FFFFFF;
