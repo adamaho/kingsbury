@@ -42,13 +42,37 @@ const NoticeComponent = ({
   </div>
 );
 
-const Notice = styled(NoticeComponent)`
+const Container = styled.div`
   display: flex;
   align-items: center;
   height: 100%;
   width: 100%;
   max-width: 400px;
   padding: 10px 0px;
+`;
+
+const Content = styled.div`
+  display: flex;
+  flex: 1;
+`;
+
+const Notice = (props) => {
+
+  const {
+    className
+  } = props;
+
+  return (
+    <Container className={className}>
+      <Content>
+        
+      </Content>
+    </Container>
+  );
+};
+
+
+const Notice = styled(NoticeComponent)`
 
   .avatar {
     height: ${(props) => props.theme.notice.avatarHeight};
@@ -95,6 +119,6 @@ Notice.defaultProps = {
   theme,
   hidePill: false,
   type: 'default'
-}
+};
 
 export default Notice;
