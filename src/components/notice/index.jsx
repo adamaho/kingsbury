@@ -5,6 +5,8 @@ import {
   theme
 } from '../../styles/theme';
 
+import Avatar from '../avatar';
+
 const NoticeComponent = ({
   className,
   title,
@@ -56,16 +58,40 @@ const Content = styled.div`
   flex: 1;
 `;
 
+const Pill = styled.div`
+  background: ${(props) => props.theme.colors[props.type]};
+  width: ${(props) => props.theme.notice.pillWidth};
+  border-radius: ${(props) => props.theme.notice.pillRadius};
+  min-height: ${(props) => props.theme.notice.pillMinHeight};
+  margin-right: 5px;
+`;
+
+const RightContent = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+`;
+
 const Notice = (props) => {
 
   const {
-    className
+    className,
+    theme
   } = props;
 
   return (
     <Container className={className}>
+      {avatar &&
+        <Avatar src={avatar} />
+      }
       <Content>
-        
+        <Pill theme={theme}/>
+        {contentRight &&
+          <RightContent>
+            {contentRight}
+          </RightContent>
+        }
       </Content>
     </Container>
   );
