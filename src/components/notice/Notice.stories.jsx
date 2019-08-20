@@ -7,6 +7,10 @@ import {
 
 import Notice from '.';
 
+import {
+  SVGClose
+} from '../icons';
+
 const Avatar = styled.div`
   height: 30px;
   width: 30px;
@@ -18,19 +22,12 @@ const stories = storiesOf('Notice', module).addParameters({
   info: {
     propTables: [Notice]
   }
-})
+});
 
 stories.add(
   'Type',
   () => (
     <div>
-      <div>
-        <Notice
-          title="Default"
-          description="Description of notice"
-          type="default"
-        />
-      </div>
       <div>
         <Notice
           title="Info"
@@ -69,8 +66,7 @@ stories.add(
     <Notice
       title="Default"
       description="Description of notice"
-      avatar={<Avatar />}
-      type="default"
+      avatar={<SVGClose />}
     />
   )
 );
@@ -94,7 +90,7 @@ stories.add(
       title="Default"
       description="Description of notice"
       avatar={<Avatar />}
-      contentRight={<div>Content</div>}
+      rightContent={<div>Content</div>}
       type="default"
     />
   )

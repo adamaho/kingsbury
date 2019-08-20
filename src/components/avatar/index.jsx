@@ -5,6 +5,10 @@ import styled from 'styled-components';
 const Container = styled.div`
   height: 40px;
   width: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Image = styled.img`
@@ -19,7 +23,7 @@ const Avatar = (props) => {
   } = props;
 
   let image;
-  if (typeof source === 'function') {
+  if (typeof src === 'function' || typeof src === 'object') {
     image = src;
   } else {
     image = <Image src={src} />;
