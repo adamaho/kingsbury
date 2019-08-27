@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import {
@@ -19,6 +20,14 @@ const Container = styled.div`
 const Content = styled.div`
   display: flex;
   flex: 1;
+  margin-left: 5px;
+`;
+
+const JustifiedContent = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  width: 100%;
 `;
 
 const Pill = styled.div`
@@ -43,20 +52,14 @@ const Description = styled.div`
   color: ${(props) => props.theme.notice.descriptionFontColor};
 `;
 
-const RightContent = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  height: 100%;
-`;
-
 const Notice = (props) => {
   const {
     avatar,
     className,
     description,
+    hidePill,
     rightContent,
-    theme,
+    theme: themeProp,
     title,
     type
   } = props;
@@ -67,29 +70,63 @@ const Notice = (props) => {
         <Avatar src={avatar} />
       }
       <Content>
-        <Pill theme={theme} type={type} />
-        <TitleContent>
-          <Title theme={theme}>
-            {title}
-          </Title>
-          <Description theme={theme}>
-            {description}
-          </Description>
-        </TitleContent>
-        {rightContent &&
-          <RightContent>
-            {rightContent}
-          </RightContent>
+        {!hidePill &&
+          <Pill theme={themeProp} type={type} />
         }
+        <JustifiedContent>
+          <TitleContent>
+            <Title theme={themeProp}>
+              {title}
+            </Title>
+            <Description theme={themeProp}>
+              {description}
+            </Description>
+          </TitleContent>
+          {rightContent &&
+            rightContent
+          }
+        </JustifiedContent>
       </Content>
     </Container>
   );
 };
 
 Notice.defaultProps = {
-  theme,
+  avatar: undefined,
+  className: '',
+  description: '',
   hidePill: false,
+  rightContent: undefined,
+  title: '',
+  theme,
   type: 'success'
+};
+
+Notice.propTypes = {
+  /** Component or image to show to the left of the pill */
+  avatar: PropTypes.node,
+
+  /** classname for the notice */
+  className: PropTypes.string,
+
+  /** Description of the notice */
+  description: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+
+  /** Hides the pill */
+  hidePill: PropTypes.bool,
+
+  /** Content to show to the right of the notice */
+  rightContent: PropTypes.node,
+
+  /** Title of the notice */
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+
+  /** Type of the pill */
+  type: PropTypes.oneOf(['primary', 'success', 'danger', 'warning', 'info']),
+
+  /** Global theme in ThemeProvider */
+  theme: PropTypes.object
+
 };
 
 export default Notice;
