@@ -86,50 +86,6 @@ const Notice = (props) => {
   );
 };
 
-
-// const Notice = styled(NoticeComponent)`
-
-//   .avatar {
-//     height: ${(props) => props.theme.notice.avatarHeight};
-//     width: ${(props) => props.theme.notice.avatarWidth};
-//     margin-right: 5px;
-//   }
-
-//   .content {
-//     display: flex;
-//     flex: 1;
-
-//     .right-content {
-//       display: flex;
-//       justify-content: space-between;
-//       width: 100%;
-//       height: 100%;
-//     }
-
-//     .pill {
-//       background: ${(props) => props.theme.colors[props.type]};
-//       width: ${(props) => props.theme.notice.pillWidth};
-//       border-radius: ${(props) => props.theme.notice.pillRadius};
-//       min-height: ${(props) => props.theme.notice.pillMinHeight};
-//       margin-right: 5px;
-//     }
-
-//     .title-content {
-//       .title {
-//         font-size: ${(props) => props.theme.notice.titleFontSize};
-//         font-weight: ${(props) => props.theme.notice.titleFontWeight};
-//         color: ${(props) => props.theme.notice.titleFontColor};
-//       }
-
-//       .description {
-//         font-size: ${(props) => props.theme.notice.descriptionFontSize};
-//         font-weight: ${(props) => props.theme.notice.descriptionFontWeight};
-//         color: ${(props) => props.theme.notice.descriptionFontColor};
-//       }
-//     }
-//   }
-// `;
-
 Notice.defaultProps = {
   theme,
   hidePill: false,
