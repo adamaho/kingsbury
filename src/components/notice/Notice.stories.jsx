@@ -77,7 +77,7 @@ stories.add(
     <Notice
       title="Default"
       description="Description of notice"
-      type="default"
+      type="success"
       hidePill
     />
   )
@@ -89,9 +89,9 @@ stories.add(
     <Notice
       title="Default"
       description="Description of notice"
-      avatar={<Avatar />}
+      avatar={<SVGClose />}
       rightContent={<div>Content</div>}
-      type="default"
+      type="success"
     />
   )
 );
@@ -102,8 +102,8 @@ stories.add(
     <Notice
       title="Default"
       description="Description of notice"
-      avatar={<Avatar />}
-      type="default"
+      avatar={<SVGClose />}
+      type="success"
       hidePill
     />
   )
