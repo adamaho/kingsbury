@@ -11,18 +11,7 @@ import {
   SVGClose
 } from '../icons';
 
-const Avatar = styled.div`
-  height: 30px;
-  width: 30px;
-  border-radius: 50%;
-  background-color: hotpink;
-`;
-
-const stories = storiesOf('Notice', module).addParameters({
-  info: {
-    propTables: [Notice]
-  }
-});
+const stories = storiesOf('Notice', module);
 
 stories.add(
   'Type',
