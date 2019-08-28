@@ -29,6 +29,15 @@ export const theme = {
     outerBorder: 'none',
     width: 'auto'
   },
+  collapse: {
+    borderRadius: '8px',
+    boxShadow: `0px 0px 4px rgba(${colors.blackRGB},0.20)`,
+    contentPadding: '10px',
+    contentBackground: colors.white,
+    headerBackground: colors.white,
+    headerHeight: '40px',
+    headerPadding: '0px 10px',
+  },
   colors: {
     ...colors
   },

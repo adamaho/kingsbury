@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 
 import {
   storiesOf
@@ -14,7 +13,7 @@ import {
 const stories = storiesOf('Notice', module);
 
 stories.add(
-  'Type',
+  'Default',
   () => (
     <div>
       <div>
@@ -50,30 +49,7 @@ stories.add(
 );
 
 stories.add(
-  'With Avatar',
-  () => (
-    <Notice
-      title="Default"
-      description="Description of notice"
-      avatar={<SVGClose />}
-    />
-  )
-);
-
-stories.add(
-  'Hide Pill',
-  () => (
-    <Notice
-      title="Default"
-      description="Description of notice"
-      type="success"
-      hidePill
-    />
-  )
-);
-
-stories.add(
-  'With Content',
+  'Full',
   () => (
     <Notice
       title="Default"
@@ -86,14 +62,15 @@ stories.add(
 );
 
 stories.add(
-  'Avatar no pill',
+  'Hide Pill',
   () => (
     <Notice
       title="Default"
       description="Description of notice"
       avatar={<SVGClose />}
-      type="success"
+      rightContent={<div>Content</div>}
       hidePill
+      type="success"
     />
   )
 );
