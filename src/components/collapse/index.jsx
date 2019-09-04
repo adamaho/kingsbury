@@ -1,5 +1,5 @@
 import React from 'react';
-import posed from 'react-pose';
+import PropTypes from 'prop-types';
 
 import styled, {
   css
@@ -10,6 +10,11 @@ import {
 } from '../../theme';
 
 import Header from './Header';
+
+import {
+  ContentContainer,
+  Content
+} from './Content';
 
 const Container = styled.div`
   display: flex;
@@ -22,31 +27,10 @@ const Container = styled.div`
     background: transparent;
   `};
 
-  border-radius: ${(props) => props.theme.collapse.borderRadius};
-
-  box-shadow: ${(props) => props.theme.collapse.boxShadow};
-`;
-
-const AnimateContentContainer = posed.div({
-  closed: { height: 0 },
-  open: { height: 'auto' }
-});
-
-const ContentContainer = styled(AnimateContentContainer)`
-  overflow: hidden;
-`;
-
-const Content = styled.div`
-  padding: ${(props) => props.theme.collapse.contentPadding};
-
-  background: ${(props) => props.theme.collapse.contentBackground};
-
-  border-bottom-left-radius: ${(props) => props.theme.collapse.borderRadius};
-  border-bottom-right-radius: ${(props) => props.theme.collapse.borderRadius};
-
-  ${(props) => props.ghost && css`
-    background: transparent;
-  `};
+  ${(props) => props.collapseType === 'panel' && css`
+    border-radius: ${props.theme.collapse.borderRadius};
+    box-shadow: ${props.theme.collapse.boxShadow};
+  `}
 `;
 
 class Collapse extends React.PureComponent {
@@ -88,9 +72,12 @@ class Collapse extends React.PureComponent {
 
   render() {
     const {
+      className,
       children,
-      theme: themeProp,
-      ghost
+      collapseType,
+      header,
+      ghost,
+      theme: themeProp
     } = this.props;
 
     const {
@@ -99,21 +86,29 @@ class Collapse extends React.PureComponent {
 
     return (
       <Container
+        className={className}
+        ghost={ghost}
+        collapseType={collapseType}
         theme={themeProp}
-        ghost
       >
         <Header
           ghost={ghost}
           open={open}
           onClick={this.onHeaderClick}
+          collapseType={collapseType}
           theme={themeProp}
         >
-          <div>asdads</div>
+          {header}
         </Header>
-        <ContentContainer pose={open ? 'open' : 'closed'}>
+        <ContentContainer
+          pose={open ? 'open' : 'closed'}
+          collapseType={collapseType}
+          theme={themeProp}
+        >
           <Content
             ghost={ghost}
             theme={themeProp}
+            collapseType={collapseType}
           >
             {children}
           </Content>
@@ -124,9 +119,40 @@ class Collapse extends React.PureComponent {
 }
 
 Collapse.defaultProps = {
-  ghost: true,
+  children: '',
+  className: '',
+  ghost: false,
+  header: undefined,
+  onChange: undefined,
   open: false,
+  collapseType: 'panel',
   theme
+};
+
+Collapse.propTypes = {
+  /** Content to show in the collapse */
+  children: PropTypes.node,
+
+  /** classname for the collapse */
+  className: PropTypes.string,
+
+  /** Will make collapse transparent */
+  ghost: PropTypes.bool,
+
+  /** Content to render in the header */
+  header: PropTypes.node,
+
+  /** State of the collapse for custom handling */
+  open: PropTypes.bool,
+
+  /** The type of collapse */
+  collapseType: PropTypes.oneOf(['stack', 'panel']),
+
+  /** Function to handle when collapse state changes */
+  onChange: PropTypes.func,
+
+  /** Global theme in ThemeProvider */
+  theme: PropTypes.object
 };
 
 export default Collapse;

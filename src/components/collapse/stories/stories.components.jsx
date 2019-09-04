@@ -24,6 +24,7 @@ export const CollapseContainer = ({ children }) => (
 );
 
 const StyledCollapseContent = styled.div`
+  height: 200px;
   background: blue;
 `;
 

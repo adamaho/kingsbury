@@ -3,9 +3,16 @@ import colors from './colors';
 export const theme = {
   animations: {
     time: {
+      veryFast: '0.1s',
       fast: '0.25s',
       medium: '0.5s',
       slow: '1s'
+    },
+    milliseconds: {
+      veryFast: 100,
+      fast: 250,
+      medium: 500,
+      slow: 1000
     }
   },
   button: {

@@ -20,9 +20,10 @@ stories.add(
     <Container>
       <CollapseContainer>
         <Collapse
+          header={<div>header</div>}
           onChange={() => console.log('change')}
         >
-          <div>asdfsdf</div>
+          <CollapseContent />
         </Collapse>
       </CollapseContainer>
     </Container>

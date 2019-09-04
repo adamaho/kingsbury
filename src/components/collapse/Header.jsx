@@ -10,7 +10,9 @@ const StyledHeader = styled.div`
 
   background: ${(props) => props.theme.collapse.headerBackground};
 
-  border-radius: ${(props) => props.theme.collapse.borderRadius};
+  ${(props) => props.collapseType === 'panel' && css`
+    border-radius: ${props.theme.collapse.borderRadius};
+  `}
 
   ${(props) => props.open && css`
     border-bottom: 1px solid ${props.theme.colors.borderColor};
