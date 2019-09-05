@@ -1,1 +1,0 @@
-export type ItemType = 'default' | 'primary' | 'info' | 'warning' | 'success' | 'danger';
