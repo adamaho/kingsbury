@@ -1,9 +1,8 @@
 import Button from './button';
 import Card from './card';
+import Collapse from './collapse';
 import Input from './input';
 import Notice from './notice';
-import Tag from './tag';
-import Drawer from './drawer';
 import * as Icon from './icons';
 
 import {
@@ -17,10 +16,9 @@ import {
 export {
   Button,
   Card,
+  Collapse,
   Input,
   Notice,
-  Drawer,
-  Tag,
   H1,
   H2,
   H3,
