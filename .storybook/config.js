@@ -19,7 +19,7 @@ addParameters({
 });
 
 function loadStories() {
-  const req = require.context('../src', true, /Collapse\.stories\.jsx$/);
+  const req = require.context('../src', true, /\.stories\.jsx$/);
   req.keys().forEach(filename => req(filename));
 }
 

@@ -120,7 +120,7 @@ Collapse.defaultProps = {
   children: '',
   className: '',
   ghost: false,
-  header: undefined,
+  header: '',
   onChange: undefined,
   open: false,
   collapseType: 'panel',

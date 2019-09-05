@@ -20,7 +20,7 @@ stories.add(
     <Container>
       <CollapseContainer>
         <Collapse
-          header={<div>header</div>}
+          header="Header"
           onChange={() => console.log('change')}
         >
           <CollapseContent />
