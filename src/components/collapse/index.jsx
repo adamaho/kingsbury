@@ -21,8 +21,6 @@ const Container = styled.div`
   flex-direction: column;
   width: 100%;
 
-  background: red;
-
   ${(props) => props.ghost && css`
     background: transparent;
   `};
