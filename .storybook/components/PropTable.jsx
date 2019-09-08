@@ -55,6 +55,10 @@ const TDProperty = styled(TD)`
 `;
 
 const TableComponent = (config) => {
+  if (config.propDefinitions.length === 0) {
+    return null;
+  }
+
   const props = config.propDefinitions.filter((p) => !config.excludedPropTypes.includes(p.property))
   .map(({
     property,

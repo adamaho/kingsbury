@@ -65,7 +65,11 @@ class Collapse extends React.PureComponent {
         ...state,
         open: true
       };
-    }, () => onChange());
+    }, () => {
+      if (onChange) {
+        onChange();
+      }
+    });
   }
 
   render() {
