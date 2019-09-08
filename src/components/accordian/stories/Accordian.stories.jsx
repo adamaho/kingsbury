@@ -13,15 +13,9 @@ stories.add(
   () => (
     <div>
       <Accordian>
-        <Accordian.Item />
-        <Accordian.Item />
-        <Accordian.Item />
-        <Accordian.Item />
-        <Accordian.Item />
-        <Accordian.Item />
-        <Accordian.Item />
-        <Accordian.Item />
-        <Accordian.Item />
+        <Accordian.Item itemKey="1" />
+        <Accordian.Item itemKey="2" />
+        <Accordian.Item itemKey="3" />
       </Accordian>
     </div>
   )

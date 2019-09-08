@@ -46,7 +46,8 @@ class Collapse extends React.PureComponent {
 
   onHeaderClick = () => {
     const {
-      onChange
+      onChange,
+      itemKey
     } = this.props;
 
     const {
@@ -67,7 +68,7 @@ class Collapse extends React.PureComponent {
       };
     }, () => {
       if (onChange) {
-        onChange();
+        onChange(itemKey);
       }
     });
   }
@@ -127,6 +128,7 @@ Collapse.defaultProps = {
   header: '',
   onChange: undefined,
   open: false,
+  itemKey: '',
   collapseType: 'panel',
   theme
 };
@@ -143,6 +145,9 @@ Collapse.propTypes = {
 
   /** Content to render in the header */
   header: PropTypes.node,
+
+  /** Unique key to identify collpase. Used for Accordian */
+  itemKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
   /** State of the collapse for custom handling */
   open: PropTypes.bool,
