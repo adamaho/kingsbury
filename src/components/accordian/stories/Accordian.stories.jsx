@@ -12,7 +12,7 @@ stories.add(
   'Default',
   () => (
     <div>
-      <Accordian>
+      <Accordian onChange={(selectedKeys) => console.log(selectedKeys)}>
         <Accordian.Item itemKey="1" />
         <Accordian.Item itemKey="2" />
         <Accordian.Item itemKey="3" />

@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 
 import Collapse from '../collapse';
 
@@ -28,14 +29,26 @@ class Accordian extends React.PureComponent {
       onChange
     } = this.props;
 
-    console.log(this.state);
+    const {
+      selectedItems
+    } = this.state;
 
-    if (this.state.selectedItems.includes(key)) {
-      const newItems = this.state.selectedItems.filter((i) => i !== key);
-      this.setState({ selectedItems: newItems });
+    let newItems;
+    if (_.includes(selectedItems, key)) {
+      newItems = selectedItems.filter((i) => i !== key);
     } else {
-      this.setState({ selectedItems: this.state.selectedItems.push(key) });
+      newItems = selectedItems.concat(key);
     }
+
+    this.setState({ selectedItems: newItems }, () => {
+      const {
+        selectedItems: openItems
+      } = this.state;
+
+      if (onChange) {
+        onChange(openItems);
+      }
+    });
   }
 
   render() {
@@ -43,13 +56,11 @@ class Accordian extends React.PureComponent {
       accordianType
     } = this.props;
 
-    console.log(this.state.selectedItems);
-
     return (
       <AccordianContext.Provider
         value={{
           accordianType,
-          onChange: () => this.onCollpaseChange()
+          onChange: this.onCollpaseChange
         }}
       >
         {this.props.children}
