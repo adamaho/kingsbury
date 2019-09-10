@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import _ from 'lodash';
 
 import Collapse from '../collapse';
@@ -7,21 +8,38 @@ const AccordianContext = React.createContext({
   accordianType: 'stack'
 });
 
+const CollapseSpacer = styled.div`
+  height: 30px;
+`;
+
 const AccordianItem = (props) => (
   <AccordianContext.Consumer>
-    {(value) => (
-      <Collapse
-        collapseType={value.accordianType}
-        onChange={value.onChange}
-        {...props}
-      />
-    )}
+    {(value) => {
+      return (
+        <React.Fragment>
+          <Collapse
+            {...props}
+            collapseType={value.accordianType}
+            onChange={value.onChange}
+          />
+          <CollapseSpacer />
+        </React.Fragment>
+      );
+    }}
   </AccordianContext.Consumer>
 );
 
 class Accordian extends React.PureComponent {
-  state = {
-    selectedItems: []
+  constructor(props) {
+    super(props);
+
+    const {
+      defaultSelectedKey
+    } = props;
+
+    this.state = {
+      selectedItems: [defaultSelectedKey]
+    };
   }
 
   onCollpaseChange = (key) => {
@@ -56,10 +74,15 @@ class Accordian extends React.PureComponent {
       accordianType
     } = this.props;
 
+    const {
+      selectedItems
+    } = this.state;
+
     return (
       <AccordianContext.Provider
         value={{
           accordianType,
+          selectedItems,
           onChange: this.onCollpaseChange
         }}
       >
@@ -72,7 +95,8 @@ class Accordian extends React.PureComponent {
 Accordian.Item = AccordianItem;
 
 Accordian.defaultProps = {
-  accordianType: 'panel'
+  accordianType: 'panel',
+  defaultSelectedKey: ''
 };
 
 export default Accordian;
