@@ -31,10 +31,8 @@ stories.add(
   () => (
     <StoryContainer>
       <Accordian
-        defaultSelectedItems={['1']}
         onChange={(selectedKeys) => console.log(selectedKeys)}
         itemGap={20}
-        classic
       >
         <Accordian.Item itemKey="1">
           <CollapseContent />
