@@ -1,49 +1,26 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import _ from 'lodash';
 
-import Collapse from '../collapse';
+import AccordianItem from './AccordianItem';
 
-const AccordianContext = React.createContext({
-  accordianType: 'stack'
-});
+import {
+  AccordianContext
+} from './context';
 
-const CollapseSpacer = styled.div`
-  height: ${(props) => `${props.itemGap}px`};
-`;
-
-const AccordianItem = (props) => (
-  <AccordianContext.Consumer>
-    {(value) => {
-      const {
-        itemKey
-      } = props;
-
-      return (
-        <React.Fragment>
-          <Collapse
-            {...props}
-            active={value.selectedItems.includes(itemKey)}
-            collapseType={value.accordianType}
-            onChange={value.onChange}
-          />
-          <CollapseSpacer itemGap={value.itemGap} />
-        </React.Fragment>
-      );
-    }}
-  </AccordianContext.Consumer>
-);
+const Container = styled.div``;
 
 class Accordian extends React.PureComponent {
   constructor(props) {
     super(props);
 
     const {
-      defaultSelectedKey
+      defaultSelectedItems
     } = props;
 
     this.state = {
-      selectedItems: defaultSelectedKey ? [defaultSelectedKey] : []
+      selectedItems: [...defaultSelectedItems]
     };
   }
 
@@ -89,6 +66,8 @@ class Accordian extends React.PureComponent {
   render() {
     const {
       accordianType,
+      children,
+      className,
       itemGap
     } = this.props;
 
@@ -105,19 +84,48 @@ class Accordian extends React.PureComponent {
           onChange: this.onCollapseChange
         }}
       >
-        {this.props.children}
+        <Container className={className}>
+          {children}
+        </Container>
       </AccordianContext.Provider>
     );
   }
 }
 
-Accordian.Item = AccordianItem;
-
 Accordian.defaultProps = {
   accordianType: 'panel',
+  children: '',
   classic: false,
-  defaultSelectedKey: undefined,
-  itemGap: 20
+  className: '',
+  defaultSelectedItems: [],
+  itemGap: 20,
+  onChange: undefined
 };
+
+Accordian.propTypes = {
+  /** Type of collapse. See Collapse. */
+  accordianType: PropTypes.oneOf(['stack', 'panel']),
+
+  /** Accordian Item. See Collpase for supported props. */
+  children: PropTypes.node,
+
+  /** classname for the collapse */
+  className: PropTypes.string,
+
+  /** Use classic accordian where a single item is open at a time */
+  classic: PropTypes.bool,
+
+  /** Determines which collpases should be active on intial render */
+  defaultSelectedItems: PropTypes.array,
+
+  /** Vertical gap between items */
+  itemGap: PropTypes.number,
+
+  /** Function to handle when collapse state changes */
+  onChange: PropTypes.func,
+
+};
+
+Accordian.Item = AccordianItem;
 
 export default Accordian;

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const PROPTYPE_STRINGS = {
+  array: 'array',
   bool: 'boolean',
   func: 'function',
   node: 'ReactNode',
