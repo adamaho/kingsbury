@@ -9,20 +9,25 @@ const AccordianContext = React.createContext({
 });
 
 const CollapseSpacer = styled.div`
-  height: 30px;
+  height: ${(props) => `${props.itemGap}px`};
 `;
 
 const AccordianItem = (props) => (
   <AccordianContext.Consumer>
     {(value) => {
+      const {
+        itemKey
+      } = props;
+
       return (
         <React.Fragment>
           <Collapse
             {...props}
+            active={value.selectedItems.includes(itemKey)}
             collapseType={value.accordianType}
             onChange={value.onChange}
           />
-          <CollapseSpacer />
+          <CollapseSpacer itemGap={value.itemGap} />
         </React.Fragment>
       );
     }}
@@ -38,25 +43,37 @@ class Accordian extends React.PureComponent {
     } = props;
 
     this.state = {
-      selectedItems: [defaultSelectedKey]
+      selectedItems: defaultSelectedKey ? [defaultSelectedKey] : []
     };
   }
 
-  onCollpaseChange = (key) => {
-    const {
-      onChange
-    } = this.props;
-
+  getClassicItems = (key) => {
     const {
       selectedItems
     } = this.state;
 
-    let newItems;
-    if (_.includes(selectedItems, key)) {
-      newItems = selectedItems.filter((i) => i !== key);
-    } else {
-      newItems = selectedItems.concat(key);
-    }
+    return _.includes(selectedItems, key) ?
+      [] :
+      [key];
+  }
+
+  getItems = (key) => {
+    const {
+      selectedItems
+    } = this.state;
+
+    return _.includes(selectedItems, key) ?
+      selectedItems.filter((i) => i !== key) :
+      selectedItems.concat(key);
+  }
+
+  onCollapseChange = (key) => {
+    const {
+      onChange,
+      classic
+    } = this.props;
+
+    const newItems = classic ? this.getClassicItems(key) : this.getItems(key);
 
     this.setState({ selectedItems: newItems }, () => {
       const {
@@ -71,7 +88,8 @@ class Accordian extends React.PureComponent {
 
   render() {
     const {
-      accordianType
+      accordianType,
+      itemGap
     } = this.props;
 
     const {
@@ -82,8 +100,9 @@ class Accordian extends React.PureComponent {
       <AccordianContext.Provider
         value={{
           accordianType,
+          itemGap,
           selectedItems,
-          onChange: this.onCollpaseChange
+          onChange: this.onCollapseChange
         }}
       >
         {this.props.children}
@@ -96,7 +115,9 @@ Accordian.Item = AccordianItem;
 
 Accordian.defaultProps = {
   accordianType: 'panel',
-  defaultSelectedKey: ''
+  classic: false,
+  defaultSelectedKey: undefined,
+  itemGap: 20
 };
 
 export default Accordian;
