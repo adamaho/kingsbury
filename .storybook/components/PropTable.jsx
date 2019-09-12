@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const PROPTYPE_STRINGS = {
+  array: 'array',
   bool: 'boolean',
   func: 'function',
   node: 'ReactNode',
@@ -55,6 +56,10 @@ const TDProperty = styled(TD)`
 `;
 
 const TableComponent = (config) => {
+  if (config.propDefinitions.length === 0) {
+    return null;
+  }
+
   const props = config.propDefinitions.filter((p) => !config.excludedPropTypes.includes(p.property))
   .map(({
     property,

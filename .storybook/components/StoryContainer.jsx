@@ -2,8 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledStoryContainer = styled.div`
-  min-height: 700px;
-  width: 100%;
+  padding: 15px;
 `;
 
 export const StoryContainer = ({ children }) => (

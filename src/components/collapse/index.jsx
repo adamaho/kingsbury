@@ -36,36 +36,50 @@ class Collapse extends React.PureComponent {
     super(props);
 
     const {
-      open
+      defaultActive
     } = props;
 
     this.state = {
-      open
+      active: defaultActive
     };
+  }
+
+  static getDerivedStateFromProps(props) {
+    if (props.active !== undefined) {
+      return {
+        active: props.active
+      };
+    }
+
+    return null;
   }
 
   onHeaderClick = () => {
     const {
-      onChange
+      active,
+      onChange,
+      itemKey
     } = this.props;
 
-    const {
-      open
-    } = this.state;
+    if (active !== undefined) {
+      onChange(itemKey);
+    } else {
+      this.setState((state) => {
+        if (state.active) {
+          return {
+            active: false
+          };
+        }
 
-    this.setState((props, state) => {
-      if (open) {
         return {
-          ...state,
-          open: false
+          active: true
         };
-      }
-
-      return {
-        ...state,
-        open: true
-      };
-    }, () => onChange());
+      }, () => {
+        if (onChange) {
+          onChange(itemKey);
+        }
+      });
+    }
   }
 
   render() {
@@ -79,7 +93,7 @@ class Collapse extends React.PureComponent {
     } = this.props;
 
     const {
-      open
+      active
     } = this.state;
 
     return (
@@ -91,7 +105,7 @@ class Collapse extends React.PureComponent {
       >
         <Header
           ghost={ghost}
-          open={open}
+          open={active}
           onClick={this.onHeaderClick}
           collapseType={collapseType}
           theme={themeProp}
@@ -99,7 +113,7 @@ class Collapse extends React.PureComponent {
           {header}
         </Header>
         <ContentContainer
-          pose={open ? 'open' : 'closed'}
+          pose={active ? 'open' : 'closed'}
           collapseType={collapseType}
           theme={themeProp}
         >
@@ -117,22 +131,30 @@ class Collapse extends React.PureComponent {
 }
 
 Collapse.defaultProps = {
+  active: undefined,
   children: '',
   className: '',
+  defaultActive: false,
   ghost: false,
   header: '',
   onChange: undefined,
-  open: false,
+  itemKey: '',
   collapseType: 'panel',
   theme
 };
 
 Collapse.propTypes = {
+  /** Option to handle if collapse is active */
+  active: PropTypes.bool,
+
   /** Content to show in the collapse */
   children: PropTypes.node,
 
   /** classname for the collapse */
   className: PropTypes.string,
+
+  /** Determines if collapse should default to open */
+  defaultActive: PropTypes.bool,
 
   /** Will make collapse transparent */
   ghost: PropTypes.bool,
@@ -140,8 +162,8 @@ Collapse.propTypes = {
   /** Content to render in the header */
   header: PropTypes.node,
 
-  /** State of the collapse for custom handling */
-  open: PropTypes.bool,
+  /** Unique key to identify collpase. Used for Accordian */
+  itemKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
   /** The type of collapse */
   collapseType: PropTypes.oneOf(['stack', 'panel']),
