@@ -24,12 +24,18 @@ export const CollapseContent = ({ children }) => (
   </StyledCollapseContent>
 );
 
+const AccordianContainer = styled.div`
+  width: 400px;
+
+  padding: 10px;
+`;
+
 const stories = storiesOf('Accordian', module);
 
 stories.add(
   'Default',
   () => (
-    <StoryContainer>
+    <AccordianContainer>
       <Accordian
         onChange={(selectedKeys) => console.log(selectedKeys)}
         itemGap={20}
@@ -44,6 +50,29 @@ stories.add(
           <CollapseContent />
         </Accordian.Item>
       </Accordian>
-    </StoryContainer>
+    </AccordianContainer>
+  )
+);
+
+stories.add(
+  'Classic',
+  () => (
+    <AccordianContainer>
+      <Accordian
+        classic
+        onChange={(selectedKeys) => console.log(selectedKeys)}
+        itemGap={20}
+      >
+        <Accordian.Item itemKey="1">
+          <CollapseContent />
+        </Accordian.Item>
+        <Accordian.Item itemKey="2">
+          <CollapseContent />
+        </Accordian.Item>
+        <Accordian.Item itemKey="3">
+          <CollapseContent />
+        </Accordian.Item>
+      </Accordian>
+    </AccordianContainer>
   )
 );
