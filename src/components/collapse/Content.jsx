@@ -10,7 +10,7 @@ const AnimateContentContainer = posed.div({
     opacity: 0,
     transition: (props) => ({
       ease: 'easeInOut',
-      duration: props.theme.animations.milliseconds.fast,
+      duration: props.theme.animations.milliseconds.veryFast,
     })
   },
   open: {
@@ -18,7 +18,7 @@ const AnimateContentContainer = posed.div({
     opacity: 1,
     transition: (props) => ({
       ease: 'easeInOut',
-      duration: props.theme.animations.milliseconds.fast,
+      duration: props.theme.animations.milliseconds.veryFast,
     })
   }
 });
