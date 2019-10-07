@@ -7,7 +7,6 @@ import styled, {
 const AnimateContentContainer = posed.div({
   closed: {
     height: 0,
-    opacity: 0,
     transition: (props) => ({
       ease: 'easeInOut',
       duration: props.theme.animations.milliseconds.veryFast,
@@ -15,7 +14,6 @@ const AnimateContentContainer = posed.div({
   },
   open: {
     height: 'auto',
-    opacity: 1,
     transition: (props) => ({
       ease: 'easeInOut',
       duration: props.theme.animations.milliseconds.veryFast,
