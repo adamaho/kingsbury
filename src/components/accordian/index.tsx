@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import _ from 'lodash';
+import * as _ from 'lodash';
 
 import AccordianItem from './AccordianItem';
 
@@ -9,10 +9,33 @@ import {
   AccordianContext
 } from './context';
 
+interface AccordianProps {
+  /** Type of collapse. See Collapse. */
+  accordianType: 'stack' | 'panel';
+
+  /** Accordian Item. See Collpase for supported props. */
+  children: React.ReactNode;
+
+  /** classname for the collapse */
+  className: string;
+
+  /** Use classic accordian where a single item is open at a time */
+  classic: boolean;
+
+  /** Determines which collpases should be active on intial render */
+  defaultSelectedItems: string[];
+
+  /** Vertical gap between items */
+  itemGap: number;
+
+  /** Function to handle when collapse state changes */
+  onChange: () => void;
+}
+
 const Container = styled.div``;
 
-class Accordian extends React.PureComponent {
-  constructor(props) {
+class Accordian extends React.PureComponent<any, any> {
+  constructor(props: any) {
     super(props);
 
     const {
@@ -24,7 +47,17 @@ class Accordian extends React.PureComponent {
     };
   }
 
-  getClassicItems = (key) => {
+  static defaultProps = {
+    accordianType: 'panel',
+    children: '',
+    classic: false,
+    className: '',
+    defaultSelectedItems: [],
+    itemGap: 20,
+    onChange: undefined
+  }
+
+  getClassicItems = (key: any) => {
     const {
       selectedItems
     } = this.state;
@@ -34,7 +67,7 @@ class Accordian extends React.PureComponent {
       [key];
   }
 
-  getItems = (key) => {
+  getItems = (key: any) => {
     const {
       selectedItems
     } = this.state;
@@ -44,7 +77,7 @@ class Accordian extends React.PureComponent {
       selectedItems.concat(key);
   }
 
-  onCollapseChange = (key) => {
+  onCollapseChange = (key: any) => {
     const {
       onChange,
       classic
@@ -91,40 +124,6 @@ class Accordian extends React.PureComponent {
     );
   }
 }
-
-Accordian.defaultProps = {
-  accordianType: 'panel',
-  children: '',
-  classic: false,
-  className: '',
-  defaultSelectedItems: [],
-  itemGap: 20,
-  onChange: undefined
-};
-
-Accordian.propTypes = {
-  /** Type of collapse. See Collapse. */
-  accordianType: PropTypes.oneOf(['stack', 'panel']),
-
-  /** Accordian Item. See Collpase for supported props. */
-  children: PropTypes.node,
-
-  /** classname for the collapse */
-  className: PropTypes.string,
-
-  /** Use classic accordian where a single item is open at a time */
-  classic: PropTypes.bool,
-
-  /** Determines which collpases should be active on intial render */
-  defaultSelectedItems: PropTypes.array,
-
-  /** Vertical gap between items */
-  itemGap: PropTypes.number,
-
-  /** Function to handle when collapse state changes */
-  onChange: PropTypes.func,
-
-};
 
 Accordian.Item = AccordianItem;
 

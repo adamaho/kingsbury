@@ -8,12 +8,22 @@ import {
   AccordianContext
 } from './context';
 
-const CollapseSpacer = styled.div`
+interface CollapseSpacerProps {
+  itemGap: number;
+}
+
+/** asfdasfdsafd */
+interface AccordianItem {
+  /** Unique key used to identify each item */
+  itemKey: string | number;
+}
+
+const CollapseSpacer = styled.div<CollapseSpacerProps>`
   height: ${(props) => `${props.itemGap}px`};
 `;
 
 /** Accordian.Item */
-const AccordianItem = (props) => (
+const AccordianItem: React.FunctionComponent<any> = (props) => (
   <AccordianContext.Consumer>
     {(value) => {
       const {
@@ -34,11 +44,5 @@ const AccordianItem = (props) => (
     }}
   </AccordianContext.Consumer>
 );
-
-/** asfdasfdsafd */
-AccordianItem.propTypes = {
-  /** Unique key used to identify each item */
-  itemKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired
-};
 
 export default AccordianItem;

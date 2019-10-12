@@ -1,11 +1,20 @@
-import React from 'react';
+import * as React from 'react';
 import styled from 'styled-components';
-
-import PropTypes from 'prop-types';
 
 import {
   theme
 } from '../../theme';
+
+export interface FooterProps {
+  /** Content to show in the footer */
+  children?: React.ReactNode;
+
+  /** classname for the footer */
+  className?: string;
+
+  /** Global theme in ThemeProvider */
+  theme?: any;
+}
 
 const StyledFooter = styled.div`
   background: ${(props) => props.theme.card.footerBackground};
@@ -17,7 +26,7 @@ const StyledFooter = styled.div`
 `;
 
 /** Card.Footer */
-const Footer = (props) => {
+export const Footer: React.FunctionComponent<FooterProps> = (props) => {
   const {
     children
   } = props;
@@ -27,17 +36,6 @@ const Footer = (props) => {
       {children}
     </StyledFooter>
   );
-};
-
-Footer.propTypes = {
-  /** Content to show in the footer */
-  children: PropTypes.node,
-
-  /** classname for the footer */
-  className: PropTypes.string,
-
-  /** Global theme in ThemeProvider */
-  theme: PropTypes.object
 };
 
 Footer.defaultProps = {

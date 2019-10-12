@@ -7,10 +7,6 @@ import {
   storiesOf
 } from '@storybook/react';
 
-import {
-  StoryContainer
-} from '../../../../.storybook/components/StoryContainer';
-
 import Accordian from '..';
 
 const StyledCollapseContent = styled.div`
@@ -18,7 +14,7 @@ const StyledCollapseContent = styled.div`
   background: blue;
 `;
 
-export const CollapseContent = ({ children }) => (
+export const CollapseContent = ({ children }: any) => (
   <StyledCollapseContent>
     {children}
   </StyledCollapseContent>

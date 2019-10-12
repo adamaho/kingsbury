@@ -1,6 +1,6 @@
-import React from 'react';
-import enzyme from 'enzyme';
-import renderer from 'react-test-renderer';
+import * as React from 'react';
+import * as enzyme from 'enzyme';
+import * as renderer from 'react-test-renderer';
 
 import Card from '..';
 
@@ -22,6 +22,16 @@ describe('Card', () => {
   test('it renders footer', () => {
     const tree = renderer.create(
       <Card>
+        <Card.Footer />
+      </Card>
+    ).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
+  test('it renders with header and footer', () => {
+    const tree = renderer.create(
+      <Card>
+        <Card.Header />
         <Card.Footer />
       </Card>
     ).toJSON();

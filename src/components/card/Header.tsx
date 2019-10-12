@@ -1,11 +1,20 @@
-import React from 'react';
+import * as React from 'react';
 import styled from 'styled-components';
-
-import PropTypes from 'prop-types';
 
 import {
   theme
 } from '../../theme';
+
+export interface HeaderProps {
+  /** Content to show in the header */
+  children?: React.ReactNode;
+
+  /** classname for the header */
+  className?: string;
+
+  /** Global theme in ThemeProvider */
+  theme?: any;
+}
 
 const StyledHeader = styled.div`
   background: ${(props) => props.theme.card.headerBackground};
@@ -16,7 +25,7 @@ const StyledHeader = styled.div`
 `;
 
 /** Card.Header */
-const Header = (props) => {
+export const Header: React.FunctionComponent<HeaderProps> = (props) => {
   const {
     children
   } = props;
@@ -26,18 +35,6 @@ const Header = (props) => {
       {children}
     </StyledHeader>
   );
-};
-
-
-Header.propTypes = {
-  /** Content to show in the header */
-  children: PropTypes.node,
-
-  /** classname for the header */
-  className: PropTypes.string,
-
-  /** Global theme in ThemeProvider */
-  theme: PropTypes.object
 };
 
 Header.defaultProps = {

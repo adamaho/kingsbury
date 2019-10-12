@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
 import styled, {
   css
@@ -11,6 +10,20 @@ import {
 
 import Header from './Header';
 import Footer from './Footer';
+
+interface CardProps {
+  /** Content to show in the card */
+  children?: React.ReactNode;
+
+  /** classname for the card */
+  className?: string;
+
+  /** Function to handle click event */
+  onClick?: () => void;
+
+  /** Global theme in ThemeProvider */
+  theme: any;
+}
 
 const Container = styled.div`
   height: ${(props) => props.theme.card.height};
@@ -36,48 +49,36 @@ const Container = styled.div`
   `}
 `;
 
-const Card = (props) => {
-  const {
-    className,
-    onClick,
-    children,
-    theme: themeProp,
-  } = props;
+class Card extends React.PureComponent<CardProps, any> {
+  static Header = Header;
+  static Footer = Footer;
 
-  return (
-    <Container
-      className={className}
-      onClick={onClick}
-      theme={themeProp}
-      {...props}
-    >
-      {children}
-    </Container>
-  );
+  static defaultProps = {
+    children: '',
+    className: '',
+    onClick: undefined,
+    theme,
+  }
+
+  render() {
+    const {
+      className,
+      onClick,
+      children,
+      theme: themeProp,
+    } = this.props;
+  
+    return (
+      <Container
+        className={className}
+        onClick={onClick}
+        theme={themeProp}
+        {...this.props}
+      >
+        {children}
+      </Container>
+    );
+  }
 };
-
-Card.defaultProps = {
-  children: '',
-  className: '',
-  onClick: undefined,
-  theme,
-};
-
-Card.propTypes = {
-  /** Content to show in the card */
-  children: PropTypes.node,
-
-  /** classname for the card */
-  className: PropTypes.string,
-
-  /** Function to handle click event */
-  onClick: PropTypes.func,
-
-  /** Global theme in ThemeProvider */
-  theme: PropTypes.object
-};
-
-Card.Header = Header;
-Card.Footer = Footer;
 
 export default Card;
