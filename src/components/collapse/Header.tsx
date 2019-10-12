@@ -1,11 +1,36 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
 import styled, {
   css
 } from 'styled-components';
 
-const StyledHeader = styled.div`
+interface HeaderProps {
+  /** Content to show in the Header */
+  children: React.ReactNode;
+
+  /** The type of collapse */
+  collapseType?: 'stack' | 'panel';
+
+  /** Will make header transparent */
+  ghost?: boolean;
+
+  /** State of the collapse for custom handling */
+  open?: boolean;
+
+  /** Function to handle when header is clicked */
+  onClick: () => void;
+
+  /** Global theme in ThemeProvider */
+  theme: any;
+}
+
+interface StyleHeaderProps {
+  collapseType?: 'stack' | 'panel';
+  open?: boolean;
+  ghost?: boolean;
+}
+
+const StyledHeader = styled.div<HeaderProps>`
   display: flex;
   align-items: center;
 
@@ -30,7 +55,7 @@ const StyledHeader = styled.div`
   cursor: pointer;
 `;
 
-const Header = ({
+const Header: React.FunctionComponent<HeaderProps> = ({
   children,
   collapseType,
   ghost,
@@ -48,25 +73,5 @@ const Header = ({
     {children}
   </StyledHeader>
 );
-
-Header.propTypes = {
-  /** Content to show in the Header */
-  children: PropTypes.node.isRequired,
-
-  /** Will make header transparent */
-  ghost: PropTypes.bool.isRequired,
-
-  /** State of the collapse for custom handling */
-  open: PropTypes.bool.isRequired,
-
-  /** The type of collapse */
-  collapseType: PropTypes.oneOf(['stack', 'panel']).isRequired,
-
-  /** Function to handle when header is clicked */
-  onClick: PropTypes.func.isRequired,
-
-  /** Global theme in ThemeProvider */
-  theme: PropTypes.object.isRequired
-};
 
 export default Header;

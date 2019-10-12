@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
 import styled, {
   css
@@ -16,7 +15,48 @@ import {
   Content
 } from './Content';
 
-const Container = styled.div`
+interface CollapseProps {
+  /** Option to handle if collapse is active */
+  active?: boolean;
+
+  /** Content to show in the collapse */
+  children?: React.ReactNode;
+
+  /** classname for the collapse */
+  className?: string;
+
+  /** Determines if collapse should default to open */
+  defaultActive?: boolean;
+
+  /** Will make collapse transparent */
+  ghost?: boolean;
+
+  /** Content to render in the header */
+  header?: React.ReactNode;
+
+  /** Unique key to identify collpase. Used for Accordian */
+  itemKey: string | number;
+
+  /** The type of collapse */
+  collapseType?: 'stack' | 'panel';
+
+  /** Function to handle when collapse state changes */
+  onChange?: (itemKey: string | number) => void,
+
+  /** Global theme in ThemeProvider */
+  theme: any;
+}
+
+interface CollapseState {
+  active?: boolean;
+}
+
+interface ContainerProps {
+  collapseType?: 'panel' | 'stack';
+  ghost?: boolean;
+}
+
+const Container = styled.div<ContainerProps>`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -31,8 +71,8 @@ const Container = styled.div`
   `}
 `;
 
-class Collapse extends React.PureComponent {
-  constructor(props) {
+class Collapse extends React.PureComponent<CollapseProps, CollapseState> {
+  constructor(props: CollapseProps) {
     super(props);
 
     const {
@@ -44,7 +84,20 @@ class Collapse extends React.PureComponent {
     };
   }
 
-  static getDerivedStateFromProps(props) {
+  static defaultProps = {
+    active: undefined,
+    children: '',
+    className: '',
+    defaultActive: false,
+    ghost: false,
+    header: '',
+    onChange: undefined,
+    itemKey: '',
+    collapseType: 'panel',
+    theme
+  };
+
+  static getDerivedStateFromProps(props: CollapseProps) {
     if (props.active !== undefined) {
       return {
         active: props.active
@@ -62,7 +115,9 @@ class Collapse extends React.PureComponent {
     } = this.props;
 
     if (active !== undefined) {
-      onChange(itemKey);
+      if (onChange) {
+        onChange(itemKey);
+      }
     } else {
       this.setState((state) => {
         if (state.active) {
@@ -129,50 +184,5 @@ class Collapse extends React.PureComponent {
     );
   }
 }
-
-Collapse.defaultProps = {
-  active: undefined,
-  children: '',
-  className: '',
-  defaultActive: false,
-  ghost: false,
-  header: '',
-  onChange: undefined,
-  itemKey: '',
-  collapseType: 'panel',
-  theme
-};
-
-Collapse.propTypes = {
-  /** Option to handle if collapse is active */
-  active: PropTypes.bool,
-
-  /** Content to show in the collapse */
-  children: PropTypes.node,
-
-  /** classname for the collapse */
-  className: PropTypes.string,
-
-  /** Determines if collapse should default to open */
-  defaultActive: PropTypes.bool,
-
-  /** Will make collapse transparent */
-  ghost: PropTypes.bool,
-
-  /** Content to render in the header */
-  header: PropTypes.node,
-
-  /** Unique key to identify collpase. Used for Accordian */
-  itemKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-
-  /** The type of collapse */
-  collapseType: PropTypes.oneOf(['stack', 'panel']),
-
-  /** Function to handle when collapse state changes */
-  onChange: PropTypes.func,
-
-  /** Global theme in ThemeProvider */
-  theme: PropTypes.object
-};
 
 export default Collapse;

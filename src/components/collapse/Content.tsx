@@ -4,17 +4,22 @@ import styled, {
   css
 } from 'styled-components';
 
+interface ContentProps {
+  collapseType?: 'panel' | 'stack';
+  ghost?: boolean;
+}
+
 const AnimateContentContainer = posed.div({
   closed: {
     height: 0,
-    transition: (props) => ({
+    transition: (props: any) => ({
       ease: 'easeInOut',
       duration: props.theme.animations.milliseconds.veryFast,
     })
   },
   open: {
     height: 'auto',
-    transition: (props) => ({
+    transition: (props: any) => ({
       ease: 'easeInOut',
       duration: props.theme.animations.milliseconds.veryFast,
     })
@@ -25,7 +30,7 @@ export const ContentContainer = styled(AnimateContentContainer)`
   overflow: hidden;
 `;
 
-export const Content = styled.div`
+export const Content = styled.div<ContentProps>`
   padding: ${(props) => props.theme.collapse.contentPadding};
 
   background: ${(props) => props.theme.collapse.contentBackground};

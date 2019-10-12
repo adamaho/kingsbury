@@ -19,7 +19,7 @@ addParameters({
 });
 
 function loadStories() {
-  const req = require.context('../src/components/card', true, /\.stories\.tsx$/);
+  const req = require.context('../src/components/collapse', true, /\.stories\.tsx$/);
   req.keys().forEach(filename => req(filename));
 }
 
