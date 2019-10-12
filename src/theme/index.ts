@@ -1,4 +1,3 @@
-import * as styledComponents from 'styled-components';
 import colors from './colors';
 
 export const theme = {
@@ -117,15 +116,3 @@ export const theme = {
     }
   }
 };
-
-const {
-  default: styled,
-  css,
-  createGlobalStyle,
-  keyframes,
-  ThemeProvider,
-  ServerStyleSheet
-} = styledComponents as styledComponents.ThemedStyledComponentsModule<any>;
-
-export { colors, css, createGlobalStyle, keyframes, ThemeProvider, ServerStyleSheet };
-export default styled;

@@ -1,11 +1,11 @@
 const path = require("path");
 
 module.exports = ({ config, mode }) => {
+  console.log(__dirname);
   config.module.rules.push({
     test: /\.(ts|tsx)$/,
     include: [
-      path.resolve(__dirname, "../src"),
-      path.resolve(__dirname, "../.storybook")
+      path.resolve(__dirname, "../src")
     ],
     use: [
       {

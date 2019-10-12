@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import styled from 'styled-components';
 
 const Title = styled.h3`
@@ -45,20 +45,18 @@ const TDProperty = styled(TD)`
   font-family: Consolas,"courier new";
 `;
 
-const TableComponent = (config) => {
-  console.log(config);
-
+const TableComponent: React.FunctionComponent<any> = (config: any) => {
   if (config.propDefinitions.length === 0) {
     return null;
   }
 
-  const props = config.propDefinitions.filter((p) => !config.excludedPropTypes.includes(p.property))
+  const props = config.propDefinitions.filter((p: any) => !config.excludedPropTypes.includes(p.property))
   .map(({
     property,
     propType,
     description,
     defaultValue
-  }) => {
+  }: any) => {
       return (
         <tr key={property}>
           <TDProperty>

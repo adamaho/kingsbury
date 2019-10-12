@@ -22,7 +22,7 @@ exports[`Avatar it renders 1`] = `
   className="c0"
 >
   <div>
-    asdf
+    avatar
   </div>
 </div>
 `;
