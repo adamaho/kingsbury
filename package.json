@@ -1,6 +1,6 @@
 {
   "name": "kingsbury",
-  "version": "0.0.47",
+  "version": "0.0.48",
   "main": "lib/index.js",
   "license": "MIT",
   "scripts": {
