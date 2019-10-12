@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "svg": "node_modules/@svgr/cli/bin/svgr --ext jsx -d src/components/icons assets/icons",
-    "build": "babel src --out-dir lib --extensions \".js,.jsx\" --source-maps inline && cp src/index.d.ts lib/",
+    "build": "babel src --out-dir lib --extensions \".js,.jsx\" --source-maps inline",
     "lint": "eslint src --ext .jsx --ext .js",
     "lint:css": "stylelint './src/**/*.js'",
     "storybook": "start-storybook -p 9000 --quiet",
