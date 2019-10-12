@@ -19,7 +19,7 @@ addParameters({
 });
 
 function loadStories() {
-  const req = require.context('../src', true, /\.stories\.jsx$/);
+  const req = require.context('../src/components/button', true, /\.stories\.tsx$/);
   req.keys().forEach(filename => req(filename));
 }
 

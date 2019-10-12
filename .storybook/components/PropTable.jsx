@@ -1,16 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const PROPTYPE_STRINGS = {
-  array: 'array',
-  bool: 'boolean',
-  func: 'function',
-  node: 'ReactNode',
-  enum: 'Enum',
-  string: 'string',
-  union: 'union' // TODO: Make this a function that returns the proper types
-};
-
 const Title = styled.h3`
   padding: 12px;
 `;
@@ -56,6 +46,8 @@ const TDProperty = styled(TD)`
 `;
 
 const TableComponent = (config) => {
+  console.log(config);
+
   if (config.propDefinitions.length === 0) {
     return null;
   }
@@ -73,8 +65,8 @@ const TableComponent = (config) => {
             {property}
           </TDProperty>
           <TD>{description}</TD>
-          <TD><Type>{PROPTYPE_STRINGS[propType.name]}</Type></TD>
-          <TD><Code>{defaultValue}</Code></TD>
+          <TD><Type>{propType.name}</Type></TD>
+          <TD><Code>{defaultValue === '' ? '-' : String(defaultValue)}</Code></TD>
         </tr>
       );
     }

@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
 import styled, {
   css
@@ -9,17 +8,39 @@ import {
   theme
 } from '../../theme';
 
+interface ButtonProps {
+  /** Type of the button */
+  buttonType?: 'primary' | 'success' | 'danger' | 'warning' | 'info';
+
+  /** Content to show in the button */
+  children?: React.ReactNode;
+
+  /** classname for the button */
+  className?: string;
+
+  /** Disabled state of the button */
+  disabled?: boolean;
+
+  /** Function to handle click event */
+  onClick?: () => void;
+
+  /** Global theme in ThemeProvider */
+  theme?: any;
+}
+
+const defaultButtonType = 'primary';
+
 const REQUIRE_DARK_TEXT = new Set(['success', 'warning']);
 
-const StyledButton = styled.button`
+const StyledButton = styled.button<ButtonProps>`
   background: ${(props) => (
     props.disabled ?
       props.theme.colors.disabled :
-      props.theme.colors[props.buttonType]
+      props.theme.colors[props.buttonType || defaultButtonType]
   )};
 
   color: ${(props) => {
-    if (REQUIRE_DARK_TEXT.has(props.buttonType)) {
+    if (REQUIRE_DARK_TEXT.has(props.buttonType || defaultButtonType)) {
       return props.theme.colors.black;
     }
     return props.theme.colors.white;
@@ -58,13 +79,14 @@ const StyledButton = styled.button`
   }
 `;
 
-const Button = (props) => {
+export const Button: React.FC<ButtonProps> = (props) => {
   const {
-    children
+    children,
+    buttonType
   } = props;
 
   return (
-    <StyledButton {...props}>
+    <StyledButton buttonType={buttonType} {...props}>
       {children}
     </StyledButton>
   );
@@ -77,26 +99,6 @@ Button.defaultProps = {
   disabled: false,
   onClick: undefined,
   theme,
-};
-
-Button.propTypes = {
-  /** Type of the button */
-  buttonType: PropTypes.oneOf(['primary', 'success', 'danger', 'warning', 'info']),
-
-  /** Content to show in the button */
-  children: PropTypes.node,
-
-  /** classname for the button */
-  className: PropTypes.string,
-
-  /** Disabled state of the button */
-  disabled: PropTypes.bool,
-
-  /** Function to handle click event */
-  onClick: PropTypes.func,
-
-  /** Global theme in ThemeProvider */
-  theme: PropTypes.object
 };
 
 export default Button;
