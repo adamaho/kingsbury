@@ -1,3 +1,4 @@
+import Avatar from './avatar';
 import Button from './button';
 import Card from './card';
 import Collapse from './collapse';
@@ -14,6 +15,7 @@ import {
 } from './typeography';
 
 export {
+  Avatar,
   Button,
   Card,
   Collapse,
