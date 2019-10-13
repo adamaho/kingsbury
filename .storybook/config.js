@@ -19,7 +19,7 @@ addParameters({
 });
 
 function loadStories() {
-  const req = require.context('../src/components/input', true, /\.stories\.tsx$/);
+  const req = require.context('../src/components/notice', true, /\.stories\.tsx$/);
   req.keys().forEach(filename => req(filename));
 }
 

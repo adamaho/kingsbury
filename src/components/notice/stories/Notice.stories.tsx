@@ -1,14 +1,14 @@
-import React from 'react';
+import * as React from 'react';
 
 import {
   storiesOf
 } from '@storybook/react';
 
-import Notice from '.';
+import Notice from '..';
 
 import {
   SVGClose
-} from '../icons';
+} from '../../icons';
 
 const stories = storiesOf('Notice', module);
 
@@ -20,28 +20,28 @@ stories.add(
         <Notice
           title="Info"
           description="Description of notice"
-          type="info"
+          noticeType="info"
         />
       </div>
       <div>
         <Notice
           title="Success"
           description="Description of notice"
-          type="success"
+          noticeType="success"
         />
       </div>
       <div>
         <Notice
           title="Warning"
           description="Description of notice"
-          type="warning"
+          noticeType="warning"
         />
       </div>
       <div>
         <Notice
           title="Danger"
           description="Description of notice"
-          type="danger"
+          noticeType="danger"
         />
       </div>
     </div>
@@ -56,7 +56,7 @@ stories.add(
       description="Description of notice"
       avatar={<SVGClose />}
       rightContent={<div>Content</div>}
-      type="success"
+      noticeType="success"
     />
   )
 );
@@ -70,7 +70,7 @@ stories.add(
       avatar={<SVGClose />}
       rightContent={<div>Content</div>}
       hidePill
-      type="success"
+      noticeType="success"
     />
   )
 );

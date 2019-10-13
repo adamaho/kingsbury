@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import styled from 'styled-components';
 
 import {
@@ -7,6 +6,36 @@ import {
 } from '../../theme';
 
 import Avatar from '../avatar';
+
+interface NoticeProps {
+  /** Component or image to show to the left of the pill */
+  avatar?: React.ReactNode;
+
+  /** classname for the notice */
+  className?: string;
+
+  /** Description of the notice */
+  description?: React.ReactNode;
+
+  /** Hides the pill */
+  hidePill?: boolean;
+
+  /** Content to show to the right of the notice */
+  rightContent?: React.ReactNode;
+
+  /** Title of the notice */
+  title?: React.ReactNode;
+
+  /** Type of the pill */
+  noticeType?: 'primary' | 'success' | 'danger' | 'warning' | 'info';
+
+  /** Global theme in ThemeProvider */
+  theme?: any;
+}
+
+interface PillProps {
+  noticeType?: 'primary' | 'success' | 'danger' | 'warning' | 'info';
+}
 
 const Container = styled.div`
   display: flex;
@@ -30,8 +59,8 @@ const JustifiedContent = styled.div`
   width: 100%;
 `;
 
-const Pill = styled.div`
-  background: ${(props) => props.theme.colors[props.type]};
+const Pill = styled.div<PillProps>`
+  background: ${(props) => props.theme.colors[props.noticeType || 'primary']};
   width: ${(props) => props.theme.notice.pillWidth};
   border-radius: ${(props) => props.theme.notice.pillRadius};
   min-height: ${(props) => props.theme.notice.pillMinHeight};
@@ -52,7 +81,7 @@ const Description = styled.div`
   color: ${(props) => props.theme.notice.descriptionFontColor};
 `;
 
-const Notice = (props) => {
+export const Notice: React.FunctionComponent<NoticeProps> = (props) => {
   const {
     avatar,
     className,
@@ -61,7 +90,7 @@ const Notice = (props) => {
     rightContent,
     theme: themeProp,
     title,
-    type
+    noticeType
   } = props;
 
   return (
@@ -71,7 +100,7 @@ const Notice = (props) => {
       }
       <Content>
         {!hidePill &&
-          <Pill theme={themeProp} type={type} />
+          <Pill theme={themeProp} noticeType={noticeType} />
         }
         <JustifiedContent>
           <TitleContent>
@@ -96,37 +125,11 @@ Notice.defaultProps = {
   className: '',
   description: '',
   hidePill: false,
-  rightContent: undefined,
+  rightContent: '',
   title: '',
   theme,
-  type: 'success'
+  noticeType: 'success'
 };
 
-Notice.propTypes = {
-  /** Component or image to show to the left of the pill */
-  avatar: PropTypes.node,
-
-  /** classname for the notice */
-  className: PropTypes.string,
-
-  /** Description of the notice */
-  description: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-
-  /** Hides the pill */
-  hidePill: PropTypes.bool,
-
-  /** Content to show to the right of the notice */
-  rightContent: PropTypes.node,
-
-  /** Title of the notice */
-  title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-
-  /** Type of the pill */
-  type: PropTypes.oneOf(['primary', 'success', 'danger', 'warning', 'info']),
-
-  /** Global theme in ThemeProvider */
-  theme: PropTypes.object
-
-};
 
 export default Notice;
