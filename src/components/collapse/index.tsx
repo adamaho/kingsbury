@@ -168,9 +168,7 @@ class Collapse extends React.PureComponent<CollapseProps, CollapseState> {
           {header}
         </Header>
         <ContentContainer
-          pose={active ? 'open' : 'closed'}
-          collapseType={collapseType}
-          theme={themeProp}
+          animate={active ? 'open' : 'closed'}
         >
           <Content
             ghost={ghost}
