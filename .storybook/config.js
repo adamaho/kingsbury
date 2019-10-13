@@ -9,7 +9,7 @@ import {
 } from '@storybook/addon-info';
 
 import yourTheme from './yourTheme';
-import PropTable from './components/PropTable';
+import PropTable from '../src/storybook/PropTable';
 
 addParameters({
   options: {
@@ -19,7 +19,7 @@ addParameters({
 });
 
 function loadStories() {
-  const req = require.context('../src', true, /\.stories\.jsx$/);
+  const req = require.context('../src', true, /\.stories\.tsx$/);
   req.keys().forEach(filename => req(filename));
 }
 

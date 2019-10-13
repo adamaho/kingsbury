@@ -1,0 +1,133 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input it renders with placeholder 1`] = `
+.c0 {
+  font-size: 16px;
+}
+
+.c1 {
+  height: props.theme.input.heightSmall;
+  font-size: props.theme.input.fontSizeSmall;
+  width: 100%;
+  -webkit-appearance: none;
+  font-family: inherit;
+  background-color: transparent;
+  color: #000000;
+  padding: 10px 0px 10px 10px;
+  border: 1px solid;
+  border-color: #C4C4C4;
+  border-radius: 7px;
+  border-color: #C4C4C4;
+  box-sizing: border-box;
+  line-height: 38px;
+}
+
+.c1::-webkit-input-placeholder {
+  color: #C4C4C4;
+}
+
+.c1::-moz-placeholder {
+  color: #C4C4C4;
+}
+
+.c1:-ms-input-placeholder {
+  color: #C4C4C4;
+}
+
+.c1::placeholder {
+  color: #C4C4C4;
+}
+
+.c1:disabled {
+  cursor: not-allowed;
+}
+
+.c1:focus {
+  border: 1px solid #5C6AC4;
+  outline: none;
+}
+
+<div
+  className=""
+>
+  <label
+    className="c0"
+  >
+    
+    <input
+      className="c1"
+      disabled={false}
+      label={null}
+      onChange={[Function]}
+      placeholder="placeholder"
+    />
+  </label>
+  
+</div>
+`;
+
+exports[`Input it renders without children 1`] = `
+.c0 {
+  font-size: 16px;
+}
+
+.c1 {
+  height: props.theme.input.heightSmall;
+  font-size: props.theme.input.fontSizeSmall;
+  width: 100%;
+  -webkit-appearance: none;
+  font-family: inherit;
+  background-color: transparent;
+  color: #000000;
+  padding: 10px 0px 10px 10px;
+  border: 1px solid;
+  border-color: #C4C4C4;
+  border-radius: 7px;
+  border-color: #C4C4C4;
+  box-sizing: border-box;
+  line-height: 38px;
+}
+
+.c1::-webkit-input-placeholder {
+  color: #C4C4C4;
+}
+
+.c1::-moz-placeholder {
+  color: #C4C4C4;
+}
+
+.c1:-ms-input-placeholder {
+  color: #C4C4C4;
+}
+
+.c1::placeholder {
+  color: #C4C4C4;
+}
+
+.c1:disabled {
+  cursor: not-allowed;
+}
+
+.c1:focus {
+  border: 1px solid #5C6AC4;
+  outline: none;
+}
+
+<div
+  className=""
+>
+  <label
+    className="c0"
+  >
+    
+    <input
+      className="c1"
+      disabled={false}
+      label={null}
+      onChange={[Function]}
+      placeholder=""
+    />
+  </label>
+  
+</div>
+`;
