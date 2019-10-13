@@ -48,7 +48,7 @@ const TDProperty = styled(TD)`
 
 function getTypeName(type: string) {
   if (_.startsWith(type, 'string | number')) {
-    return 'string | number';
+    return 'ReactText';
   }
   return type;
 }
