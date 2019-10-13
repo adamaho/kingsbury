@@ -8,7 +8,7 @@ import {
   theme
 } from '../../theme';
 
-interface ButtonProps {
+export interface ButtonProps {
   /** Type of the button */
   buttonType?: 'primary' | 'success' | 'danger' | 'warning' | 'info';
 
