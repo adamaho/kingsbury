@@ -11,7 +11,6 @@ interface CollapseSpacerProps {
   itemGap: number;
 }
 
-/** asfdasfdsafd */
 export interface AccordianItemProps {
   /** Unique key used to identify each item */
   itemKey: string | number;
