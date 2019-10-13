@@ -6,11 +6,11 @@ exports[`Input it renders with placeholder 1`] = `
 }
 
 .c1 {
-  height: 40px;
+  height: props.theme.input.heightSmall;
+  font-size: props.theme.input.fontSizeSmall;
   width: 100%;
   -webkit-appearance: none;
   font-family: inherit;
-  font-size: 16px;
   background-color: transparent;
   color: #000000;
   padding: 10px 0px 10px 10px;
@@ -57,9 +57,9 @@ exports[`Input it renders with placeholder 1`] = `
     <input
       className="c1"
       disabled={false}
+      label={null}
       onChange={[Function]}
       placeholder="placeholder"
-      size="small"
     />
   </label>
   
@@ -72,11 +72,11 @@ exports[`Input it renders without children 1`] = `
 }
 
 .c1 {
-  height: 40px;
+  height: props.theme.input.heightSmall;
+  font-size: props.theme.input.fontSizeSmall;
   width: 100%;
   -webkit-appearance: none;
   font-family: inherit;
-  font-size: 16px;
   background-color: transparent;
   color: #000000;
   padding: 10px 0px 10px 10px;
@@ -123,9 +123,9 @@ exports[`Input it renders without children 1`] = `
     <input
       className="c1"
       disabled={false}
+      label={null}
       onChange={[Function]}
       placeholder=""
-      size="small"
     />
   </label>
   

@@ -35,22 +35,22 @@ export interface InputProps {
   label?: React.ReactNode;
 
   /** Function to handle change event */
-  onChange: () => void,
+  onChange?: () => void,
 
   /** Placeholder for the input */
   placeholder?: string;
 
   /** name of the input to be used with Formik */
-  name: string;
+  name?: string;
 
   /** Size of input */
   inputSize?: 'small' | 'large';
 
   /** Global theme in ThemeProvider */
-  theme: any;
+  theme?: any;
 
   /** value of the input */
-  value: string;
+  value?: string;
 }
 
 const Container = styled.div``;
@@ -64,10 +64,13 @@ const Error = styled.div<any>`
 `;
 
 const StyledInput = styled.input<InputProps>`
-  ${(props) => props.inputSize === 'small' && css`
-    height: props.theme.input.heightSmall;
-    font-size: props.theme.input.fontSizeSmall;
-  `}
+  height: ${(props) => props.theme.input.heightSmall};
+  font-size: ${(props) => props.theme.input.fontSizeSmall};
+
+  ${(props) => props.inputSize === 'large' && css`
+    height: ${props.theme.input.heightLarge};
+    font-size: ${props.theme.input.fontSizeLarge};
+  `};
 
   width: 100%;
   -webkit-appearance: none;
@@ -104,8 +107,6 @@ const StyledInput = styled.input<InputProps>`
   `};
 
   box-sizing: border-box;
-
-  line-height: 38px;
 
   &::placeholder {
     color: ${(props) => props.theme.input.placeholderColor};

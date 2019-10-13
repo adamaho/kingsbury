@@ -1,6 +1,6 @@
-import React from 'react';
-import enzyme from 'enzyme';
-import renderer from 'react-test-renderer';
+import * as React from 'react';
+import * as enzyme from 'enzyme';
+import * as renderer from 'react-test-renderer';
 
 import Input from '..';
 
