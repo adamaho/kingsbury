@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as _ from 'lodash';
 import styled from 'styled-components';
 
 const Title = styled.h3`
@@ -45,6 +46,13 @@ const TDProperty = styled(TD)`
   font-family: Consolas,"courier new";
 `;
 
+function getTypeName(type: string) {
+  if (_.startsWith(type, 'string | number')) {
+    return 'ReactText';
+  }
+  return type;
+}
+
 const TableComponent: React.FunctionComponent<any> = (config: any) => {
   if (config.propDefinitions.length === 0) {
     return null;
@@ -63,7 +71,7 @@ const TableComponent: React.FunctionComponent<any> = (config: any) => {
             {property}
           </TDProperty>
           <TD>{description}</TD>
-          <TD><Type>{propType.name}</Type></TD>
+          <TD><Type>{getTypeName(propType.name)}</Type></TD>
           <TD><Code>{defaultValue === '' || undefined ? '-' : String(defaultValue)}</Code></TD>
         </tr>
       );

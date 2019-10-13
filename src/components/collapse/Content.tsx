@@ -1,34 +1,45 @@
-import posed from 'react-pose';
+import * as React from 'react';
+
+import {
+  motion
+} from 'framer-motion';
 
 import styled, {
   css
 } from 'styled-components';
+
+interface ContentContainerProps {
+  animate: 'open' | 'closed';
+}
 
 interface ContentProps {
   collapseType?: 'panel' | 'stack';
   ghost?: boolean;
 }
 
-const AnimateContentContainer = posed.div({
-  closed: {
-    height: 0,
-    transition: (props: any) => ({
-      ease: 'easeInOut',
-      duration: props.theme.animations.milliseconds.veryFast,
-    })
-  },
-  open: {
-    height: 'auto',
-    transition: (props: any) => ({
-      ease: 'easeInOut',
-      duration: props.theme.animations.milliseconds.veryFast,
-    })
+export const ContentContainer: React.FunctionComponent<ContentContainerProps> = ({ children, animate }) => {
+  const variants = {
+    closed: {
+      height: 0,
+      overflow: 'hidden'
+    },
+    open: {
+      height: 'auto',
+      overflow: 'unset'
+    },
   }
-});
 
-export const ContentContainer = styled(AnimateContentContainer)`
-  overflow: hidden;
-`;
+  return (
+    <motion.div
+      initial="closed"
+      exit="closed"
+      animate={animate}
+      variants={variants}
+    >
+      {children}
+    </motion.div>
+  );
+};
 
 export const Content = styled.div<ContentProps>`
   padding: ${(props) => props.theme.collapse.contentPadding};
