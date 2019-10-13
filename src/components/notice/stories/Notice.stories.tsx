@@ -18,6 +18,13 @@ stories.add(
     <div>
       <div>
         <Notice
+          title="Primary"
+          description="Description of notice"
+          noticeType="primary"
+        />
+      </div>
+      <div>
+        <Notice
           title="Info"
           description="Description of notice"
           noticeType="info"

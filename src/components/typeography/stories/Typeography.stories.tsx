@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import {
   storiesOf
@@ -10,7 +10,7 @@ import {
   H3,
   H4,
   P
-} from '.';
+} from '..';
 
 const stories = storiesOf('Typeography', module);
 

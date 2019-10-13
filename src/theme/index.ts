@@ -1,6 +1,6 @@
 import colors from './colors';
 
-export const theme = {
+export const theme: any = {
   animations: {
     time: {
       veryFast: '0.1s',
