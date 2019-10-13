@@ -100,19 +100,19 @@ export const theme: any = {
   },
   typeography: {
     h1: {
-      margin: '0px'
+      fontSize: '32px'
     },
     h2: {
-      margin: '0px'
+      fontSize: '24px'
     },
     h3: {
-      margin: '0px'
+      fontSize: '18px'
     },
     h4: {
-      margin: '0px'
+      fontSize: '16px'
     },
     p: {
-      margin: '0px'
+      fontSize: '14px'
     }
   }
 };

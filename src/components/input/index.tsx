@@ -26,7 +26,7 @@ export interface InputProps {
   errorComponent?: (error: string) => React.ReactNode;
 
   /** HTML input type attribute */
-  htmlType?: 'text' | 'number';
+  htmlType?: 'text' | 'number' | 'date';
 
   /** id of the input to be used with Formik */
   id?: string;
@@ -158,7 +158,7 @@ export const Input: React.FunctionComponent<InputProps> = (props) => {
           label={null}
           error={error}
           disabled={disabled}
-          htmlType={htmlType}
+          type={htmlType}
           id={id}
           name={name}
           onChange={onChange}

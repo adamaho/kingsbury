@@ -21,7 +21,7 @@ const CollapseSpacer = styled.div<CollapseSpacerProps>`
 `;
 
 /** Accordian.Item */
-const AccordianItem: React.FunctionComponent<AccordianItemProps> = (props) => (
+export const AccordianItem: React.FunctionComponent<AccordianItemProps> = (props) => (
   <AccordianContext.Consumer>
     {(value) => {
       const {
