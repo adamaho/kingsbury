@@ -1,9 +1,3 @@
-import {
-  theme
-} from './theme';
-
 export * from './components';
-
-export default {
-  theme
-};
+export * from './styled';
+export { theme } from './theme';
