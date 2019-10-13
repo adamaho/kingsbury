@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import styled from 'styled-components';
 import * as _ from 'lodash';
 
@@ -29,13 +28,19 @@ interface AccordianProps {
   itemGap: number;
 
   /** Function to handle when collapse state changes */
-  onChange: () => void;
+  onChange: (selectedItems: string[]) => void;
+}
+
+interface AccordianState {
+  selectedItems: string[];
 }
 
 const Container = styled.div``;
 
-class Accordian extends React.PureComponent<any, any> {
-  constructor(props: any) {
+class Accordian extends React.PureComponent<AccordianProps, AccordianState> {
+  static Item = AccordianItem;
+
+  constructor(props: AccordianProps) {
     super(props);
 
     const {
@@ -57,7 +62,7 @@ class Accordian extends React.PureComponent<any, any> {
     onChange: undefined
   }
 
-  getClassicItems = (key: any) => {
+  getClassicItems = (key: string) => {
     const {
       selectedItems
     } = this.state;
@@ -67,7 +72,7 @@ class Accordian extends React.PureComponent<any, any> {
       [key];
   }
 
-  getItems = (key: any) => {
+  getItems = (key: string) => {
     const {
       selectedItems
     } = this.state;
@@ -77,7 +82,7 @@ class Accordian extends React.PureComponent<any, any> {
       selectedItems.concat(key);
   }
 
-  onCollapseChange = (key: any) => {
+  onCollapseChange = (key: string) => {
     const {
       onChange,
       classic
@@ -124,7 +129,5 @@ class Accordian extends React.PureComponent<any, any> {
     );
   }
 }
-
-Accordian.Item = AccordianItem;
 
 export default Accordian;

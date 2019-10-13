@@ -64,7 +64,7 @@ const TableComponent: React.FunctionComponent<any> = (config: any) => {
           </TDProperty>
           <TD>{description}</TD>
           <TD><Type>{propType.name}</Type></TD>
-          <TD><Code>{defaultValue === '' ? '-' : String(defaultValue)}</Code></TD>
+          <TD><Code>{defaultValue === '' || undefined ? '-' : String(defaultValue)}</Code></TD>
         </tr>
       );
     }

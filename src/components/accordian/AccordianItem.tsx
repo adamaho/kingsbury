@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import styled from 'styled-components';
 
 import Collapse from '../collapse';
@@ -13,7 +12,7 @@ interface CollapseSpacerProps {
 }
 
 /** asfdasfdsafd */
-interface AccordianItem {
+export interface AccordianItemProps {
   /** Unique key used to identify each item */
   itemKey: string | number;
 }
@@ -23,7 +22,7 @@ const CollapseSpacer = styled.div<CollapseSpacerProps>`
 `;
 
 /** Accordian.Item */
-const AccordianItem: React.FunctionComponent<any> = (props) => (
+const AccordianItem: React.FunctionComponent<AccordianItemProps> = (props) => (
   <AccordianContext.Consumer>
     {(value) => {
       const {
