@@ -5,26 +5,15 @@ import Collapse from './collapse';
 import Input from './input';
 import Notice from './notice';
 import * as Icon from './icons';
-
-import {
-  H1,
-  H2,
-  H3,
-  H4,
-  P
-} from './typeography';
+import Text from './typeography';
 
 export {
   Avatar,
   Button,
   Card,
   Collapse,
+  Icon,
   Input,
   Notice,
-  H1,
-  H2,
-  H3,
-  H4,
-  P,
-  Icon
+  Text
 };

@@ -37,3 +37,5 @@ Text.defaultProps = {
   textType: 'h1',
   theme
 }
+
+export default Text;
