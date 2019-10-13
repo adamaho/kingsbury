@@ -1,13 +1,13 @@
 /* eslint-disable */
 
-import React from 'react';
+import * as React from 'react';
 import styled from 'styled-components';
 
 const StyledContainer = styled.div`
   max-width: 350px;
 `;
 
-export const Container = ({ children }) => (
+export const Container = ({ children }: any) => (
   <StyledContainer>
     {children}
   </StyledContainer>

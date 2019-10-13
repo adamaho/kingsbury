@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
 import styled, {
   css
@@ -9,23 +8,71 @@ import {
   theme
 } from '../../theme';
 
+export interface InputProps {
+
+  /** Type of border for the input */
+  borderType?: 'full' | 'bottom' | 'none';
+
+  /** classname for the input */
+  className?: string;
+
+  /** Disabled state of the input */
+  disabled?: boolean;
+
+  /** Formik validation error */
+  error?: string;
+
+  /** Function that provides the error to use in custom component */
+  errorComponent?: (error: string) => React.ReactNode;
+
+  /** HTML input type attribute */
+  htmlType?: 'text' | 'number';
+
+  /** id of the input to be used with Formik */
+  id?: string;
+
+  /** Label of the input */
+  label?: React.ReactNode;
+
+  /** Function to handle change event */
+  onChange: () => void,
+
+  /** Placeholder for the input */
+  placeholder?: string;
+
+  /** name of the input to be used with Formik */
+  name: string;
+
+  /** Size of input */
+  inputSize?: 'small' | 'large';
+
+  /** Global theme in ThemeProvider */
+  theme: any;
+
+  /** value of the input */
+  value: string;
+}
+
 const Container = styled.div``;
 
 const Label = styled.label`
   font-size: 16px;
 `;
 
-const Error = styled.div`
+const Error = styled.div<any>`
   color: ${(props) => props.theme.colors.danger};
 `;
 
-const StyledInput = styled.input`
-  height: ${(props) => (props.size === 'small' ? props.theme.input.heightSmall : props.theme.input.heightLarge)};
+const StyledInput = styled.input<InputProps>`
+  ${(props) => props.inputSize === 'small' && css`
+    height: props.theme.input.heightSmall;
+    font-size: props.theme.input.fontSizeSmall;
+  `}
+
   width: 100%;
   -webkit-appearance: none;
 
   font-family: inherit;
-  font-size: ${(props) => (props.size === 'small' ? props.theme.input.fontSizeSmall : props.theme.input.fontSizeLarge)};
 
   background-color: ${(props) => props.theme.input.background};
   color: ${(props) => props.theme.input.color};
@@ -84,7 +131,7 @@ const StyledInput = styled.input`
   }
 `;
 
-const Input = (props) => {
+export const Input: React.FunctionComponent<InputProps> = (props) => {
   const {
     className,
     disabled,
@@ -96,7 +143,7 @@ const Input = (props) => {
     name,
     onChange,
     placeholder,
-    size,
+    inputSize,
     borderType,
     theme: themeProp,
     value
@@ -107,6 +154,7 @@ const Input = (props) => {
       <Label>
         {label && label}
         <StyledInput
+          label={null}
           error={error}
           disabled={disabled}
           htmlType={htmlType}
@@ -115,7 +163,7 @@ const Input = (props) => {
           onChange={onChange}
           placeholder={placeholder}
           borderType={borderType}
-          size={size}
+          inputSize={inputSize}
           theme={themeProp}
           value={value}
         />
@@ -141,54 +189,9 @@ Input.defaultProps = {
   label: '',
   onChange: () => undefined,
   placeholder: '',
-  size: 'small',
+  inputSize: 'small',
   theme,
   value: undefined
-};
-
-Input.propTypes = {
-
-  /** Type of border for the input */
-  borderType: PropTypes.oneOf(['full', 'bottom', 'none']),
-
-  /** classname for the input */
-  className: PropTypes.string,
-
-  /** Disabled state of the input */
-  disabled: PropTypes.bool,
-
-  /** Formik validation error */
-  error: PropTypes.string,
-
-  /** Function that provides the error to use in custom component */
-  errorComponent: PropTypes.func,
-
-  /** HTML input type attribute */
-  htmlType: PropTypes.oneOf([undefined, 'text', 'number']),
-
-  /** id of the input to be used with Formik */
-  id: PropTypes.string,
-
-  /** Label of the input */
-  label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-
-  /** Function to handle change event */
-  onChange: PropTypes.func,
-
-  /** Placeholder for the input */
-  placeholder: PropTypes.string,
-
-  /** name of the input to be used with Formik */
-  name: PropTypes.string,
-
-  /** Size of input */
-  size: PropTypes.oneOf(['small', 'large']),
-
-  /** Global theme in ThemeProvider */
-  theme: PropTypes.object,
-
-  /** value of the input */
-  value: PropTypes.string,
 };
 
 export default Input;

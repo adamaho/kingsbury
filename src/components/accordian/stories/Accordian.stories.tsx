@@ -11,7 +11,6 @@ import Accordian from '..';
 
 const StyledCollapseContent = styled.div`
   height: 200px;
-  background: blue;
 `;
 
 export const CollapseContent = ({ children }: any) => (

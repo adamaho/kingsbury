@@ -29,7 +29,7 @@ stories.add(
     <Container>
       <Input />
       <Spacer />
-      <Input size="large" />
+      <Input inputSize="large" />
     </Container>
   ),
   { info: { propTablesExclude: [Container, Spacer] } }
