@@ -8,7 +8,7 @@ import {
   AccordianContext
 } from './context';
 
-interface AccordianProps {
+export interface AccordianProps {
   /** Type of collapse. See Collapse. */
   accordianType: 'stack' | 'panel';
 

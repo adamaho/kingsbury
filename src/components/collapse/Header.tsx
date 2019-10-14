@@ -4,7 +4,7 @@ import styled, {
   css
 } from 'styled-components';
 
-interface HeaderProps {
+export interface HeaderProps {
   /** Content to show in the Header */
   children: React.ReactNode;
 
@@ -22,12 +22,6 @@ interface HeaderProps {
 
   /** Global theme in ThemeProvider */
   theme: any;
-}
-
-interface StyleHeaderProps {
-  collapseType?: 'stack' | 'panel';
-  open?: boolean;
-  ghost?: boolean;
 }
 
 const StyledHeader = styled.div<HeaderProps>`

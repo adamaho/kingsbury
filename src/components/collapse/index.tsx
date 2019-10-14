@@ -15,7 +15,7 @@ import {
   Content
 } from './Content';
 
-interface CollapseProps {
+export interface CollapseProps {
   /** Option to handle if collapse is active */
   active?: boolean;
 

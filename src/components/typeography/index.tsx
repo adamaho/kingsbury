@@ -5,7 +5,7 @@ import {
   theme
 } from '../../theme';
 
-interface TextProps {
+export interface TextProps {
   /** Text to render */
   children?: string | number;
 

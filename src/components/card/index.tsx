@@ -11,7 +11,7 @@ import {
 import Header from './Header';
 import Footer from './Footer';
 
-interface CardProps {
+export interface CardProps {
   /** Content to show in the card */
   children?: React.ReactNode;
 

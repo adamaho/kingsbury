@@ -11,6 +11,21 @@ import {
   theme
 } from '../../theme';
 
+export interface MenuProps {
+
+  /** Items to render in the Menu */
+  children: React.ReactNode;
+
+  /** classname for the collapse */
+  className?: string;
+
+  /** Function to handle when collapse state changes */
+  onClick?: (itemKey: string | number) => void;
+
+  /** Global theme in ThemeProvider */
+  theme: any;
+}
+
 const Container = styled.div`
   background: ${(props) => props.theme.menu.background};
   border: ${(props) => props.theme.menu.border};
@@ -22,15 +37,19 @@ const Container = styled.div`
   min-width: ${(props) => props.theme.menu.minWidth};
 `;
 
-class Menu extends React.PureComponent<any, any> {
+class Menu extends React.PureComponent<MenuProps, any> {
   static Item = MenuItem;
 
   static defaultProps = {
+    children: '',
+    className: '',
+    onClick: undefined,
     theme
   }
 
   render() {
     const {
+      className,
       children,
       onClick,
       theme
@@ -42,7 +61,10 @@ class Menu extends React.PureComponent<any, any> {
           onClick
         }}
       >
-        <Container theme={theme}>
+        <Container
+          className={className}
+          theme={theme}
+        >
           {children}
         </Container>
       </MenuContext.Provider>
