@@ -34,8 +34,14 @@ export interface InputProps {
   /** Label of the input */
   label?: React.ReactNode;
 
+  /** Function to handle focus event */
+  onBlur?: () => void;
+
   /** Function to handle change event */
-  onChange?: () => void,
+  onChange?: () => void;
+
+  /** Function to handle focus event */
+  onFocus?: () => void;
 
   /** Placeholder for the input */
   placeholder?: string;
@@ -142,7 +148,9 @@ export const Input: React.FunctionComponent<InputProps> = (props) => {
     id,
     label,
     name,
+    onBlur,
     onChange,
+    onFocus,
     placeholder,
     inputSize,
     borderType,
@@ -161,7 +169,9 @@ export const Input: React.FunctionComponent<InputProps> = (props) => {
           type={htmlType}
           id={id}
           name={name}
+          onBlur={onBlur}
           onChange={onChange}
+          onFocus={onFocus}
           placeholder={placeholder}
           borderType={borderType}
           inputSize={inputSize}

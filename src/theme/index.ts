@@ -78,6 +78,18 @@ export const theme: any = {
       color: colors.darkGrey
     }
   },
+  menu: {
+    background: `${colors.white}`,
+    border: 'none',
+    borderColor: 'none',
+    borderRadius: '7px',
+    boxShadow: `0px 0px 4px rgba(${colors.blackRGB},0.20)`,
+    color: `${colors.black}`,
+    itemBorder: '1px solid',
+    itemBorderColor: `${colors.lightGrey}`,
+    itemPadding: '5px 10px',
+    minWidth: '100px'
+  },
   notice: {
     avatarwidth: '25px',
     avatarheight: '25px',
