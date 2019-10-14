@@ -1,6 +1,10 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
+import {
+  motion
+} from 'framer-motion';
+
 import MenuItem from './MenuItem';
 
 import {
@@ -10,6 +14,17 @@ import {
 import {
   theme
 } from '../../theme';
+
+const variants = {
+  closed: {
+    height: 0,
+    overflow: 'hidden'
+  },
+  open: {
+    height: 'auto',
+    overflow: 'unset'
+  },
+}
 
 export interface MenuProps {
 
@@ -21,6 +36,9 @@ export interface MenuProps {
 
   /** Function to handle when collapse state changes */
   onClick?: (itemKey: string | number) => void;
+
+  /** Determines if menu is visible or not */
+  visible?: boolean;
 
   /** Global theme in ThemeProvider */
   theme: any;
@@ -52,8 +70,11 @@ class Menu extends React.PureComponent<MenuProps, any> {
       className,
       children,
       onClick,
+      visible,
       theme
     } = this.props;
+
+    const animate = visible ? 'open' : 'closed'
 
     return (
       <MenuContext.Provider
@@ -61,12 +82,19 @@ class Menu extends React.PureComponent<MenuProps, any> {
           onClick
         }}
       >
-        <Container
-          className={className}
-          theme={theme}
+        <motion.div
+          initial="closed"
+          exit="closed"
+          animate={animate}
+          variants={variants}
         >
-          {children}
-        </Container>
+          <Container
+            className={className}
+            theme={theme}
+          >
+            {children}
+          </Container>
+        </motion.div>
       </MenuContext.Provider>
     );
   }

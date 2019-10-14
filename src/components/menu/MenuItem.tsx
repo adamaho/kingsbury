@@ -26,8 +26,14 @@ const Container = styled.div`
   border-bottom: ${(props) => props.theme.menu.itemBorder};
   border-color: ${(props) => props.theme.menu.itemBorderColor};
 
+  cursor: pointer;
+
   :last-child {
     border: none;
+  }
+
+  :hover {
+    background: lightblue;
   }
 `;
 

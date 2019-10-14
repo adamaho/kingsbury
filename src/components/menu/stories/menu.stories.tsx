@@ -5,6 +5,7 @@ import {
   storiesOf
 } from '@storybook/react';
 
+import Button from '../../button';
 import Menu from '..';
 
 const Container = styled.div`
@@ -17,7 +18,10 @@ stories.add(
   'Default',
   () => (
     <Container>
-      <Menu onClick={(key: any) => console.log(key)}>
+      <Menu
+        onClick={(key: any) => console.log(key)}
+        visible
+      >
         <Menu.Item itemKey="asdfasdf">asdf</Menu.Item>
         <Menu.Item itemKey="asdfb">asdf</Menu.Item>
         <Menu.Item itemKey="asdfc">asdf</Menu.Item>
