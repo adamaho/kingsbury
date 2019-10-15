@@ -35,7 +35,7 @@ export interface InputProps {
   label?: React.ReactNode;
 
   /** Function to handle change event */
-  onChange?: (e: any) => void,
+  onChange?: React.EventHandler<any>;
 
   /** Placeholder for the input */
   placeholder?: string;
