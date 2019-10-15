@@ -1,6 +1,7 @@
 {
   "presets": [
       "@babel/env",
+      "@babel/typescript",
       "@babel/react"
   ],
   "plugins": [
@@ -14,6 +15,7 @@
       ]
   ],
   "ignore": [
-    "**/*.stories.tsx"
+    "**/*.stories.jsx",
+    "**/*.spec.jsx"
   ]
 }
