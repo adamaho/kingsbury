@@ -13,13 +13,19 @@ stories.add(
   'Default',
   () => {
     const [showPortal, setPortalVisibilty] = React.useState(false);
+    const container = React.useRef(null);
 
     return (
       <React.Fragment>
         <Button onClick={() => setPortalVisibilty(!showPortal)}>
           Show Portal
         </Button>
-        <Portal visible={showPortal}><div>asdfasdf</div></Portal>
+        <Portal
+          visible={showPortal}
+          portalMountNode={container.current}>
+            <div>asdfasdf</div>
+        </Portal>
+        <div className="container-to-mount-to" ref={container} />
       </React.Fragment>
     );
   },
