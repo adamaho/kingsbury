@@ -13,6 +13,31 @@ stories.add(
   'Default',
   () => {
     const [showPortal, setPortalVisibilty] = React.useState(false);
+
+    return (
+      <React.Fragment>
+        <Button onClick={() => setPortalVisibilty(!showPortal)}>
+          Show Portal
+        </Button>
+        <Portal
+          visible={showPortal}
+        >
+          <div>I am the portal</div>
+        </Portal>
+      </React.Fragment>
+    );
+  },
+  { info:
+    { 
+      propTablesExclude: [Button]
+    },
+  }
+);
+
+stories.add(
+  'Custom Mount Node',
+  () => {
+    const [showPortal, setPortalVisibilty] = React.useState(false);
     const container = React.useRef(null);
 
     return (
@@ -30,5 +55,9 @@ stories.add(
       </React.Fragment>
     );
   },
-  { info: { propTablesExclude: [Button] } }
+  { info:
+    { 
+      propTablesExclude: [Button]
+    },
+  }
 );
