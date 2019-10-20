@@ -20,8 +20,6 @@ export const Select: React.FunctionComponent<any> = (props) => {
     current
   } = container;
 
-  console.log(container);
-
   const menuStyle: React.CSSProperties = current == null ? {} : {
     position: 'absolute',
     top: `${current.offsetTop}px`,
