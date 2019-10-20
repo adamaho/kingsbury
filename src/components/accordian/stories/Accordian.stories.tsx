@@ -21,7 +21,6 @@ export const CollapseContent = ({ children }: any) => (
 
 const AccordianContainer = styled.div`
   width: 400px;
-
   padding: 10px;
 `;
 
