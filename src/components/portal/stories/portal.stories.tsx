@@ -22,8 +22,9 @@ stories.add(
         </Button>
         <Portal
           visible={showPortal}
-          portalMountNode={container.current}>
-            <div>asdfasdf</div>
+          portalMountNode={container.current}
+        >
+          <div>I am the portal</div>
         </Portal>
         <div className="container-to-mount-to" ref={container} />
       </React.Fragment>
