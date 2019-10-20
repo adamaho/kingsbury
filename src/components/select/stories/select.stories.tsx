@@ -1,4 +1,5 @@
 import * as React from 'react';
+import styled from 'styled-components';
 
 import {
   storiesOf
@@ -6,13 +7,19 @@ import {
 
 import Select from '..';
 
+const Container = styled.div`
+  width: 400px;
+`;
+
 const stories = storiesOf('Select', module);
 
 stories.add(
   'Default',
   () => {
     return (
-      <Select />
+      <Container>
+        <Select />
+      </Container>
     );
   }
 );
