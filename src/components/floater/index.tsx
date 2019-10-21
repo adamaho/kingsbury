@@ -41,9 +41,12 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
       return (
         <div style={{
           position: 'absolute',
-          top: current.offsetTop,
+          top: current.offsetTop + current.offsetHeight,
           left: current.offsetLeft
-        }}>
+        }}
+          onMouseEnter={() => setShowFloater(true)}
+          onMouseLeave={() => setShowFloater(false)}
+        >
           {children}
         </div>
       );
