@@ -30,9 +30,25 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
   } = props;
 
   const [showFloater, setShowFloater] = React.useState(false);
-  const floaterRef = React.useRef(null);
+  const floaterRef = React.useRef<HTMLDivElement>(null);
 
-  console.log(floaterRef);
+  function renderPortal() {
+    const {
+      current
+    } = floaterRef;
+   
+    if (current) {
+      return (
+        <div style={{
+          position: 'absolute',
+          top: current.offsetTop,
+          left: current.offsetLeft
+        }}>
+          {children}
+        </div>
+      );
+    }
+  }
 
   return (
     <Container>
@@ -47,7 +63,7 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
         visible={showFloater}
         portalMountNode={props.floaterMountNode}
       >
-        {children}
+        {renderPortal()}
       </Portal>
     </Container>
   );
