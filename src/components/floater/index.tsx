@@ -15,6 +15,9 @@ export interface FloaterProps {
 
   /** Component used to trigger floater.  */
   triggerComponent?: React.ReactNode | null;
+
+  /** Component trigger type  */
+  triggerType?: 'hover' | 'click';
 }
 
 const Container = styled.div``;
@@ -44,8 +47,7 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
           top: current.offsetTop + current.offsetHeight,
           left: current.offsetLeft
         }}
-          onMouseEnter={() => setShowFloater(true)}
-          onMouseLeave={() => setShowFloater(false)}
+          {...getEventsForTrigger()}
         >
           {children}
         </div>
@@ -53,11 +55,47 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
     }
   }
 
+  function handleMouseEnter() {
+    setShowFloater(true);
+  }
+
+  function handleMouseLeave() {
+    setShowFloater(false);
+  }
+
+  function handleOnClick() {
+    setShowFloater(true);
+  }
+
+  function handleOnBlur() {
+    setShowFloater(false);
+  }
+
+  function getEventsForTrigger(): any {
+    const {
+      triggerType
+    } = props;
+
+    const TRIGGER_EVENT_MAP = {
+      hover: {
+        onMouseEnter: handleMouseEnter,
+        onMouseLeave: handleMouseLeave
+      },
+      click: {
+        onClick: handleOnClick,
+        onBlur: handleOnBlur
+      }
+    }
+
+    const trigger = triggerType || 'hover';
+
+    return TRIGGER_EVENT_MAP[trigger];
+  }
+
   return (
     <Container>
       <TriggerContainer
-        onMouseEnter={() => setShowFloater(true)}
-        onMouseLeave={() => setShowFloater(false)}
+        {...getEventsForTrigger()}
         ref={floaterRef}
       >
         {triggerComponent}
@@ -75,7 +113,8 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
 Floater.defaultProps = {
   children: '',
   floaterMountNode: document.body,
-  triggerComponent: null
+  triggerComponent: null,
+  triggerType: 'hover'
 };
 
 export default Floater;
