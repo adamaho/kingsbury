@@ -26,6 +26,8 @@ export interface ButtonProps {
 
   /** Global theme in ThemeProvider */
   theme?: any;
+
+  ref: React.Ref<any> | null;
 }
 
 const defaultButtonType = 'primary';
@@ -79,18 +81,22 @@ const StyledButton = styled.button<ButtonProps>`
   }
 `;
 
-export const Button: React.FC<ButtonProps> = (props) => {
+export const Button: React.FunctionComponent<ButtonProps> = React.forwardRef<ButtonProps, any>((props, ref) => {
   const {
     children,
     buttonType
   } = props;
 
   return (
-    <StyledButton buttonType={buttonType} {...props}>
+    <StyledButton
+      ref={ref}
+      buttonType={buttonType}
+      {...props}
+    >
       {children}
     </StyledButton>
   );
-};
+});
 
 Button.defaultProps = {
   buttonType: 'primary',

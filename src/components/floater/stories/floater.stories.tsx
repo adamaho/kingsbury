@@ -6,6 +6,7 @@ import {
 } from '@storybook/react';
 
 import Button from '../../button';
+import Input from '../../input';
 import Floater from '..';
 
 import {
@@ -16,13 +17,13 @@ import {
 const stories = storiesOf('Floater', module);
 
 stories.add(
-  'Default',
+  'With Button',
   () => (
     <Container>
       <Floater
         triggerComponent={
           <Button>
-            Trigger
+            Hover Me
           </Button>
         }
       >
@@ -32,10 +33,29 @@ stories.add(
       <Floater
         triggerComponent={
           <Button>
-            Trigger
+            Click Me
           </Button>
         }
         triggerType={'click'}
+      >
+        asdfasdf
+      </Floater>
+    </Container>
+  ),
+  { info: { propTablesExclude: [Container, Spacer, Button] } }
+);
+
+stories.add(
+  'With Input',
+  () => (
+    <Container>
+      <Floater
+        triggerComponent={
+          <Input>
+            Trigger
+          </Input>
+        }
+        triggerType="click"
       >
         asdfasdf
       </Floater>

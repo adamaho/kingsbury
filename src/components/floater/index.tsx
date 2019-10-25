@@ -22,10 +22,6 @@ export interface FloaterProps {
 
 const Container = styled.div``;
 
-const TriggerContainer = styled.div`
-  display: inline-block;
-`;
-
 export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
   const {
     children,
@@ -34,6 +30,10 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
 
   const [showFloater, setShowFloater] = React.useState(false);
   const floaterRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    console.log('called once');
+  }, []);
 
   function renderPortal() {
     const {
@@ -55,21 +55,21 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
     }
   }
 
-  function handleMouseEnter() {
+  const handleMouseEnter = React.useCallback(() => {
     setShowFloater(true);
-  }
+  }, []);
 
-  function handleMouseLeave() {
+  const handleMouseLeave = React.useCallback(() => {
     setShowFloater(false);
-  }
+  }, []);
 
-  function handleOnClick() {
+  const handleOnClick = React.useCallback(() => {
     setShowFloater(true);
-  }
+  }, []);
 
-  function handleOnBlur() {
+  const handleOnBlur = React.useCallback(() => {
     setShowFloater(false);
-  }
+  }, []);
 
   function getEventsForTrigger(): any {
     const {
@@ -92,14 +92,15 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
     return TRIGGER_EVENT_MAP[trigger];
   }
 
+  const child = React.Children.only(triggerComponent) as React.ReactElement;
+  const triggerTest = React.cloneElement(child, {
+    ...getEventsForTrigger(),
+    ref: floaterRef
+  });
+
   return (
     <Container>
-      <TriggerContainer
-        {...getEventsForTrigger()}
-        ref={floaterRef}
-      >
-        {triggerComponent}
-      </TriggerContainer>
+      {triggerTest}
       <Portal
         visible={showFloater}
         portalMountNode={props.floaterMountNode}
