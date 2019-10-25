@@ -24,10 +24,11 @@ export interface ButtonProps {
   /** Function to handle click event */
   onClick?: () => void;
 
+  /** Ref to be passed to the button */
+  ref?: React.Ref<any> | null;
+
   /** Global theme in ThemeProvider */
   theme?: any;
-
-  ref: React.Ref<any> | null;
 }
 
 const defaultButtonType = 'primary';

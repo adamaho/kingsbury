@@ -17,35 +17,50 @@ export interface FloaterProps {
   triggerComponent?: React.ReactNode | null;
 
   /** Component trigger type  */
-  triggerType?: 'hover' | 'click';
+  triggerType?: 'hover' | 'click' | 'contextMenu';
 }
 
-const Container = styled.div``;
+const Container = styled.div`
+  width: 100%;
+`;
 
 export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
   const {
     children,
+    triggerType,
     triggerComponent
   } = props;
 
   const [showFloater, setShowFloater] = React.useState(false);
   const floaterRef = React.useRef<HTMLDivElement>(null);
 
+
   React.useEffect(() => {
-    console.log('called once');
+    if (triggerType === 'contextMenu') {
+      window.addEventListener<'blur'>('blur', handleOnBlur);
+    }
+
+    return () => {
+      window.removeEventListener<'blur'>('blur', handleOnBlur);
+    }
   }, []);
+
+
+
 
   function renderPortal() {
     const {
       current
     } = floaterRef;
-   
+
     if (current) {
+      const dimensions = current.getBoundingClientRect();
       return (
         <div style={{
           position: 'absolute',
           top: current.offsetTop + current.offsetHeight,
-          left: current.offsetLeft
+          left: current.offsetLeft,
+          width: dimensions.width
         }}
           {...getEventsForTrigger()}
         >
@@ -67,15 +82,15 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
     setShowFloater(true);
   }, []);
 
+  const handleOnFocus = React.useCallback(() => {
+    setShowFloater(true);
+  }, []);
+
   const handleOnBlur = React.useCallback(() => {
     setShowFloater(false);
   }, []);
 
   function getEventsForTrigger(): any {
-    const {
-      triggerType
-    } = props;
-
     const TRIGGER_EVENT_MAP = {
       hover: {
         onMouseEnter: handleMouseEnter,
@@ -83,23 +98,29 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
       },
       click: {
         onClick: handleOnClick,
+        onFocus: handleOnFocus,
         onBlur: handleOnBlur
+      },
+      contextMenu: {
+        onClick: handleOnClick,
+        onFocus: handleOnFocus,
       }
     }
 
-    const trigger = triggerType || 'hover';
-
-    return TRIGGER_EVENT_MAP[trigger];
+    return TRIGGER_EVENT_MAP[triggerType || 'hover'];
   }
 
+  // Enforce only a single child is passed
   const child = React.Children.only(triggerComponent) as React.ReactElement;
+
+  // Clone the triggerComponent and attach a ref to it
   const triggerTest = React.cloneElement(child, {
     ...getEventsForTrigger(),
     ref: floaterRef
   });
 
   return (
-    <Container>
+    <React.Fragment>
       {triggerTest}
       <Portal
         visible={showFloater}
@@ -107,7 +128,7 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
       >
         {renderPortal()}
       </Portal>
-    </Container>
+    </React.Fragment>
   );
 };
 

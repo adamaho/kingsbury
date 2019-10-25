@@ -11,7 +11,8 @@ import Floater from '..';
 
 import {
   Container,
-  Spacer
+  Spacer,
+  FloaterContent
 } from './story.components';
 
 const stories = storiesOf('Floater', module);
@@ -27,7 +28,7 @@ stories.add(
           </Button>
         }
       >
-        asdfasdf
+        <FloaterContent />
       </Floater>
       <Spacer />
       <Floater
@@ -38,11 +39,11 @@ stories.add(
         }
         triggerType={'click'}
       >
-        asdfasdf
+        <FloaterContent />
       </Floater>
     </Container>
   ),
-  { info: { propTablesExclude: [Container, Spacer, Button] } }
+  { info: { propTablesExclude: [Container, Spacer, Button, FloaterContent] } }
 );
 
 stories.add(
@@ -55,11 +56,11 @@ stories.add(
             Trigger
           </Input>
         }
-        triggerType="click"
+        triggerType="contextMenu"
       >
-        asdfasdf
+        <FloaterContent />
       </Floater>
     </Container>
   ),
-  { info: { propTablesExclude: [Container, Spacer] } }
+  { info: { propTablesExclude: [Container, Spacer, FloaterContent] } }
 );

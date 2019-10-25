@@ -52,6 +52,9 @@ export interface InputProps {
   /** Size of input */
   inputSize?: 'small' | 'large';
 
+  /** Ref to be passed to the input */
+  ref?: React.Ref<any> | null
+
   /** Global theme in ThemeProvider */
   theme?: any;
 
@@ -59,7 +62,9 @@ export interface InputProps {
   value?: string;
 }
 
-const Container = styled.div``;
+const Container = styled.div`
+  width: 100%;
+`;
 
 const Label = styled.label`
   font-size: 16px;
@@ -69,7 +74,7 @@ const Error = styled.div<any>`
   color: ${(props) => props.theme.colors.danger};
 `;
 
-const StyledInput = styled.input<InputProps>`
+const StyledInput = styled.input<any>`
   height: ${(props) => props.theme.input.heightSmall};
   font-size: ${(props) => props.theme.input.fontSizeSmall};
 
@@ -138,7 +143,7 @@ const StyledInput = styled.input<InputProps>`
   }
 `;
 
-export const Input: React.FunctionComponent<InputProps> = (props) => {
+export const Input: React.FunctionComponent<InputProps> = React.forwardRef<InputProps, any>((props, ref) => {
   const {
     className,
     disabled,
@@ -175,6 +180,7 @@ export const Input: React.FunctionComponent<InputProps> = (props) => {
           placeholder={placeholder}
           borderType={borderType}
           inputSize={inputSize}
+          ref={ref}
           theme={themeProp}
           value={value}
         />
@@ -186,7 +192,7 @@ export const Input: React.FunctionComponent<InputProps> = (props) => {
       }
     </Container>
   );
-};
+});
 
 Input.defaultProps = {
   borderType: 'full',
