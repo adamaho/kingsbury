@@ -1,7 +1,4 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-
-import styled from 'styled-components';
 
 import Portal from '../portal';
 
@@ -20,10 +17,6 @@ export interface FloaterProps {
   triggerType?: 'hover' | 'click' | 'contextMenu';
 }
 
-const Container = styled.div`
-  width: 100%;
-`;
-
 export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
   const {
     children,
@@ -32,16 +25,19 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
   } = props;
 
   const [showFloater, setShowFloater] = React.useState(false);
-  const floaterRef = React.useRef<HTMLDivElement>(null);
+  const triggerRef = React.useRef<HTMLDivElement>(null);
+	const floaterRef = React.useRef<HTMLDivElement>(null);
 
 
   React.useEffect(() => {
     if (triggerType === 'contextMenu') {
       window.addEventListener<'blur'>('blur', handleOnBlur);
+      document.addEventListener<'mousedown'>('mousedown', handleMouseDown);
     }
 
     return () => {
       window.removeEventListener<'blur'>('blur', handleOnBlur);
+			document.removeEventListener<'mousedown'>('mousedown', handleMouseDown);
     }
   }, []);
 
@@ -49,24 +45,38 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
   function renderPortal() {
     const {
       current
-    } = floaterRef;
+    } = triggerRef;
 
     if (current) {
       const dimensions = current.getBoundingClientRect();
       return (
-        <div style={{
-          position: 'absolute',
-          top: current.offsetTop + current.offsetHeight,
-          left: current.offsetLeft,
-          width: dimensions.width
-        }}
+        <div
+					style={{
+						position: 'absolute',
+						top: current.offsetTop + current.offsetHeight,
+						left: current.offsetLeft,
+						width: dimensions.width
+					}}
           {...getEventsForTrigger()}
+					ref={floaterRef}
         >
           {children}
         </div>
       );
     }
   }
+
+  const handleMouseDown = React.useCallback((e) => {
+  	const {
+  		current
+		} = floaterRef;
+
+  	if (current && current.contains(e.target)) {
+  		return;
+		} else {
+  		setShowFloater(false);
+		}
+	}, []);
 
   const handleMouseEnter = React.useCallback(() => {
     setShowFloater(true);
@@ -101,7 +111,7 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
       },
       contextMenu: {
         onClick: handleOnClick,
-        onFocus: handleOnFocus,
+        onFocus: handleOnFocus
       }
     };
 
@@ -114,7 +124,7 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
   // Clone the triggerComponent and attach a ref to it
   const triggerTest = React.cloneElement(child, {
     ...getEventsForTrigger(),
-    ref: floaterRef
+    ref: triggerRef
   });
 
   return (
