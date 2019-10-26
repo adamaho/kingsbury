@@ -46,8 +46,6 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
   }, []);
 
 
-
-
   function renderPortal() {
     const {
       current
@@ -105,7 +103,7 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
         onClick: handleOnClick,
         onFocus: handleOnFocus,
       }
-    }
+    };
 
     return TRIGGER_EVENT_MAP[triggerType || 'hover'];
   }
