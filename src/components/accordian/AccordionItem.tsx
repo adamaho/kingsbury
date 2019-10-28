@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Collapse from '../collapse';
 
 import {
-  AccordianContext
+  AccordionContext
 } from './context';
 
 interface CollapseSpacerProps {
@@ -20,9 +20,9 @@ const CollapseSpacer = styled.div<CollapseSpacerProps>`
   height: ${(props) => `${props.itemGap}px`};
 `;
 
-/** Accordian.Item */
-export const AccordianItem: React.FunctionComponent<AccordianItemProps> = (props) => (
-  <AccordianContext.Consumer>
+/** Accordion.Item */
+export const AccordionItem: React.FunctionComponent<AccordianItemProps> = (props) => (
+  <AccordionContext.Consumer>
     {(value) => {
       const {
         itemKey
@@ -40,7 +40,7 @@ export const AccordianItem: React.FunctionComponent<AccordianItemProps> = (props
         </React.Fragment>
       );
     }}
-  </AccordianContext.Consumer>
+  </AccordionContext.Consumer>
 );
 
-export default AccordianItem;
+export default AccordionItem;
