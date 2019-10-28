@@ -7,6 +7,9 @@ export interface FloaterProps {
   /** Content to show in the floater */
   children?: React.ReactNode;
 
+	/** classname for the floater */
+	className?: string;
+
   /** Floater node to mount against */
   floaterMountNode?: HTMLElement;
 
@@ -20,6 +23,7 @@ export interface FloaterProps {
 export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
   const {
     children,
+		className,
     triggerType,
     triggerComponent
   } = props;
@@ -51,11 +55,12 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
       const dimensions = current.getBoundingClientRect();
       return (
         <div
+					className={className}
 					style={{
 						position: 'absolute',
 						top: current.offsetTop + current.offsetHeight,
 						left: current.offsetLeft,
-						width: dimensions.width
+						width: 'auto'
 					}}
           {...getEventsForTrigger()}
 					ref={floaterRef}

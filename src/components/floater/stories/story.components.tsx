@@ -25,9 +25,13 @@ export const Spacer = ({ children }: any) => (
 );
 
 const StyledFloaterContent = styled.div`
-  height: 50px;
+  height: 100px;
+  width: 100px;
 
-  background-color: red;
+  background-color: white;
+  margin-top: 5px;
+  border-radius: 7px;
+  box-shadow: 0 0 7px rgba(0, 0, 0,0.20)
 `;
 
 export const FloaterContent = ({ children }: any) => (
