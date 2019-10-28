@@ -27,5 +27,3 @@ Portal.defaultProps = {
   portalMountNode: document.body,
   visible: false
 };
-
-export default Portal;

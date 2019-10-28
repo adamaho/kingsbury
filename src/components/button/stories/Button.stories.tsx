@@ -4,7 +4,9 @@ import {
   storiesOf
 } from '@storybook/react';
 
-import Button from '..';
+import {
+	Button
+} from '..';
 
 const stories = storiesOf('Button', module);
 

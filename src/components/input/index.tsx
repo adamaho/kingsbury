@@ -212,5 +212,3 @@ Input.defaultProps = {
   theme,
   value: undefined
 };
-
-export default Input;
