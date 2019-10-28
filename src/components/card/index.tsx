@@ -11,6 +11,11 @@ import {
 import Header from './Header';
 import Footer from './Footer';
 
+interface CardFunctionComponent<T> extends React.FunctionComponent<T> {
+	Header: any;
+	Footer: any
+}
+
 interface CardProps {
   /** Content to show in the card */
   children?: React.ReactNode;
@@ -22,7 +27,7 @@ interface CardProps {
   onClick?: () => void;
 
   /** Global theme in ThemeProvider */
-  theme: any;
+  theme?: any;
 }
 
 const Container = styled.div`
@@ -49,36 +54,34 @@ const Container = styled.div`
   `}
 `;
 
-class Card extends React.PureComponent<CardProps, any> {
-  static Header = Header;
-  static Footer = Footer;
+export const Card: CardFunctionComponent<CardProps> = (props) => {
+	const {
+		className,
+		children,
+		onClick,
+		theme
+	} = props;
 
-  static defaultProps = {
-    children: '',
-    className: '',
-    onClick: undefined,
-    theme,
-  }
+	return (
+		<Container
+			className={className}
+			onClick={onClick}
+			theme={theme}
+			{...props}
+		>
+			{children}
+		</Container>
+	)
+};
 
-  render() {
-    const {
-      className,
-      onClick,
-      children,
-      theme: themeProp,
-    } = this.props;
-  
-    return (
-      <Container
-        className={className}
-        onClick={onClick}
-        theme={themeProp}
-        {...this.props}
-      >
-        {children}
-      </Container>
-    );
-  }
+Card.Header = Header;
+Card.Footer = Footer;
+
+Card.defaultProps = {
+	children: '',
+	className: '',
+	onClick: undefined,
+	theme,
 };
 
 export default Card;
