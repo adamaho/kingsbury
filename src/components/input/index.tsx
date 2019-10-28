@@ -34,8 +34,14 @@ export interface InputProps {
   /** Label of the input */
   label?: React.ReactNode;
 
+  /** Function to handle blur event */
+  onBlur?: React.EventHandler<any>;
+
   /** Function to handle change event */
   onChange?: React.EventHandler<any>;
+
+  /** Function to handle focus event */
+  onFocus?: React.EventHandler<any>;
 
   /** Placeholder for the input */
   placeholder?: string;
@@ -46,6 +52,9 @@ export interface InputProps {
   /** Size of input */
   inputSize?: 'small' | 'large';
 
+  /** Ref to be passed to the input */
+  ref?: React.Ref<any> | null
+
   /** Global theme in ThemeProvider */
   theme?: any;
 
@@ -53,7 +62,9 @@ export interface InputProps {
   value?: string;
 }
 
-const Container = styled.div``;
+const Container = styled.div`
+  width: 100%;
+`;
 
 const Label = styled.label`
   font-size: 16px;
@@ -63,7 +74,7 @@ const Error = styled.div<any>`
   color: ${(props) => props.theme.colors.danger};
 `;
 
-const StyledInput = styled.input<InputProps>`
+const StyledInput = styled.input<any>`
   height: ${(props) => props.theme.input.heightSmall};
   font-size: ${(props) => props.theme.input.fontSizeSmall};
 
@@ -132,7 +143,7 @@ const StyledInput = styled.input<InputProps>`
   }
 `;
 
-export const Input: React.FunctionComponent<InputProps> = (props) => {
+export const Input: React.FunctionComponent<InputProps> = React.forwardRef<InputProps, any>((props, ref) => {
   const {
     className,
     disabled,
@@ -142,7 +153,9 @@ export const Input: React.FunctionComponent<InputProps> = (props) => {
     id,
     label,
     name,
+    onBlur,
     onChange,
+    onFocus,
     placeholder,
     inputSize,
     borderType,
@@ -161,10 +174,13 @@ export const Input: React.FunctionComponent<InputProps> = (props) => {
           type={htmlType}
           id={id}
           name={name}
+          onBlur={onBlur}
           onChange={onChange}
+          onFocus={onFocus}
           placeholder={placeholder}
           borderType={borderType}
           inputSize={inputSize}
+          ref={ref}
           theme={themeProp}
           value={value}
         />
@@ -176,7 +192,7 @@ export const Input: React.FunctionComponent<InputProps> = (props) => {
       }
     </Container>
   );
-};
+});
 
 Input.defaultProps = {
   borderType: 'full',
@@ -188,7 +204,9 @@ Input.defaultProps = {
   id: undefined,
   name: undefined,
   label: '',
+  onBlur: () => undefined,
   onChange: () => undefined,
+  onFocus: () => undefined,
   placeholder: '',
   inputSize: 'small',
   theme,

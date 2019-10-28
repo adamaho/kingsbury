@@ -24,6 +24,9 @@ export interface ButtonProps {
   /** Function to handle click event */
   onClick?: () => void;
 
+  /** Ref to be passed to the button */
+  ref?: React.Ref<any> | null;
+
   /** Global theme in ThemeProvider */
   theme?: any;
 }
@@ -79,18 +82,22 @@ const StyledButton = styled.button<ButtonProps>`
   }
 `;
 
-export const Button: React.FC<ButtonProps> = (props) => {
+export const Button: React.FunctionComponent<ButtonProps> = React.forwardRef<ButtonProps, any>((props, ref) => {
   const {
     children,
     buttonType
   } = props;
 
   return (
-    <StyledButton buttonType={buttonType} {...props}>
+    <StyledButton
+      ref={ref}
+      buttonType={buttonType}
+      {...props}
+    >
       {children}
     </StyledButton>
   );
-};
+});
 
 Button.defaultProps = {
   buttonType: 'primary',
