@@ -11,32 +11,36 @@ import {
 type ItemKey = string | number;
 type AccordionState = ItemKey[];
 
+interface AccordionFunctionComponent<T = {}> extends React.FunctionComponent<T> {
+	Item: any;
+}
+
 interface AccordionProps {
   /** Type of collapse. See Collapse. */
-  accordionType: 'stack' | 'panel';
+  accordionType?: 'stack' | 'panel';
 
   /** Accordion Item. See Collapse for supported props. */
   children: React.ReactNode;
 
   /** classname for the collapse */
-  className: string;
+  className?: string;
 
   /** Use classic accordion where a single item is open at a time */
-  classic: boolean;
+  classic?: boolean;
 
   /** Determines which collapses should be active on initial render */
-  defaultSelectedItems: string[];
+  defaultSelectedItems?: string[];
 
   /** Vertical gap between items */
-  itemGap: number;
+  itemGap?: number;
 
   /** Function to handle when collapse state changes */
-  onChange: (selectedItems: ItemKey[]) => void;
+  onChange?: (selectedItems: ItemKey[]) => void;
 }
 
 const Container = styled.div``;
 
-export const Accordion: React.FunctionComponent<AccordionProps> = ({
+export const Accordion: AccordionFunctionComponent<AccordionProps> = ({
 	accordionType,
 	children,
 	classic,
@@ -45,7 +49,7 @@ export const Accordion: React.FunctionComponent<AccordionProps> = ({
 	itemGap,
 	onChange
 }) => {
-	const [selectedItems, setSelectedItems] = React.useState<AccordionState>(defaultSelectedItems);
+	const [selectedItems, setSelectedItems] = React.useState<any>(defaultSelectedItems);
 
 	function getClassicItems(key: ItemKey) {
 		return _.includes(selectedItems, key) ?
@@ -54,13 +58,19 @@ export const Accordion: React.FunctionComponent<AccordionProps> = ({
 	}
 
 	function getItems(key: ItemKey) {
-		return _.includes(selectedItems, key) ?
-			selectedItems.filter((i) => i !== key) :
-			selectedItems.concat(key);
+		console.log(selectedItems);
+		// const currentSelectedItems = [...selectedItems];
+		return selectedItems.concat(key);
+		// console.log(currentSelectedItems);
+		// return _.includes(currentSelectedItems, key) ?
+		// 	currentSelectedItems.filter((i) => i !== key) :
+		// 	currentSelectedItems.concat(key);
 	}
 
 	const onCollapseChange = React.useCallback((key: ItemKey) => {
 		const newItems = classic ? getClassicItems(key) : getItems(key);
+
+		console.log(newItems);
 
 		setSelectedItems(newItems);
 		}, []);
@@ -98,7 +108,6 @@ Accordion.defaultProps = {
     onChange: undefined
 };
 
-// @ts-ignore
 Accordion.Item = AccordionItem;
 
 export default Accordion;
