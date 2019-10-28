@@ -71,7 +71,7 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
     }
   }
 
-  const handleMouseDown = React.useCallback((e) => {
+  function handleMouseDown(e: any) {
   	const {
   		current
 		} = floaterRef;
@@ -81,27 +81,27 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
 		} else {
   		setShowFloater(false);
 		}
-	}, []);
+	}
 
-  const handleMouseEnter = React.useCallback(() => {
+  function handleMouseEnter() {
     setShowFloater(true);
-  }, []);
+  }
 
-  const handleMouseLeave = React.useCallback(() => {
+  function handleMouseLeave() {
     setShowFloater(false);
-  }, []);
+  }
 
-  const handleOnClick = React.useCallback(() => {
+  function handleOnClick() {
     setShowFloater(true);
-  }, []);
+  }
 
-  const handleOnFocus = React.useCallback(() => {
+  function handleOnFocus() {
     setShowFloater(true);
-  }, []);
+  }
 
-  const handleOnBlur = React.useCallback(() => {
+  function handleOnBlur() {
     setShowFloater(false);
-  }, []);
+  }
 
   function getEventsForTrigger(): any {
     const TRIGGER_EVENT_MAP = {
