@@ -58,22 +58,15 @@ export const Accordion: AccordionFunctionComponent<AccordionProps> = ({
 	}
 
 	function getItems(key: ItemKey) {
-		console.log(selectedItems);
-		// const currentSelectedItems = [...selectedItems];
-		return selectedItems.concat(key);
-		// console.log(currentSelectedItems);
-		// return _.includes(currentSelectedItems, key) ?
-		// 	currentSelectedItems.filter((i) => i !== key) :
-		// 	currentSelectedItems.concat(key);
+		return _.includes(selectedItems, key) ?
+			selectedItems.filter((i: ItemKey) => i !== key) :
+			selectedItems.concat(key);
 	}
 
-	const onCollapseChange = React.useCallback((key: ItemKey) => {
+	function onCollapseChange(key: ItemKey) {
 		const newItems = classic ? getClassicItems(key) : getItems(key);
-
-		console.log(newItems);
-
 		setSelectedItems(newItems);
-		}, []);
+	}
 
 	// Only called when the selectedItems change.
 	React.useEffect(() => {
