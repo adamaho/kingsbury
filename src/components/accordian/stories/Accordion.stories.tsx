@@ -31,6 +31,7 @@ stories.add(
   () => (
     <AccordionContainer>
       <Accordion
+				defaultSelectedItems={['1', '2', '3']}
         onChange={(selectedKeys) => console.log(selectedKeys)}
         itemGap={20}
       >
