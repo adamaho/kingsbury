@@ -1,4 +1,5 @@
 import * as React from 'react';
+import styled from 'styled-components';
 
 import Portal from '../portal';
 
@@ -19,6 +20,18 @@ export interface FloaterProps {
   /** Component trigger type  */
   triggerType?: 'hover' | 'click' | 'contextMenu';
 }
+
+interface PortalContainerProps {
+	top: string | number;
+	left: string | number;
+}
+
+const PortalContainer = styled.div<PortalContainerProps>`
+	position: absolute;
+	top: ${(props) => `${props.top}px`};
+	left: ${(props) => `${props.left}px`};
+	width: auto;
+`;
 
 export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
   const {
@@ -52,21 +65,17 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
     } = triggerRef;
 
     if (current) {
-      const dimensions = current.getBoundingClientRect();
       return (
-        <div
+        <PortalContainer
 					className={className}
-					style={{
-						position: 'absolute',
-						top: current.offsetTop + current.offsetHeight,
-						left: current.offsetLeft,
-						width: 'auto'
-					}}
-          {...getEventsForTrigger()}
+					position={'absolute'}
+					top={current.offsetTop + current.offsetHeight}
+					left={current.offsetLeft}
 					ref={floaterRef}
+					{...getEventsForTrigger()}
         >
-          {children}
-        </div>
+					{children}
+				</PortalContainer>
       );
     }
   }
