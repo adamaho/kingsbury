@@ -1,7 +1,9 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-import Collapse from '../collapse';
+import {
+	Collapse
+} from '../collapse';
 
 import {
   AccordionContext

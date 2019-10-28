@@ -44,7 +44,7 @@ interface CollapseProps {
   onChange?: (itemKey: string | number) => void,
 
   /** Global theme in ThemeProvider */
-  theme: any;
+  theme?: any;
 }
 
 interface CollapseState {
@@ -71,116 +71,191 @@ const Container = styled.div<ContainerProps>`
   `}
 `;
 
-class Collapse extends React.PureComponent<CollapseProps, CollapseState> {
-  constructor(props: CollapseProps) {
-    super(props);
+export const Collapse: React.FunctionComponent<CollapseProps> = ({
+	active,
+	className,
+	children,
+	collapseType,
+	defaultActive,
+	ghost,
+	header,
+	itemKey,
+	onChange,
+	theme
+}) => {
+	const [isActive, setActive] = React.useState(defaultActive);
 
-    const {
-      defaultActive
-    } = props;
+	function onHeaderClick() {
+		setActive(!isActive);
+	}
 
-    this.state = {
-      active: defaultActive
-    };
-  }
+	// React.useEffect(() => {
+	// 	setActive(active);
+	// }, [active]);
 
-  static defaultProps = {
-    active: undefined,
-    children: '',
-    className: '',
-    defaultActive: false,
-    ghost: false,
-    header: '',
-    onChange: undefined,
-    itemKey: '',
-    collapseType: 'panel',
-    theme
-  };
+	// React.useEffect(() => {
+	// 	if (onChange) {
+	// 		onChange(itemKey);
+	// 	}
+	// },[isActive]);
 
-  static getDerivedStateFromProps(props: CollapseProps) {
-    if (props.active !== undefined) {
-      return {
-        active: props.active
-      };
-    }
+	return (
+		<Container
+			className={className}
+			ghost={ghost}
+			collapseType={collapseType}
+			theme={theme}
+			key={itemKey}
+		>
+			<Header
+				ghost={ghost}
+				open={isActive}
+				onClick={onHeaderClick}
+				collapseType={collapseType}
+				theme={theme}
+			>
+				{header}
+			</Header>
+			<ContentContainer
+				animate={isActive ? 'open' : 'closed'}
+			>
+				<Content
+					ghost={ghost}
+					theme={theme}
+					collapseType={collapseType}
+				>
+					{children}
+				</Content>
+			</ContentContainer>
+		</Container>
+	);
+};
 
-    return null;
-  }
+Collapse.defaultProps = {
+	active: undefined,
+	children: '',
+	className: '',
+	defaultActive: false,
+	ghost: false,
+	header: '',
+	onChange: undefined,
+	itemKey: '',
+	collapseType: 'panel',
+	theme
+};
 
-  onHeaderClick = () => {
-    const {
-      active,
-      onChange,
-      itemKey
-    } = this.props;
+// class Collapse extends React.PureComponent<CollapseProps, CollapseState> {
+  // constructor(props: CollapseProps) {
+  //   super(props);
+	//
+  //   const {
+  //     defaultActive
+  //   } = props;
+	//
+  //   this.state = {
+  //     active: defaultActive
+  //   };
+  // }
+	//
+  // static defaultProps = {
+  //   active: undefined,
+  //   children: '',
+  //   className: '',
+  //   defaultActive: false,
+  //   ghost: false,
+  //   header: '',
+  //   onChange: undefined,
+  //   itemKey: '',
+  //   collapseType: 'panel',
+  //   theme
+  // };
 
-    if (active !== undefined) {
-      if (onChange) {
-        onChange(itemKey);
-      }
-    } else {
-      this.setState((state) => {
-        if (state.active) {
-          return {
-            active: false
-          };
-        }
+  // static getDerivedStateFromProps(props: CollapseProps) {
+  //   if (props.active !== undefined) {
+  //     return {
+  //       active: props.active
+  //     };
+  //   }
+	//
+  //   return null;
+  // }
 
-        return {
-          active: true
-        };
-      }, () => {
-        if (onChange) {
-          onChange(itemKey);
-        }
-      });
-    }
-  }
-
-  render() {
-    const {
-      className,
-      children,
-      collapseType,
-      header,
-      ghost,
-      theme: themeProp
-    } = this.props;
-
-    const {
-      active
-    } = this.state;
-
-    return (
-      <Container
-        className={className}
-        ghost={ghost}
-        collapseType={collapseType}
-        theme={themeProp}
-      >
-        <Header
-          ghost={ghost}
-          open={active}
-          onClick={this.onHeaderClick}
-          collapseType={collapseType}
-          theme={themeProp}
-        >
-          {header}
-        </Header>
-        <ContentContainer
-          animate={active ? 'open' : 'closed'}
-        >
-          <Content
-            ghost={ghost}
-            theme={themeProp}
-            collapseType={collapseType}
-          >
-            {children}
-          </Content>
-        </ContentContainer>
-      </Container>
-    );
-  }
-}
-
-export default Collapse;
+//   onHeaderClick = () => {
+//     const {
+//       active,
+//       onChange,
+//       itemKey
+//     } = this.props;
+//
+//     if (active !== undefined) {
+//       if (onChange) {
+//         onChange(itemKey);
+//       }
+//     } else {
+//       this.setState((state) => {
+//         if (state.active) {
+//           return {
+//             active: false
+//           };
+//         }
+//
+//         return {
+//           active: true
+//         };
+//       }, () => {
+//         if (onChange) {
+//           onChange(itemKey);
+//         }
+//       });
+//     }
+//   }
+//
+//   render() {
+//     const {
+//       className,
+//       children,
+//       collapseType,
+// 			itemKey,
+//       header,
+//       ghost,
+//       theme: themeProp
+//     } = this.props;
+//
+//     const {
+//       active
+//     } = this.state;
+//
+//     return (
+//       <Container
+//         className={className}
+//         ghost={ghost}
+//         collapseType={collapseType}
+//         theme={themeProp}
+// 				key={itemKey}
+//       >
+//         <Header
+//           ghost={ghost}
+//           open={active}
+//           onClick={this.onHeaderClick}
+//           collapseType={collapseType}
+//           theme={themeProp}
+//         >
+//           {header}
+//         </Header>
+//         <ContentContainer
+//           animate={active ? 'open' : 'closed'}
+//         >
+//           <Content
+//             ghost={ghost}
+//             theme={themeProp}
+//             collapseType={collapseType}
+//           >
+//             {children}
+//           </Content>
+//         </ContentContainer>
+//       </Container>
+//     );
+//   }
+// }
+//
+// export default Collapse;
