@@ -1,7 +1,9 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 
-import Avatar from '..';
+import {
+	Avatar
+} from '..';
 
 describe('Avatar', () => {
   test('it renders', () => {

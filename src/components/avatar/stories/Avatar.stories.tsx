@@ -4,7 +4,9 @@ import {
   storiesOf
 } from '@storybook/react';
 
-import Avatar from '..';
+import {
+	Avatar
+} from '..';
 
 const stories = storiesOf('Avatar', module);
 

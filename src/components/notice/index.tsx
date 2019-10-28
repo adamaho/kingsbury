@@ -5,7 +5,9 @@ import {
   theme
 } from '../../theme';
 
-import Avatar from '../avatar';
+import {
+	Avatar
+} from '../avatar';
 
 export interface NoticeProps {
   /** Component or image to show to the left of the pill */
@@ -130,6 +132,3 @@ Notice.defaultProps = {
   theme,
   noticeType: 'success'
 };
-
-
-export default Notice;

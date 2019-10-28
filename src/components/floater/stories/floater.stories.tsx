@@ -1,13 +1,20 @@
 import * as React from 'react';
-import styled from 'styled-components';
 
 import {
   storiesOf
 } from '@storybook/react';
 
-import Button from '../../button';
-import Input from '../../input';
-import Floater from '..';
+import {
+	Button
+} from '../../button';
+
+import {
+	Floater
+} from '..';
+
+import {
+	Input
+} from '../../input';
 
 import {
   Container,
@@ -43,7 +50,7 @@ stories.add(
       </Floater>
     </Container>
   ),
-  { info: { propTablesExclude: [Container, Spacer, Button, FloaterContent] } }
+  { info: { propTablesExclude: [Container, Spacer, FloaterContent] } }
 );
 
 stories.add(
@@ -52,9 +59,7 @@ stories.add(
     <Container>
       <Floater
         triggerComponent={
-          <Input>
-            Trigger
-          </Input>
+          <Input placeholder={'Click to show floater'} />
         }
         triggerType="contextMenu"
       >

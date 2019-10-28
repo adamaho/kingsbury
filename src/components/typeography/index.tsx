@@ -36,6 +36,4 @@ Text.defaultProps = {
   children: '',
   textType: 'h1',
   theme
-}
-
-export default Text;
+};

@@ -7,7 +7,9 @@ import {
   storiesOf
 } from '@storybook/react';
 
-import Accordion from '..';
+import {
+	Accordion
+} from '..';
 
 const StyledCollapseContent = styled.div`
   height: 200px;
@@ -31,7 +33,7 @@ stories.add(
   () => (
     <AccordionContainer>
       <Accordion
-				defaultSelectedItems={['1', '2', '3']}
+				defaultSelectedItems={[]}
         onChange={(selectedKeys) => console.log(selectedKeys)}
         itemGap={20}
       >

@@ -102,5 +102,3 @@ Accordion.defaultProps = {
 };
 
 Accordion.Item = AccordionItem;
-
-export default Accordion;

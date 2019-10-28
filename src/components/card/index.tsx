@@ -84,4 +84,3 @@ Card.defaultProps = {
 	theme,
 };
 
-export default Card;

@@ -1,7 +1,9 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-import Portal from '../portal';
+import {
+	Portal
+} from '../portal';
 
 export interface FloaterProps {
 
@@ -80,12 +82,12 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
     }
   }
 
-  function handleMouseDown(e: any) {
+  function handleMouseDown(e: Event) {
   	const {
   		current
 		} = floaterRef;
 
-  	if (current && current.contains(e.target)) {
+  	if (current && current.contains(e.target as Node)) {
   		return;
 		} else {
   		setShowFloater(false);
@@ -160,5 +162,3 @@ Floater.defaultProps = {
   triggerComponent: null,
   triggerType: 'hover'
 };
-
-export default Floater;

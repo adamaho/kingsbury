@@ -2,7 +2,9 @@ import * as React from 'react';
 import * as enzyme from 'enzyme';
 import * as renderer from 'react-test-renderer';
 
-import Button from '..';
+import {
+	Button
+} from '..';
 
 describe('Button', () => {
   test('it renders without children', () => {

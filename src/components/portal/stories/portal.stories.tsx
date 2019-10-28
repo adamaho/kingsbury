@@ -4,8 +4,13 @@ import {
   storiesOf
 } from '@storybook/react';
 
-import Button from '../../button';
-import Portal from '..';
+import {
+	Button
+} from '../../button';
+
+import {
+	Portal
+} from '..';
 
 const stories = storiesOf('Portal', module);
 
@@ -28,7 +33,7 @@ stories.add(
     );
   },
   { info:
-    { 
+    {
       propTablesExclude: [Button]
     },
   }
@@ -56,7 +61,7 @@ stories.add(
     );
   },
   { info:
-    { 
+    {
       propTablesExclude: [Button]
     },
   }

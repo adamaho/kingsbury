@@ -4,7 +4,9 @@ import {
   storiesOf
 } from '@storybook/react';
 
-import Input from '..';
+import {
+	Input
+} from '..';
 
 import {
   Container,

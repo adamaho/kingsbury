@@ -107,5 +107,3 @@ Button.defaultProps = {
   onClick: undefined,
   theme,
 };
-
-export default Button;
