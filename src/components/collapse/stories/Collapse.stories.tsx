@@ -5,7 +5,9 @@ import {
   storiesOf
 } from '@storybook/react';
 
-import Collapse from '..';
+import {
+	Collapse
+} from '..';
 
 const stories = storiesOf('Collapse', module);
 
@@ -31,6 +33,7 @@ stories.add(
       <Collapse
         header="Header"
         onChange={() => console.log('change')}
+				itemKey={"test"}
       >
         <CollapseContent />
       </Collapse>

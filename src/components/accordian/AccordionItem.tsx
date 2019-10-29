@@ -1,7 +1,9 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-import Collapse from '../collapse';
+import {
+	Collapse
+} from '../collapse';
 
 import {
   AccordionContext
@@ -11,7 +13,7 @@ interface CollapseSpacerProps {
   itemGap: number;
 }
 
-export interface AccordianItemProps {
+export interface AccordionItemProps {
   /** Unique key used to identify each item */
   itemKey: string | number;
 }
@@ -21,7 +23,7 @@ const CollapseSpacer = styled.div<CollapseSpacerProps>`
 `;
 
 /** Accordion.Item */
-export const AccordionItem: React.FunctionComponent<AccordianItemProps> = (props) => (
+export const AccordionItem: React.FunctionComponent<AccordionItemProps> = (props) => (
   <AccordionContext.Consumer>
     {(value) => {
       const {
@@ -33,7 +35,7 @@ export const AccordionItem: React.FunctionComponent<AccordianItemProps> = (props
           <Collapse
             {...props}
             active={value.selectedItems.includes(itemKey)}
-            collapseType={value.accordianType}
+            collapseType={value.accordionType}
             onChange={value.onChange}
           />
           <CollapseSpacer itemGap={value.itemGap} />
