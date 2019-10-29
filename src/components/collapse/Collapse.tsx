@@ -99,7 +99,7 @@ export const Collapse: React.FunctionComponent<CollapseProps> = ({
 
 	return (
 		<Container
-			className={`rtk-collapse ${className}`}
+			className={className}
 			ghost={ghost}
 			collapseType={collapseType}
 			theme={theme}

@@ -7,12 +7,12 @@ import {
 
 import {
 	Accordion
-} from '../index';
+} from '../Accordion';
 
 import 'jest-styled-components';
 
 describe('Accordion', () => {
-	it('renders 3 items', () => {
+	it('renders all children', () => {
 		const wrapper = shallow(
 			<Accordion>
 				<Accordion.Item itemKey={'1'}>Accordion Item 1</Accordion.Item>
@@ -21,7 +21,7 @@ describe('Accordion', () => {
 			</Accordion>
 		);
 
-		expect(wrapper.find('.rtk-accordion').children()).toHaveLength(3);
+		expect(wrapper.find('Accordion__Container').children()).toHaveLength(3);
 	});
 
 	it('opens every clicked item', () => {
@@ -73,6 +73,20 @@ describe('Accordion', () => {
 
 		// cleanup
 		wrapper.unmount();
+	});
+
+	it('opens item 1 by default', () => {
+		const wrapper = mount(
+			<Accordion
+				defaultSelectedItems={['1']}
+			>
+				<Accordion.Item itemKey={'1'}>Accordion Item 1</Accordion.Item>
+				<Accordion.Item itemKey={'2'}>Accordion Item 2</Accordion.Item>
+				<Accordion.Item itemKey={'3'}>Accordion Item 3</Accordion.Item>
+			</Accordion>
+		);
+
+		expect(wrapper.find('Collapse').at(0).prop('active')).toBe(true);
 	});
 
 });

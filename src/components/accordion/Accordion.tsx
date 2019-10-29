@@ -9,7 +9,6 @@ import {
 } from './context';
 
 type ItemKey = string | number;
-type AccordionState = ItemKey[];
 
 interface AccordionFunctionComponent<T = {}> extends React.FunctionComponent<T> {
 	Item: any;
@@ -84,7 +83,7 @@ export const Accordion: AccordionFunctionComponent<AccordionProps> = ({
 				onChange: onCollapseChange
 			}}
 		>
-			<Container className={`rtk-accordion ${className}`}>
+			<Container className={className}>
 				{children}
 			</Container>
 		</AccordionContext.Provider>
