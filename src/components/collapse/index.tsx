@@ -35,7 +35,7 @@ interface CollapseProps {
   header?: React.ReactNode;
 
   /** Unique key to identify collpase. Used for Accordian */
-  itemKey: string | number;
+  itemKey: string | number ;
 
   /** The type of collapse */
   collapseType?: 'stack' | 'panel';
@@ -86,18 +86,16 @@ export const Collapse: React.FunctionComponent<CollapseProps> = ({
 	const [isActive, setActive] = React.useState(defaultActive);
 
 	function onHeaderClick() {
-		setActive(!isActive);
+		if (active == null) {
+			setActive(!isActive);
+		} else if (onChange) {
+			onChange(itemKey);
+		}
 	}
 
-	// React.useEffect(() => {
-	// 	setActive(active);
-	// }, [active]);
-
-	// React.useEffect(() => {
-	// 	if (onChange) {
-	// 		onChange(itemKey);
-	// 	}
-	// },[isActive]);
+	React.useEffect(() => {
+		setActive(active);
+	}, [active]);
 
 	return (
 		<Container
@@ -143,119 +141,3 @@ Collapse.defaultProps = {
 	collapseType: 'panel',
 	theme
 };
-
-// class Collapse extends React.PureComponent<CollapseProps, CollapseState> {
-  // constructor(props: CollapseProps) {
-  //   super(props);
-	//
-  //   const {
-  //     defaultActive
-  //   } = props;
-	//
-  //   this.state = {
-  //     active: defaultActive
-  //   };
-  // }
-	//
-  // static defaultProps = {
-  //   active: undefined,
-  //   children: '',
-  //   className: '',
-  //   defaultActive: false,
-  //   ghost: false,
-  //   header: '',
-  //   onChange: undefined,
-  //   itemKey: '',
-  //   collapseType: 'panel',
-  //   theme
-  // };
-
-  // static getDerivedStateFromProps(props: CollapseProps) {
-  //   if (props.active !== undefined) {
-  //     return {
-  //       active: props.active
-  //     };
-  //   }
-	//
-  //   return null;
-  // }
-
-//   onHeaderClick = () => {
-//     const {
-//       active,
-//       onChange,
-//       itemKey
-//     } = this.props;
-//
-//     if (active !== undefined) {
-//       if (onChange) {
-//         onChange(itemKey);
-//       }
-//     } else {
-//       this.setState((state) => {
-//         if (state.active) {
-//           return {
-//             active: false
-//           };
-//         }
-//
-//         return {
-//           active: true
-//         };
-//       }, () => {
-//         if (onChange) {
-//           onChange(itemKey);
-//         }
-//       });
-//     }
-//   }
-//
-//   render() {
-//     const {
-//       className,
-//       children,
-//       collapseType,
-// 			itemKey,
-//       header,
-//       ghost,
-//       theme: themeProp
-//     } = this.props;
-//
-//     const {
-//       active
-//     } = this.state;
-//
-//     return (
-//       <Container
-//         className={className}
-//         ghost={ghost}
-//         collapseType={collapseType}
-//         theme={themeProp}
-// 				key={itemKey}
-//       >
-//         <Header
-//           ghost={ghost}
-//           open={active}
-//           onClick={this.onHeaderClick}
-//           collapseType={collapseType}
-//           theme={themeProp}
-//         >
-//           {header}
-//         </Header>
-//         <ContentContainer
-//           animate={active ? 'open' : 'closed'}
-//         >
-//           <Content
-//             ghost={ghost}
-//             theme={themeProp}
-//             collapseType={collapseType}
-//           >
-//             {children}
-//           </Content>
-//         </ContentContainer>
-//       </Container>
-//     );
-//   }
-// }
-//
-// export default Collapse;
