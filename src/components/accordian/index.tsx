@@ -84,7 +84,7 @@ export const Accordion: AccordionFunctionComponent<AccordionProps> = ({
 				onChange: onCollapseChange
 			}}
 		>
-			<Container className={className}>
+			<Container className={`rtk-accordion ${className}`}>
 				{children}
 			</Container>
 		</AccordionContext.Provider>
@@ -100,6 +100,5 @@ Accordion.defaultProps = {
     itemGap: 20,
     onChange: undefined
 };
-
 
 Accordion.Item = AccordionItem;

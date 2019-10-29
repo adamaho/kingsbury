@@ -64,6 +64,7 @@ const Header: React.FunctionComponent<HeaderProps> = ({
   theme
 }) => (
   <StyledHeader
+  	className={'rtk-collapse-header'}
     ghost={ghost}
     theme={theme}
     collapseType={collapseType}
