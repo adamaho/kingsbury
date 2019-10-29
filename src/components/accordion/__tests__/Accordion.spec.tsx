@@ -22,6 +22,7 @@ describe('Accordion', () => {
 		);
 
 		expect(wrapper.find('Accordion__Container').children()).toHaveLength(3);
+		expect(wrapper).toMatchSnapshot();
 	});
 
 	it('opens every clicked item', () => {
