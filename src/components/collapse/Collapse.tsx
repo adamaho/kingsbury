@@ -15,6 +15,10 @@ import {
   Content
 } from './Content';
 
+import {
+  useAfterMountEffect
+} from "../../hooks";
+
 interface CollapseProps {
   /** Option to handle if collapse is active */
   active?: boolean;
@@ -34,7 +38,7 @@ interface CollapseProps {
   /** Content to render in the header */
   header?: React.ReactNode;
 
-  /** Unique key to identify collpase. Used for Accordian */
+  /** Unique key to identify collapse. Used for Accordion */
   itemKey: string | number ;
 
   /** The type of collapse */
@@ -86,14 +90,19 @@ export const Collapse: React.FunctionComponent<CollapseProps> = ({
   const [isActive, setActive] = React.useState(defaultActive);
 
   function onHeaderClick() {
-    if (active == null) {
+    if (active == undefined) {
       setActive(!isActive);
+
+      if (onChange) {
+        onChange(itemKey);
+      }
+
     } else if (onChange) {
       onChange(itemKey);
     }
   }
 
-  React.useEffect(() => {
+  useAfterMountEffect(() => {
     setActive(active);
   }, [active]);
 
