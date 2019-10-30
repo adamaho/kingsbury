@@ -26,7 +26,7 @@ describe('Button', () => {
     expect(wrapper.find('Button__StyledButton').children()).toHaveLength(1);
   });
 
-  it('sets the buttonType', () => {
+  it('sets the buttonType prop', () => {
     const wrapper = shallow(
       <Button buttonType={'success'}>Test Button</Button>
     );
@@ -34,7 +34,7 @@ describe('Button', () => {
     expect(wrapper.find('Button__StyledButton').prop('buttonType')).toBe('success');
   });
 
-  it('sets the disabled state', () => {
+  it('sets the disabled prop', () => {
     const wrapper = shallow(
       <Button disabled>Test Button</Button>
     );

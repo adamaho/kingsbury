@@ -8,6 +8,10 @@ import {
   AccordionContext
 } from './context';
 
+import {
+  useAfterMountEffect
+} from "../../hooks";
+
 type ItemKey = string | number;
 
 interface AccordionFunctionComponent<T = {}> extends React.FunctionComponent<T> {
@@ -68,7 +72,7 @@ export const Accordion: AccordionFunctionComponent<AccordionProps> = ({
   }
 
   // Only called when the selectedItems change.
-  React.useEffect(() => {
+  useAfterMountEffect(() => {
     if (onChange) {
       onChange(selectedItems);
     }
