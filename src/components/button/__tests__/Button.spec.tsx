@@ -1,33 +1,68 @@
 import * as React from 'react';
-import * as enzyme from 'enzyme';
-import * as renderer from 'react-test-renderer';
+
+import {
+  mount,
+  shallow
+} from "enzyme";
 
 import {
   Button
-} from '..';
+} from '../Button';
 
 describe('Button', () => {
-  test('it renders without children', () => {
-    const tree = renderer.create(<Button />).toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
-  test('it renders with children', () => {
-    const tree = renderer.create(
-      <Button>
-        test
-      </Button>
-    ).toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
-  test('it calls onClick', () => {
-    const onClickMock = jest.fn();
-    const component = enzyme.mount(
-      <Button onClick={onClickMock} />
+  it('renders without children', () => {
+    const wrapper = shallow(
+      <Button />
     );
 
-    component.find('button').simulate('click');
-    expect(onClickMock).toHaveBeenCalled();
+    expect(wrapper.find('Button__StyledButton').children()).toHaveLength(0);
+  });
+
+  it('renders with children', () => {
+    const wrapper = shallow(
+      <Button>Test Button</Button>
+    );
+
+    expect(wrapper.find('Button__StyledButton').children()).toHaveLength(1);
+  });
+
+  it('sets the buttonType', () => {
+    const wrapper = shallow(
+      <Button buttonType={'success'}>Test Button</Button>
+    );
+
+    expect(wrapper.find('Button__StyledButton').prop('buttonType')).toBe('success');
+  });
+
+  it('sets the disabled state', () => {
+    const wrapper = shallow(
+      <Button disabled>Test Button</Button>
+    );
+
+    expect(wrapper.find('Button__StyledButton').prop('disabled')).toBe(true);
+  });
+
+  it('calls onClick handler', () => {
+    const onClickMock = jest.fn();
+    const wrapper = shallow(
+      <Button onClick={onClickMock}>Test Button</Button>
+    );
+
+    wrapper.find('Button__StyledButton').simulate('click');
+
+    expect(onClickMock).toBeCalledTimes(1);
+  });
+
+  it('does not call onClick handler when button is disabled', () => {
+    const onClickMock = jest.fn();
+
+    // need to mount this one so that the pointer-events: none disables the clicking of the button
+    const wrapper = mount(
+      <Button disabled onClick={onClickMock}>Test Button</Button>
+    );
+
+    wrapper.find('Button__StyledButton').simulate('click');
+
+    expect(onClickMock).toBeCalledTimes(0);
   });
 });
