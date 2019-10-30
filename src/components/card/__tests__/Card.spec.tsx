@@ -1,52 +1,70 @@
 import * as React from 'react';
-import * as enzyme from 'enzyme';
-import * as renderer from 'react-test-renderer';
+
+import {
+  mount,
+  shallow
+} from "enzyme";
 
 import {
   Card
-} from '..';
+} from '../Card';
 
 describe('Card', () => {
-  test('it renders without children', () => {
-    const tree = renderer.create(<Card />).toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
-  test('it renders header', () => {
-    const tree = renderer.create(
-      <Card>
-        <Card.Header />
-      </Card>
-    ).toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
-  test('it renders footer', () => {
-    const tree = renderer.create(
-      <Card>
-        <Card.Footer />
-      </Card>
-    ).toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
-  test('it renders with header and footer', () => {
-    const tree = renderer.create(
-      <Card>
-        <Card.Header />
-        <Card.Footer />
-      </Card>
-    ).toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
-  test('it calls onClick', () => {
-    const onClickMock = jest.fn();
-    const component = enzyme.mount(
-      <Card onClick={onClickMock} />
+  it('renders without children', () => {
+    const wrapper = shallow(
+      <Card />
     );
 
-    component.find(Card).simulate('click');
-    expect(onClickMock).toHaveBeenCalled();
+    expect(wrapper.find('Card__Container').children()).toHaveLength(0);
+  });
+
+  it('renders header', () => {
+    const wrapper = shallow(
+      <Card>
+        <Card.Header>Header</Card.Header>
+      </Card>
+    );
+
+    expect(wrapper.find('Card__Container').children()).toHaveLength(1);
+    expect(wrapper.find('Header').children().text()).toBe('Header');
+  });
+
+  it('renders footer', () => {
+    const wrapper = shallow(
+      <Card>
+        <Card.Footer>Footer</Card.Footer>
+      </Card>
+    );
+
+    expect(wrapper.find('Card__Container').children()).toHaveLength(1);
+    expect(wrapper.find('Footer').children().text()).toBe('Footer');
+  });
+
+  it('renders header and footer', () => {
+    const wrapper = shallow(
+      <Card>
+        <Card.Header>Header</Card.Header>
+        <Card.Footer>Footer</Card.Footer>
+      </Card>
+    );
+
+    expect(wrapper.find('Card__Container').children()).toHaveLength(2);
+    expect(wrapper.find('Header').children().text()).toBe('Header');
+    expect(wrapper.find('Footer').children().text()).toBe('Footer');
+  });
+
+  it('calls onClick handler', () => {
+    const onClickMock = jest.fn();
+
+    const wrapper = shallow(
+      <Card onClick={onClickMock}>
+        <Card.Header>Header</Card.Header>
+        <Card.Footer>Footer</Card.Footer>
+      </Card>
+    );
+
+    wrapper.find('Card__Container').simulate('click');
+
+    expect(onClickMock).toBeCalledTimes(1);
   });
 });
