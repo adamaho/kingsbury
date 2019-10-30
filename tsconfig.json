@@ -10,12 +10,12 @@
     "skipLibCheck": true,
     "esModuleInterop": false
   },
-	"include": [
+  "include": [
     ".storybook",
     "src"
   ],
   "exclude": [
     "node_modules",
-	  "**/*.spec.tsx"
+    "**/*.spec.tsx"
   ]
 }
