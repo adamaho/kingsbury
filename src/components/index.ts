@@ -9,7 +9,7 @@ import * as Icon from './icons';
 import { Text } from './typeography';
 
 export {
-	Accordion,
+  Accordion,
   Avatar,
   Button,
   Card,

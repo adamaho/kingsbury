@@ -5,15 +5,15 @@ import {
 } from '@storybook/react';
 
 import {
-	Button
+  Button
 } from '../../button';
 
 import {
-	Floater
+  Floater
 } from '..';
 
 import {
-	Input
+  Input
 } from '../../input';
 
 import {

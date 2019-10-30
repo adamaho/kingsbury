@@ -5,7 +5,7 @@ import {
 } from '@storybook/react';
 
 import {
-	Card
+  Card
 } from '..';
 
 import {

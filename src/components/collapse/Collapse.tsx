@@ -72,72 +72,72 @@ const Container = styled.div<ContainerProps>`
 `;
 
 export const Collapse: React.FunctionComponent<CollapseProps> = ({
-	active,
-	className,
-	children,
-	collapseType,
-	defaultActive,
-	ghost,
-	header,
-	itemKey,
-	onChange,
-	theme
+  active,
+  className,
+  children,
+  collapseType,
+  defaultActive,
+  ghost,
+  header,
+  itemKey,
+  onChange,
+  theme
 }) => {
-	const [isActive, setActive] = React.useState(defaultActive);
+  const [isActive, setActive] = React.useState(defaultActive);
 
-	function onHeaderClick() {
-		if (active == null) {
-			setActive(!isActive);
-		} else if (onChange) {
-			onChange(itemKey);
-		}
-	}
+  function onHeaderClick() {
+    if (active == null) {
+      setActive(!isActive);
+    } else if (onChange) {
+      onChange(itemKey);
+    }
+  }
 
-	React.useEffect(() => {
-		setActive(active);
-	}, [active]);
+  React.useEffect(() => {
+    setActive(active);
+  }, [active]);
 
-	return (
-		<Container
-			className={className}
-			ghost={ghost}
-			collapseType={collapseType}
-			theme={theme}
-			key={itemKey}
-		>
-			<Header
-				ghost={ghost}
-				open={isActive}
-				onClick={onHeaderClick}
-				collapseType={collapseType}
-				theme={theme}
-			>
-				{header}
-			</Header>
-			<ContentContainer
-				animate={isActive ? 'open' : 'closed'}
-			>
-				<Content
-					ghost={ghost}
-					theme={theme}
-					collapseType={collapseType}
-				>
-					{children}
-				</Content>
-			</ContentContainer>
-		</Container>
-	);
+  return (
+    <Container
+      className={className}
+      ghost={ghost}
+      collapseType={collapseType}
+      theme={theme}
+      key={itemKey}
+    >
+      <Header
+        ghost={ghost}
+        open={isActive}
+        onClick={onHeaderClick}
+        collapseType={collapseType}
+        theme={theme}
+      >
+        {header}
+      </Header>
+      <ContentContainer
+        animate={isActive ? 'open' : 'closed'}
+      >
+        <Content
+          ghost={ghost}
+          theme={theme}
+          collapseType={collapseType}
+        >
+          {children}
+        </Content>
+      </ContentContainer>
+    </Container>
+  );
 };
 
 Collapse.defaultProps = {
-	active: undefined,
-	children: '',
-	className: '',
-	defaultActive: false,
-	ghost: false,
-	header: '',
-	onChange: undefined,
-	itemKey: '',
-	collapseType: 'panel',
-	theme
+  active: undefined,
+  children: '',
+  className: '',
+  defaultActive: false,
+  ghost: false,
+  header: '',
+  onChange: undefined,
+  itemKey: '',
+  collapseType: 'panel',
+  theme
 };

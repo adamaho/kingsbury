@@ -5,11 +5,11 @@ import {
 } from '@storybook/react';
 
 import {
-	Button
+  Button
 } from '../../button';
 
 import {
-	Portal
+  Portal
 } from '..';
 
 const stories = storiesOf('Portal', module);
