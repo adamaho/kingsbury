@@ -7,7 +7,7 @@ import {
 
 import {
   Avatar
-} from '../avatar';
+} from '../avatar/Avatar';
 
 export interface NoticeProps {
   /** Component or image to show to the left of the pill */

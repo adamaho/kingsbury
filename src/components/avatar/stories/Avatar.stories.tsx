@@ -6,15 +6,13 @@ import {
 
 import {
   Avatar
-} from '..';
+} from '../Avatar';
 
 const stories = storiesOf('Avatar', module);
 
 stories.add(
   'Default',
   () => (
-    <div>
-      <Avatar src={<div>A</div>} />
-    </div>
+  	<Avatar src={<div>A</div>} />
   )
 );

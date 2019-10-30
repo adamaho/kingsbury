@@ -1,5 +1,5 @@
 import { Accordion } from './accordion/Accordion';
-import { Avatar } from './avatar';
+import { Avatar } from './avatar/Avatar';
 import { Button } from './button';
 import { Card } from './card';
 import { Collapse } from './collapse/Collapse';
