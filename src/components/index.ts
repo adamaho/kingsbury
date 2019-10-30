@@ -1,6 +1,6 @@
 import { Accordion } from './accordion/Accordion';
-import { Avatar } from './avatar';
-import { Button } from './button';
+import { Avatar } from './avatar/Avatar';
+import { Button } from './button/Button';
 import { Card } from './card';
 import { Collapse } from './collapse/Collapse';
 import { Input } from './input';

@@ -1,13 +1,19 @@
 import * as React from 'react';
-import * as renderer from 'react-test-renderer';
+
+import {
+  shallow
+} from "enzyme";
 
 import {
   Avatar
-} from '..';
+} from '../Avatar';
 
 describe('Avatar', () => {
-  test('it renders', () => {
-    const tree = renderer.create(<Avatar src={<div>avatar</div>} />).toJSON();
-    expect(tree).toMatchSnapshot();
+  it('renders all children', () => {
+    const wrapper = shallow(
+      <Avatar src={<div>A</div>}/>
+    );
+
+    expect(wrapper.find('Avatar__Container').children()).toHaveLength(1);
   });
 });

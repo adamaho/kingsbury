@@ -6,7 +6,7 @@ import {
 
 import {
   Button
-} from '../../button';
+} from '../../button/Button';
 
 import {
   Floater

@@ -6,7 +6,7 @@ import {
 
 import {
   Button
-} from '..';
+} from '../Button';
 
 const stories = storiesOf('Button', module);
 
@@ -40,7 +40,7 @@ stories.add(
         </Button>
       </div>
       <div style={{ marginRight: '5px', display: 'inline-block' }}>
-        <Button disabled>
+        <Button disabled onClick={() => console.log('afasfdasdf')}>
           Disabled
         </Button>
       </div>
