@@ -26,7 +26,6 @@ describe('Collapse', () => {
     );
 
     expect(wrapper.find('Content').children()).toHaveLength(1);
-    expect(wrapper.find('Content').children().text()).toBe('Content');
   });
 
   it('renders header content', () => {
@@ -40,7 +39,6 @@ describe('Collapse', () => {
     );
 
     expect(wrapper.find('Header').children()).toHaveLength(1);
-    expect(wrapper.find('Header').children().text()).toBe('Header');
   });
 
   it('sets the defaultActive prop', () => {

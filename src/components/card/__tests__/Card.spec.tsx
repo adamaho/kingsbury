@@ -25,7 +25,7 @@ describe('Card', () => {
     );
 
     expect(wrapper.find('Card__Container').children()).toHaveLength(1);
-    expect(wrapper.find('Header').children().text()).toBe('Header');
+    expect(wrapper.find('Header').children()).toHaveLength(1);
   });
 
   it('renders footer', () => {
@@ -36,7 +36,7 @@ describe('Card', () => {
     );
 
     expect(wrapper.find('Card__Container').children()).toHaveLength(1);
-    expect(wrapper.find('Footer').children().text()).toBe('Footer');
+    expect(wrapper.find('Footer').children()).toHaveLength(1);
   });
 
   it('renders header and footer', () => {
@@ -48,8 +48,6 @@ describe('Card', () => {
     );
 
     expect(wrapper.find('Card__Container').children()).toHaveLength(2);
-    expect(wrapper.find('Header').children().text()).toBe('Header');
-    expect(wrapper.find('Footer').children().text()).toBe('Footer');
   });
 
   it('calls onClick handler', () => {
