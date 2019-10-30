@@ -90,7 +90,7 @@ export const Collapse: React.FunctionComponent<CollapseProps> = ({
   const [isActive, setActive] = React.useState(defaultActive);
 
   function onHeaderClick() {
-    if (active == undefined) {
+    if (active === undefined) {
       setActive(!isActive);
 
       if (onChange) {
