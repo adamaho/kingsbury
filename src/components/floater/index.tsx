@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 import {
-	Portal
+  Portal
 } from '../portal';
 
 export interface FloaterProps {
@@ -10,8 +10,8 @@ export interface FloaterProps {
   /** Content to show in the floater */
   children?: React.ReactNode;
 
-	/** classname for the floater */
-	className?: string;
+  /** classname for the floater */
+  className?: string;
 
   /** Floater node to mount against */
   floaterMountNode?: HTMLElement;
@@ -24,28 +24,28 @@ export interface FloaterProps {
 }
 
 interface PortalContainerProps {
-	top: string | number;
-	left: string | number;
+  top: string | number;
+  left: string | number;
 }
 
 const PortalContainer = styled.div<PortalContainerProps>`
-	position: absolute;
-	top: ${(props) => `${props.top}px`};
-	left: ${(props) => `${props.left}px`};
-	width: auto;
+  position: absolute;
+  top: ${(props) => `${props.top}px`};
+  left: ${(props) => `${props.left}px`};
+  width: auto;
 `;
 
 export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
   const {
     children,
-		className,
+    className,
     triggerType,
     triggerComponent
   } = props;
 
   const [showFloater, setShowFloater] = React.useState(false);
   const triggerRef = React.useRef<HTMLDivElement>(null);
-	const floaterRef = React.useRef<HTMLDivElement>(null);
+  const floaterRef = React.useRef<HTMLDivElement>(null);
 
 
   React.useEffect(() => {
@@ -56,7 +56,7 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
 
     return () => {
       window.removeEventListener<'blur'>('blur', handleOnBlur);
-			document.removeEventListener<'mousedown'>('mousedown', handleMouseDown);
+      document.removeEventListener<'mousedown'>('mousedown', handleMouseDown);
     }
   }, []);
 
@@ -69,30 +69,30 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
     if (current) {
       return (
         <PortalContainer
-					className={className}
-					position={'absolute'}
-					top={current.offsetTop + current.offsetHeight}
-					left={current.offsetLeft}
-					ref={floaterRef}
-					{...getEventsForTrigger()}
+          className={className}
+          position={'absolute'}
+          top={current.offsetTop + current.offsetHeight}
+          left={current.offsetLeft}
+          ref={floaterRef}
+          {...getEventsForTrigger()}
         >
-					{children}
-				</PortalContainer>
+          {children}
+        </PortalContainer>
       );
     }
   }
 
   function handleMouseDown(e: Event) {
-  	const {
-  		current
-		} = floaterRef;
+    const {
+      current
+    } = floaterRef;
 
-  	if (current && current.contains(e.target as Node)) {
-  		return;
-		} else {
-  		setShowFloater(false);
-		}
-	}
+    if (current && current.contains(e.target as Node)) {
+      return;
+    } else {
+      setShowFloater(false);
+    }
+  }
 
   function handleMouseEnter() {
     setShowFloater(true);

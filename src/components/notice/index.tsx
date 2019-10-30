@@ -6,7 +6,7 @@ import {
 } from '../../theme';
 
 import {
-	Avatar
+  Avatar
 } from '../avatar';
 
 export interface NoticeProps {

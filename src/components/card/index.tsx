@@ -12,8 +12,8 @@ import Header from './Header';
 import Footer from './Footer';
 
 interface CardFunctionComponent<T> extends React.FunctionComponent<T> {
-	Header: any;
-	Footer: any
+  Header: any;
+  Footer: any
 }
 
 interface CardProps {
@@ -55,32 +55,32 @@ const Container = styled.div`
 `;
 
 export const Card: CardFunctionComponent<CardProps> = (props) => {
-	const {
-		className,
-		children,
-		onClick,
-		theme
-	} = props;
+  const {
+    className,
+    children,
+    onClick,
+    theme
+  } = props;
 
-	return (
-		<Container
-			className={className}
-			onClick={onClick}
-			theme={theme}
-			{...props}
-		>
-			{children}
-		</Container>
-	)
+  return (
+    <Container
+      className={className}
+      onClick={onClick}
+      theme={theme}
+      {...props}
+    >
+      {children}
+    </Container>
+  )
 };
 
 Card.Header = Header;
 Card.Footer = Footer;
 
 Card.defaultProps = {
-	children: '',
-	className: '',
-	onClick: undefined,
-	theme,
+  children: '',
+  className: '',
+  onClick: undefined,
+  theme,
 };
 

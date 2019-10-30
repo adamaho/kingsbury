@@ -32,7 +32,7 @@ export const ContentContainer: React.FunctionComponent<ContentContainerProps> = 
 
   return (
     <motion.div
-    	className="rtk-collapse-content-container"
+      className="rtk-collapse-content-container"
       initial="closed"
       exit="closed"
       animate={animate}
@@ -60,18 +60,18 @@ const StyledContent = styled.div<ContentProps>`
 `;
 
 export const Content: React.FunctionComponent<ContentProps> = (props) => {
-	const {
-		children
-	} = props;
+  const {
+    children
+  } = props;
 
-	return (
-		<StyledContent
-			className={'rtk-collapse-content'}
-			{...props}
-		>
-			{children}
-		</StyledContent>
-	);
+  return (
+    <StyledContent
+      className={'rtk-collapse-content'}
+      {...props}
+    >
+      {children}
+    </StyledContent>
+  );
 };
 
 

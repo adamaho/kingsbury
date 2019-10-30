@@ -3,7 +3,7 @@ import * as enzyme from 'enzyme';
 import * as renderer from 'react-test-renderer';
 
 import {
-	Input
+  Input
 } from '..';
 
 describe('Input', () => {
