@@ -6,7 +6,7 @@ import {
 
 import {
   Card
-} from '..';
+} from '../Card';
 
 import {
   Container,
