@@ -9,7 +9,7 @@ import {
 } from '@storybook/addon-info';
 
 import yourTheme from './yourTheme';
-import PropTable from '../src/storybook/PropTable';
+import PropTable from './PropTable';
 
 addParameters({
   options: {

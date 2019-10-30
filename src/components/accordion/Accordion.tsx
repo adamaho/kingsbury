@@ -9,7 +9,6 @@ import {
 } from './context';
 
 type ItemKey = string | number;
-type AccordionState = ItemKey[];
 
 interface AccordionFunctionComponent<T = {}> extends React.FunctionComponent<T> {
 	Item: any;
@@ -100,6 +99,5 @@ Accordion.defaultProps = {
     itemGap: 20,
     onChange: undefined
 };
-
 
 Accordion.Item = AccordionItem;

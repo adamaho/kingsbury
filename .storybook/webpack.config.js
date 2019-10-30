@@ -5,7 +5,8 @@ module.exports = ({ config, mode }) => {
   config.module.rules.push({
     test: /\.(ts|tsx)$/,
     include: [
-      path.resolve(__dirname, "../src")
+      path.resolve(__dirname, "../src"),
+			path.resolve(__dirname)
     ],
     use: [
       {

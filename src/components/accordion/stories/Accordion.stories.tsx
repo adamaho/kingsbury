@@ -9,7 +9,7 @@ import {
 
 import {
 	Accordion
-} from '..';
+} from '../Accordion';
 
 const StyledCollapseContent = styled.div`
   height: 200px;

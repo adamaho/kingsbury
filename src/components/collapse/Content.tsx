@@ -15,6 +15,7 @@ interface ContentContainerProps {
 interface ContentProps {
   collapseType?: 'panel' | 'stack';
   ghost?: boolean;
+  theme?: any
 }
 
 export const ContentContainer: React.FunctionComponent<ContentContainerProps> = ({ children, animate }) => {
@@ -27,10 +28,11 @@ export const ContentContainer: React.FunctionComponent<ContentContainerProps> = 
       height: 'auto',
       overflow: 'unset'
     },
-  }
+  };
 
   return (
     <motion.div
+    	className="rtk-collapse-content-container"
       initial="closed"
       exit="closed"
       animate={animate}
@@ -41,7 +43,7 @@ export const ContentContainer: React.FunctionComponent<ContentContainerProps> = 
   );
 };
 
-export const Content = styled.div<ContentProps>`
+const StyledContent = styled.div<ContentProps>`
   padding: ${(props) => props.theme.collapse.contentPadding};
 
   background: ${(props) => props.theme.collapse.contentBackground};
@@ -56,3 +58,20 @@ export const Content = styled.div<ContentProps>`
     background: transparent;
   `};
 `;
+
+export const Content: React.FunctionComponent<ContentProps> = (props) => {
+	const {
+		children
+	} = props;
+
+	return (
+		<StyledContent
+			className={'rtk-collapse-content'}
+			{...props}
+		>
+			{children}
+		</StyledContent>
+	);
+};
+
+

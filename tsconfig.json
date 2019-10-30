@@ -8,13 +8,14 @@
     "strict": true,
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
-    "esModuleInterop": false,
+    "esModuleInterop": false
   },
-  "include": [
+	"include": [
     ".storybook",
     "src"
   ],
   "exclude": [
     "node_modules",
+	  "**/*.spec.tsx"
   ]
 }

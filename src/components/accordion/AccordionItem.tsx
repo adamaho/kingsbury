@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import {
 	Collapse
-} from '../collapse';
+} from '../collapse/Collapse';
 
 import {
   AccordionContext
