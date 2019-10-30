@@ -43,7 +43,59 @@ describe('Collapse', () => {
     expect(wrapper.find('Header').children().text()).toBe('Header');
   });
 
-  it('call onChange handler', () => {
+  it('sets the defaultActive prop', () => {
+    const onChangeMock = jest.fn();
+
+    const wrapper = shallow(
+      <Collapse
+        onChange={onChangeMock}
+        itemKey={'test'}
+        header={'Header'}
+        defaultActive
+      >
+        Content
+      </Collapse>
+    );
+
+    expect(wrapper.find('Header').prop('open')).toBe(true);
+  });
+
+  it('sets the ghost prop', () => {
+    const onChangeMock = jest.fn();
+
+    const wrapper = shallow(
+      <Collapse
+        onChange={onChangeMock}
+        itemKey={'test'}
+        header={'Header'}
+        ghost
+      >
+        Content
+      </Collapse>
+    );
+
+    expect(wrapper.find('Collapse__Container').prop('ghost')).toBe(true);
+  });
+
+  it('sets the collapseType prop', () => {
+    const onChangeMock = jest.fn();
+
+    // need to mount to the DOM in order for event to propagate
+    const wrapper = shallow(
+      <Collapse
+        onChange={onChangeMock}
+        itemKey={'test'}
+        header={'Header'}
+        collapseType={'stack'}
+      >
+        Content
+      </Collapse>
+    );
+
+    expect(wrapper.find('Collapse__Container').prop('collapseType')).toBe('stack');
+  });
+
+  it('calls onChange handler', () => {
     const onChangeMock = jest.fn();
 
     // need to mount to the DOM in order for event to propagate
@@ -57,9 +109,8 @@ describe('Collapse', () => {
       </Collapse>
     );
 
-    console.log(wrapper.find('Header__StyledHeader').debug());
     wrapper.find('Header__StyledHeader').simulate('click');
-
-    expect(onChangeMock).toBeCalled();
+    expect(onChangeMock).toBeCalledWith('test');
   });
+
 });
