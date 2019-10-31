@@ -1,4 +1,4 @@
-Kingsbury https://github.com/adamaho/kingsbury/workflows/tests/badge.svg
+Kingsbury
 =========
 
 ![](https://github.com/adamaho/kingsbury/workflows/tests/badge.svg)
