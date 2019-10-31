@@ -25,135 +25,143 @@ describe('Floater', () => {
     expect(wrapper.find('Floater').children().first().exists()).toBe(true);
   });
 
-  it('renders portal on hover', () => {
-    const wrapper = mount(
-      <Floater
-        triggerComponent={<div>Trigger</div>}
-      >
-        Portal
-      </Floater>
-    );
+  describe('Trigger Hover', () => {
+    let wrapper: any;
+    let trigger: any;
 
-    const trigger = wrapper.children().first();
+    beforeEach(() => {
+      wrapper = mount(
+        <Floater
+          triggerComponent={<div>Trigger</div>}
+        >
+          Portal
+        </Floater>
+      );
 
-    trigger.simulate('mouseenter');
-    expect(wrapper.exists('Floater__PortalContainer')).toBe(true);
+      trigger = wrapper.children().first();
+    });
 
-    const portal = wrapper.find('Floater__PortalContainer');
+    afterEach(() => {
+      wrapper.unmount();
+    });
 
-    // confirm the portal remains open on mouseEnter
-    portal.simulate('mouseenter');
-    expect(portal.exists()).toBe(true);
+    it('opens portal', () => {
+      trigger.simulate('mouseenter');
+      expect(wrapper.exists('Floater__PortalContainer')).toBe(true);
 
-    trigger.simulate('mouseleave');
-    expect(wrapper.exists('Floater__PortalContainer')).toBe(false);
+    });
+
+    it('stays open on mouseenter', () => {
+      // open the portal
+      trigger.simulate('mouseenter');
+
+      const portal = wrapper.find('Floater__PortalContainer');
+
+      portal.simulate('mouseenter');
+      expect(portal.exists()).toBe(true);
+    });
+
+    it('stays open on click', () => {
+      // open the portal
+       trigger.simulate('mouseenter');
+
+      const portal = wrapper.find('Floater__PortalContainer');
+
+      portal.simulate('click');
+      expect(portal.exists()).toBe(true);
+    });
+
+    it('closes on mouseleave', () => {
+      // open the portal
+      trigger.simulate('mouseenter');
+
+      trigger.simulate('mouseleave');
+      expect(wrapper.exists('Floater__PortalContainer')).toBe(false);
+    });
   });
 
-  it('renders portal on click', () => {
-    // create div to click
+  describe('Trigger Click', () => {
+
+    let wrapper: any;
+    let trigger: any;
+    let map: any = {};
+    let windowMap: any = {};
     const container = document.createElement('div');
-    document.body.appendChild(container);
 
-    // mock event listener
-    const map: any = {};
-    document.addEventListener = jest.fn((event: any, cb: any) => {
-      map[event] = cb;
+    beforeEach(() => {
+      // create div to click
+      document.body.appendChild(container);
+
+      // add mock event listener
+      document.addEventListener = jest.fn((event: any, cb: any) => {
+        map[event] = cb;
+      });
+
+      window.addEventListener = jest.fn((windowEvent: any, windowCb: any) => {
+        windowMap[windowEvent] = windowCb;
+      });
+
+      wrapper = mount(
+        <Floater
+          triggerComponent={<div>Trigger</div>}
+          triggerType={'click'}
+        >
+          Portal
+        </Floater>
+      );
+
+      trigger = wrapper.children().first();
     });
 
-    const wrapper = mount(
-      <Floater
-        triggerComponent={<div>Trigger</div>}
-        triggerType={'click'}
-      >
-        Portal
-      </Floater>
-    );
-
-    const trigger = wrapper.children().first();
-
-    trigger.simulate('click');
-    expect(wrapper.exists('Floater__PortalContainer')).toBe(true);
-
-    trigger.simulate('focus');
-    expect(wrapper.exists('Floater__PortalContainer')).toBe(true);
-
-    // confirm portal is still open when it is clicked
-    const portal = wrapper.find('Floater__PortalContainer');
-
-    portal.simulate('click');
-    expect(wrapper.exists('Floater__PortalContainer')).toBe(true);
-
-    // confirm portal closes when clicked off
-    act(() => {
-      map.mousedown({ target: container });
+    afterEach(() => {
+       wrapper.unmount();
     });
 
-    // make sure the component re-renders
-    wrapper.update();
-    expect(wrapper.exists('Floater__PortalContainer')).toBe(false);
-
-  });
-
-  it('renders portal on contextMenu', () => {
-
-    // create div to click
-    const container = document.createElement('div');
-    document.body.appendChild(container);
-
-    // add mock event listener
-    const map: any = {};
-    document.addEventListener = jest.fn((event: any, cb: any) => {
-      map[event] = cb;
+    it('opens portal', () => {
+      trigger.simulate('click');
+      expect(wrapper.exists('Floater__PortalContainer')).toBe(true);
     });
 
-    const windowMap: any = {};
-    window.addEventListener = jest.fn((windowEvent: any, windowCb: any) => {
-      windowMap[windowEvent] = windowCb;
+    it('opens portal on focus', () => {
+      trigger.simulate('focus');
+      expect(wrapper.exists('Floater__PortalContainer')).toBe(true);
     });
 
-    const wrapper = mount(
-      <Floater
-        triggerComponent={<div>Trigger</div>}
-        triggerType={'contextMenu'}
-      >
-        Portal
-      </Floater>
-    );
+    it('stays open on click', () => {
+      // open the portal
+      trigger.simulate('click');
 
-    const trigger = wrapper.children().first();
-
-    trigger.simulate('click');
-    expect(wrapper.exists('Floater__PortalContainer')).toBe(true);
-
-    // confirm portal closes when clicked off on document
-    act(() => {
-      map.mousedown({ target: container });
+      const portal = wrapper.find('Floater__PortalContainer');
+      act(() => {
+        map.mousedown({ target: portal.getDOMNode() });
+      });
+      expect(portal.exists()).toBe(true);
     });
 
-    // make sure the component re-renders
-    wrapper.update();
-    expect(wrapper.exists('Floater__PortalContainer')).toBe(false);
+    it('closes on document click', () => {
+      // open the portal
+      trigger.simulate('click');
 
-    trigger.simulate('click');
+      act(() => {
+        map.mousedown({ target: container });
+      });
 
-    // confirm portal closes when window is blurred
-    act(() => {
-      windowMap.blur();
+      // make sure the component re-renders
+      wrapper.update();
+      expect(wrapper.exists('Floater__PortalContainer')).toBe(false);
     });
 
-    // make sure the component re-renders
-    wrapper.update();
-    expect(wrapper.exists('Floater__PortalContainer')).toBe(false);
+    it('closes on window blur', () => {
+      // open the portal
+      trigger.simulate('click');
 
-    trigger.simulate('focus');
-    expect(wrapper.exists('Floater__PortalContainer')).toBe(true);
+      act(() => {
+        windowMap.blur();
+      });
 
-    // confirm portal is still open when it is clicked
-    const portal = wrapper.find('Floater__PortalContainer');
-    portal.simulate('click');
-    expect(portal.exists()).toBe(true);
-
-    // unmount to ensure the event listeners are removed
-    wrapper.unmount();
+      // make sure the component re-renders
+      wrapper.update();
+      expect(wrapper.exists('Floater__PortalContainer')).toBe(false);
+    });
   });
 });

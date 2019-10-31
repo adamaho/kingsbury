@@ -61,7 +61,7 @@ stories.add(
         triggerComponent={
           <Input placeholder={'Click to show floater'} />
         }
-        triggerType="contextMenu"
+        triggerType="click"
       >
         <FloaterContent />
       </Floater>

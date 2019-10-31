@@ -20,7 +20,7 @@ export interface FloaterProps {
   triggerComponent?: React.ReactNode | null;
 
   /** Component trigger type  */
-  triggerType?: 'hover' | 'click' | 'contextMenu';
+  triggerType?: 'hover' | 'click';
 }
 
 interface PortalContainerProps {
@@ -49,7 +49,7 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
 
 
   React.useEffect(() => {
-    if (triggerType === 'contextMenu' || triggerType === 'click') {
+    if (triggerType === 'click') {
       window.addEventListener<'blur'>('blur', handleOnBlur);
       document.addEventListener<'mousedown'>('mousedown', handleMouseDown);
     }
@@ -121,10 +121,6 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
         onMouseLeave: handleMouseLeave
       },
       click: {
-        onClick: handleOnClick,
-        onFocus: handleOnFocus
-      },
-      contextMenu: {
         onClick: handleOnClick,
         onFocus: handleOnFocus
       }
