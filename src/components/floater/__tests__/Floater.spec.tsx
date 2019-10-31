@@ -53,8 +53,15 @@ describe('Floater', () => {
   });
 
   it('renders portal on click', () => {
-    const div = document.createElement('div');
-    document.body.appendChild(div);
+    // create div to click
+    const container = document.createElement('div');
+    document.body.appendChild(container);
+
+    // mock event listener
+    const map: any = {};
+    document.addEventListener = jest.fn((event: any, cb: any) => {
+      map[event] = cb;
+    });
 
     const wrapper = mount(
       <Floater
@@ -70,18 +77,33 @@ describe('Floater', () => {
     trigger.simulate('click');
     expect(wrapper.exists('Floater__PortalContainer')).toBe(true);
 
-    trigger.simulate('blur');
-    expect(wrapper.exists('Floater__PortalContainer')).toBe(false);
-
     trigger.simulate('focus');
     expect(wrapper.exists('Floater__PortalContainer')).toBe(true);
+
+    // confirm portal is still open when it is clicked
+    const portal = wrapper.find('Floater__PortalContainer');
+
+    portal.simulate('click');
+    expect(wrapper.exists('Floater__PortalContainer')).toBe(true);
+
+    // confirm portal closes when clicked off
+    act(() => {
+      map.mousedown({ target: container });
+    });
+
+    // make sure the component re-renders
+    wrapper.update();
+    expect(wrapper.exists('Floater__PortalContainer')).toBe(false);
+
   });
 
   it('renders portal on contextMenu', () => {
 
+    // create div to click
     const container = document.createElement('div');
     document.body.appendChild(container);
 
+    // add mock event listener
     const map: any = {};
     document.addEventListener = jest.fn((event: any, cb: any) => {
       map[event] = cb;
@@ -101,7 +123,7 @@ describe('Floater', () => {
     trigger.simulate('click');
     expect(wrapper.exists('Floater__PortalContainer')).toBe(true);
 
-    // simulate clicking off
+    // confirm portal closes when clicked off
     act(() => {
       map.mousedown({ target: container });
     });
@@ -112,5 +134,13 @@ describe('Floater', () => {
 
     trigger.simulate('focus');
     expect(wrapper.exists('Floater__PortalContainer')).toBe(true);
+
+    // confirm portal is still open when it is clicked
+    const portal = wrapper.find('Floater__PortalContainer');
+    portal.simulate('click');
+    expect(portal.exists()).toBe(true);
+
+    // unmount to ensure the event listeners are removed
+    wrapper.unmount();
   });
 });

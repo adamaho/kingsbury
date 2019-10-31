@@ -49,7 +49,7 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
 
 
   React.useEffect(() => {
-    if (triggerType === 'contextMenu') {
+    if (triggerType === 'contextMenu' || triggerType === 'click') {
       window.addEventListener<'blur'>('blur', handleOnBlur);
       document.addEventListener<'mousedown'>('mousedown', handleMouseDown);
     }
@@ -122,8 +122,7 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
       },
       click: {
         onClick: handleOnClick,
-        onFocus: handleOnFocus,
-        onBlur: handleOnBlur
+        onFocus: handleOnFocus
       },
       contextMenu: {
         onClick: handleOnClick,
