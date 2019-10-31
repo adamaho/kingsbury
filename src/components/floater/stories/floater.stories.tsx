@@ -6,11 +6,11 @@ import {
 
 import {
   Button
-} from '../../button/Button';
+} from '../..';
 
 import {
   Floater
-} from '..';
+} from '../Floater';
 
 import {
   Input

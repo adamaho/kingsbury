@@ -49,7 +49,7 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
 
 
   React.useEffect(() => {
-    if (triggerType === 'contextMenu') {
+    if (triggerType === 'contextMenu' || triggerType === 'click') {
       window.addEventListener<'blur'>('blur', handleOnBlur);
       document.addEventListener<'mousedown'>('mousedown', handleMouseDown);
     }
@@ -122,8 +122,7 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
       },
       click: {
         onClick: handleOnClick,
-        onFocus: handleOnFocus,
-        onBlur: handleOnBlur
+        onFocus: handleOnFocus
       },
       contextMenu: {
         onClick: handleOnClick,
@@ -138,14 +137,14 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
   const child = React.Children.only(triggerComponent) as React.ReactElement;
 
   // Clone the triggerComponent and attach a ref to it
-  const triggerTest = React.cloneElement(child, {
+  const triggerClone = React.cloneElement(child, {
     ...getEventsForTrigger(),
     ref: triggerRef
   });
 
   return (
     <React.Fragment>
-      {triggerTest}
+      {triggerClone}
       <Portal
         visible={showFloater}
         portalMountNode={props.floaterMountNode}
