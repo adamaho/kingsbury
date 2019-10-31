@@ -4,9 +4,7 @@ on: [push]
 jobs:
   test:
     name: Test
-    runs-on: docker://alpine:10.16
+    runs-on: ubuntu-latest
     steps:
       - name: Hello world
-        run: |
-          npm ci
-          npm test
+        uses: actions/test-npm.yml
