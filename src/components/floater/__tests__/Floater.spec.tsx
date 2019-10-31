@@ -6,9 +6,12 @@ import {
 } from "enzyme";
 
 import {
+  act
+} from "react-dom/test-utils";
+
+import {
   Floater
 } from '../Floater';
-import {act} from "react-dom/test-utils";
 
 describe('Floater', () => {
   it('renders trigger', () => {
@@ -74,29 +77,11 @@ describe('Floater', () => {
     expect(wrapper.exists('Floater__PortalContainer')).toBe(true);
   });
 
-  it('renders portal on click', () => {
-    const wrapper = mount(
-      <Floater
-        triggerComponent={<div>Trigger</div>}
-        triggerType={'click'}
-      >
-        Portal
-      </Floater>
-    );
-
-    const trigger = wrapper.children().first();
-
-    trigger.simulate('click');
-    expect(wrapper.exists('Floater__PortalContainer')).toBe(true);
-
-    trigger.simulate('blur');
-    expect(wrapper.exists('Floater__PortalContainer')).toBe(false);
-
-    trigger.simulate('focus');
-    expect(wrapper.exists('Floater__PortalContainer')).toBe(true);
-  });
-
   it('renders portal on contextMenu', () => {
+
+    const container = document.createElement('div');
+    document.body.appendChild(container);
+
     const map: any = {};
     document.addEventListener = jest.fn((event: any, cb: any) => {
       map[event] = cb;
@@ -116,9 +101,13 @@ describe('Floater', () => {
     trigger.simulate('click');
     expect(wrapper.exists('Floater__PortalContainer')).toBe(true);
 
+    // simulate clicking off
     act(() => {
-      map.mousedown({ target: null });
+      map.mousedown({ target: container });
     });
+
+    // make sure the component re-renders
+    wrapper.update();
     expect(wrapper.exists('Floater__PortalContainer')).toBe(false);
 
     trigger.simulate('focus');
