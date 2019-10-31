@@ -7,4 +7,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Hello world
-        uses: actions/kingsbury@v1
+        uses: actions/action
