@@ -6,7 +6,7 @@ import {
 
 import {
   Input
-} from '..';
+} from '../Input';
 
 import {
   Container,
@@ -20,6 +20,16 @@ stories.add(
   () => (
     <Container>
       <Input onChange={(e) => console.log(e.target.value)} placeholder="placeholder" />
+    </Container>
+  ),
+  { info: { propTablesExclude: [Container] } }
+);
+
+stories.add(
+  'Disabled',
+  () => (
+    <Container>
+      <Input onChange={(e) => console.log(e.target.value)} placeholder="placeholder" disabled/>
     </Container>
   ),
   { info: { propTablesExclude: [Container] } }

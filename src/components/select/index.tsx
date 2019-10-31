@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 import Portal from '../portal';
-import Input from '../input';
+import Input from '../input/Input';
 
 const Container = styled.div``;
 

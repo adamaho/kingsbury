@@ -14,7 +14,7 @@ import {
 
 import {
   Input
-} from '../../input';
+} from '../../input/Input';
 
 import {
   Container,

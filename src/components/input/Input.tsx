@@ -26,7 +26,7 @@ export interface InputProps {
   errorComponent?: (error: string) => React.ReactNode;
 
   /** HTML input type attribute */
-  htmlType?: 'text' | 'number' | 'date';
+  htmlType?: 'text' | 'number' | 'date' | 'password';
 
   /** id of the input to be used with Formik */
   id?: string;
@@ -163,6 +163,12 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef<Input
     value
   } = props;
 
+  function onChangeHandler(e: Event) {
+    if (onChange) {
+      onChange(e);
+    }
+  }
+
   return (
     <Container className={className}>
       <Label>
@@ -175,7 +181,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef<Input
           id={id}
           name={name}
           onBlur={onBlur}
-          onChange={onChange}
+          onChange={onChangeHandler}
           onFocus={onFocus}
           placeholder={placeholder}
           borderType={borderType}
@@ -204,9 +210,9 @@ Input.defaultProps = {
   id: undefined,
   name: undefined,
   label: '',
-  onBlur: () => undefined,
-  onChange: () => undefined,
-  onFocus: () => undefined,
+  onBlur: undefined,
+  onChange: undefined,
+  onFocus: undefined,
   placeholder: '',
   inputSize: 'small',
   theme,
