@@ -1,0 +1,13 @@
+name: Test
+on: [push]
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Hello world
+        uses: docker://alpine:10.16
+        run: |
+          npm ci
+          npm test
