@@ -7,5 +7,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Hello world
-        uses: kingsbury/actions/action@f86763c
+        uses: kingsbury/.github/actions/action@f86763c
 
