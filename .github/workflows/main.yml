@@ -6,6 +6,9 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     steps:
-      - name: Hello world
-        uses: adamaho/kingsbury[/.github/actions/action]@f86763c
-
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '10.16'
+      - run: npm install
+      - run: npm test
