@@ -10,14 +10,14 @@ interface TextProps {
   children?: string | number;
 
   /** Text to render */
-  textType?: 'h1' | 'h2' | 'h3' | 'h4' | 'p';
+  textStyle?: 'h1' | 'h2' | 'h3' | 'h4' | 'p';
 
   /** Global theme in ThemeProvider */
   theme?: any;
 }
 
 const StyledText = styled.span<TextProps>`
-  font-size: ${(props) => props.theme.typeography[props.textType || 'h1'].fontSize};
+  font-size: ${(props) => props.theme.typeography[props.textStyle || 'h1'].fontSize};
 `;
 
 export const Text: React.FunctionComponent<TextProps> = (props) => {
@@ -34,6 +34,6 @@ export const Text: React.FunctionComponent<TextProps> = (props) => {
 
 Text.defaultProps = {
   children: '',
-  textType: 'h1',
+  textStyle: 'h1',
   theme
 };

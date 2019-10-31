@@ -6,7 +6,7 @@ import {
 
 import {
   Text
-} from '..';
+} from '../Text';
 
 const stories = storiesOf('Typeography', module);
 
