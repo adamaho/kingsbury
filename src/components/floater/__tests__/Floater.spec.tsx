@@ -1,8 +1,7 @@
 import * as React from 'react';
 
 import {
-  mount,
-  shallow
+  mount
 } from "enzyme";
 
 import {
@@ -15,7 +14,7 @@ import {
 
 describe('Floater', () => {
   it('renders trigger', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <Floater
         triggerComponent={<div>Trigger</div>}
        >
@@ -23,9 +22,7 @@ describe('Floater', () => {
       </Floater>
     );
 
-    const trigger = wrapper.children().first().children();
-
-    expect(trigger).toHaveLength(1);
+    expect(wrapper.find('Floater').children().first().exists()).toBe(true);
   });
 
   it('renders portal on hover', () => {
@@ -109,6 +106,11 @@ describe('Floater', () => {
       map[event] = cb;
     });
 
+    const windowMap: any = {};
+    window.addEventListener = jest.fn((windowEvent: any, windowCb: any) => {
+      windowMap[windowEvent] = windowCb;
+    });
+
     const wrapper = mount(
       <Floater
         triggerComponent={<div>Trigger</div>}
@@ -123,9 +125,20 @@ describe('Floater', () => {
     trigger.simulate('click');
     expect(wrapper.exists('Floater__PortalContainer')).toBe(true);
 
-    // confirm portal closes when clicked off
+    // confirm portal closes when clicked off on document
     act(() => {
       map.mousedown({ target: container });
+    });
+
+    // make sure the component re-renders
+    wrapper.update();
+    expect(wrapper.exists('Floater__PortalContainer')).toBe(false);
+
+    trigger.simulate('click');
+
+    // confirm portal closes when window is blurred
+    act(() => {
+      windowMap.blur();
     });
 
     // make sure the component re-renders

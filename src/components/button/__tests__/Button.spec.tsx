@@ -1,8 +1,7 @@
 import * as React from 'react';
 
 import {
-  mount,
-  shallow
+  mount
 } from "enzyme";
 
 import {
@@ -11,23 +10,23 @@ import {
 
 describe('Button', () => {
   it('renders without children', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <Button />
     );
 
-    expect(wrapper.find('Button__StyledButton').children()).toHaveLength(0);
+    expect(wrapper.exists('Button__StyledButton')).toBe(true);
   });
 
   it('renders with children', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <Button>Test Button</Button>
     );
 
-    expect(wrapper.find('Button__StyledButton').children()).toHaveLength(1);
+    expect(wrapper.exists('Button__StyledButton')).toBe(true);
   });
 
   it('sets the buttonType prop', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <Button buttonType={'success'}>Test Button</Button>
     );
 
@@ -35,7 +34,7 @@ describe('Button', () => {
   });
 
   it('sets the disabled prop', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <Button disabled>Test Button</Button>
     );
 
@@ -44,7 +43,7 @@ describe('Button', () => {
 
   it('calls onClick handler', () => {
     const onClickMock = jest.fn();
-    const wrapper = shallow(
+    const wrapper = mount(
       <Button onClick={onClickMock}>Test Button</Button>
     );
 

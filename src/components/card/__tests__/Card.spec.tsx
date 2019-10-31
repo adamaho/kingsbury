@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import {
-  shallow
+  mount
 } from "enzyme";
 
 import {
@@ -10,50 +10,29 @@ import {
 
 describe('Card', () => {
   it('renders without children', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <Card />
     );
 
-    expect(wrapper.find('Card__Container').children()).toHaveLength(0);
-  });
-
-  it('renders header', () => {
-    const wrapper = shallow(
-      <Card>
-        <Card.Header>Header</Card.Header>
-      </Card>
-    );
-
-    expect(wrapper.find('Card__Container').children()).toHaveLength(1);
-    expect(wrapper.find('Header').children()).toHaveLength(1);
-  });
-
-  it('renders footer', () => {
-    const wrapper = shallow(
-      <Card>
-        <Card.Footer>Footer</Card.Footer>
-      </Card>
-    );
-
-    expect(wrapper.find('Card__Container').children()).toHaveLength(1);
-    expect(wrapper.find('Footer').children()).toHaveLength(1);
+    expect(wrapper.exists('Card__Container')).toBe(true);
   });
 
   it('renders header and footer', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <Card>
         <Card.Header>Header</Card.Header>
         <Card.Footer>Footer</Card.Footer>
       </Card>
     );
 
-    expect(wrapper.find('Card__Container').children()).toHaveLength(2);
+    expect(wrapper.exists('Header')).toBe(true);
+    expect(wrapper.exists('Footer')).toBe(true);
   });
 
   it('calls onClick handler', () => {
     const onClickMock = jest.fn();
 
-    const wrapper = shallow(
+    const wrapper = mount(
       <Card onClick={onClickMock}>
         <Card.Header>Header</Card.Header>
         <Card.Footer>Footer</Card.Footer>

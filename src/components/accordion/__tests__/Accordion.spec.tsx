@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import {
-  shallow,
   mount
 } from 'enzyme';
 
@@ -13,7 +12,7 @@ import 'jest-styled-components';
 
 describe('Accordion', () => {
   it('renders all children', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <Accordion>
         <Accordion.Item itemKey={'1'}>Accordion Item 1</Accordion.Item>
         <Accordion.Item itemKey={'2'}>Accordion Item 2</Accordion.Item>
@@ -21,7 +20,7 @@ describe('Accordion', () => {
       </Accordion>
     );
 
-    expect(wrapper.find('Accordion__Container').children()).toHaveLength(3);
+    expect(wrapper.exists('Accordion__Container')).toBe(true);
   });
 
   it('opens every clicked item', () => {
@@ -44,6 +43,10 @@ describe('Accordion', () => {
     accordionItemHeader.at(1).simulate('click');
 
     expect(mockOnChange).toBeCalledWith(['1', '2']);
+
+    // close the first item and make sure its closed
+    accordionItemHeader.at(0).simulate('click');
+    expect(mockOnChange).toBeCalledWith(['2']);
 
     // cleanup
     wrapper.unmount();
