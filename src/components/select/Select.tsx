@@ -33,7 +33,7 @@ export const Select: SelectFuntionComponent<SelectProps> = (props) => {
   return (
     <Floater
       triggerType={'click'}
-      triggerComponent={<SelectTrigger />}
+      triggerComponent={<SelectTrigger>Stufffffffff</SelectTrigger>}
     >
       Stuff to render
     </Floater>
