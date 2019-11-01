@@ -19,6 +19,7 @@ interface MenuItemProps {
 
 const StyledMenuItem = styled.div`
   cursor: pointer;
+  padding: 5px 10px;
 
   &:hover {
     background: ${(props) => props.theme.menu.item.hoverBackgroundColor};

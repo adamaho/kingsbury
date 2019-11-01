@@ -53,11 +53,6 @@ export const theme: any = {
     tablet: '670px',
     phone: '475px'
   },
-  drawer: {
-    borderRadius: '8px',
-    boxShadow: `0px 0px 7px rgba(${colors.blackRGB},0.20)`,
-    toggleColor: colors.darkGrey
-  },
   header: {
     height: '50px;'
   },
@@ -82,26 +77,6 @@ export const theme: any = {
     item: {
       hoverBackgroundColor: `rgba(${colors.primaryRGB}, 0.4)}`
     }
-  },
-  notice: {
-    avatarwidth: '25px',
-    avatarheight: '25px',
-    pillWidth: '4px',
-    pillRadius: '2px',
-    pillMinHeight: '20px',
-    titleFontSize: '16px',
-    titleFontWeight: '700',
-    titleFontColor: colors.black,
-    descriptionFontSize: '16px',
-    descriptionFontWeight: '400',
-    descriptionFontColor: colors.lightGrey
-  },
-  tag: {
-    padding: '0px 10px',
-    height: '20px',
-    color: colors.black,
-    borderRadius: '10px',
-    textFontSize: '14px'
   },
   typeography: {
     h1: {
