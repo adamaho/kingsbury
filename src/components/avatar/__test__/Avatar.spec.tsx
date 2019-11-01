@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import {
-  shallow
+  mount
 } from "enzyme";
 
 import {
@@ -10,7 +10,7 @@ import {
 
 describe('Avatar', () => {
   it('renders all children', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <Avatar src={<div>A</div>}/>
     );
 

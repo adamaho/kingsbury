@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import {
   Portal
-} from '../portal';
+} from '..';
 
 export interface FloaterProps {
 

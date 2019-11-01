@@ -6,11 +6,11 @@ import {
 
 import {
   Button
-} from '../../button/Button';
+} from '../..';
 
 import {
   Portal
-} from '..';
+} from '../Portal';
 
 const stories = storiesOf('Portal', module);
 
