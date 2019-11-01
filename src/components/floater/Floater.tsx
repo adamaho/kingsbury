@@ -5,6 +5,10 @@ import {
   Portal
 } from '..';
 
+import {
+  useAfterMountEffect
+} from "../../hooks";
+
 export interface FloaterProps {
 
   /** Content to show in the floater */
@@ -60,7 +64,6 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
     }
   }, []);
 
-
   function renderPortal() {
     const {
       current
@@ -87,7 +90,11 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
       current
     } = floaterRef;
 
-    if (current && current.contains(e.target as Node)) {
+    const {
+      current: triggerCurrent
+    } = triggerRef;
+
+    if ((current && current.contains(e.target as Node)) || (e.target === triggerCurrent)) {
       return;
     } else {
       setShowFloater(false);

@@ -78,25 +78,14 @@ export const theme: any = {
       color: colors.darkGrey
     }
   },
-  notice: {
-    avatarwidth: '25px',
-    avatarheight: '25px',
-    pillWidth: '4px',
-    pillRadius: '2px',
-    pillMinHeight: '20px',
-    titleFontSize: '16px',
-    titleFontWeight: '700',
-    titleFontColor: colors.black,
-    descriptionFontSize: '16px',
-    descriptionFontWeight: '400',
-    descriptionFontColor: colors.lightGrey
-  },
-  tag: {
-    padding: '0px 10px',
-    height: '20px',
-    color: colors.black,
-    borderRadius: '10px',
-    textFontSize: '14px'
+  select: {
+    border: '1px solid',
+    borderColor: `${colors.lightGrey}`,
+    borderRadius: '7px',
+    fontSizeSmall: '16px',
+    fontSizeLarge: '20px',
+    heightSmall: '40px',
+    heightLarge: '50px'
   },
   typeography: {
     h1: {
