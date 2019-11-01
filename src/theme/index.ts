@@ -78,6 +78,11 @@ export const theme: any = {
       color: colors.darkGrey
     }
   },
+  menu: {
+    item: {
+      hoverBackgroundColor: `rgba(${colors.primaryRGB}, 0.4)}`
+    }
+  },
   notice: {
     avatarwidth: '25px',
     avatarheight: '25px',
