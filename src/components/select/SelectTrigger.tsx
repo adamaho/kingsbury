@@ -9,6 +9,10 @@ import {
 } from "..";
 
 interface SelectTriggerProps {
+
+  /** Determines if options are filterable */
+  filterable?: boolean;
+
   /** Size of the select */
   selectSize?: 'small' | 'large';
 
@@ -18,18 +22,19 @@ interface SelectTriggerProps {
 
 export const SelectTrigger: React.FunctionComponent<any> = React.forwardRef<any, any>((props, ref) => {
   const {
-    onFocus,
+    filterable,
     selectSize,
     theme
   } = props;
 
   return (
-     <Input
-       onFocus={onFocus}
-       inputSize={selectSize}
-       theme={theme}
-       ref={ref}
-     />
+    <Input
+      htmlType={filterable ? 'text' : 'button'}
+      inputSize={selectSize}
+      theme={theme}
+      {...props}
+      ref={ref}
+    />
   );
 });
 

@@ -2,6 +2,10 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 import {
+  motion
+} from 'framer-motion';
+
+import {
   theme
 } from '../../theme';
 
@@ -41,6 +45,8 @@ const Container = styled.div`
   border-radius: ${(props) => props.theme.popover.borderRadius};
   box-shadow: ${(props) => props.theme.popover.boxShadow};
   margin: ${(props) => props.theme.popover.margin};
+  
+  height: 200px;
 `;
 
 export const Popover: React.FunctionComponent<PopoverProps> = (props) => {
@@ -61,12 +67,18 @@ export const Popover: React.FunctionComponent<PopoverProps> = (props) => {
       triggerType={triggerType}
       triggerComponent={triggerComponent}
     >
-      <Container
-        className={className}
-        theme={theme}
+      <motion.div
+        initial={{ y: -10, opacity: 0, skewX: '-10deg' }}
+        animate={{ y: 0, opacity: 1, skewX: 0 }}
+        transition={{ duration: 0.2 }}
       >
-        { children }
-      </Container>
+        <Container
+          className={className}
+          theme={theme}
+        >
+          { children }
+        </Container>
+      </motion.div>
     </Floater>
   );
 };

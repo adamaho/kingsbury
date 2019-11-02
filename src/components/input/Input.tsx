@@ -26,7 +26,7 @@ export interface InputProps {
   errorComponent?: (error: string) => React.ReactNode;
 
   /** HTML input type attribute */
-  htmlType?: 'text' | 'number' | 'date' | 'password';
+  htmlType?: 'text' | 'number' | 'date' | 'password' | 'button';
 
   /** id of the input to be used with Formik */
   id?: string;
@@ -36,6 +36,9 @@ export interface InputProps {
 
   /** Function to handle blur event */
   onBlur?: React.EventHandler<any>;
+
+  /** Function to handle blur event */
+  onClick?: React.EventHandler<any>;
 
   /** Function to handle change event */
   onChange?: React.EventHandler<any>;
@@ -75,6 +78,11 @@ const Error = styled.div<any>`
 `;
 
 const StyledInput = styled.input<any>`
+  cursor: ${(props) => props.type === 'button' ?
+    'pointer' :
+    'text'
+  };
+
   height: ${(props) => props.theme.input.heightSmall};
   font-size: ${(props) => props.theme.input.fontSizeSmall};
 
@@ -155,7 +163,10 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef<Input
     name,
     onBlur,
     onChange,
+    onClick,
     onFocus,
+    onMouseEnter,
+    onMouseLeave,
     placeholder,
     inputSize,
     borderType,
@@ -182,6 +193,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef<Input
           name={name}
           onBlur={onBlur}
           onChange={onChangeHandler}
+          onClick={onClick}
           onFocus={onFocus}
           placeholder={placeholder}
           borderType={borderType}

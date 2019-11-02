@@ -17,6 +17,10 @@ interface SelectFuntionComponent<T> extends React.FunctionComponent<T> {
 }
 
 interface SelectProps {
+
+  /** Determines if options are filterable */
+  filterable?: boolean;
+
   /** Size of the select */
   selectSize?: 'small' | 'large';
 
@@ -26,8 +30,8 @@ interface SelectProps {
 
 export const Select: SelectFuntionComponent<SelectProps> = (props) => {
   const {
-    selectSize,
-    theme
+    filterable,
+    selectSize
   } = props;
 
   return (
@@ -35,7 +39,10 @@ export const Select: SelectFuntionComponent<SelectProps> = (props) => {
       matchTriggerWidth
       triggerType={'click'}
       triggerComponent={
-        <SelectTrigger />
+        <SelectTrigger
+          filterable={filterable}
+          selectSize={selectSize}
+        />
       }
     >
       Stuff to render
@@ -44,6 +51,7 @@ export const Select: SelectFuntionComponent<SelectProps> = (props) => {
 };
 
 Select.defaultProps = {
+  filterable: false,
   selectSize: 'small',
   theme
 };

@@ -5,10 +5,6 @@ import {
   Portal
 } from '..';
 
-import {
-  useAfterMountEffect
-} from "../../hooks";
-
 export interface FloaterProps {
 
   /** Content to show in the floater */
