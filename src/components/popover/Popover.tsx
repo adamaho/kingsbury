@@ -68,8 +68,8 @@ export const Popover: React.FunctionComponent<PopoverProps> = (props) => {
       triggerComponent={triggerComponent}
     >
       <motion.div
-        initial={{ y: -10, opacity: 0, skewX: '-10deg' }}
-        animate={{ y: 0, opacity: 1, skewX: 0 }}
+        initial={{ y: -10, opacity: 0, rotateY: '-10deg' }}
+        animate={{ y: 0, opacity: 1, rotateY: 0 }}
         transition={{ duration: 0.2 }}
       >
         <Container
