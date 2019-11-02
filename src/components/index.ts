@@ -6,6 +6,7 @@ import { Collapse } from './collapse/Collapse';
 import { Floater } from './floater/Floater';
 import { Input } from './input/Input';
 import * as Icon from './icons';
+import { Popover } from './popover/Popover';
 import { Portal } from './portal/Portal';
 import { Text } from './typeography/Text';
 
@@ -18,6 +19,7 @@ export {
   Floater,
   Icon,
   Input,
+  Popover,
   Portal,
   Text
 };

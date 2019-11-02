@@ -14,7 +14,7 @@ import {
 
 import {
   Input
-} from '../../input/Input';
+} from '../..';
 
 import {
   Container,
@@ -58,10 +58,11 @@ stories.add(
   () => (
     <Container>
       <Floater
+        triggerType="click"
+        matchTriggerWidth
         triggerComponent={
           <Input placeholder={'Click to show floater'} />
         }
-        triggerType="click"
       >
         <FloaterContent />
       </Floater>

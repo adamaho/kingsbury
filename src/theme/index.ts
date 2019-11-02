@@ -78,6 +78,14 @@ export const theme: any = {
       color: colors.darkGrey
     }
   },
+  popover: {
+    background: colors.white,
+    boxShadow: `0px 0px 7px rgba(${colors.blackRGB},0.20)`,
+    border: 'none',
+    borderColor: 'none',
+    borderRadius: '7px',
+    margin: '5px 0 0 0'
+  },
   select: {
     border: '1px solid',
     borderColor: `${colors.lightGrey}`,

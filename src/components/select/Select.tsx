@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import {
-  Floater
+  Popover
 } from '..';
 
 import {
@@ -31,12 +31,15 @@ export const Select: SelectFuntionComponent<SelectProps> = (props) => {
   } = props;
 
   return (
-    <Floater
+    <Popover
+      matchTriggerWidth
       triggerType={'click'}
-      triggerComponent={<SelectTrigger>Stufffffffff</SelectTrigger>}
+      triggerComponent={
+        <SelectTrigger />
+      }
     >
       Stuff to render
-    </Floater>
+    </Popover>
   );
 };
 

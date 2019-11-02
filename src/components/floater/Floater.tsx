@@ -20,6 +20,9 @@ export interface FloaterProps {
   /** Floater node to mount against */
   floaterMountNode?: HTMLElement;
 
+  /** Match with of Portal to the width of the Trigger */
+  matchTriggerWidth?: boolean;
+
   /** Component used to trigger floater.  */
   triggerComponent?: React.ReactNode | null;
 
@@ -30,19 +33,21 @@ export interface FloaterProps {
 interface PortalContainerProps {
   top: string | number;
   left: string | number;
+  width: string | number;
 }
 
 const PortalContainer = styled.div<PortalContainerProps>`
   position: absolute;
   top: ${(props) => `${props.top}px`};
   left: ${(props) => `${props.left}px`};
-  width: auto;
+  width: ${(props) => `${props.width}`};
 `;
 
 export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
   const {
     children,
     className,
+    matchTriggerWidth,
     triggerType,
     triggerComponent
   } = props;
@@ -76,6 +81,10 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
           position={'absolute'}
           top={current.offsetTop + current.offsetHeight}
           left={current.offsetLeft}
+          width={matchTriggerWidth ?
+            `${current.offsetWidth}px` :
+            'auto'
+          }
           ref={floaterRef}
           {...getEventsForTrigger()}
         >
@@ -161,6 +170,7 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
 Floater.defaultProps = {
   children: '',
   floaterMountNode: document.body,
+  matchTriggerWidth: false,
   triggerComponent: null,
   triggerType: 'hover'
 };
