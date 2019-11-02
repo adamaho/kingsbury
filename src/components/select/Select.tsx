@@ -36,6 +36,11 @@ export const Select: SelectFuntionComponent<SelectProps> = (props) => {
 
   return (
     <Popover
+      animationObject={{
+        initial: {y: -10, opacity: 0, rotateY: '-10deg'},
+        animate: {y: 0, opacity: 1, rotateY: 0},
+        transition: {duration: 0.1}
+      }}
       matchTriggerWidth
       triggerType={'click'}
       triggerComponent={
