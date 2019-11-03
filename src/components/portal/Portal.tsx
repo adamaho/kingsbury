@@ -2,13 +2,13 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 export interface PortalProps {
-  /** Content to show in the portal */
+  /** Content to show in the Portal */
   children?: React.ReactNode;
 
   /** Portal node to mount against */
   container?: any;
 
-  /** Disables portal behaviour and returns node to Parents DOM hierarchy */
+  /** Disables Portal behaviour and returns node to the parent DOM hierarchy */
   disablePortal?: boolean;
 }
 
