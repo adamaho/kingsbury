@@ -19,7 +19,7 @@ export const Portal: React.FunctionComponent<PortalProps> = (props) => {
     visible
   } = props;
 
-  return visible ? ReactDOM.createPortal(children, portalMountNode): null;
+  return visible ? ReactDOM.createPortal(children, portalMountNode) : null;
 };
 
 Portal.defaultProps = {

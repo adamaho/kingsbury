@@ -5,6 +5,10 @@ import {
   Portal
 } from '..';
 
+import {
+  AnimatePresence
+} from 'framer-motion';
+
 export interface FloaterProps {
 
   /** Content to show in the floater */
@@ -49,6 +53,7 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
   } = props;
 
   const [showFloater, setShowFloater] = React.useState(false);
+  const [isOpen, setOpen] = React.useState<boolean>(false);
   const triggerRef = React.useRef<HTMLDivElement>(null);
   const floaterRef = React.useRef<HTMLDivElement>(null);
 
@@ -65,18 +70,41 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
     }
   }, []);
 
+  function getPortalDimensions() {
+    const {
+      current
+    } = triggerRef;
+
+    const {
+      current: floaterCurrent
+    } = floaterRef;
+
+    if (floaterCurrent && current) {
+      const floaterDimensions = floaterCurrent.getBoundingClientRect();
+      console.log(floaterDimensions);
+      return {
+        top: current.offsetTop - floaterDimensions.height,
+        left: current.offsetLeft,
+      }
+    }
+
+    return {};
+  }
+
   function renderPortal() {
     const {
       current
     } = triggerRef;
 
     if (current) {
+      console.log(floaterRef.current);
       return (
         <PortalContainer
+          key={"test"}
+          role={"tooltip"}
           className={className}
           position={'absolute'}
-          top={current.offsetTop + current.offsetHeight}
-          left={current.offsetLeft}
+          {...getPortalDimensions()}
           width={matchTriggerWidth ?
             `${current.offsetWidth}px` :
             'auto'
@@ -149,6 +177,16 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
     ...getEventsForTrigger(),
     ref: triggerRef
   });
+
+  React.useEffect(() => {
+    if (showFloater && floaterRef.current) {
+      setOpen(true);
+    }
+
+    if (!showFloater) {
+      setOpen(false);
+    }
+  }, [showFloater, floaterRef]);
 
   return (
     <React.Fragment>

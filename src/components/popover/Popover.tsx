@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 import {
+  AnimatePresence,
   motion,
   MotionProps
 } from 'framer-motion';
@@ -16,7 +17,7 @@ import {
 
 interface PopoverProps {
 
-  /** Content to show in the Popover */
+  /** Animation object for popover. See Framer motion.div. */
   animationObject?: MotionProps;
 
   /** Content to show in the Popover */
@@ -32,7 +33,7 @@ interface PopoverProps {
   mountNode?: HTMLElement;
 
   /** Component used to trigger Popover.  */
-  triggerComponent?: React.ReactNode | null;
+  triggerComponent: React.ReactNode | null;
 
   /** Event to trigger Popover  */
   triggerType?: 'hover' | 'click';
@@ -73,6 +74,7 @@ export const Popover: React.FunctionComponent<PopoverProps> = (props) => {
       triggerComponent={triggerComponent}
     >
       <motion.div
+        key={"popover"}
         {...animationObject}
       >
         <Container
@@ -87,5 +89,15 @@ export const Popover: React.FunctionComponent<PopoverProps> = (props) => {
 };
 
 Popover.defaultProps = {
+  animationObject: {
+    initial: {y: -10, opacity: 0, rotateY: '-10deg'},
+    animate: {y: 0, opacity: 1, rotateY: 0},
+    exit: {y: -10},
+    transition: {duration: 1}
+  },
+  children: '',
+  className: '',
+  matchTriggerWidth: false,
+  triggerType: 'click',
   theme
 };
