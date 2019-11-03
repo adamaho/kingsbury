@@ -6,24 +6,37 @@ export interface PortalProps {
   children?: React.ReactNode;
 
   /** Portal node to mount against */
-  portalMountNode?: any;
+  container?: any;
 
-  /** Determines if portal is visible */
-  visible?: boolean;
+  /** Disables portal behaviour and returns node to Parents DOM hierarchy */
+  disablePortal?: boolean;
 }
 
 export const Portal: React.FunctionComponent<PortalProps> = (props) => {
   const {
     children,
-    portalMountNode,
-    visible
+    container,
+    disablePortal
   } = props;
 
-  return visible ? ReactDOM.createPortal(children, portalMountNode): null;
+  const [mountNode, setMountNode] = React.useState(null);
+
+  React.useEffect(() => {
+    if (!disablePortal) {
+      setMountNode(container || document.body);
+    }
+  }, [container, disablePortal]);
+
+  if (disablePortal) {
+    React.Children.only(children);
+    return React.cloneElement(children as React.ReactElement);
+  }
+
+  // @ts-ignore
+  return mountNode ? ReactDOM.createPortal(children, mountNode): mountNode;
 };
 
 Portal.defaultProps = {
   children: '',
-  portalMountNode: document.body,
-  visible: false
+  disablePortal: false
 };

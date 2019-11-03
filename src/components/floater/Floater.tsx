@@ -142,8 +142,7 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
     <React.Fragment>
       {triggerClone}
       <Portal
-        visible={showFloater}
-        portalMountNode={props.floaterMountNode}
+        container={props.floaterMountNode}
       >
         {renderPortal()}
       </Portal>

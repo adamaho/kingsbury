@@ -11,7 +11,7 @@ import {
 describe('Portal', () => {
   it('renders when visible', () => {
     const wrapper = mount(
-      <Portal visible={true}>
+      <Portal>
         <div id={"test1"} />
       </Portal>
     );
@@ -19,14 +19,16 @@ describe('Portal', () => {
     expect(wrapper.find('#test1').exists()).toBe(true);
   });
 
-  it('does not render when not visible', () => {
+  it('renders under parent when disabled', () => {
     const wrapper = mount(
-      <Portal visible={false}>
-        <div id={"test1"} />
-      </Portal>
+      <div id={"parent"}>
+        <Portal disablePortal={true}>
+          <div id={"test1"} />
+        </Portal>
+      </div>
     );
 
-    expect(wrapper.find('#test1').exists()).toBe(false);
+    expect(wrapper.find('Portal').length).toBe(1);
   });
 
   it('renders to custom mount node', () => {
@@ -35,7 +37,7 @@ describe('Portal', () => {
     document.body.appendChild(element);
 
     const wrapper = mount(
-      <Portal visible={true} portalMountNode={element}>
+      <Portal container={element}>
         <div id={"test1"} />
       </Portal>
     );
@@ -52,7 +54,7 @@ describe('Portal', () => {
     function Child() {
       return (
         <div>
-          <Portal visible={true}>
+          <Portal>
             <div id="test1" />
           </Portal>
         </div>
