@@ -5,6 +5,11 @@ import {
 } from '@storybook/react';
 
 import {
+  motion,
+  AnimatePresence
+} from "framer-motion";
+
+import {
   Button
 } from '../..';
 
@@ -17,52 +22,70 @@ const stories = storiesOf('Portal', module);
 stories.add(
   'Default',
   () => {
-    const [showPortal, setPortalVisibilty] = React.useState(false);
-
+    const [showPortal, setShowPortal] = React.useState(false);
     return (
       <React.Fragment>
-        <Button onClick={() => setPortalVisibilty(!showPortal)}>
+        <Button onClick={() => setShowPortal(!showPortal)}>
           Show Portal
         </Button>
-        <Portal
-          visible={showPortal}
-        >
-          <div>I am the portal</div>
+        <AnimatePresence>
+          {showPortal &&
+            <Portal>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                <div>I am the portal</div>
+              </motion.div>
+            </Portal>
+          }
+        </AnimatePresence>
+        <Portal>
+          <div style={{ visibility: 'hidden' }}>
+            <div>I am the portal</div>
+          </div>
         </Portal>
       </React.Fragment>
     );
   },
-  { info:
-    {
-      propTablesExclude: [Button]
-    },
+  { info: { propTablesExclude: [Button] },
   }
 );
 
 stories.add(
   'Custom Mount Node',
   () => {
-    const [showPortal, setPortalVisibilty] = React.useState(false);
+    const [showPortal, setShowPortal] = React.useState(false);
     const container = React.useRef(null);
 
     return (
       <React.Fragment>
-        <Button onClick={() => setPortalVisibilty(!showPortal)}>
+        <Button onClick={() => setShowPortal(!showPortal)}>
           Show Portal
         </Button>
-        <Portal
-          visible={showPortal}
-          portalMountNode={container.current}
-        >
-          <div>I am the portal</div>
-        </Portal>
+        <AnimatePresence>
+          {showPortal &&
+          <Portal container={container.current}>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <div>I am the portal</div>
+            </motion.div>
+          </Portal>
+          }
+        </AnimatePresence>
         <div className="container-to-mount-to" ref={container} />
+          <Portal>
+            <div style={{ visibility: 'hidden' }}>
+              <div>I am the portal</div>
+            </div>
+          </Portal>
       </React.Fragment>
     );
   },
-  { info:
-    {
-      propTablesExclude: [Button]
-    },
+  { info: { propTablesExclude: [Button] },
   }
 );
