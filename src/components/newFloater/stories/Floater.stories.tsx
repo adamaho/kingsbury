@@ -15,8 +15,7 @@ import {
 
 const Container = styled.div`
   background: red;
-  height: 200px;
-  width: 200px;
+  height: 400px;
 `;
 
 const stories = storiesOf('New Floater', module);
@@ -29,7 +28,10 @@ stories.add(
 
     return (
       <React.Fragment>
-        <Button ref={anchorRef} onClick={() => setShowPortal(!showPortal)}>
+        <Button
+          ref={anchorRef}
+          onClick={() => setShowPortal(!showPortal)}
+        >
           Show Portal
         </Button>
         <NewFloater anchorElement={anchorRef.current} open={showPortal}>
