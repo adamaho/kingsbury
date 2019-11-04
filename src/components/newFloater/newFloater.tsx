@@ -22,12 +22,12 @@ interface NewFloaterProps {
   children: React.ReactNode;
 
   /** Portal node to mount against */
-  container?: any;
+  container?: HTMLElement | null;
 
   /** Disables portal behaviour and returns node to Parents DOM hierarchy */
   disablePortal?: boolean;
 
-  /** Disables portal behaviour and returns node to Parents DOM hierarchy */
+  /** Portal will match the anchor element width when true */
   matchAnchorWidth?: boolean;
 
   /** Whether or not to show portal */
@@ -46,16 +46,18 @@ export const NewFloater: React.FunctionComponent<NewFloaterProps> = (props) => {
     anchorElement,
     animationProps,
     children,
+    container,
+    disablePortal,
     matchAnchorWidth,
     open
   } = props;
 
-  const [portalElement, setPortalRef] = React.useState<HTMLDivElement | null>(null);
+  const [portalElement, setPortalElement] = React.useState<HTMLDivElement | null>(null);
   const [anchorPoint, setAnchorPoint] = React.useState<any>({});
 
   const handleRef = React.useCallback((ref) => {
-    setPortalRef(ref);
-  },[setPortalRef]);
+    setPortalElement(ref);
+  },[setPortalElement]);
 
   React.useEffect(() => {
     const aPoint = getAnchorPoint();
@@ -73,12 +75,13 @@ export const NewFloater: React.FunctionComponent<NewFloaterProps> = (props) => {
     }
   }
 
-  console.log(anchorElement && anchorElement.offsetWidth);
-
   return (
     <AnimatePresence>
       {(open && anchorElement) &&
-        <Portal>
+        <Portal
+          container={container}
+          disablePortal={disablePortal}
+        >
           <motion.div
             {...animationProps}
           >
@@ -109,6 +112,8 @@ NewFloater.defaultProps = {
     exit: { opacity: 0 },
     transition: { duration: 0.2 }
   },
+  disablePortal: false,
+  container: undefined,
   matchAnchorWidth: true,
   open: false
 };

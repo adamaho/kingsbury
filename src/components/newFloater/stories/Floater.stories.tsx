@@ -15,10 +15,10 @@ import {
 
 const Container = styled.div`
   background: red;
-  height: 400px;
+  height: 100px;
 `;
 
-const stories = storiesOf('New Floater', module);
+const stories = storiesOf('Floater', module);
 
 stories.add(
   'Default',
@@ -34,8 +34,8 @@ stories.add(
         >
           Show Portal
         </Button>
-        <NewFloater anchorElement={anchorRef.current} open={showPortal}>
-          <Container>ssdf</Container>
+        <NewFloater anchorElement={anchorRef.current} open={showPortal} disablePortal>
+          <Container />
         </NewFloater>
       </React.Fragment>
     );
