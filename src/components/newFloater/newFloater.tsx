@@ -2,14 +2,20 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 import {
-  Portal
-} from "..";
-
-import {
   AnimatePresence,
   motion,
   MotionProps
 } from "framer-motion";
+
+import {
+  Portal
+} from "..";
+
+import {
+  Position,
+  getRelativePosition
+} from "../utils/getRelativePosition";
+
 
 interface NewFloaterProps {
   /** Content to show in the portal */
@@ -32,12 +38,15 @@ interface NewFloaterProps {
 
   /** Whether or not to show portal */
   open?: boolean;
+
+  /** Position of the floater with respect the the anchor element */
+  position: Position;
 }
 
 const Container = styled.div<any>`
-  display: ${(props) => props.portalVisibility ?
-    'inherit' :
-    'none'
+  visibility: ${(props) => props.portalVisibility ?
+    'visible' :
+    'hidden'
   };
 `;
 
@@ -49,29 +58,48 @@ export const NewFloater: React.FunctionComponent<NewFloaterProps> = (props) => {
     container,
     disablePortal,
     matchAnchorWidth,
-    open
+    open,
+    position
   } = props;
 
   const [portalElement, setPortalElement] = React.useState<HTMLDivElement | null>(null);
-  const [anchorPoint, setAnchorPoint] = React.useState<any>({});
+  const [portalPosition, setPortalPosition] = React.useState<any>(null);
 
   const handleRef = React.useCallback((ref) => {
     setPortalElement(ref);
   },[setPortalElement]);
 
-  React.useEffect(() => {
-    const aPoint = getAnchorPoint();
-    setAnchorPoint(aPoint);
-  }, [portalElement]);
+  function onWindowResize() {
+    if (open) {
+      updatePortalPosition();
+    }
+  }
 
-  function getAnchorPoint() {
-    // for now just going to have it default to the middle and then we will sort out the math and such
-    if (anchorElement && portalElement) {
-      const portalDims = portalElement.getBoundingClientRect();
-      return {
-        top: anchorElement.offsetTop + anchorElement.offsetHeight,
-        left: anchorElement.offsetLeft
-      };
+  React.useEffect(() => {
+    window.addEventListener<'resize'>('resize', onWindowResize);
+
+    return () => {
+      window.removeEventListener<'resize'>('resize', onWindowResize);
+    }
+  }, [onWindowResize]);
+
+  React.useEffect(() => {
+    if (open) {
+      updatePortalPosition()
+    }
+  },[portalElement, position]);
+
+  React.useEffect(() => {
+    if (!open) {
+      setPortalPosition(null);
+    }
+  }, [open]);
+
+  function updatePortalPosition() {
+    if (portalElement && anchorElement) {
+      const portalPosition = getRelativePosition(position, anchorElement, portalElement);
+      setPortalPosition(portalPosition);
+      console.log(portalPosition);
     }
   }
 
@@ -86,15 +114,16 @@ export const NewFloater: React.FunctionComponent<NewFloaterProps> = (props) => {
             {...animationProps}
           >
             <Container
+              role={"tooltip"}
               style={{
                 position: 'absolute',
                 width: matchAnchorWidth ?
                   `${anchorElement.offsetWidth}px` :
                   'auto',
-                ...anchorPoint
+                ...portalPosition
               }}
               ref={handleRef}
-              portalVisibility={portalElement}
+              portalVisibility={portalElement && portalPosition}
             >
               {children}
             </Container>
@@ -110,19 +139,13 @@ NewFloater.defaultProps = {
     initial: { opacity: 0 },
     animate: { opacity: 1 },
     exit: { opacity: 0 },
-    transition: { duration: 0.2 }
+    transition: { duration: 0.3 }
   },
   disablePortal: false,
   container: undefined,
-  matchAnchorWidth: true,
-  open: false
+  matchAnchorWidth: false,
+  open: false,
+  position: 'left'
 };
 
-
-// anchorEl
-// children
-// open
-// animationObject
-// container
-// position
 

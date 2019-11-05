@@ -16,6 +16,7 @@ import {
 const Container = styled.div`
   background: red;
   height: 100px;
+  width: 100px;
 `;
 
 const stories = storiesOf('Floater', module);
@@ -27,17 +28,17 @@ stories.add(
     const anchorRef = React.useRef(null);
 
     return (
-      <React.Fragment>
+      <div style={{ paddingLeft: 1000 }}>
         <Button
           ref={anchorRef}
           onClick={() => setShowPortal(!showPortal)}
         >
           Show Portal
         </Button>
-        <NewFloater anchorElement={anchorRef.current} open={showPortal} disablePortal>
+        <NewFloater position={'right'} anchorElement={anchorRef.current} open={showPortal} disablePortal>
           <Container />
         </NewFloater>
-      </React.Fragment>
+      </div>
     );
   },
   { info: { propTablesExclude: [Button] },
