@@ -2,25 +2,33 @@ import * as React from 'react';
 import styled from 'styled-components';
 import * as _ from 'lodash';
 
-import AccordionItem from './AccordionItem';
+import {
+  AccordionItem,
+  AccordionItemProps
+} from './AccordionItem';
 
 import {
   AccordionContext
 } from './context';
 
 import {
+  AccordionType,
+  ItemGapType,
+  ItemKeyType
+} from "./types";
+
+import {
   useAfterMountEffect
 } from "../../hooks";
 
-type ItemKey = string | number;
 
 interface AccordionFunctionComponent<T = {}> extends React.FunctionComponent<T> {
-  Item: any;
+  Item: React.FunctionComponent<AccordionItemProps>;
 }
 
 interface AccordionProps {
   /** Type of collapse. See Collapse. */
-  accordionType?: 'stack' | 'panel';
+  accordionType?: AccordionType;
 
   /** Accordion Item. See Collapse for supported props. */
   children: React.ReactNode;
@@ -32,13 +40,13 @@ interface AccordionProps {
   classic?: boolean;
 
   /** Determines which collapses should be active on initial render */
-  defaultSelectedItems?: string[];
+  defaultSelectedItems?: (string|number)[];
 
   /** Vertical gap between items */
-  itemGap?: number;
+  itemGap?: ItemGapType;
 
   /** Function to handle when collapse state changes */
-  onChange?: (selectedItems: ItemKey[]) => void;
+  onChange?: (selectedItems: ItemKeyType[]) => void;
 }
 
 const Container = styled.div``;
@@ -52,21 +60,21 @@ export const Accordion: AccordionFunctionComponent<AccordionProps> = ({
   itemGap,
   onChange
 }) => {
-  const [selectedItems, setSelectedItems] = React.useState<any>(defaultSelectedItems);
+  const [selectedItems, setSelectedItems] = React.useState<(string|number)[]>(defaultSelectedItems || []);
 
-  function getClassicItems(key: ItemKey) {
+  function getClassicItems(key: ItemKeyType) {
     return _.includes(selectedItems, key) ?
       [] :
       [key];
   }
 
-  function getItems(key: ItemKey) {
+  function getItems(key: ItemKeyType) {
     return _.includes(selectedItems, key) ?
-      selectedItems.filter((i: ItemKey) => i !== key) :
+      selectedItems.filter((i: ItemKeyType) => i !== key) :
       selectedItems.concat(key);
   }
 
-  function onCollapseChange(key: ItemKey) {
+  function onCollapseChange(key: ItemKeyType): void {
     const newItems = classic ? getClassicItems(key) : getItems(key);
     setSelectedItems(newItems);
   }

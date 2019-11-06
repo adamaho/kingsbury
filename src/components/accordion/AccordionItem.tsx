@@ -3,14 +3,14 @@ import styled from 'styled-components';
 
 import {
   Collapse
-} from '../collapse/Collapse';
+} from '..';
 
 import {
   AccordionContext
 } from './context';
 
 interface CollapseSpacerProps {
-  itemGap: number;
+  itemGap?: number;
 }
 
 export interface AccordionItemProps {
@@ -44,5 +44,3 @@ export const AccordionItem: React.FunctionComponent<AccordionItemProps> = (props
     }}
   </AccordionContext.Consumer>
 );
-
-export default AccordionItem;

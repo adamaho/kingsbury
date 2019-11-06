@@ -43,5 +43,3 @@ Footer.defaultProps = {
   className: '',
   theme
 };
-
-export default Footer;

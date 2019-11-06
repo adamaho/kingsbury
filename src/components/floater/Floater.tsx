@@ -2,157 +2,153 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 import {
+  AnimatePresence,
+  motion,
+  MotionProps
+} from "framer-motion";
+
+import {
   Portal
-} from '..';
+} from "..";
 
-export interface FloaterProps {
+import {
+  Position,
+  PositionValue,
+  getRelativePosition
+} from "../utils/getRelativePosition";
 
-  /** Content to show in the floater */
-  children?: React.ReactNode;
+interface FloaterProps {
+  /** Content to show in the portal */
+  anchorElement: HTMLDivElement | null;
 
-  /** classname for the floater */
-  className?: string;
+  /** Content to show in the portal */
+  animationProps?: MotionProps;
 
-  /** Floater node to mount against */
-  floaterMountNode?: HTMLElement;
+  /** Content to show in the portal */
+  children: React.ReactNode;
 
-  /** Component used to trigger floater.  */
-  triggerComponent?: React.ReactNode | null;
+  /** Portal node to mount against */
+  container?: HTMLElement | null;
 
-  /** Component trigger type  */
-  triggerType?: 'hover' | 'click';
+  /** Disables portal behaviour and returns node to Parents DOM hierarchy */
+  disablePortal?: boolean;
+
+  /** Portal will match the anchor element width when true */
+  matchAnchorWidth?: boolean;
+
+  /** Whether or not to show portal */
+  open?: boolean;
+
+  /** Position of the floater with respect the the anchor element */
+  position: Position;
 }
 
-interface PortalContainerProps {
-  top: string | number;
-  left: string | number;
-}
-
-const PortalContainer = styled.div<PortalContainerProps>`
-  position: absolute;
-  top: ${(props) => `${props.top}px`};
-  left: ${(props) => `${props.left}px`};
-  width: auto;
+const Container = styled.div<{ portalVisibility: boolean }>`
+  visibility: ${(props) => props.portalVisibility ?
+    'visible' :
+    'hidden'
+  };
 `;
 
 export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
   const {
+    anchorElement,
+    animationProps,
     children,
-    className,
-    triggerType,
-    triggerComponent
+    container,
+    disablePortal,
+    matchAnchorWidth,
+    open,
+    position
   } = props;
 
-  const [showFloater, setShowFloater] = React.useState(false);
-  const triggerRef = React.useRef<HTMLDivElement>(null);
-  const floaterRef = React.useRef<HTMLDivElement>(null);
+  const [portalElement, setPortalElement] = React.useState<HTMLDivElement | null>(null);
+  const [portalPosition, setPortalPosition] = React.useState<PositionValue | null>(null);
 
+  // set the ref when react calls it back
+  const handleRef = React.useCallback((ref) => {
+    setPortalElement(ref);
+  },[setPortalElement]);
 
-  React.useEffect(() => {
-    if (triggerType === 'click') {
-      window.addEventListener<'blur'>('blur', handleOnBlur);
-      document.addEventListener<'mousedown'>('mousedown', handleMouseDown);
+  // update the portal position
+  const updatePortalPosition = React.useCallback(() => {
+    if (portalElement && anchorElement) {
+      const portalPosition = getRelativePosition(position, anchorElement, portalElement);
+      setPortalPosition(portalPosition);
     }
+  }, [portalElement, anchorElement, position]);
+
+
+  // subscribe to window resize and clean up on unmount
+  React.useEffect(() => {
+    function onWindowResize() {
+      if (open) {
+        updatePortalPosition();
+      }
+    }
+
+    window.addEventListener<'resize'>('resize', onWindowResize);
 
     return () => {
-      window.removeEventListener<'blur'>('blur', handleOnBlur);
-      document.removeEventListener<'mousedown'>('mousedown', handleMouseDown);
+      window.removeEventListener<'resize'>('resize', onWindowResize);
     }
-  }, []);
+  }, [open, updatePortalPosition]);
 
 
-  function renderPortal() {
-    const {
-      current
-    } = triggerRef;
-
-    if (current) {
-      return (
-        <PortalContainer
-          className={className}
-          position={'absolute'}
-          top={current.offsetTop + current.offsetHeight}
-          left={current.offsetLeft}
-          ref={floaterRef}
-          {...getEventsForTrigger()}
-        >
-          {children}
-        </PortalContainer>
-      );
-    }
-  }
-
-  function handleMouseDown(e: Event) {
-    const {
-      current
-    } = floaterRef;
-
-    if (current && current.contains(e.target as Node)) {
-      return;
+  // on open changes, update the portal position
+  React.useEffect(() => {
+    if (open) {
+      updatePortalPosition()
     } else {
-      setShowFloater(false);
+      setPortalPosition(null);
     }
-  }
+  },[open, updatePortalPosition]);
 
-  function handleMouseEnter() {
-    setShowFloater(true);
-  }
-
-  function handleMouseLeave() {
-    setShowFloater(false);
-  }
-
-  function handleOnClick() {
-    setShowFloater(true);
-  }
-
-  function handleOnFocus() {
-    setShowFloater(true);
-  }
-
-  function handleOnBlur() {
-    setShowFloater(false);
-  }
-
-  function getEventsForTrigger(): any {
-    const TRIGGER_EVENT_MAP = {
-      hover: {
-        onMouseEnter: handleMouseEnter,
-        onMouseLeave: handleMouseLeave
-      },
-      click: {
-        onClick: handleOnClick,
-        onFocus: handleOnFocus
-      }
-    };
-
-    return TRIGGER_EVENT_MAP[triggerType || 'hover'];
-  }
-
-  // Enforce only a single child is passed
-  const child = React.Children.only(triggerComponent) as React.ReactElement;
-
-  // Clone the triggerComponent and attach a ref to it
-  const triggerClone = React.cloneElement(child, {
-    ...getEventsForTrigger(),
-    ref: triggerRef
-  });
+  const portalVisibility: boolean = (portalElement !== null && portalPosition !== null);
 
   return (
-    <React.Fragment>
-      {triggerClone}
-      <Portal
-        container={props.floaterMountNode}
-      >
-        {renderPortal()}
-      </Portal>
-    </React.Fragment>
-  );
+    <AnimatePresence>
+      {(open && anchorElement) &&
+        <Portal
+          container={container}
+          disablePortal={disablePortal}
+        >
+          <motion.div
+            {...animationProps}
+          >
+            <Container
+              role={"tooltip"}
+              style={{
+                position: 'absolute',
+                width: matchAnchorWidth ?
+                  `${anchorElement.offsetWidth}px` :
+                  'auto',
+                ...portalPosition
+              }}
+              ref={handleRef}
+              portalVisibility={portalVisibility}
+            >
+              {children}
+            </Container>
+          </motion.div>
+        </Portal>
+      }
+    </AnimatePresence>
+  )
 };
 
 Floater.defaultProps = {
-  children: '',
-  floaterMountNode: document.body,
-  triggerComponent: null,
-  triggerType: 'hover'
+  animationProps: {
+    initial: { opacity: 0 },
+    animate: { opacity: 1 },
+    exit: { opacity: 0 },
+    transition: { duration: 0.3 }
+  },
+  disablePortal: false,
+  container: undefined,
+  matchAnchorWidth: false,
+  open: false,
+  position: 'left'
 };
+
+

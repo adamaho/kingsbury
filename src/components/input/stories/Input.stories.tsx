@@ -19,7 +19,7 @@ stories.add(
   'Default',
   () => (
     <Container>
-      <Input onChange={(e) => console.log(e.target.value)} placeholder="placeholder" />
+      <Input />
     </Container>
   ),
   { info: { propTablesExclude: [Container] } }

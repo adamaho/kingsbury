@@ -13,5 +13,5 @@ export const useAfterMountEffect = (cb: () => void, deps: any[]) => {
     } else {
       didMount.current = true;
     }
-  }, deps);
+  }, [cb, deps]);
 };

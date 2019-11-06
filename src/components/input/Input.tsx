@@ -7,6 +7,7 @@ import styled, {
 import {
   theme
 } from '../../theme';
+import {SyntheticEvent} from "react";
 
 export interface InputProps {
 
@@ -35,13 +36,13 @@ export interface InputProps {
   label?: React.ReactNode;
 
   /** Function to handle blur event */
-  onBlur?: React.EventHandler<any>;
+  onBlur?: React.EventHandler<SyntheticEvent>;
 
   /** Function to handle change event */
-  onChange?: React.EventHandler<any>;
+  onChange?: React.EventHandler<SyntheticEvent>;
 
   /** Function to handle focus event */
-  onFocus?: React.EventHandler<any>;
+  onFocus?: React.EventHandler<SyntheticEvent>;
 
   /** Placeholder for the input */
   placeholder?: string;
@@ -53,7 +54,7 @@ export interface InputProps {
   inputSize?: 'small' | 'large';
 
   /** Ref to be passed to the input */
-  ref?: React.Ref<any> | null
+  ref?: React.Ref<HTMLInputElement> | null;
 
   /** Global theme in ThemeProvider */
   theme?: any;
@@ -74,7 +75,7 @@ const Error = styled.div<any>`
   color: ${(props) => props.theme.colors.danger};
 `;
 
-const StyledInput = styled.input<any>`
+const StyledInput = styled.input<InputProps>`
   height: ${(props) => props.theme.input.heightSmall};
   font-size: ${(props) => props.theme.input.fontSizeSmall};
 
@@ -143,7 +144,7 @@ const StyledInput = styled.input<any>`
   }
 `;
 
-export const Input: React.FunctionComponent<InputProps> = React.forwardRef<InputProps, any>((props, ref) => {
+export const Input: React.FunctionComponent<InputProps> = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const {
     className,
     disabled,
@@ -163,7 +164,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef<Input
     value
   } = props;
 
-  function onChangeHandler(e: Event) {
+  function onChangeHandler(e: SyntheticEvent) {
     if (onChange) {
       onChange(e);
     }
@@ -205,7 +206,7 @@ Input.defaultProps = {
   className: '',
   disabled: false,
   error: '',
-  errorComponent: (error) => <div>{error}</div>, // eslint-disable-line
+  errorComponent: (error) => <div>{error}</div>,
   htmlType: undefined,
   id: undefined,
   name: undefined,

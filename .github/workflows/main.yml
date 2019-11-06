@@ -1,9 +1,9 @@
-name: tests
+name: Kingsbury
 on: [push]
 
 jobs:
-  test:
-    name: Test
+  main-tests:
+    name: Test and Lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -12,3 +12,4 @@ jobs:
           node-version: '10.16'
       - run: npm install
       - run: npm test
+      - run: npm run lint

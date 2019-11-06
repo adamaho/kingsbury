@@ -8,12 +8,19 @@ import {
   theme
 } from '../../theme';
 
-import Header from './Header';
-import Footer from './Footer';
+import {
+  Header,
+  HeaderProps
+} from './Header';
+
+import {
+  Footer,
+  FooterProps
+} from './Footer';
 
 interface CardFunctionComponent<T> extends React.FunctionComponent<T> {
-  Header: any;
-  Footer: any
+  Header: React.FunctionComponent<HeaderProps>;
+  Footer: React.FunctionComponent<FooterProps>;
 }
 
 interface CardProps {

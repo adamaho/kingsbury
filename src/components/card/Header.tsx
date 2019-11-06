@@ -42,5 +42,3 @@ Header.defaultProps = {
   className: '',
   theme
 };
-
-export default Header;

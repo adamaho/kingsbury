@@ -45,7 +45,7 @@ interface CollapseProps {
   collapseType?: 'stack' | 'panel';
 
   /** Function to handle when collapse state changes */
-  onChange?: (itemKey: string | number) => void,
+  onChange?: (itemKey: string | number) => void;
 
   /** Global theme in ThemeProvider */
   theme?: any;
