@@ -6,7 +6,7 @@ export interface PortalProps {
   children?: React.ReactNode;
 
   /** Portal node to mount against */
-  container?: any;
+  container?: HTMLElement;
 
   /** Disables Portal behaviour and returns node to the parent DOM hierarchy */
   disablePortal?: boolean;
@@ -19,7 +19,7 @@ export const Portal: React.FunctionComponent<PortalProps> = (props) => {
     disablePortal
   } = props;
 
-  const [mountNode, setMountNode] = React.useState(null);
+  const [mountNode, setMountNode] = React.useState<HTMLElement | null>(null);
 
   React.useEffect(() => {
     if (!disablePortal) {
@@ -32,7 +32,7 @@ export const Portal: React.FunctionComponent<PortalProps> = (props) => {
     return React.cloneElement(children as React.ReactElement);
   }
 
-  // @ts-ignore
+
   return mountNode ? ReactDOM.createPortal(children, mountNode): mountNode;
 };
 

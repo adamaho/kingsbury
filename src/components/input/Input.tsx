@@ -57,7 +57,7 @@ export interface InputProps {
   ref?: React.Ref<HTMLInputElement> | null;
 
   /** Global theme in ThemeProvider */
-  theme?: any; // eslint-disable-line
+  theme?: any;
 
   /** value of the input */
   value?: string;
@@ -71,7 +71,6 @@ const Label = styled.label`
   font-size: 16px;
 `;
 
-// eslint-disable-next-line
 const Error = styled.div<any>`
   color: ${(props) => props.theme.colors.danger};
 `;
@@ -207,7 +206,7 @@ Input.defaultProps = {
   className: '',
   disabled: false,
   error: '',
-  errorComponent: (error) => <div>{error}</div>, // eslint-disable-line
+  errorComponent: (error) => <div>{error}</div>,
   htmlType: undefined,
   id: undefined,
   name: undefined,

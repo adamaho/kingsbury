@@ -48,7 +48,7 @@ interface CollapseProps {
   onChange?: (itemKey: string | number) => void;
 
   /** Global theme in ThemeProvider */
-  theme?: any; // eslint-disable-line
+  theme?: any;
 }
 
 interface CollapseState {

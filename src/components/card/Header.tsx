@@ -13,7 +13,7 @@ export interface HeaderProps {
   className?: string;
 
   /** Global theme in ThemeProvider */
-  theme?: any; // eslint-disable-line
+  theme?: any;
 }
 
 const StyledHeader = styled.div`

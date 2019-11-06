@@ -34,7 +34,7 @@ interface CardProps {
   onClick?: () => void;
 
   /** Global theme in ThemeProvider */
-  theme?: any; // eslint-disable-line
+  theme?: any;
 }
 
 const Container = styled.div`

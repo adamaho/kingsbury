@@ -22,7 +22,6 @@ import {
 } from "../../hooks";
 
 
-
 interface AccordionFunctionComponent<T = {}> extends React.FunctionComponent<T> {
   Item: React.FunctionComponent<AccordionItemProps>;
 }

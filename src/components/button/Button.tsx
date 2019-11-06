@@ -28,7 +28,7 @@ export interface ButtonProps {
   ref?: React.Ref<HTMLButtonElement>;
 
   /** Global theme in ThemeProvider */
-  theme?: any; // eslint-disable-line
+  theme?: any;
 }
 
 const defaultButtonType = 'primary';

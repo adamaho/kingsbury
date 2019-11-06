@@ -13,7 +13,7 @@ export interface FooterProps {
   className?: string;
 
   /** Global theme in ThemeProvider */
-  theme?: any; // eslint-disable-line
+  theme?: any;
 }
 
 const StyledFooter = styled.div`

@@ -20,7 +20,7 @@ const StyledCollapseContent = styled.div`
   height: 200px;
 `;
 
-export const CollapseContent = ({ children }: any) => ( // eslint-disable-line
+export const CollapseContent = ({ children }: any) => (
   <StyledCollapseContent>
     {children}
   </StyledCollapseContent>
