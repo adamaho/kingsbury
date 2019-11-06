@@ -3,3 +3,6 @@
 /.github/*
 /.idea/*
 /assets/*
+/src/**/*.spec.tsx
+/src/**/*.stories.tsx
+/src/**/*.components.tsx

@@ -9,7 +9,7 @@ import {
 
 interface AccordionContext {
   accordionType?: AccordionType;
-  itemGap: ItemGapType;
+  itemGap?: ItemGapType;
   selectedItems: SelectedItemsType;
   onChange?: (itemKey: ItemKeyType) => void;
 }
@@ -17,5 +17,4 @@ interface AccordionContext {
 export const AccordionContext = React.createContext<AccordionContext>({
   accordionType: 'stack',
   selectedItems: [],
-  itemGap: 20
 });

@@ -10,7 +10,7 @@ import {
 } from './context';
 
 interface CollapseSpacerProps {
-  itemGap: number;
+  itemGap?: number;
 }
 
 export interface AccordionItemProps {

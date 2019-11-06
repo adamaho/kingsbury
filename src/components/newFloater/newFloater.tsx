@@ -13,9 +13,9 @@ import {
 
 import {
   Position,
+  PositionValue,
   getRelativePosition
 } from "../utils/getRelativePosition";
-
 
 interface NewFloaterProps {
   /** Content to show in the portal */
@@ -43,7 +43,7 @@ interface NewFloaterProps {
   position: Position;
 }
 
-const Container = styled.div<any>`
+const Container = styled.div<{ portalVisibility: boolean }>`
   visibility: ${(props) => props.portalVisibility ?
     'visible' :
     'hidden'
@@ -63,45 +63,48 @@ export const NewFloater: React.FunctionComponent<NewFloaterProps> = (props) => {
   } = props;
 
   const [portalElement, setPortalElement] = React.useState<HTMLDivElement | null>(null);
-  const [portalPosition, setPortalPosition] = React.useState<any>(null);
+  const [portalPosition, setPortalPosition] = React.useState<PositionValue | null>(null);
 
+  // set the ref when react calls it back
   const handleRef = React.useCallback((ref) => {
     setPortalElement(ref);
   },[setPortalElement]);
 
-  function onWindowResize() {
-    if (open) {
-      updatePortalPosition();
+  // update the portal position
+  const updatePortalPosition = React.useCallback(() => {
+    if (portalElement && anchorElement) {
+      const portalPosition = getRelativePosition(position, anchorElement, portalElement);
+      setPortalPosition(portalPosition);
     }
-  }
+  }, [portalElement, anchorElement, position]);
 
+
+  // subscribe to window resize and clean up on unmount
   React.useEffect(() => {
+    function onWindowResize() {
+      if (open) {
+        updatePortalPosition();
+      }
+    }
+
     window.addEventListener<'resize'>('resize', onWindowResize);
 
     return () => {
       window.removeEventListener<'resize'>('resize', onWindowResize);
     }
-  }, [onWindowResize]);
+  }, [open, updatePortalPosition]);
 
+
+  // on open changes, update the portal position
   React.useEffect(() => {
     if (open) {
       updatePortalPosition()
-    }
-  },[open, portalElement, position, updatePortalPosition]);
-
-  React.useEffect(() => {
-    if (!open) {
+    } else {
       setPortalPosition(null);
     }
-  }, [open]);
+  },[open, updatePortalPosition]);
 
-  function updatePortalPosition() {
-    if (portalElement && anchorElement) {
-      const portalPosition = getRelativePosition(position, anchorElement, portalElement);
-      setPortalPosition(portalPosition);
-      console.log(portalPosition);
-    }
-  }
+  const portalVisibility: boolean = (portalElement !== null && portalPosition !== null);
 
   return (
     <AnimatePresence>
@@ -123,7 +126,7 @@ export const NewFloater: React.FunctionComponent<NewFloaterProps> = (props) => {
                 ...portalPosition
               }}
               ref={handleRef}
-              portalVisibility={portalElement && portalPosition}
+              portalVisibility={portalVisibility}
             >
               {children}
             </Container>

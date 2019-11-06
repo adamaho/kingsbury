@@ -13,7 +13,7 @@ export interface HeaderProps {
   className?: string;
 
   /** Global theme in ThemeProvider */
-  theme?: any;
+  theme?: any; // eslint-disable-line
 }
 
 const StyledHeader = styled.div`
@@ -42,5 +42,3 @@ Header.defaultProps = {
   className: '',
   theme
 };
-
-export default Header;

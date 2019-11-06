@@ -15,7 +15,7 @@ interface ContentContainerProps {
 interface ContentProps {
   collapseType?: 'panel' | 'stack';
   ghost?: boolean;
-  theme?: any;
+  theme?: any; // eslint-disable-line
 }
 
 export const ContentContainer: React.FunctionComponent<ContentContainerProps> = ({ children, animate }) => {

@@ -13,7 +13,7 @@ export interface FooterProps {
   className?: string;
 
   /** Global theme in ThemeProvider */
-  theme?: any;
+  theme?: any; // eslint-disable-line
 }
 
 const StyledFooter = styled.div`
@@ -43,5 +43,3 @@ Footer.defaultProps = {
   className: '',
   theme
 };
-
-export default Footer;

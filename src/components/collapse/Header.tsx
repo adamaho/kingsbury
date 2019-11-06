@@ -21,7 +21,7 @@ interface HeaderProps {
   onClick: () => void;
 
   /** Global theme in ThemeProvider */
-  theme: any;
+  theme: any; // eslint-disable-line
 }
 
 interface StyleHeaderProps {
