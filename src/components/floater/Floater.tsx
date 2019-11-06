@@ -58,7 +58,7 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
       window.removeEventListener<'blur'>('blur', handleOnBlur);
       document.removeEventListener<'mousedown'>('mousedown', handleMouseDown);
     }
-  }, []);
+  }, [triggerType]);
 
 
   function renderPortal() {

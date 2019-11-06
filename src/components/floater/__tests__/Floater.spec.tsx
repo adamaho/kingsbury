@@ -84,8 +84,8 @@ describe('Floater', () => {
 
     let wrapper: any;
     let trigger: any;
-    let map: any = {};
-    let windowMap: any = {};
+    const map: any = {};
+    const windowMap: any = {};
     const container = document.createElement('div');
 
     beforeEach(() => {

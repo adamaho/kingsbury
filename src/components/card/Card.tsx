@@ -13,7 +13,7 @@ import Footer from './Footer';
 
 interface CardFunctionComponent<T> extends React.FunctionComponent<T> {
   Header: any;
-  Footer: any
+  Footer: any;
 }
 
 interface CardProps {

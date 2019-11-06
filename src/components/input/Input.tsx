@@ -53,7 +53,7 @@ export interface InputProps {
   inputSize?: 'small' | 'large';
 
   /** Ref to be passed to the input */
-  ref?: React.Ref<any> | null
+  ref?: React.Ref<any> | null;
 
   /** Global theme in ThemeProvider */
   theme?: any;

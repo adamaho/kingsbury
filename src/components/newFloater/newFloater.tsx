@@ -87,7 +87,7 @@ export const NewFloater: React.FunctionComponent<NewFloaterProps> = (props) => {
     if (open) {
       updatePortalPosition()
     }
-  },[portalElement, position]);
+  },[open, portalElement, position, updatePortalPosition]);
 
   React.useEffect(() => {
     if (!open) {

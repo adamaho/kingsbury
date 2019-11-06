@@ -13,7 +13,9 @@
     "build:js": "babel src --out-dir lib --extensions \".ts,.tsx\" --source-maps inline",
     "storybook": "start-storybook -p 9000 --quiet",
     "storybook:build": "build-storybook -o build/storybook/static",
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint '**/*.{ts,tsx}'",
+    "lint:fix": "eslint '**/*.{ts,tsx}' --fix"
   },
   "dependencies": {
     "framer-motion": "^1.6.12",
@@ -62,6 +64,7 @@
     "cache-loader": "^3.0.1",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
+    "eslint": "6.6.0",
     "eslint-plugin-react-hooks": "2.2.0",
     "install": "^0.13.0",
     "jest": "^24.8.0",
