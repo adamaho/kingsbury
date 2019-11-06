@@ -1,5 +1,21 @@
 import * as React from 'react';
 
-export const AccordionContext = React.createContext<any>({
-  accordionType: 'stack'
+import {
+  AccordionType,
+  ItemGapType,
+  SelectedItemsType,
+  ItemKeyType
+} from "./types";
+
+interface AccordionContext {
+  accordionType?: AccordionType;
+  itemGap: ItemGapType;
+  selectedItems: SelectedItemsType;
+  onChange?: (itemKey: ItemKeyType) => void;
+}
+
+export const AccordionContext = React.createContext<AccordionContext>({
+  accordionType: 'stack',
+  selectedItems: [],
+  itemGap: 20
 });

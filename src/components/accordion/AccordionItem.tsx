@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import {
   Collapse
-} from '../collapse/Collapse';
+} from '..';
 
 import {
   AccordionContext
@@ -44,5 +44,3 @@ export const AccordionItem: React.FunctionComponent<AccordionItemProps> = (props
     }}
   </AccordionContext.Consumer>
 );
-
-export default AccordionItem;
