@@ -6,7 +6,7 @@ export interface PortalProps {
   children?: React.ReactNode;
 
   /** Portal node to mount against */
-  container?: HTMLElement;
+  container?: HTMLElement | null;
 
   /** Disables Portal behaviour and returns node to the parent DOM hierarchy */
   disablePortal?: boolean;
