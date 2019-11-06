@@ -10,8 +10,8 @@ import {
 } from '../..';
 
 import {
-  NewFloater
-} from '../newFloater';
+  Floater
+} from '../Floater';
 
 const Container = styled.div`
   background: red;
@@ -35,9 +35,14 @@ stories.add(
         >
           Show Portal
         </Button>
-        <NewFloater position={'right'} anchorElement={anchorRef.current} open={showPortal} disablePortal>
+        <Floater
+          position={'right'}
+          anchorElement={anchorRef.current}
+          open={showPortal}
+          disablePortal
+        >
           <Container />
-        </NewFloater>
+        </Floater>
       </div>
     );
   },
