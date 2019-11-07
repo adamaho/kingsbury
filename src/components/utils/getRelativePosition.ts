@@ -61,7 +61,7 @@ const getRightPosition = (positionArgs: PositionArgs): PositionValue => {
   const centerPointY = (anchorElement.offsetHeight/2) + anchorElement.offsetTop;
 
   return {
-    top: Math.abs(centerPointY - (floaterElement.offsetHeight/2)),
+    top: centerPointY - (floaterElement.offsetHeight/2),
     left: anchorElement.offsetLeft + anchorDims.width
   };
 };
@@ -82,6 +82,7 @@ export const getRelativePosition = (desiredPosition: Position, anchorElement: HT
       if (distanceToTop <= 0) {
         return getBottomPosition(positionArgs);
       }
+
       return getTopPosition(positionArgs);
     }
     case 'right': {

@@ -4,5 +4,6 @@
 /.idea/*
 /assets/*
 /src/**/*.spec.tsx
+/src/**/*.spec.ts
 /src/**/*.stories.tsx
 /src/**/*.components.tsx

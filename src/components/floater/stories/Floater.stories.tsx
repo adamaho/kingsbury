@@ -30,6 +30,7 @@ stories.add(
     return (
       <div>
         <Button
+          style={{ position: 'absolute', top: 200, left: 600, height: 30, width: 100}}
           ref={anchorRef}
           onClick={() => setShowPortal(!showPortal)}
         >

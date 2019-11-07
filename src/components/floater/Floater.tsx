@@ -100,6 +100,8 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
 
   const portalVisibility: boolean = (portalElement !== null && portalPosition !== null);
 
+  console.log(portalPosition);
+
   return (
     <AnimatePresence>
       {(open && anchorElement) && (
