@@ -28,7 +28,7 @@ stories.add(
     const anchorRef = React.useRef(null);
 
     return (
-      <div style={{ paddingLeft: 1000 }}>
+      <div>
         <Button
           ref={anchorRef}
           onClick={() => setShowPortal(!showPortal)}

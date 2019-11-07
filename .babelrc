@@ -14,8 +14,9 @@
         }
       ]
   ],
-  "ignore": [
-    "**/*.stories.jsx",
-    "**/*.spec.jsx"
-  ]
+  "env": {
+    "test": {
+      "plugins": ["@babel/plugin-transform-runtime"]
+    }
+  }
 }

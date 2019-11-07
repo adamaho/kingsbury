@@ -5,33 +5,40 @@ import {
   AnimatePresence,
   motion,
   MotionProps
-} from "framer-motion";
+} from 'framer-motion';
 
 import {
   Portal
-} from "..";
+} from '..';
 
 import {
   Position,
   PositionValue,
   getRelativePosition
-} from "../utils/getRelativePosition";
+} from '../utils/getRelativePosition';
+
+import {
+  useResizeEffect
+} from "../../hooks/useResizeEffect";
 
 interface FloaterProps {
-  /** Content to show in the portal */
+  /** Element to anchor portal to */
   anchorElement: HTMLDivElement | null;
 
-  /** Content to show in the portal */
+  /** Animation props for motion.div */
   animationProps?: MotionProps;
 
   /** Content to show in the portal */
   children: React.ReactNode;
 
-  /** Portal node to mount against */
+  /** Portal node to mount against (defaults to document.body) */
   container?: HTMLElement | null;
 
   /** Disables portal behaviour and returns node to Parents DOM hierarchy */
   disablePortal?: boolean;
+
+  /** Disables portal behaviour and returns node to Parents DOM hierarchy */
+  floaterKey?: string | number;
 
   /** Portal will match the anchor element width when true */
   matchAnchorWidth?: boolean;
@@ -57,6 +64,7 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
     children,
     container,
     disablePortal,
+    floaterKey,
     matchAnchorWidth,
     open,
     position
@@ -78,22 +86,8 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
     }
   }, [portalElement, anchorElement, position]);
 
-
-  // subscribe to window resize and clean up on unmount
-  React.useEffect(() => {
-    function onWindowResize() {
-      if (open) {
-        updatePortalPosition();
-      }
-    }
-
-    window.addEventListener<'resize'>('resize', onWindowResize);
-
-    return () => {
-      window.removeEventListener<'resize'>('resize', onWindowResize);
-    }
-  }, [open, updatePortalPosition]);
-
+  // subscribe to window size
+  const windowSize = useResizeEffect(50);
 
   // on open changes, update the portal position
   React.useEffect(() => {
@@ -102,18 +96,19 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
     } else {
       setPortalPosition(null);
     }
-  },[open, updatePortalPosition]);
+  },[open, windowSize, updatePortalPosition]);
 
   const portalVisibility: boolean = (portalElement !== null && portalPosition !== null);
 
   return (
     <AnimatePresence>
-      {(open && anchorElement) &&
+      {(open && anchorElement) && (
         <Portal
           container={container}
           disablePortal={disablePortal}
         >
           <motion.div
+            key={floaterKey}
             {...animationProps}
           >
             <Container
@@ -132,6 +127,7 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
             </Container>
           </motion.div>
         </Portal>
+        )
       }
     </AnimatePresence>
   )
@@ -146,6 +142,7 @@ Floater.defaultProps = {
   },
   disablePortal: false,
   container: undefined,
+  floaterKey: 'floater',
   matchAnchorWidth: false,
   open: false,
   position: 'left'
