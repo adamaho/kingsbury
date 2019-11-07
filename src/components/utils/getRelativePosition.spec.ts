@@ -94,5 +94,4 @@ describe('util:getRelativePosition', () => {
       expect(position).toStrictEqual({ top: 80, left: 200 });
     });
   })
-
 });
