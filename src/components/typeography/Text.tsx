@@ -16,8 +16,8 @@ interface TextProps {
   theme?: any;
 }
 
-const StyledText = styled.span<TextProps>`
-  font-size: ${(props) => props.theme.typeography[props.textStyle || 'h1'].fontSize};
+const StyledText = styled.span<any>`
+  font-size: ${(props) => props.theme.typeography[props.textStyle].fontSize};
 `;
 
 export const Text: React.FunctionComponent<TextProps> = (props) => {
