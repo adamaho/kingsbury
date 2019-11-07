@@ -87,7 +87,7 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
   }, [portalElement, anchorElement, position]);
 
   // subscribe to window size
-  const windowSize = useResizeEffect(50);
+  const windowSize = useResizeEffect();
 
   // on open changes, update the portal position
   React.useEffect(() => {
@@ -99,8 +99,6 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
   },[open, windowSize, updatePortalPosition]);
 
   const portalVisibility: boolean = (portalElement !== null && portalPosition !== null);
-
-  console.log(portalPosition);
 
   return (
     <AnimatePresence>

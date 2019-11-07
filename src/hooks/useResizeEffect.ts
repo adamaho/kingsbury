@@ -9,7 +9,7 @@ interface WindowSize {
 /**
  * This Effect will provide resize listening capabilities for a component
  */
-export const useResizeEffect = (debounceTime: number) => {
+export const useResizeEffect = () => {
   function getWindowSize() {
     return {
       width: window.innerWidth,
@@ -21,7 +21,13 @@ export const useResizeEffect = (debounceTime: number) => {
   React.useEffect(() => {
     const handleEvent = _.debounce(() => {
       setWindowSize(getWindowSize());
-    }, debounceTime);
+    },
+    100,
+    {
+      leading: true,
+      trailing: true
+    }
+    );
 
     window.addEventListener<'resize'>('resize', handleEvent);
 
