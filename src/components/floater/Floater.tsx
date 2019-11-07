@@ -21,6 +21,10 @@ import {
   useResizeEffect
 } from "../../hooks/useResizeEffect";
 
+import {
+  CSSProperties
+} from "react";
+
 interface FloaterProps {
   /** Element to anchor portal to */
   anchorElement: HTMLDivElement | null;
@@ -37,7 +41,7 @@ interface FloaterProps {
   /** Disables portal behaviour and returns node to Parents DOM hierarchy */
   disablePortal?: boolean;
 
-  /** Disables portal behaviour and returns node to Parents DOM hierarchy */
+  /** unique key used for motion to know when the floater is unmounting */
   floaterKey?: string | number;
 
   /** Portal will match the anchor element width when true */
@@ -48,6 +52,9 @@ interface FloaterProps {
 
   /** Position of the floater with respect the the anchor element */
   position: Position;
+
+  /** style of the motion div. Typically used for height/width transitions */
+  style?: CSSProperties;
 }
 
 const Container = styled.div<{ portalVisibility: boolean }>`
@@ -67,7 +74,8 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
     floaterKey,
     matchAnchorWidth,
     open,
-    position
+    position,
+    style
   } = props;
 
   const [portalElement, setPortalElement] = React.useState<HTMLDivElement | null>(null);
@@ -93,8 +101,6 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
   React.useEffect(() => {
     if (open) {
       updatePortalPosition()
-    } else {
-      setPortalPosition(null);
     }
   },[open, windowSize, updatePortalPosition]);
 
@@ -109,17 +115,17 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
         >
           <motion.div
             key={floaterKey}
+            style={{
+              position: 'absolute',
+              width: matchAnchorWidth ?
+                `${anchorElement.offsetWidth}px` :
+                'auto',
+              ...portalPosition,
+              ...style
+            }}
             {...animationProps}
           >
             <Container
-              role={"tooltip"}
-              style={{
-                position: 'absolute',
-                width: matchAnchorWidth ?
-                  `${anchorElement.offsetWidth}px` :
-                  'auto',
-                ...portalPosition
-              }}
               ref={handleRef}
               portalVisibility={portalVisibility}
             >
