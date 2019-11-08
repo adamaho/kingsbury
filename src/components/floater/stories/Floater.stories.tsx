@@ -50,8 +50,6 @@ stories.add(
       }
     };
 
-    console.log('render');
-
     return (
       <div>
         <Button
