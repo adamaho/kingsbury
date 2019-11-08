@@ -80,7 +80,7 @@ const TableComponent: React.FunctionComponent<any> = (config: any) => {
 
   return (
     <div>
-      <Title>{config.type.__docgenInfo.description || config.type.displayName}</Title>
+      <Title>{config.type.__docgenInfo.description || config.type.displayName} Props</Title>
       <Table>
         <THead>
           <tr>
