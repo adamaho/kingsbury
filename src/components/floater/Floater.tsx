@@ -35,19 +35,19 @@ interface FloaterProps {
   /** Content to show in the portal */
   children: React.ReactNode;
 
-  /** Portal node to mount against (defaults to document.body) */
+  /** Floater node to mount against (defaults to document.body) */
   container?: HTMLElement | null;
 
-  /** Disables portal behaviour and returns node to Parents DOM hierarchy */
-  disablePortal?: boolean;
+  /** Disables floater behaviour and returns node to Parents DOM hierarchy */
+  disableFloater?: boolean;
 
-  /** unique key used for motion to know when the floater is unmounting */
+  /** Unique key used for motion to know when the floater is unmounting */
   floaterKey?: string | number;
 
-  /** Portal will match the anchor element width when true */
+  /** Floater will match the anchor element width when true */
   matchAnchorWidth?: boolean;
 
-  /** Whether or not to show portal */
+  /** Whether or not to show floater */
   open?: boolean;
 
   /** Position of the floater with respect the the anchor element */
@@ -70,7 +70,7 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
     animationProps,
     children,
     container,
-    disablePortal,
+    disableFloater,
     floaterKey,
     matchAnchorWidth,
     open,
@@ -111,7 +111,7 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
       {(open && anchorElement) && (
         <Portal
           container={container}
-          disablePortal={disablePortal}
+          disablePortal={disableFloater}
         >
           <motion.div
             key={floaterKey}
@@ -146,7 +146,7 @@ Floater.defaultProps = {
     exit: { opacity: 0 },
     transition: { duration: 0.3 }
   },
-  disablePortal: false,
+  disableFloater: false,
   container: undefined,
   floaterKey: 'floater',
   matchAnchorWidth: false,

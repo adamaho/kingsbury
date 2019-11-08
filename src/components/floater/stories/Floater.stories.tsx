@@ -81,7 +81,7 @@ stories.add(
             transition: { duration: 0.3 }
           }}
           matchAnchorWidth
-          disablePortal
+          disableFloater
         >
           <Container />
         </Floater>

@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 import {
   renderHook,
   act
@@ -8,14 +10,17 @@ import {
 } from './useAfterMountEffect';
 
 describe('hooks:useAfterMountEffect', () => {
-  it('should return the size of the window', () => {
+  it('should call the callback on the second render', () => {
     const mockCb = jest.fn();
+
     const {
       rerender
-    } = renderHook(() => useAfterMountEffect(mockCb, []));
+    } = renderHook(({ testValue }) => {
+      useAfterMountEffect(mockCb, [testValue]);
+    }, { initialProps: { testValue: false }});
 
     expect(mockCb).toBeCalledTimes(0);
-    rerender();
+    rerender({ testValue: true });
     expect(mockCb).toBeCalled();
   });
 });
