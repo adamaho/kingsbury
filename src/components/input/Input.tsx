@@ -65,6 +65,9 @@ export interface InputProps {
   /** Ref to be passed to the input */
   ref?: React.Ref<HTMLInputElement> | null;
 
+  /** Disables typing in the input but keeps focus */
+  readOnly?: boolean;
+
   /** Global theme in ThemeProvider */
   theme?: any;
 
@@ -172,6 +175,10 @@ const StyledInput = styled.input<InputProps>`
 
   box-sizing: border-box;
 
+  &:read-only {
+    cursor: pointer;
+  }
+
   &::placeholder {
     color: ${(props) => props.theme.input.placeholderColor};
   }
@@ -216,6 +223,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef<HTMLI
     inputSuffix,
     borderType,
     theme: themeProp,
+    readOnly,
     value
   } = props;
 
@@ -250,6 +258,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef<HTMLI
           inputSuffix={inputSuffix}
           inputPrefix={inputPrefix}
           ref={ref}
+          readOnly={readOnly}
           theme={themeProp}
           value={value}
         />
@@ -288,6 +297,7 @@ Input.defaultProps = {
   inputSize: 'small',
   inputPrefix: null,
   inputSuffix: null,
+  readOnly: false,
   theme,
   value: undefined
 };
