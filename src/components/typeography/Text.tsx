@@ -5,28 +5,40 @@ import {
   theme
 } from '../../theme';
 
+type TextStyle = 'h1' | 'h2' | 'h3' | 'h4' | 'p';
+
 interface TextProps {
   /** Text to render */
   children?: string | number;
 
   /** Text to render */
-  textStyle?: 'h1' | 'h2' | 'h3' | 'h4' | 'p';
+  textStyle: TextStyle;
 
   /** Global theme in ThemeProvider */
   theme?: any;
 }
 
-const StyledText = styled.span<any>`
+interface StyledTextProps {
+  textStyle: TextStyle;
+  theme: any;
+}
+
+const StyledText = styled.span<StyledTextProps>`
   font-size: ${(props) => props.theme.typeography[props.textStyle].fontSize};
 `;
 
 export const Text: React.FunctionComponent<TextProps> = (props) => {
   const {
-    children
+    children,
+    theme,
+    textStyle
   } = props;
 
   return (
-    <StyledText {...props}>
+    <StyledText
+      theme={theme}
+      textStyle={textStyle}
+    >
       {children}
     </StyledText>
   );
@@ -34,6 +46,5 @@ export const Text: React.FunctionComponent<TextProps> = (props) => {
 
 Text.defaultProps = {
   children: '',
-  textStyle: 'h1',
   theme
 };
