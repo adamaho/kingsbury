@@ -117,8 +117,9 @@ describe('Input', () => {
   });
 
   it('sets the value prop', () => {
+    const onChangeMock = jest.fn();
     const wrapper = mount(
-      <Input value={'test'} />
+      <Input value={'test'} onChange={onChangeMock} />
     );
 
     // @ts-ignore

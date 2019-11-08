@@ -91,7 +91,8 @@
       "!src/**/*.stories.tsx",
       "!src/**/*.components.tsx",
       "!src/**/icons/**",
-      "!src/styled/**"
+      "!src/styled/**",
+      "!src/theme/**"
     ],
     "coverageThreshold": {
       "global": {
