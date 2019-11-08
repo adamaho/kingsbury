@@ -72,6 +72,10 @@ export const theme: any = {
     heightSmall: '40px',
     heightLarge: '50px',
     placeholderColor: `${colors.lightGrey}`,
+    prefixWidth: 30, // used for calcs, must be a number
+    prefixLeft: '5px',
+    suffixWidth: 30, // used for calcs, must be a number
+    suffixRight: '5px'
   },
   icons: {
     close: {
