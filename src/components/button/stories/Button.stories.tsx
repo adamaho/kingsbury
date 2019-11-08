@@ -4,7 +4,9 @@ import {
   storiesOf
 } from '@storybook/react';
 
-import Button from '..';
+import {
+  Button
+} from '../Button';
 
 const stories = storiesOf('Button', module);
 
@@ -38,7 +40,7 @@ stories.add(
         </Button>
       </div>
       <div style={{ marginRight: '5px', display: 'inline-block' }}>
-        <Button disabled>
+        <Button disabled onClick={() => console.log('afasfdasdf')}>
           Disabled
         </Button>
       </div>

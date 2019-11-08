@@ -1,50 +1,46 @@
 import * as React from 'react';
-import * as enzyme from 'enzyme';
-import * as renderer from 'react-test-renderer';
 
-import Card from '..';
+import {
+  mount
+} from "enzyme";
+
+import {
+  Card
+} from '../Card';
 
 describe('Card', () => {
-  test('it renders without children', () => {
-    const tree = renderer.create(<Card />).toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
-  test('it renders header', () => {
-    const tree = renderer.create(
-      <Card>
-        <Card.Header />
-      </Card>
-    ).toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
-  test('it renders footer', () => {
-    const tree = renderer.create(
-      <Card>
-        <Card.Footer />
-      </Card>
-    ).toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
-  test('it renders with header and footer', () => {
-    const tree = renderer.create(
-      <Card>
-        <Card.Header />
-        <Card.Footer />
-      </Card>
-    ).toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
-  test('it calls onClick', () => {
-    const onClickMock = jest.fn();
-    const component = enzyme.mount(
-      <Card onClick={onClickMock} />
+  it('renders without children', () => {
+    const wrapper = mount(
+      <Card />
     );
 
-    component.find(Card).simulate('click');
-    expect(onClickMock).toHaveBeenCalled();
+    expect(wrapper.exists('Card__Container')).toBe(true);
+  });
+
+  it('renders header and footer', () => {
+    const wrapper = mount(
+      <Card>
+        <Card.Header>Header</Card.Header>
+        <Card.Footer>Footer</Card.Footer>
+      </Card>
+    );
+
+    expect(wrapper.exists('Header')).toBe(true);
+    expect(wrapper.exists('Footer')).toBe(true);
+  });
+
+  it('calls onClick handler', () => {
+    const onClickMock = jest.fn();
+
+    const wrapper = mount(
+      <Card onClick={onClickMock}>
+        <Card.Header>Header</Card.Header>
+        <Card.Footer>Footer</Card.Footer>
+      </Card>
+    );
+
+    wrapper.find('Card__Container').simulate('click');
+
+    expect(onClickMock).toBeCalledTimes(1);
   });
 });

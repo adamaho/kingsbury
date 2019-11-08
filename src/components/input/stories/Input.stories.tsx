@@ -4,7 +4,9 @@ import {
   storiesOf
 } from '@storybook/react';
 
-import Input from '..';
+import {
+  Input
+} from '../Input';
 
 import {
   Container,
@@ -17,7 +19,17 @@ stories.add(
   'Default',
   () => (
     <Container>
-      <Input onChange={(e) => console.log(e.target.value)} placeholder="placeholder" />
+      <Input />
+    </Container>
+  ),
+  { info: { propTablesExclude: [Container] } }
+);
+
+stories.add(
+  'Disabled',
+  () => (
+    <Container>
+      <Input onChange={(e) => console.log(e.target.value)} placeholder="placeholder" disabled/>
     </Container>
   ),
   { info: { propTablesExclude: [Container] } }

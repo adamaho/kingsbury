@@ -1,19 +1,21 @@
-import Avatar from './avatar';
-import Button from './button';
-import Card from './card';
-import Collapse from './collapse';
-import Input from './input';
-import Notice from './notice';
+import { Accordion } from './accordion/Accordion';
+import { Avatar } from './avatar/Avatar';
+import { Button } from './button/Button';
+import { Card } from './card/Card';
+import { Collapse } from './collapse/Collapse';
+import { Input } from './input/Input';
 import * as Icon from './icons';
-import Text from './typeography';
+import { Portal } from './portal/Portal';
+import { Text } from './typeography/Text';
 
 export {
+  Accordion,
   Avatar,
   Button,
   Card,
   Collapse,
   Icon,
   Input,
-  Notice,
+  Portal,
   Text
 };

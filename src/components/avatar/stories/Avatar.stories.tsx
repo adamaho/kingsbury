@@ -4,15 +4,15 @@ import {
   storiesOf
 } from '@storybook/react';
 
-import Avatar from '..';
+import {
+  Avatar
+} from '../Avatar';
 
 const stories = storiesOf('Avatar', module);
 
 stories.add(
   'Default',
   () => (
-    <div>
-      <Avatar src={<div>A</div>} />
-    </div>
+  	<Avatar src={<div>A</div>} />
   )
 );
