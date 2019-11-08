@@ -1,9 +1,9 @@
-name: tests
+name: docs
 on: [push]
 
 jobs:
   main-tests:
-    name: Test and Lint
+    name: Build Docs
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
