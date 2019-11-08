@@ -88,8 +88,6 @@ const Error = styled.div<any>`
 `;
 
 const InputFixContainer = styled.div`
-  display: flex;
-  align-items: center;
   position: relative;
   width: 100%;
 `;
@@ -232,15 +230,24 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef<HTMLI
       {label && (
         <Label>{label}</Label>
       )}
-      <InputFixContainer>
-        {inputPrefix && (
+        <InputFixContainer>
+          {inputPrefix && (
             <InputPrefix
               inputSize={inputSize}
               theme={themeProp}
             >
               {inputPrefix}
             </InputPrefix>
-        )}
+          )}
+          {inputSuffix && (
+            <InputSuffix
+              inputSize={inputSize}
+              theme={themeProp}
+            >
+              {inputSuffix}
+            </InputSuffix>
+          )}
+        </InputFixContainer>
         <StyledInput
           label={null}
           error={error}
@@ -262,15 +269,6 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef<HTMLI
           theme={themeProp}
           value={value}
         />
-        {inputSuffix && (
-            <InputSuffix
-              inputSize={inputSize}
-              theme={themeProp}
-            >
-              {inputSuffix}
-            </InputSuffix>
-        )}
-      </InputFixContainer>
       {(error && errorComponent) &&
         <Error theme={themeProp}>
           {errorComponent(error)}

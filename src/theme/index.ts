@@ -77,6 +77,13 @@ export const theme: any = {
       color: colors.darkGrey
     }
   },
+  paper: {
+    background: colors.white,
+    border: 'none',
+    borderColor: 'none',
+    borderRadius: '7px',
+    boxShadow: `0px 0px 4px rgba(${colors.blackRGB},0.20)`,
+  },
   typeography: {
     h1: {
       fontSize: '32px'

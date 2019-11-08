@@ -6,7 +6,7 @@ import {
 } from '@storybook/react';
 
 import {
-  Button
+  Button, Input
 } from '../..';
 
 import {
@@ -77,11 +77,9 @@ stories.add(
             initial: { opacity: 0 },
             animate: { opacity: 1 },
             exit: { opacity: 0 },
-            positionTransition: hasMountedFloater ? { type: 'tween' } : false,
-            transition: { duration: 0.3 }
+            positionTransition: hasMountedFloater ? { type: 'tween' } : false
           }}
           matchAnchorWidth
-          disableFloater
         >
           <Container />
         </Floater>
