@@ -50,13 +50,13 @@ export const Select: React.FunctionComponent = (props) => {
         readOnly
         inputSuffix={
           <motion.span
-            style={{ height: '24px', width: '24px'}}
+            style={{ height: '18px', width: '18px'}}
             initial={"closed"}
             exit={"closed"}
             animate={anchorElement == null ? 'closed' : 'open'}
             variants={chevronVariants}
           >
-            <SVGChevronBottom />
+            <SVGChevronBottom height={18} width={18}/>
           </motion.span>
         }
       />
