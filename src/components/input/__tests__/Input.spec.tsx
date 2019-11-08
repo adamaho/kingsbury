@@ -151,6 +151,15 @@ describe('Input', () => {
     expect(wrapper.exists('Input__InputSuffix')).toBe(true);
   });
 
+  it('sets the readOnly prop', () => {
+    const wrapper = mount(
+      <Input readOnly />
+    );
+
+    // @ts-ignore
+    expect(wrapper.find('input').getDOMNode().readOnly).toBe(true);
+  });
+
   it('calls onBlur handler', () => {
     const onBlurMock = jest.fn();
     const wrapper = mount(
