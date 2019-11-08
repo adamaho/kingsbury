@@ -32,7 +32,6 @@ export const ContentContainer: React.FunctionComponent<ContentContainerProps> = 
 
   return (
     <motion.div
-      className="rtk-collapse-content-container"
       initial="closed"
       exit="closed"
       animate={animate}

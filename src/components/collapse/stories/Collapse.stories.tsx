@@ -34,6 +34,7 @@ stories.add(
         header="Header"
         onChange={() => console.log('change')}
         itemKey={"test"}
+        defaultActive={true}
       >
         <CollapseContent />
       </Collapse>

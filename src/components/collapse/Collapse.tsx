@@ -102,10 +102,15 @@ export const Collapse: React.FunctionComponent<CollapseProps> = ({
     }
   }
 
-  useAfterMountEffect(() => {
+  const handleSetActive = React.useCallback(() => {
     setActive(active);
   }, [active]);
 
+  useAfterMountEffect(handleSetActive, [active]);
+  //
+  // useAfterMountEffect(() => {
+  //   setActive(active);
+  // }, [active]);
   return (
     <Container
       className={className}
@@ -142,7 +147,7 @@ Collapse.defaultProps = {
   active: undefined,
   children: '',
   className: '',
-  defaultActive: false,
+  defaultActive: undefined,
   ghost: false,
   header: '',
   onChange: undefined,

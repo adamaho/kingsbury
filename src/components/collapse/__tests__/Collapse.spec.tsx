@@ -109,6 +109,7 @@ describe('Collapse', () => {
 
     wrapper.find('Header__StyledHeader').simulate('click');
     expect(onChangeMock).toBeCalledWith('test');
+    expect(wrapper.find('Header').prop('open')).toBe(true);
   });
 
 });
