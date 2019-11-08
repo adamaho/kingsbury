@@ -14,8 +14,12 @@ import {
 } from '../Floater';
 
 const Container = styled.div`
-  background: red;
+  background: white;
+  margin-top: 5px;
   height: 100px;
+  
+  border-radius: 7px;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.20);
 `;
 
 const stories = storiesOf('Floater', module);
@@ -23,7 +27,7 @@ const stories = storiesOf('Floater', module);
 stories.add(
   'Default',
   () => {
-    const [showPortal, setShowPortal] = React.useState(false);
+    const [hasMountedFloater, setHasMountedFloater] = React.useState(false);
     const [anchorElement, setAnchorElement] = React.useState(null);
 
     const handleButtonClick = (e: any) => {
@@ -31,10 +35,12 @@ stories.add(
 
       if (element === anchorElement) {
         setAnchorElement(null);
-        setShowPortal(false);
+        setHasMountedFloater(false);
+      } else if (anchorElement) {
+        setAnchorElement(element);
+        setHasMountedFloater(true);
       } else {
         setAnchorElement(element);
-        setShowPortal(true);
       }
     };
 
@@ -43,17 +49,31 @@ stories.add(
         <Button
           onClick={handleButtonClick}
         >
-          Left
+          Move to Me 1
         </Button>
+        <span style={{ display: 'inline-block', width: '20px' }} />
         <Button
           onClick={handleButtonClick}
         >
-          Right
+          Move to Me 2
+        </Button>
+        <span style={{ display: 'inline-block', width: '20px' }} />
+        <Button
+          onClick={handleButtonClick}
+        >
+          Move to Me 3
         </Button>
         <Floater
           position={'bottom'}
           anchorElement={anchorElement}
-          open={showPortal}
+          open={anchorElement !== null}
+          animationProps={{
+            initial: { opacity: 0 },
+            animate: { opacity: 1 },
+            exit: { opacity: 0 },
+            positionTransition: hasMountedFloater,
+            transition: { duration: 0.3 }
+          }}
           matchAnchorWidth
           disablePortal
         >
