@@ -62,6 +62,12 @@ export const Accordion: AccordionFunctionComponent<AccordionProps> = ({
 }) => {
   const [selectedItems, setSelectedItems] = React.useState<(string|number)[]>(defaultSelectedItems || []);
 
+  const onSelectedItemsChange = React.useCallback(() => {
+    if (onChange) {
+      onChange(selectedItems);
+    }
+  }, [onChange, selectedItems]);
+
   function getClassicItems(key: ItemKeyType) {
     return _.includes(selectedItems, key) ?
       [] :
@@ -80,11 +86,7 @@ export const Accordion: AccordionFunctionComponent<AccordionProps> = ({
   }
 
   // Only called when the selectedItems change.
-  useAfterMountEffect(() => {
-    if (onChange) {
-      onChange(selectedItems);
-    }
-  }, [selectedItems]);
+  useAfterMountEffect(onSelectedItemsChange, [selectedItems]);
 
   return (
     <AccordionContext.Provider

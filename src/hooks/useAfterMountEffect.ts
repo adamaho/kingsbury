@@ -13,5 +13,5 @@ export const useAfterMountEffect = (cb: () => void, deps: any[]) => {
     } else {
       didMount.current = true;
     }
-  }, [cb, deps]);
+  }, [cb, ...deps]); // eslint-disable-line
 };
