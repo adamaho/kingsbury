@@ -1,4 +1,4 @@
-name: Kingsbury
+name: tests
 on: [push]
 
 jobs:

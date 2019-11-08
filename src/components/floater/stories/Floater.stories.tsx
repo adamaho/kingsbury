@@ -13,9 +13,12 @@ import {
   Floater
 } from '../Floater';
 
+import {
+  Position
+} from "../../utils/getRelativePosition";
+
 const Container = styled.div`
   background: white;
-  margin-top: 5px;
   height: 100px;
   
   border-radius: 7px;
@@ -29,8 +32,9 @@ stories.add(
   () => {
     const [hasMountedFloater, setHasMountedFloater] = React.useState(false);
     const [anchorElement, setAnchorElement] = React.useState(null);
+    const [floaterPosition, setFloaterPosition] = React.useState<Position>('bottom');
 
-    const handleButtonClick = (e: any) => {
+    const handleButtonClick = (e: any, position: Position) => {
       const element = e.target;
 
       if (element === anchorElement) {
@@ -38,40 +42,42 @@ stories.add(
         setHasMountedFloater(false);
       } else if (anchorElement) {
         setAnchorElement(element);
+        setFloaterPosition(position);
         setHasMountedFloater(true);
       } else {
         setAnchorElement(element);
+        setFloaterPosition(position);
       }
     };
 
     return (
       <div>
         <Button
-          onClick={handleButtonClick}
+          onClick={(e) => handleButtonClick(e, 'top')}
         >
-          Move to Me 1
+          Move to Top
         </Button>
         <span style={{ display: 'inline-block', width: '20px' }} />
         <Button
-          onClick={handleButtonClick}
+          onClick={(e) => handleButtonClick(e, 'bottom')}
         >
-          Move to Me 2
+          Move to Bottom
         </Button>
         <span style={{ display: 'inline-block', width: '20px' }} />
         <Button
-          onClick={handleButtonClick}
+          onClick={(e) => handleButtonClick(e, 'right')}
         >
-          Move to Me 3
+          Move to Right
         </Button>
         <Floater
-          position={'bottom'}
+          position={floaterPosition}
           anchorElement={anchorElement}
           open={anchorElement !== null}
           animationProps={{
             initial: { opacity: 0 },
             animate: { opacity: 1 },
             exit: { opacity: 0 },
-            positionTransition: hasMountedFloater,
+            positionTransition: hasMountedFloater ? { type: 'tween' } : false,
             transition: { duration: 0.3 }
           }}
           matchAnchorWidth

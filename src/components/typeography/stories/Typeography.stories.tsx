@@ -13,6 +13,6 @@ const stories = storiesOf('Typeography', module);
 stories.add(
   'H1',
   () => (
-    <Text>This is an h1</Text>
+    <Text textStyle={'h1'}>This is an h1</Text>
   )
 );
