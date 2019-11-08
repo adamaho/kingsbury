@@ -38,7 +38,15 @@ describe('Input', () => {
     expect(wrapper.find('input').getDOMNode().id).toBe('test-id');
   });
 
-  it('sets the borderType prop', () => {
+  it('sets the borderType prop to none', () => {
+    const wrapper = mount(
+      <Input borderType={'none'} />
+    );
+
+    expect(wrapper.find('Input__StyledInput').prop('borderType')).toBe('none');
+  });
+
+  it('sets the borderType prop to bottom', () => {
     const wrapper = mount(
       <Input borderType={'bottom'} />
     );
@@ -63,6 +71,25 @@ describe('Input', () => {
     expect(wrapper.exists('Input__Error')).toBe(true);
     expect(wrapper.find('Input__Error').children().first().childAt(0).text()).toBe('error');
   });
+
+  it('sets the error prop with no border', () => {
+    const wrapper = mount(
+      <Input error={'error'} borderType={'none'} />
+    );
+
+    expect(wrapper.exists('Input__Error')).toBe(true);
+    expect(wrapper.find('Input__Error').children().first().childAt(0).text()).toBe('error');
+  });
+
+  it('sets the error prop with bottom border', () => {
+    const wrapper = mount(
+      <Input error={'error'} borderType={'bottom'} />
+    );
+
+    expect(wrapper.exists('Input__Error')).toBe(true);
+    expect(wrapper.find('Input__Error').children().first().childAt(0).text()).toBe('error');
+  });
+
 
   it('sets the label prop', () => {
     const wrapper = mount(
@@ -90,14 +117,23 @@ describe('Input', () => {
   });
 
   it('sets the value prop', () => {
+    const onChangeMock = jest.fn();
     const wrapper = mount(
-      <Input value={'test'} />
+      <Input value={'test'} onChange={onChangeMock} />
     );
 
     // @ts-ignore
     expect(wrapper.find('input').getDOMNode().value).toBe('test');
   });
 
+  it('sets the defaultValue prop', () => {
+    const wrapper = mount(
+      <Input defaultValue={'test'} />
+    );
+
+    // @ts-ignore
+    expect(wrapper.find('input').getDOMNode().value).toBe('test');
+  });
 
   it('calls onBlur handler', () => {
     const onBlurMock = jest.fn();

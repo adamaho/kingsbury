@@ -14,6 +14,8 @@
     "storybook": "start-storybook -p 9000 --quiet",
     "storybook:build": "build-storybook -o build/storybook/static",
     "test": "jest",
+    "test:coverage": "jest --coverage",
+    "coverage:open": "open ./coverage/lcov-report/index.html",
     "lint": "eslint '**/*.{ts,tsx}'",
     "lint:fix": "eslint '**/*.{ts,tsx}' --fix"
   },
@@ -33,6 +35,7 @@
     "@babel/core": "^7.4.5",
     "@babel/plugin-proposal-class-properties": "7.2.1",
     "@babel/plugin-proposal-object-rest-spread": "7.2.0",
+    "@babel/plugin-transform-runtime": "7.6.2",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.6.0",
@@ -44,6 +47,7 @@
     "@storybook/addons": "^5.0.11",
     "@storybook/react": "^5.1.9",
     "@svgr/cli": "^4.3.2",
+    "@testing-library/react-hooks": "3.2.1",
     "@types/classnames": "^2.2.9",
     "@types/enzyme": "^3.10.3",
     "@types/jest": "^24.0.18",
@@ -81,6 +85,22 @@
   "jest": {
     "setupFilesAfterEnv": [
       "./setupTest.js"
-    ]
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx}",
+      "!src/**/*.stories.tsx",
+      "!src/**/*.components.tsx",
+      "!src/**/icons/**",
+      "!src/styled/**",
+      "!src/theme/**"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 86,
+        "functions": 80,
+        "lines": 87,
+        "statements": 87
+      }
+    }
   }
 }

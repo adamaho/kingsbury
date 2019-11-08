@@ -7,6 +7,7 @@ import styled, {
 import {
   theme
 } from '../../theme';
+import {MouseEventHandler} from "react";
 
 export interface ButtonProps {
   /** Type of the button */
@@ -22,7 +23,7 @@ export interface ButtonProps {
   disabled?: boolean;
 
   /** Function to handle click event */
-  onClick?: () => void;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 
   /** Ref to be passed to the button */
   ref?: React.Ref<HTMLButtonElement>;

@@ -16,7 +16,6 @@ import {
 const Container = styled.div`
   background: red;
   height: 100px;
-  width: 100px;
 `;
 
 const stories = storiesOf('Floater', module);
@@ -25,20 +24,37 @@ stories.add(
   'Default',
   () => {
     const [showPortal, setShowPortal] = React.useState(false);
-    const anchorRef = React.useRef(null);
+    const [anchorElement, setAnchorElement] = React.useState(null);
+
+    const handleButtonClick = (e: any) => {
+      const element = e.target;
+
+      if (element === anchorElement) {
+        setAnchorElement(null);
+        setShowPortal(false);
+      } else {
+        setAnchorElement(element);
+        setShowPortal(true);
+      }
+    };
 
     return (
-      <div style={{ paddingLeft: 1000 }}>
+      <div>
         <Button
-          ref={anchorRef}
-          onClick={() => setShowPortal(!showPortal)}
+          onClick={handleButtonClick}
         >
-          Show Portal
+          Left
+        </Button>
+        <Button
+          onClick={handleButtonClick}
+        >
+          Right
         </Button>
         <Floater
-          position={'right'}
-          anchorElement={anchorRef.current}
+          position={'bottom'}
+          anchorElement={anchorElement}
           open={showPortal}
+          matchAnchorWidth
           disablePortal
         >
           <Container />

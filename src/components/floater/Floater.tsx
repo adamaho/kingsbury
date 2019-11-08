@@ -5,33 +5,44 @@ import {
   AnimatePresence,
   motion,
   MotionProps
-} from "framer-motion";
+} from 'framer-motion';
 
 import {
   Portal
-} from "..";
+} from '..';
 
 import {
   Position,
   PositionValue,
   getRelativePosition
-} from "../utils/getRelativePosition";
+} from '../utils/getRelativePosition';
+
+import {
+  useResizeEffect
+} from "../../hooks/useResizeEffect";
+
+import {
+  CSSProperties
+} from "react";
 
 interface FloaterProps {
-  /** Content to show in the portal */
+  /** Element to anchor portal to */
   anchorElement: HTMLDivElement | null;
 
-  /** Content to show in the portal */
+  /** Animation props for motion.div */
   animationProps?: MotionProps;
 
   /** Content to show in the portal */
   children: React.ReactNode;
 
-  /** Portal node to mount against */
+  /** Portal node to mount against (defaults to document.body) */
   container?: HTMLElement | null;
 
   /** Disables portal behaviour and returns node to Parents DOM hierarchy */
   disablePortal?: boolean;
+
+  /** unique key used for motion to know when the floater is unmounting */
+  floaterKey?: string | number;
 
   /** Portal will match the anchor element width when true */
   matchAnchorWidth?: boolean;
@@ -41,6 +52,9 @@ interface FloaterProps {
 
   /** Position of the floater with respect the the anchor element */
   position: Position;
+
+  /** style of the motion div. Typically used for height/width transitions */
+  style?: CSSProperties;
 }
 
 const Container = styled.div<{ portalVisibility: boolean }>`
@@ -57,9 +71,11 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
     children,
     container,
     disablePortal,
+    floaterKey,
     matchAnchorWidth,
     open,
-    position
+    position,
+    style
   } = props;
 
   const [portalElement, setPortalElement] = React.useState<HTMLDivElement | null>(null);
@@ -78,53 +94,38 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
     }
   }, [portalElement, anchorElement, position]);
 
-
-  // subscribe to window resize and clean up on unmount
-  React.useEffect(() => {
-    function onWindowResize() {
-      if (open) {
-        updatePortalPosition();
-      }
-    }
-
-    window.addEventListener<'resize'>('resize', onWindowResize);
-
-    return () => {
-      window.removeEventListener<'resize'>('resize', onWindowResize);
-    }
-  }, [open, updatePortalPosition]);
-
+  // subscribe to window size
+  const windowSize = useResizeEffect();
 
   // on open changes, update the portal position
   React.useEffect(() => {
     if (open) {
       updatePortalPosition()
-    } else {
-      setPortalPosition(null);
     }
-  },[open, updatePortalPosition]);
+  },[open, windowSize, updatePortalPosition]);
 
   const portalVisibility: boolean = (portalElement !== null && portalPosition !== null);
 
   return (
     <AnimatePresence>
-      {(open && anchorElement) &&
+      {(open && anchorElement) && (
         <Portal
           container={container}
           disablePortal={disablePortal}
         >
           <motion.div
+            key={floaterKey}
+            style={{
+              position: 'absolute',
+              width: matchAnchorWidth ?
+                `${anchorElement.offsetWidth}px` :
+                'auto',
+              ...portalPosition,
+              ...style
+            }}
             {...animationProps}
           >
             <Container
-              role={"tooltip"}
-              style={{
-                position: 'absolute',
-                width: matchAnchorWidth ?
-                  `${anchorElement.offsetWidth}px` :
-                  'auto',
-                ...portalPosition
-              }}
               ref={handleRef}
               portalVisibility={portalVisibility}
             >
@@ -132,6 +133,7 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
             </Container>
           </motion.div>
         </Portal>
+        )
       }
     </AnimatePresence>
   )
@@ -146,6 +148,7 @@ Floater.defaultProps = {
   },
   disablePortal: false,
   container: undefined,
+  floaterKey: 'floater',
   matchAnchorWidth: false,
   open: false,
   position: 'left'
