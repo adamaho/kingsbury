@@ -11,7 +11,7 @@ import {
 describe('Typeography', () => {
   it('renders without children', () => {
     const wrapper = mount(
-      <Text />
+      <Text textStyle={'h1'} />
     );
 
     expect(wrapper.exists('Text__StyledText')).toBe(true);
@@ -19,7 +19,7 @@ describe('Typeography', () => {
 
   it('renders with children', () => {
     const wrapper = mount(
-      <Text>text</Text>
+      <Text textStyle={'h1'}>text</Text>
     );
 
     expect(wrapper.exists('Text__StyledText')).toBe(true);

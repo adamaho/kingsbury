@@ -17,6 +17,9 @@ export interface InputProps {
   /** classname for the input */
   className?: string;
 
+  /** Default value of the input */
+  defaultValue?: string;
+
   /** Disabled state of the input */
   disabled?: boolean;
 
@@ -148,6 +151,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef<HTMLI
   const {
     className,
     disabled,
+    defaultValue,
     error,
     errorComponent,
     htmlType,
@@ -164,12 +168,6 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef<HTMLI
     value
   } = props;
 
-  function onChangeHandler(e: SyntheticEvent) {
-    if (onChange) {
-      onChange(e);
-    }
-  }
-
   return (
     <Container className={className}>
       <Label>
@@ -178,11 +176,12 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef<HTMLI
           label={null}
           error={error}
           disabled={disabled}
+          defaultValue={defaultValue}
           type={htmlType}
           id={id}
           name={name}
           onBlur={onBlur}
-          onChange={onChangeHandler}
+          onChange={onChange}
           onFocus={onFocus}
           placeholder={placeholder}
           borderType={borderType}
