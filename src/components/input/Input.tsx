@@ -42,7 +42,7 @@ export interface InputProps {
   onBlur?: React.EventHandler<SyntheticEvent>;
 
   /** Function to handle change event */
-  onChange?: React.EventHandler<SyntheticEvent>;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
 
   /** Function to handle focus event */
   onFocus?: React.EventHandler<SyntheticEvent>;
@@ -55,6 +55,12 @@ export interface InputProps {
 
   /** Size of input */
   inputSize?: 'small' | 'large';
+
+  /** Content to show inside the input to the left */
+  inputPrefix?: React.ReactNode;
+
+  /** Content to show inside the input to the right */
+  inputSuffix?: React.ReactNode;
 
   /** Ref to be passed to the input */
   ref?: React.Ref<HTMLInputElement> | null;
@@ -76,6 +82,41 @@ const Label = styled.label`
 
 const Error = styled.div<any>`
   color: ${(props) => props.theme.colors.danger};
+`;
+
+const InputFixContainer = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+`;
+
+const InputPrefix = styled.div<any>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  height: ${(props) => props.inputSize === 'small' ?
+    props.theme.input.heightSmall :
+    props.theme.input.heightLarge
+  };
+  width: ${(props) => `${props.theme.input.prefixWidth}px`};
+  left: ${(props) => props.theme.input.prefixLeft};
+`;
+
+const InputSuffix = styled.div<any>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  height: ${(props) => props.inputSize === 'small' ?
+    props.theme.input.heightSmall :
+    props.theme.input.heightLarge
+  };
+  width: ${(props) => `${props.theme.input.suffixWidth}px`};
+  right: ${(props) => props.theme.input.suffixRight};
 `;
 
 const StyledInput = styled.input<InputProps>`
@@ -121,6 +162,14 @@ const StyledInput = styled.input<InputProps>`
     color: ${props.error ? props.theme.colors.danger : props.theme.input.color};
   `};
 
+  ${(props) => props.inputSuffix !== null && css`
+    padding-right: ${props.theme.input.suffixWidth + 7}px
+  `};
+
+  ${(props) => props.inputPrefix !== null && css`
+    padding-left: ${props.theme.input.prefixWidth + 7}px
+  `};
+
   box-sizing: border-box;
 
   &::placeholder {
@@ -163,6 +212,8 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef<HTMLI
     onFocus,
     placeholder,
     inputSize,
+    inputPrefix,
+    inputSuffix,
     borderType,
     theme: themeProp,
     value
@@ -170,8 +221,18 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef<HTMLI
 
   return (
     <Container className={className}>
-      <Label>
-        {label && label}
+      {label && (
+        <Label>{label}</Label>
+      )}
+      <InputFixContainer>
+        {inputPrefix && (
+            <InputPrefix
+              inputSize={inputSize}
+              theme={themeProp}
+            >
+              {inputPrefix}
+            </InputPrefix>
+        )}
         <StyledInput
           label={null}
           error={error}
@@ -186,11 +247,21 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef<HTMLI
           placeholder={placeholder}
           borderType={borderType}
           inputSize={inputSize}
+          inputSuffix={inputSuffix}
+          inputPrefix={inputPrefix}
           ref={ref}
           theme={themeProp}
           value={value}
         />
-      </Label>
+        {inputSuffix && (
+            <InputSuffix
+              inputSize={inputSize}
+              theme={themeProp}
+            >
+              {inputSuffix}
+            </InputSuffix>
+        )}
+      </InputFixContainer>
       {(error && errorComponent) &&
         <Error theme={themeProp}>
           {errorComponent(error)}
@@ -215,6 +286,8 @@ Input.defaultProps = {
   onFocus: undefined,
   placeholder: '',
   inputSize: 'small',
+  inputPrefix: null,
+  inputSuffix: null,
   theme,
   value: undefined
 };

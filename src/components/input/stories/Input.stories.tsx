@@ -13,6 +13,10 @@ import {
   Spacer
 } from './story.components';
 
+import {
+  SVGClose
+} from '../../icons';
+
 const stories = storiesOf('Input', module);
 
 stories.add(
@@ -79,6 +83,20 @@ stories.add(
         label="This is a label"
         error="This is an error"
       />
+    </Container>
+  ),
+  { info: { propTablesExclude: [Container] } }
+);
+
+stories.add(
+  'Prefix and Suffix',
+  () => (
+    <Container>
+      <Input placeholder="Input with border" inputPrefix={<SVGClose />} inputSuffix={<SVGClose />}/>
+      <Spacer />
+      <Input borderType="bottom" placeholder="Input with bottom border" inputPrefix={<SVGClose />} inputSuffix={<SVGClose />}/>
+      <Spacer />
+      <Input inputSize={'large'} borderType="none" placeholder="Input without border" inputPrefix={<SVGClose />} inputSuffix={<SVGClose />}/>
     </Container>
   ),
   { info: { propTablesExclude: [Container] } }

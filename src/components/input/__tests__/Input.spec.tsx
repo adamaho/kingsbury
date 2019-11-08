@@ -135,6 +135,22 @@ describe('Input', () => {
     expect(wrapper.find('input').getDOMNode().value).toBe('test');
   });
 
+  it('sets the inputPrefix prop', () => {
+    const wrapper = mount(
+      <Input inputPrefix={'A'}/>
+    );
+
+    expect(wrapper.exists('Input__InputPrefix')).toBe(true);
+  });
+
+  it('sets the inputSuffix prop', () => {
+    const wrapper = mount(
+      <Input inputSuffix={'A'} />
+    );
+
+    expect(wrapper.exists('Input__InputSuffix')).toBe(true);
+  });
+
   it('calls onBlur handler', () => {
     const onBlurMock = jest.fn();
     const wrapper = mount(
