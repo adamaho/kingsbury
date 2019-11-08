@@ -101,3 +101,14 @@ stories.add(
   ),
   { info: { propTablesExclude: [Container] } }
 );
+
+stories.add(
+  'Read Only',
+  () => (
+    <Container>
+      <Input placeholder="I am readonly" readOnly />
+    </Container>
+  ),
+  { info: { propTablesExclude: [Container] } }
+);
+
