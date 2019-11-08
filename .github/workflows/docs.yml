@@ -1,5 +1,8 @@
 name: docs
 on: [push]
+#  push:
+#    branches:
+#      - master
 
 jobs:
   main-tests:
@@ -7,9 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+        with:
+          ref: gh-pages
       - uses: actions/setup-node@v1
         with:
           node-version: '10.16'
-      - run: npm install
-      - run: npm test
-      - run: npm run lint
+      - run: git rebase origin/master
+      - run: npm run storybook:build
