@@ -7,7 +7,7 @@ import {
 
 interface PaperProps {
   /** Content to show in the paper */
-  children: React.ReactNode;
+  children?: React.ReactNode;
 
   /** classname for the paper */
   className?: string;

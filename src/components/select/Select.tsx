@@ -15,6 +15,11 @@ import {
   SVGChevronBottom
 } from '../icons';
 
+interface SelectProps {
+  /** Function to handle change event */
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+}
+
 const Container = styled.div``;
 
 const FloaterContainer = styled(Paper)`
@@ -31,7 +36,7 @@ const chevronVariants = {
   },
 };
 
-export const Select: React.FunctionComponent = (props) => {
+export const Select: React.FunctionComponent<SelectProps> = (props) => {
   const [anchorElement, setAnchorElement] = React.useState(null);
 
   const onInputFocus = React.useCallback((e) => {
@@ -73,5 +78,9 @@ export const Select: React.FunctionComponent = (props) => {
     </Container>
   );
 };
+
+
+// next is to make the options list
+
 
 
