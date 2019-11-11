@@ -180,6 +180,16 @@ describe('Input', () => {
     expect(onFocusMock).toBeCalled();
   });
 
+  it('calls onClick handler', () => {
+    const onClickMock = jest.fn();
+    const wrapper = mount(
+      <Input onClick={onClickMock} />
+    );
+
+    wrapper.find('input').simulate('click');
+    expect(onClickMock).toBeCalled();
+  });
+
   it('calls onChange handler', () => {
     const onChangeMock = jest.fn((e) => e);
     const wrapper = mount(
