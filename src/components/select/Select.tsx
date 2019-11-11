@@ -10,6 +10,10 @@ import {
 } from '../icons';
 
 import {
+  theme
+} from '../../theme';
+
+import {
   Floater, Input,
   Paper
 } from "..";
@@ -62,6 +66,9 @@ interface SelectProps {
 
   /** Text to show in select before a selection is made */
   placeholder?: string;
+
+  /** Global theme in ThemeProvider */
+  theme?: any;
 }
 
 const chevronVariants = {
@@ -89,7 +96,8 @@ export const Select: SelectFunctionComponent<SelectProps> = (props) => {
     errorComponent,
     onChange,
     onSelect,
-    placeholder
+    placeholder,
+    theme
   } = props;
 
   const [anchorElement, setAnchorElement] = React.useState(null);
@@ -129,6 +137,7 @@ export const Select: SelectFunctionComponent<SelectProps> = (props) => {
         onBlur={onInputBlur}
         value={selectedValue.optionTitle}
         placeholder={placeholder}
+        theme={theme}
         readOnly
         inputSuffix={
           <motion.span
@@ -153,13 +162,17 @@ export const Select: SelectFunctionComponent<SelectProps> = (props) => {
           onSelect,
           selectedValue
         }}>
-          <FloaterContainer>
+          <FloaterContainer theme={theme}>
             {children}
           </FloaterContainer>
         </SelectContext.Provider>
       </Floater>
     </Container>
   );
+};
+
+Select.defaultProps = {
+  theme
 };
 
 Select.Option = SelectOption;

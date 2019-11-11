@@ -18,7 +18,7 @@ export interface SelectOptionProps {
   optionValue: number | string;
 
   /** Option Content to show */
-  optionTitle: React.ReactNode;
+  optionTitle: string;
 
   /** Global theme in ThemeProvider */
   theme?: any;
@@ -28,6 +28,17 @@ const Option = styled.div<any>`
   cursor: pointer;
   
   background-color: ${(props) => props.isSelected ? props.theme.colors.primary : props.theme.colors.white};
+  padding: 5px 10px;
+  
+  &:first-child {
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+  }
+  
+    &:last-child {
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+  }
 
   &:hover {
     background-color: ${(props) => props.theme.colors.primary};
