@@ -2,12 +2,6 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 import {
-  Input,
-  Floater,
-  Paper
-} from "..";
-
-import {
   motion
 } from 'framer-motion';
 
@@ -15,17 +9,60 @@ import {
   SVGChevronBottom
 } from '../icons';
 
-interface SelectProps {
-  /** Function to handle change event */
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+import {
+  Floater, Input,
+  Paper
+} from "..";
+
+import {
+  SelectContext
+} from "./context";
+
+import {
+  SelectOption,
+  SelectOptionProps
+} from "./SelectOption";
+
+import {
+  SelectedValue
+} from "./types";
+
+interface SelectFunctionComponent<T> extends React.FunctionComponent<T> {
+  Option: React.FunctionComponent<SelectOptionProps>;
 }
 
-const Container = styled.div``;
+interface SelectProps {
 
-const FloaterContainer = styled(Paper)`
-  padding: 10px;
-  margin-top: 5px;
-`;
+  /** Type of border for the select */
+  borderType?: 'full' | 'bottom' | 'none';
+
+  /** classname for the select */
+  className?: string;
+
+  /** Select Options to show in the floater */
+  children: React.ReactNode;
+
+  /** Default value of the select */
+  defaultValue?: string;
+
+  /** Disabled state of the select */
+  disabled?: boolean;
+
+  /** Formik validation error */
+  error?: string;
+
+  /** Function that provides the error to use in custom component */
+  errorComponent?: (error: string) => React.ReactNode;
+
+  /** Function to handle change event */
+  onChange?: (e: Event, value: SelectedValue) => void;
+
+  /** Function to handle when option is selected */
+  onSelect?: React.MouseEventHandler<HTMLDivElement>;
+
+  /** Text to show in select before a selection is made */
+  placeholder?: string;
+}
 
 const chevronVariants = {
   closed: {
@@ -36,22 +73,62 @@ const chevronVariants = {
   },
 };
 
-export const Select: React.FunctionComponent<SelectProps> = (props) => {
+const Container = styled.div``;
+
+const FloaterContainer = styled(Paper)`
+  margin: 5px 0;
+`;
+
+export const Select: SelectFunctionComponent<SelectProps> = (props) => {
+  const {
+    borderType,
+    className,
+    children,
+    disabled,
+    error,
+    errorComponent,
+    onChange,
+    onSelect,
+    placeholder
+  } = props;
+
   const [anchorElement, setAnchorElement] = React.useState(null);
+  const [selectedValue, setSelectedValue] = React.useState<SelectedValue>(
+    {
+      optionValue: '',
+      optionTitle: '',
+      optionKey: ''
+    }
+  );
 
   const onInputFocus = React.useCallback((e) => {
     setAnchorElement(e.target);
   }, []);
 
-  const onInputBlur = React.useCallback((e) => {
+  const onInputBlur = React.useCallback(() => {
     setAnchorElement(null);
   }, []);
+
+  const handleOnChange = React.useCallback((e, value) => {
+    if (onChange) {
+      onChange(e, value);
+    }
+
+    setSelectedValue(value);
+  }, [setSelectedValue, onChange]);
 
   return (
     <Container>
       <Input
+        borderType={borderType}
+        className={className}
+        disabled={disabled}
+        error={error}
+        errorComponent={errorComponent}
         onFocus={onInputFocus}
         onBlur={onInputBlur}
+        value={selectedValue.optionTitle}
+        placeholder={placeholder}
         readOnly
         inputSuffix={
           <motion.span
@@ -71,16 +148,21 @@ export const Select: React.FunctionComponent<SelectProps> = (props) => {
         open={anchorElement !== null}
         matchAnchorWidth
       >
-        <FloaterContainer>
-          <div>Hey what is going on</div>
-        </FloaterContainer>
+        <SelectContext.Provider value={{
+          onChange: handleOnChange,
+          onSelect,
+          selectedValue
+        }}>
+          <FloaterContainer>
+            {children}
+          </FloaterContainer>
+        </SelectContext.Provider>
       </Floater>
     </Container>
   );
 };
 
-
-// next is to make the options list
+Select.Option = SelectOption;
 
 
 
