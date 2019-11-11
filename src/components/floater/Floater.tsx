@@ -24,7 +24,6 @@ import {
 import {
   CSSProperties
 } from "react";
-import {bool} from "prop-types";
 
 interface FloaterProps {
   /** Element to anchor portal to */

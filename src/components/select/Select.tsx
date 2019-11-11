@@ -2,7 +2,8 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 import {
-  motion
+  motion,
+  MotionProps
 } from 'framer-motion';
 
 import {
@@ -36,6 +37,9 @@ interface SelectFunctionComponent<T> extends React.FunctionComponent<T> {
 }
 
 interface SelectProps {
+
+  /** Animation props for motion.div */
+  animationProps?: MotionProps;
 
   /** Type of border for the select */
   borderType?: 'full' | 'bottom' | 'none';
@@ -88,6 +92,7 @@ const FloaterContainer = styled(Paper)`
 
 export const Select: SelectFunctionComponent<SelectProps> = (props) => {
   const {
+    animationProps,
     borderType,
     className,
     children,
@@ -145,6 +150,7 @@ export const Select: SelectFunctionComponent<SelectProps> = (props) => {
             initial={"closed"}
             exit={"closed"}
             animate={anchorElement == null ? 'closed' : 'open'}
+            transition={{ type: 'tween' }}
             variants={chevronVariants}
           >
             <SVGChevronBottom height={18} width={18}/>
@@ -152,6 +158,7 @@ export const Select: SelectFunctionComponent<SelectProps> = (props) => {
         }
       />
       <Floater
+        animationProps={animationProps}
         position={'bottom'}
         anchorElement={anchorElement}
         open={anchorElement !== null}
@@ -172,7 +179,8 @@ export const Select: SelectFunctionComponent<SelectProps> = (props) => {
 };
 
 Select.defaultProps = {
-  theme
+  theme,
+  animationProps: undefined
 };
 
 Select.Option = SelectOption;

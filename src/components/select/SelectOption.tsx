@@ -1,5 +1,8 @@
 import * as React from 'react';
-import styled from 'styled-components';
+
+import styled, {
+  css
+} from 'styled-components';
 
 import {
   theme
@@ -27,21 +30,25 @@ export interface SelectOptionProps {
 const Option = styled.div<any>`
   cursor: pointer;
   
-  background-color: ${(props) => props.isSelected ? props.theme.colors.primary : props.theme.colors.white};
-  padding: 5px 10px;
+  ${(props) => props.isSelected && css`
+    background: ${props.theme.select.option.selectBackground};
+    font-weight: ${props.theme.select.option.fontWeight};
+  `}
+
+  padding: ${(props) => props.theme.select.option.padding};
   
   &:first-child {
-    border-top-left-radius: 7px;
-    border-top-right-radius: 7px;
+    border-top-left-radius: ${(props) => props.theme.select.borderRadius};
+    border-top-right-radius: ${(props) => props.theme.select.borderRadius};
   }
   
     &:last-child {
-    border-bottom-left-radius: 7px;
-    border-bottom-right-radius: 7px;
+    border-bottom-left-radius: ${(props) => props.theme.select.borderRadius};
+    border-bottom-right-radius: ${(props) => props.theme.select.borderRadius};
   }
 
   &:hover {
-    background-color: ${(props) => props.theme.colors.primary};
+    background-color: ${(props) => props.theme.select.option.hoverBackground};
   }
 `;
 

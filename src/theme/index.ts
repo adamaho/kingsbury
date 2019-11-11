@@ -84,6 +84,16 @@ export const theme: any = {
     borderRadius: '7px',
     boxShadow: `0px 0px 4px rgba(${colors.blackRGB},0.20)`,
   },
+  select: {
+    borderRadius: '7px',
+    option: {
+      background: colors.white,
+      padding: '5px 10px',
+      hoverBackground: `rgba(${colors.primaryRGB}, 0.4)`,
+      selectBackground: `rgba(${colors.primaryRGB}, 0.4)`,
+      fontWeight: 'bold'
+    }
+  },
   typeography: {
     h1: {
       fontSize: '32px'
