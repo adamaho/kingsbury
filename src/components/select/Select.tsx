@@ -65,6 +65,12 @@ interface SelectProps {
   /** Label of the input */
   label?: React.ReactNode;
 
+  /** id of the input to be used with Formik */
+  id?: string;
+
+  /** name of the input to be used with Formik */
+  name?: string;
+
   /** Function to handle change event */
   onChange?: (e: Event, value: SelectedValue) => void;
 
@@ -103,6 +109,8 @@ export const Select: SelectFunctionComponent<SelectProps> = (props) => {
     error,
     errorComponent,
     label,
+    id,
+    name,
     onChange,
     onSelect,
     placeholder,
@@ -148,6 +156,8 @@ export const Select: SelectFunctionComponent<SelectProps> = (props) => {
         error={error}
         errorComponent={errorComponent}
         label={label}
+        id={id}
+        name={name}
         onBlur={onInputBlur}
         onClick={onInputClick}
         value={selectedValue.optionTitle}
