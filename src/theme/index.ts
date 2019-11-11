@@ -89,7 +89,7 @@ export const theme: any = {
     option: {
       background: colors.white,
       padding: '5px 10px',
-      hoverBackground: `rgba(${colors.primaryRGB}, 0.4)`,
+      hoverBackground: `rgba(${colors.primaryRGB}, 0.1)`,
       selectBackground: `rgba(${colors.primaryRGB}, 0.4)`,
       fontWeight: 'bold'
     }

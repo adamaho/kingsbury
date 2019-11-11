@@ -21,7 +21,7 @@ stories.add(
     return (
       <StoryContainer>
        <ComponentContainer>
-        <Select placeholder={'Select a value'} onChange={(e, value) => console.log(value)}>
+        <Select placeholder={'Select a value'}>
           <Select.Option optionKey={'1'} optionValue={'1'} optionTitle={' The value of 1'} />
           <Select.Option optionKey={'2'} optionValue={'2'} optionTitle={' The value of 2'} />
           <Select.Option optionKey={'3'} optionValue={'3'} optionTitle={' The value of 3'} />

@@ -62,6 +62,9 @@ interface SelectProps {
   /** Function that provides the error to use in custom component */
   errorComponent?: (error: string) => React.ReactNode;
 
+  /** Label of the input */
+  label?: React.ReactNode;
+
   /** Function to handle change event */
   onChange?: (e: Event, value: SelectedValue) => void;
 
@@ -99,6 +102,7 @@ export const Select: SelectFunctionComponent<SelectProps> = (props) => {
     disabled,
     error,
     errorComponent,
+    label,
     onChange,
     onSelect,
     placeholder,
@@ -114,13 +118,18 @@ export const Select: SelectFunctionComponent<SelectProps> = (props) => {
     }
   );
 
-  const onInputFocus = React.useCallback((e) => {
-    setAnchorElement(e.target);
-  }, []);
-
   const onInputBlur = React.useCallback(() => {
     setAnchorElement(null);
   }, []);
+
+  const onInputClick = React.useCallback((e) => {
+    if (anchorElement) {
+      setAnchorElement(null);
+    } else {
+      setAnchorElement(e.target);
+      e.target.focus();
+    }
+  }, [anchorElement]);
 
   const handleOnChange = React.useCallback((e, value) => {
     if (onChange) {
@@ -138,8 +147,9 @@ export const Select: SelectFunctionComponent<SelectProps> = (props) => {
         disabled={disabled}
         error={error}
         errorComponent={errorComponent}
-        onFocus={onInputFocus}
+        label={label}
         onBlur={onInputBlur}
+        onClick={onInputClick}
         value={selectedValue.optionTitle}
         placeholder={placeholder}
         theme={theme}

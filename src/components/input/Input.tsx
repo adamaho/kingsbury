@@ -41,6 +41,9 @@ export interface InputProps {
   /** Function to handle blur event */
   onBlur?: React.EventHandler<SyntheticEvent>;
 
+  /** Function to handle click event */
+  onClick?: React.EventHandler<SyntheticEvent>;
+
   /** Function to handle change event */
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
 
@@ -214,6 +217,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef<HTMLI
     name,
     onBlur,
     onChange,
+    onClick,
     onFocus,
     placeholder,
     inputSize,
@@ -257,6 +261,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef<HTMLI
           id={id}
           name={name}
           onBlur={onBlur}
+          onClick={onClick}
           onChange={onChange}
           onFocus={onFocus}
           placeholder={placeholder}
@@ -289,6 +294,7 @@ Input.defaultProps = {
   name: undefined,
   label: '',
   onBlur: undefined,
+  onClick: undefined,
   onChange: undefined,
   onFocus: undefined,
   placeholder: '',

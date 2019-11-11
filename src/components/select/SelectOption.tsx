@@ -33,7 +33,11 @@ const Option = styled.div<any>`
   ${(props) => props.isSelected && css`
     background: ${props.theme.select.option.selectBackground};
     font-weight: ${props.theme.select.option.fontWeight};
-  `}
+    
+    &:hover {
+      background: ${props.theme.select.option.selectBackground};
+    }
+  `};
 
   padding: ${(props) => props.theme.select.option.padding};
   
@@ -50,6 +54,12 @@ const Option = styled.div<any>`
   &:hover {
     background-color: ${(props) => props.theme.select.option.hoverBackground};
   }
+  
+  ${(props) => props.isSelected && css`
+    &:hover {
+      background: ${props.theme.select.option.selectBackground};
+    }
+  `};
 `;
 
 /** Select.Option */
