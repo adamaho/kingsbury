@@ -34,7 +34,7 @@ describe('Floater', () => {
   it('sets the open prop to true', async () => {
     const wrapper = mount(
       // @ts-ignore
-      <Floater {...defaultProps} open={true}/>
+      <Floater {...defaultProps} open={true} />
     );
 
     expect(wrapper.exists('Portal')).toBe(true);
@@ -43,7 +43,7 @@ describe('Floater', () => {
   it('sets the open prop to false', async () => {
     const wrapper = mount(
       // @ts-ignore
-      <Floater {...defaultProps} open={true}/>
+      <Floater {...defaultProps} open={true} />
     );
 
     const promise = new Promise<ReactWrapper<any>>((resolve) => {
