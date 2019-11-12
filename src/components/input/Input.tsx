@@ -287,6 +287,7 @@ Input.defaultProps = {
   borderType: 'full',
   className: '',
   disabled: false,
+  defaultValue: undefined,
   error: '',
   errorComponent: (error) => <div>{error}</div>,
   htmlType: undefined,

@@ -32,6 +32,10 @@ import {
   SelectedValue
 } from "./types";
 
+import {
+  useAfterMountEffect
+} from "../../hooks";
+
 interface SelectFunctionComponent<T> extends React.FunctionComponent<T> {
   Option: React.FunctionComponent<SelectOptionProps>;
 }
@@ -51,7 +55,7 @@ interface SelectProps {
   children: React.ReactNode;
 
   /** Default value of the select */
-  defaultValue?: string;
+  defaultValue?: SelectedValue;
 
   /** Disabled state of the select */
   disabled?: boolean;
@@ -80,9 +84,21 @@ interface SelectProps {
   /** Text to show in select before a selection is made */
   placeholder?: string;
 
+  /** Text to show in select before a selection is made */
+  selectSize?: 'small' | 'large';
+
   /** Global theme in ThemeProvider */
   theme?: any;
+
+  /** value of the select */
+  value?: SelectedValue;
 }
+
+const baseDefaultValue: SelectedValue =  {
+  optionKey: '',
+  optionTitle: '',
+  optionValue: ''
+};
 
 const chevronVariants = {
   closed: {
@@ -105,6 +121,7 @@ export const Select: SelectFunctionComponent<SelectProps> = (props) => {
     borderType,
     className,
     children,
+    defaultValue,
     disabled,
     error,
     errorComponent,
@@ -114,17 +131,13 @@ export const Select: SelectFunctionComponent<SelectProps> = (props) => {
     onChange,
     onSelect,
     placeholder,
-    theme
+    selectSize,
+    theme,
+    value
   } = props;
 
   const [anchorElement, setAnchorElement] = React.useState(null);
-  const [selectedValue, setSelectedValue] = React.useState<SelectedValue>(
-    {
-      optionValue: '',
-      optionTitle: '',
-      optionKey: ''
-    }
-  );
+  const [selectedValue, setSelectedValue] = React.useState<SelectedValue>(defaultValue || baseDefaultValue);
 
   const onInputBlur = React.useCallback(() => {
     setAnchorElement(null);
@@ -160,9 +173,10 @@ export const Select: SelectFunctionComponent<SelectProps> = (props) => {
         name={name}
         onBlur={onInputBlur}
         onClick={onInputClick}
-        value={selectedValue.optionTitle}
+        value={value ? value.optionTitle : selectedValue.optionTitle}
         placeholder={placeholder}
         theme={theme}
+        inputSize={selectSize}
         readOnly
         inputSuffix={
           <motion.span
@@ -200,7 +214,8 @@ export const Select: SelectFunctionComponent<SelectProps> = (props) => {
 
 Select.defaultProps = {
   theme,
-  animationProps: undefined
+  animationProps: undefined,
+  selectSize: 'small'
 };
 
 Select.Option = SelectOption;
