@@ -6,7 +6,7 @@ import {
 } from '@storybook/react';
 
 import {
-  Button, Input
+  Button
 } from '../..';
 
 import {
