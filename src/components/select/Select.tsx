@@ -102,7 +102,11 @@ const chevronVariants = {
   },
 };
 
-const Container = styled.div``;
+const Container = styled.div`
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+`;
 
 const FloaterContainer = styled(Paper)`
   margin: 5px 0;
