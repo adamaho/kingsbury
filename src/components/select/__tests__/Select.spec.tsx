@@ -1,12 +1,13 @@
 import * as React from 'react';
 
 import {
-  mount
+  mount, ReactWrapper
 } from "enzyme";
 
 import {
   Select
 } from '../Select';
+import {act} from "react-dom/test-utils";
 
 describe('Select', () => {
   it('renders select', () => {
@@ -143,7 +144,13 @@ describe('Select', () => {
 
   it('sets the defaultValue prop', () => {
     const wrapper = mount(
-      <Select defaultValue={'test'}>
+      <Select
+        defaultValue={{
+          optionTitle: 'test',
+          optionValue: 'test',
+          optionKey: 'test'
+        }}
+      >
         <Select.Option optionTitle={'test'} optionKey={'test'} optionValue={'test'} />
       </Select>
     );
@@ -154,7 +161,13 @@ describe('Select', () => {
 
   it('sets the value prop', () => {
     const wrapper = mount(
-      <Select value={'test'}>
+      <Select
+        value={{
+          optionTitle: 'test',
+          optionValue: 'test',
+          optionKey: 'test'
+        }}
+      >
         <Select.Option optionTitle={'test'} optionKey={'test'} optionValue={'test'} />
       </Select>
     );
@@ -163,69 +176,89 @@ describe('Select', () => {
     expect(wrapper.find('input').getDOMNode().value).toBe('test');
   });
 
-  // it('sets the inputPrefix prop', () => {
-  //   const wrapper = mount(
-  //     <Input inputPrefix={'A'}/>
-  //   );
-  //
-  //   expect(wrapper.exists('Input__InputPrefix')).toBe(true);
-  // });
-  //
-  // it('sets the inputSuffix prop', () => {
-  //   const wrapper = mount(
-  //     <Input inputSuffix={'A'} />
-  //   );
-  //
-  //   expect(wrapper.exists('Input__InputSuffix')).toBe(true);
-  // });
-  //
-  // it('sets the readOnly prop', () => {
-  //   const wrapper = mount(
-  //     <Input readOnly />
-  //   );
-  //
-  //   // @ts-ignore
-  //   expect(wrapper.find('input').getDOMNode().readOnly).toBe(true);
-  // });
-  //
-  // it('calls onBlur handler', () => {
-  //   const onBlurMock = jest.fn();
-  //   const wrapper = mount(
-  //     <Input onBlur={onBlurMock} />
-  //   );
-  //
-  //   wrapper.find('input').simulate('blur');
-  //   expect(onBlurMock).toBeCalled();
-  // });
-  //
-  // it('calls onFocus handler', () => {
-  //   const onFocusMock = jest.fn();
-  //   const wrapper = mount(
-  //     <Input onFocus={onFocusMock} />
-  //   );
-  //
-  //   wrapper.find('input').simulate('focus');
-  //   expect(onFocusMock).toBeCalled();
-  // });
-  //
-  // it('calls onClick handler', () => {
-  //   const onClickMock = jest.fn();
-  //   const wrapper = mount(
-  //     <Input onClick={onClickMock} />
-  //   );
-  //
-  //   wrapper.find('input').simulate('click');
-  //   expect(onClickMock).toBeCalled();
-  // });
-  //
-  // it('calls onChange handler', () => {
-  //   const onChangeMock = jest.fn((e) => e);
-  //   const wrapper = mount(
-  //     <Input onChange={onChangeMock} value={'value'}/>
-  //   );
-  //
-  //   wrapper.find('input').simulate('change');
-  //
-  //   expect(onChangeMock.mock.results[0].value.target.value).toBe('value');
-  // });
+  it('closes when the input is blurred', async () => {
+    const wrapper = mount(
+      <Select>
+        <Select.Option optionTitle={'test'} optionKey={'test'} optionValue={'test'} />
+      </Select>
+    );
+
+    // open the options
+    wrapper.find('Input__StyledInput').simulate('click');
+    expect(wrapper.exists('SelectOption')).toBe(true);
+
+    const promise = new Promise<ReactWrapper<any>>((resolve) => {
+      wrapper.find('Input__StyledInput').simulate('blur');
+      wrapper.update();
+
+      // wait for the animation to finish
+      setTimeout(() => {
+        wrapper.update();
+        resolve(wrapper.find('Select'));
+      }, 400)
+    });
+
+    let select: ReactWrapper;
+    await act(async () => {
+      select = await promise;
+    });
+
+    // @ts-ignore
+    expect(select.exists('SelectOption')).toBe(false);
+  });
+
+  it('closes when the input is clicked twice', async () => {
+    const wrapper = mount(
+      <Select>
+        <Select.Option optionTitle={'test'} optionKey={'test'} optionValue={'test'} />
+      </Select>
+    );
+
+    // open the options
+    wrapper.find('Input__StyledInput').simulate('click');
+    expect(wrapper.exists('SelectOption')).toBe(true);
+
+    const promise = new Promise<ReactWrapper<any>>((resolve) => {
+      wrapper.find('Input__StyledInput').simulate('click');
+      wrapper.update();
+
+      // wait for the animation to finish
+      setTimeout(() => {
+        wrapper.update();
+        resolve(wrapper.find('Select'));
+      }, 400)
+    });
+
+    let select: ReactWrapper;
+    await act(async () => {
+      select = await promise;
+    });
+
+    // @ts-ignore
+    expect(select.exists('SelectOption')).toBe(false);
+  });
+
+  it('calls onChange handler', () => {
+    const onChangeMock = jest.fn();
+    const wrapper = mount(
+      <Select
+        onChange={onChangeMock}
+        value={{
+          optionTitle: 'test',
+          optionValue: 'test',
+          optionKey: 'test'
+        }}
+      >
+        <Select.Option optionTitle={'test'} optionKey={'test'} optionValue={'test'} />
+      </Select>
+    );
+
+    // open the options
+    wrapper.find('Input__StyledInput').simulate('click');
+
+    // click an option
+    wrapper.find('SelectOption__Option').simulate('click');
+
+    expect(onChangeMock).toBeCalled();
+  });
 });

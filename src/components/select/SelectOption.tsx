@@ -82,7 +82,7 @@ export const SelectOption: React.FunctionComponent<SelectOptionProps> = (props) 
     }
   }, [optionValue, optionTitle, optionKey, onChange]);
 
-  const isSelected = selectedValue ? selectedValue.optionKey === optionKey : false;
+  const isSelected = (selectedValue && selectedValue.optionKey === optionKey);
 
   return (
     <Option

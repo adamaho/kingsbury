@@ -32,10 +32,6 @@ import {
   SelectedValue
 } from "./types";
 
-import {
-  useAfterMountEffect
-} from "../../hooks";
-
 interface SelectFunctionComponent<T> extends React.FunctionComponent<T> {
   Option: React.FunctionComponent<SelectOptionProps>;
 }
@@ -77,9 +73,6 @@ interface SelectProps {
 
   /** Function to handle change event */
   onChange?: (e: Event, value: SelectedValue) => void;
-
-  /** Function to handle when option is selected */
-  onSelect?: React.MouseEventHandler<HTMLDivElement>;
 
   /** Text to show in select before a selection is made */
   placeholder?: string;
@@ -129,7 +122,6 @@ export const Select: SelectFunctionComponent<SelectProps> = (props) => {
     id,
     name,
     onChange,
-    onSelect,
     placeholder,
     selectSize,
     theme,
@@ -200,7 +192,6 @@ export const Select: SelectFunctionComponent<SelectProps> = (props) => {
       >
         <SelectContext.Provider value={{
           onChange: handleOnChange,
-          onSelect,
           selectedValue
         }}>
           <FloaterContainer theme={theme}>
