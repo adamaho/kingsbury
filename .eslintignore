@@ -7,3 +7,4 @@
 /src/**/*.spec.ts
 /src/**/*.stories.tsx
 /src/**/*.components.tsx
+/src/components/icons/*

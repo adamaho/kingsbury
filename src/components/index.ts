@@ -3,8 +3,10 @@ import { Avatar } from './avatar/Avatar';
 import { Button } from './button/Button';
 import { Card } from './card/Card';
 import { Collapse } from './collapse/Collapse';
+import { Floater } from './floater/Floater';
 import { Input } from './input/Input';
 import * as Icon from './icons';
+import { Paper } from './paper/Paper';
 import { Portal } from './portal/Portal';
 import { Text } from './typeography/Text';
 
@@ -14,8 +16,10 @@ export {
   Button,
   Card,
   Collapse,
+  Floater,
   Icon,
   Input,
+  Paper,
   Portal,
   Text
 };

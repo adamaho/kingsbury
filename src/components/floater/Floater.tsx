@@ -32,7 +32,7 @@ interface FloaterProps {
   /** Animation props for motion.div */
   animationProps?: MotionProps;
 
-  /** Content to show in the portal */
+  /** Content to show in the floater */
   children: React.ReactNode;
 
   /** Floater node to mount against (defaults to document.body) */
@@ -101,6 +101,8 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
   React.useEffect(() => {
     if (open) {
       updatePortalPosition()
+    } else {
+      setPortalPosition(null);
     }
   },[open, windowSize, updatePortalPosition]);
 
@@ -115,6 +117,7 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
         >
           <motion.div
             key={floaterKey}
+            ref={handleRef}
             style={{
               position: 'absolute',
               width: matchAnchorWidth ?
@@ -126,7 +129,6 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
             {...animationProps}
           >
             <Container
-              ref={handleRef}
               portalVisibility={portalVisibility}
             >
               {children}
@@ -144,7 +146,7 @@ Floater.defaultProps = {
     initial: { opacity: 0 },
     animate: { opacity: 1 },
     exit: { opacity: 0 },
-    transition: { duration: 0.3 }
+    transition: { duration: 0.3}
   },
   disableFloater: false,
   container: undefined,
