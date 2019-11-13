@@ -8,13 +8,17 @@ import {
 } from 'framer-motion';
 
 import {
+  alignElement
+} from "dom-align/pkg";
+
+import {
   Portal
 } from '..';
 
 import {
   Position,
   PositionValue,
-  getRelativePosition
+  // getRelativePosition
 } from '../utils/getRelativePosition';
 
 import {
@@ -64,6 +68,14 @@ const Container = styled.div<{ portalVisibility: boolean }>`
   };
 `;
 
+const alignConfig = {
+  points: ['cl', 'cr'],        // align top left point of sourceNode with top right point of targetNode
+  offset: [0, 0],            // the offset sourceNode by 10px in x and 20px in y,
+  targetOffset: [0, 0], // the offset targetNode by 30% of targetNode width in x and 40% of targetNode height in y,
+  overflow: { adjustX: true, adjustY: true }, // auto adjust position when sourceNode is overflowed
+  disableOffset: true
+};
+
 export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
   const {
     anchorElement,
@@ -89,10 +101,12 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
   // update the portal position
   const updatePortalPosition = React.useCallback(() => {
     if (portalElement && anchorElement) {
-      const portalPosition = getRelativePosition(position, anchorElement, portalElement);
-      setPortalPosition(portalPosition);
+      // const portalPosition = getRelativePosition(position, anchorElement, portalElement);
+      const position = alignElement(portalElement, anchorElement, alignConfig);
+      console.log(position);
+      setPortalPosition(position);
     }
-  }, [portalElement, anchorElement, position]);
+  }, [portalElement, anchorElement]);
 
   // subscribe to window size
   const windowSize = useResizeEffect();
