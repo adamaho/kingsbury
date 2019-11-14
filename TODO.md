@@ -1,7 +1,17 @@
 # Things to Do
 
-### Floater
- - convert to use `dom-align` library from github to get the target position
+### Build
+ - remove uneeded files from the build
+    - .spec
+    - .stories
+    
+### Stories
+ - Make the stories nicer
+ - Provide examples of code
+ - Theme it
+
+### Positioning
+ - Add Tests for positioning
  
 ### Select
  - Add filtering support

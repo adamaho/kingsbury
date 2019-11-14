@@ -49,49 +49,49 @@
 //     const mockAnchorElement = getAnchorElement(200, 200);
 //
 //     it('positions element to the right of anchor', () => {
-//       const position = getRelativePosition('right', mockAnchorElement, mockFloaterElement);
+//       const position = getRelativePosition(mockAnchorElement, mockFloaterElement, ['cr', 'cl']);
 //       expect(position).toStrictEqual({ top: 165, left: 300 });
 //     });
 //
 //     it('positions element to the left of anchor', () => {
-//       const position = getRelativePosition('left', mockAnchorElement, mockFloaterElement);
+//       const position = getRelativePosition(mockAnchorElement, mockFloaterElement, ['cl', 'cr']);
 //       expect(position).toStrictEqual({ top: 165, left: 100 });
 //     });
 //
 //     it('positions element to the bottom of anchor', () => {
-//       const position = getRelativePosition('bottom', mockAnchorElement, mockFloaterElement);
+//       const position = getRelativePosition(mockAnchorElement, mockFloaterElement, ['bc', 'tc']);
 //       expect(position).toStrictEqual({ top: 230, left: 200 });
 //     });
 //
 //     it('positions element to the top of anchor', () => {
-//       const position = getRelativePosition('top', mockAnchorElement, mockFloaterElement);
+//       const position = getRelativePosition(mockAnchorElement, mockFloaterElement, ['tc', 'bc']);
 //       expect(position).toStrictEqual({ top: 100, left: 200 });
 //     });
 //   });
 //
-//   describe('edge detection', () => {
-//     it('flips the position if too close to right edge', () => {
-//       const mockAnchorElement = getAnchorElement(900, 200);
-//       const position = getRelativePosition('right', mockAnchorElement, mockFloaterElement);
-//       expect(position).toStrictEqual({ top: 165, left: 800 });
-//     });
-//
-//     it('flips the position if too close to left edge', () => {
-//       const mockAnchorElement = getAnchorElement(50, 200);
-//       const position = getRelativePosition('left', mockAnchorElement, mockFloaterElement);
-//       expect(position).toStrictEqual({ top: 165, left: 150 });
-//     });
-//
-//     it('flips the position if too close to bottom edge', () => {
-//       const mockAnchorElement = getAnchorElement(200, 900);
-//       const position = getRelativePosition('bottom', mockAnchorElement, mockFloaterElement);
-//       expect(position).toStrictEqual({ top: 800, left: 200 });
-//     });
-//
-//     it('flips the position if too close to top edge', () => {
-//       const mockAnchorElement = getAnchorElement(200, 50);
-//       const position = getRelativePosition('top', mockAnchorElement, mockFloaterElement);
-//       expect(position).toStrictEqual({ top: 80, left: 200 });
-//     });
-//   })
+//   // describe('edge detection', () => {
+//   //   it('flips the position if too close to right edge', () => {
+//   //     const mockAnchorElement = getAnchorElement(900, 200);
+//   //     const position = getRelativePosition('right', mockAnchorElement, mockFloaterElement);
+//   //     expect(position).toStrictEqual({ top: 165, left: 800 });
+//   //   });
+//   //
+//   //   it('flips the position if too close to left edge', () => {
+//   //     const mockAnchorElement = getAnchorElement(50, 200);
+//   //     const position = getRelativePosition('left', mockAnchorElement, mockFloaterElement);
+//   //     expect(position).toStrictEqual({ top: 165, left: 150 });
+//   //   });
+//   //
+//   //   it('flips the position if too close to bottom edge', () => {
+//   //     const mockAnchorElement = getAnchorElement(200, 900);
+//   //     const position = getRelativePosition('bottom', mockAnchorElement, mockFloaterElement);
+//   //     expect(position).toStrictEqual({ top: 800, left: 200 });
+//   //   });
+//   //
+//   //   it('flips the position if too close to top edge', () => {
+//   //     const mockAnchorElement = getAnchorElement(200, 50);
+//   //     const position = getRelativePosition('top', mockAnchorElement, mockFloaterElement);
+//   //     expect(position).toStrictEqual({ top: 80, left: 200 });
+//   //   });
+//   // })
 // });

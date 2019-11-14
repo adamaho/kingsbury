@@ -1,10 +1,3 @@
-interface PositionArgs {
-  anchorElement: HTMLElement;
-  anchorDims: DOMRectReadOnly;
-  floaterElement: HTMLElement;
-  floaterDims: DOMRectReadOnly;
-}
-
 export interface Position {
   top: number;
   left: number;
@@ -63,8 +56,6 @@ function getAnchorRegion(element: HTMLElement): Region {
 
   x = box.left;
   y = box.top;
-
-  console.log(x, y);
 
   x -= (docElem && docElem.clientLeft)|| (body && body.clientLeft) || 0;
   y -= (docElem && docElem.clientTop) || (body && body.clientTop) || 0;

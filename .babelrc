@@ -14,9 +14,20 @@
         }
       ]
   ],
+  "ignore": [
+    "lib",
+    "**/stories",
+    "**/__tests__"
+  ],
   "env": {
     "test": {
       "plugins": ["@babel/plugin-transform-runtime"]
+    },
+    "build": {
+      "ignore": [
+        "**/stories*",
+        "**/__tests__*"
+      ]
     }
   }
 }
