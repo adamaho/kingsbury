@@ -8,6 +8,7 @@ import { Input } from './input/Input';
 import * as Icon from './icons';
 import { Paper } from './paper/Paper';
 import { Portal } from './portal/Portal';
+import { Select } from './select/Select';
 import { Text } from './typeography/Text';
 
 export {
@@ -21,5 +22,6 @@ export {
   Input,
   Paper,
   Portal,
+  Select,
   Text
 };

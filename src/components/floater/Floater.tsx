@@ -14,7 +14,7 @@ import {
 import {
   Position,
   getRelativePosition
-} from '../utils/getRelativePosition';
+} from '../../utils/getRelativePosition';
 
 import {
   useResizeEffect
