@@ -35,7 +35,7 @@ interface FloaterProps {
   children: React.ReactNode;
 
   /** Floater node to mount against (defaults to document.body) */
-  container?: () => HTMLElement;
+  container?: () => HTMLElement | undefined;
 
   /** Disables floater behaviour and returns node to Parents DOM hierarchy */
   disableFloater?: boolean;

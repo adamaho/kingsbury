@@ -50,6 +50,9 @@ interface SelectProps {
   /** Select Options to show in the floater */
   children: React.ReactNode;
 
+  /** Node to mount against */
+  container?: () => HTMLElement | undefined;
+
   /** Default value of the select */
   defaultValue?: SelectedValue;
 
@@ -191,7 +194,7 @@ export const Select: SelectFunctionComponent<SelectProps> = (props) => {
       <Floater
         container={container}
         animationProps={animationProps}
-        position={'bottom'}
+        position={['bc', 'tc']}
         anchorElement={anchorElement}
         open={anchorElement !== null}
         matchAnchorWidth

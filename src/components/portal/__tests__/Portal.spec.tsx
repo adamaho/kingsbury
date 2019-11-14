@@ -37,7 +37,7 @@ describe('Portal', () => {
     document.body.appendChild(element);
 
     const wrapper = mount(
-      <Portal container={element}>
+      <Portal container={() => element}>
         <div id={"test1"} />
       </Portal>
     );
