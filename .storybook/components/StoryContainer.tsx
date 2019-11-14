@@ -3,7 +3,9 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   padding: 20px;
-  position: relative;
+  overflow: scroll;
+  height: 300px;
+  //position:relative;
 `;
 
 export const StoryContainer: React.FunctionComponent = ({ children }) => {

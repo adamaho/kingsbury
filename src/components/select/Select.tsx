@@ -118,6 +118,7 @@ export const Select: SelectFunctionComponent<SelectProps> = (props) => {
     borderType,
     className,
     children,
+    container,
     defaultValue,
     disabled,
     error,
@@ -157,7 +158,7 @@ export const Select: SelectFunctionComponent<SelectProps> = (props) => {
   }, [setSelectedValue, onChange]);
 
   return (
-    <Container>
+    <Container id={'select'}>
       <Input
         borderType={borderType}
         className={className}
@@ -188,6 +189,7 @@ export const Select: SelectFunctionComponent<SelectProps> = (props) => {
         }
       />
       <Floater
+        container={container}
         animationProps={animationProps}
         position={'bottom'}
         anchorElement={anchorElement}

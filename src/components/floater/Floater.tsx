@@ -8,17 +8,12 @@ import {
 } from 'framer-motion';
 
 import {
-  alignElement
-} from "dom-align/pkg";
-
-import {
   Portal
 } from '..';
 
 import {
   Position,
-  PositionValue,
-  // getRelativePosition
+  getRelativePosition
 } from '../utils/getRelativePosition';
 
 import {
@@ -40,7 +35,7 @@ interface FloaterProps {
   children: React.ReactNode;
 
   /** Floater node to mount against (defaults to document.body) */
-  container?: HTMLElement | null;
+  container?: () => HTMLElement;
 
   /** Disables floater behaviour and returns node to Parents DOM hierarchy */
   disableFloater?: boolean;
@@ -55,7 +50,7 @@ interface FloaterProps {
   open?: boolean;
 
   /** Position of the floater with respect the the anchor element */
-  position: Position;
+  position: string[];
 
   /** style of the motion div. Typically used for height/width transitions */
   style?: CSSProperties;
@@ -67,14 +62,6 @@ const Container = styled.div<{ portalVisibility: boolean }>`
     'hidden'
   };
 `;
-
-const alignConfig = {
-  points: ['cl', 'cr'],        // align top left point of sourceNode with top right point of targetNode
-  offset: [0, 0],            // the offset sourceNode by 10px in x and 20px in y,
-  targetOffset: [0, 0], // the offset targetNode by 30% of targetNode width in x and 40% of targetNode height in y,
-  overflow: { adjustX: true, adjustY: true }, // auto adjust position when sourceNode is overflowed
-  disableOffset: true
-};
 
 export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
   const {
@@ -91,25 +78,30 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
   } = props;
 
   const [portalElement, setPortalElement] = React.useState<HTMLDivElement | null>(null);
-  const [portalPosition, setPortalPosition] = React.useState<PositionValue | null>(null);
+  const [portalPosition, setPortalPosition] = React.useState<Position| null>(null);
 
   // set the ref when react calls it back
   const handleRef = React.useCallback((ref) => {
     setPortalElement(ref);
   },[setPortalElement]);
 
+  // get the container for floater to mount to
+  const getContainer = React.useCallback<() => HTMLElement | undefined>(() => {
+    if (typeof container === 'function') {
+      return container();
+    }
+  }, [container]);
+
   // update the portal position
   const updatePortalPosition = React.useCallback(() => {
     if (portalElement && anchorElement) {
-      // const portalPosition = getRelativePosition(position, anchorElement, portalElement);
-      const position = alignElement(portalElement, anchorElement, alignConfig);
-      console.log(position);
-      setPortalPosition(position);
+      const portalPosition = getRelativePosition(anchorElement, portalElement, position, getContainer());
+      setPortalPosition(portalPosition);
     }
-  }, [portalElement, anchorElement]);
+  }, [getContainer, position, portalElement, anchorElement]);
 
   // subscribe to window size
-  const windowSize = useResizeEffect();
+  // const windowSize = useResizeEffect();
 
   // on open changes, update the portal position
   React.useEffect(() => {
@@ -118,7 +110,7 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
     } else {
       setPortalPosition(null);
     }
-  },[open, windowSize, updatePortalPosition]);
+  },[open, updatePortalPosition]);
 
   const portalVisibility: boolean = (portalElement !== null && portalPosition !== null);
 
@@ -126,7 +118,7 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
     <AnimatePresence>
       {(open && anchorElement) && (
         <Portal
-          container={container}
+          container={getContainer}
           disablePortal={disableFloater}
         >
           <motion.div
@@ -137,6 +129,8 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
               width: matchAnchorWidth ?
                 `${anchorElement.offsetWidth}px` :
                 'auto',
+              top: -999, // default position before calc
+              left: -999, // default position before calc
               ...portalPosition,
               ...style
             }}
@@ -167,7 +161,7 @@ Floater.defaultProps = {
   floaterKey: 'floater',
   matchAnchorWidth: false,
   open: false,
-  position: 'left'
+  position: ['bc', 'tc']
 };
 
 

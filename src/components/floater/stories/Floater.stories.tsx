@@ -13,10 +13,6 @@ import {
   Floater
 } from '../Floater';
 
-import {
-  Position
-} from "../../utils/getRelativePosition";
-
 const Container = styled.div`
   background: white;
   height: 100px;
@@ -32,9 +28,9 @@ stories.add(
   () => {
     const [hasMountedFloater, setHasMountedFloater] = React.useState(false);
     const [anchorElement, setAnchorElement] = React.useState(null);
-    const [floaterPosition, setFloaterPosition] = React.useState<Position>('bottom');
+    const [floaterPosition, setFloaterPosition] = React.useState<string[]>(['bc', 'tc']);
 
-    const handleButtonClick = (e: any, position: Position) => {
+    const handleButtonClick = (e: any, position: string[]) => {
       const element = e.target;
 
       if (element === anchorElement) {
@@ -53,19 +49,19 @@ stories.add(
     return (
       <div>
         <Button
-          onClick={(e) => handleButtonClick(e, 'top')}
+          onClick={(e) => handleButtonClick(e, ['tc', 'bc'])}
         >
           Move to Top
         </Button>
         <span style={{ display: 'inline-block', width: '20px' }} />
         <Button
-          onClick={(e) => handleButtonClick(e, 'bottom')}
+          onClick={(e) => handleButtonClick(e, ['bc', 'tc'])}
         >
           Move to Bottom
         </Button>
         <span style={{ display: 'inline-block', width: '20px' }} />
         <Button
-          onClick={(e) => handleButtonClick(e, 'right')}
+          onClick={(e) => handleButtonClick(e, ['cr', 'tl'])}
         >
           Move to Right
         </Button>
@@ -77,7 +73,7 @@ stories.add(
             initial: { opacity: 0 },
             animate: { opacity: 1 },
             exit: { opacity: 0 },
-            positionTransition: hasMountedFloater ? { type: 'tween' } : false
+            positionTransition: hasMountedFloater
           }}
           matchAnchorWidth
         >

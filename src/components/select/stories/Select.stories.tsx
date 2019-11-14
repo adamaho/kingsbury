@@ -22,10 +22,18 @@ const stories = storiesOf('Select', module);
 stories.add(
   'Default',
   () => {
+    const foo = React.useRef(null);
+
+    const getContainer = React.useCallback(() => {
+      return foo.current;
+    }, [foo]);
+
     return (
       <StoryContainer>
-       <ComponentContainer>
+       <ComponentContainer ref={foo}>
+         <div style={{ marginTop: 100 }}/>
         <Select
+          container={getContainer}
           defaultValue={{
             optionValue: '1',
             optionTitle: 'The value of 1',
