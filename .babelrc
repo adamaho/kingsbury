@@ -15,9 +15,7 @@
       ]
   ],
   "ignore": [
-    "lib",
-    "**/stories",
-    "**/__tests__"
+    "lib"
   ],
   "env": {
     "test": {
@@ -25,8 +23,8 @@
     },
     "build": {
       "ignore": [
-        "**/stories*",
-        "**/__tests__*"
+        "**/stories",
+        "**/__tests__"
       ]
     }
   }
