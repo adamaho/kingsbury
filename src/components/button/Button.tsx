@@ -5,9 +5,12 @@ import styled, {
 } from 'styled-components';
 
 import {
-  theme
-} from '../../theme';
-import {MouseEventHandler} from "react";
+  MouseEventHandler
+} from "react";
+
+import {
+  ThemeContext
+} from "../../styled";
 
 export interface ButtonProps {
   /** Type of the button */
@@ -27,9 +30,6 @@ export interface ButtonProps {
 
   /** Ref to be passed to the button */
   ref?: React.Ref<HTMLButtonElement>;
-
-  /** Global theme in ThemeProvider */
-  theme?: any;
 }
 
 const defaultButtonType = 'primary';
@@ -89,10 +89,13 @@ export const Button: React.FunctionComponent<ButtonProps> = React.forwardRef<HTM
     buttonType
   } = props;
 
+  const theme = React.useContext(ThemeContext);
+
   return (
     <StyledButton
       ref={ref}
       buttonType={buttonType}
+      theme={theme}
       {...props}
     >
       {children}
@@ -105,6 +108,5 @@ Button.defaultProps = {
   children: '',
   className: '',
   disabled: false,
-  onClick: undefined,
-  theme,
+  onClick: undefined
 };

@@ -1,6 +1,10 @@
 import colors from './colors';
 
-export const theme: any = {
+import {
+  GlobalTheme
+} from "./types";
+
+export const theme: GlobalTheme = {
   animations: {
     time: {
       veryFast: '0.1s',
@@ -48,14 +52,6 @@ export const theme: any = {
   colors: {
     ...colors
   },
-  display: {
-    desktop: '880px',
-    tablet: '670px',
-    phone: '475px'
-  },
-  header: {
-    height: '50px;'
-  },
   input: {
     background: 'transparent',
     border: '1px solid',
@@ -72,11 +68,6 @@ export const theme: any = {
     suffixWidth: 30, // used for calcs, must be a number
     suffixRight: '5px'
   },
-  icons: {
-    close: {
-      color: colors.darkGrey
-    }
-  },
   paper: {
     background: colors.white,
     border: 'none',
@@ -91,7 +82,7 @@ export const theme: any = {
       padding: '5px 10px',
       hoverBackground: `rgba(${colors.primaryRGB}, 0.1)`,
       selectBackground: `rgba(${colors.primaryRGB}, 0.4)`,
-      fontWeight: 'bold'
+      selectedFontWeight: 'bold'
     }
   },
   typeography: {

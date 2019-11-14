@@ -51,7 +51,7 @@ interface SelectProps {
   children: React.ReactNode;
 
   /** Node to mount against */
-  container?: () => HTMLElement | undefined;
+  container?: () => HTMLElement | null;
 
   /** Default value of the select */
   defaultValue?: SelectedValue;

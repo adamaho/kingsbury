@@ -5,6 +5,10 @@ import {
 } from '@storybook/react';
 
 import {
+  theme
+} from "../../../theme";
+
+import {
   Select
 } from "../Select";
 
@@ -19,34 +23,44 @@ import {
 
 const stories = storiesOf('Select', module);
 
+const testTheme = {
+  ...theme,
+  colors: {
+    ...theme.colors,
+    primary: '#ff00ff',
+    primaryRGB: '255,0,255'
+  }
+};
+
+
 stories.add(
   'Default',
   () => {
     const foo = React.useRef(null);
 
-    const getContainer = React.useCallback(() => {
+    const getContainer = React.useCallback<() => HTMLElement | null>(() => {
       return foo.current;
     }, [foo]);
 
     return (
       <StoryContainer>
        <ComponentContainer ref={foo}>
-         <div style={{ marginTop: 100 }}/>
-        <Select
-          container={getContainer}
-          defaultValue={{
-            optionValue: '1',
-            optionTitle: 'The value of 1',
-            optionKey: '1'
-          }}
-          placeholder={'Select a value'}
-        >
-          <Select.Option optionKey={'1'} optionValue={'1'} optionTitle={' The value of 1'} />
-          <Select.Option optionKey={'2'} optionValue={'2'} optionTitle={' The value of 2'} />
-          <Select.Option optionKey={'3'} optionValue={'3'} optionTitle={' The value of 3'} />
-          <Select.Option optionKey={'4'} optionValue={'4'} optionTitle={' The value of 4'} />
-          <Select.Option optionKey={'5'} optionValue={'5'} optionTitle={' The value of 5'} />
-        </Select>
+          <div style={{ marginTop: 100 }}/>
+          <Select
+            container={getContainer}
+            defaultValue={{
+              optionValue: '1',
+              optionTitle: 'The value of 1',
+              optionKey: '1'
+            }}
+            placeholder={'Select a value'}
+          >
+            <Select.Option optionKey={'1'} optionValue={'1'} optionTitle={' The value of 1'} />
+            <Select.Option optionKey={'2'} optionValue={'2'} optionTitle={' The value of 2'} />
+            <Select.Option optionKey={'3'} optionValue={'3'} optionTitle={' The value of 3'} />
+            <Select.Option optionKey={'4'} optionValue={'4'} optionTitle={' The value of 4'} />
+            <Select.Option optionKey={'5'} optionValue={'5'} optionTitle={' The value of 5'} />
+          </Select>
        </ComponentContainer>
       </StoryContainer>
     );

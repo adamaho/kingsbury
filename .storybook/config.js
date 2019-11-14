@@ -8,6 +8,7 @@ import {
   withInfo
 } from '@storybook/addon-info';
 
+import ThemeDecorator from './components/ThemeDecorator';
 import yourTheme from './yourTheme';
 import PropTable from './PropTable';
 
@@ -44,5 +45,7 @@ addDecorator(withInfo({
   }),
   TableComponent: PropTable
 }));
+
+addDecorator(ThemeDecorator);
 
 configure(loadStories, module);

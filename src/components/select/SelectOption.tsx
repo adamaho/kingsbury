@@ -32,7 +32,7 @@ const Option = styled.div<any>`
   
   ${(props) => props.isSelected && css`
     background: ${props.theme.select.option.selectBackground};
-    font-weight: ${props.theme.select.option.fontWeight};
+    font-weight: ${props.theme.select.option.selectedFontWeight};
     
     &:hover {
       background: ${props.theme.select.option.selectBackground};

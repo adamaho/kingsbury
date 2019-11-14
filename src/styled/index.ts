@@ -1,13 +1,18 @@
 import * as styledComponents from 'styled-components';
 
+import {
+  GlobalTheme
+} from "../theme/types";
+
 const {
   default: styled,
   css,
   createGlobalStyle,
   keyframes,
   ThemeProvider,
+  ThemeConsumer,
+  ThemeContext,
   ServerStyleSheet
-} = styledComponents as styledComponents.ThemedStyledComponentsModule<any>;
+} = styledComponents as styledComponents.ThemedStyledComponentsModule<GlobalTheme>;
 
-export { css, createGlobalStyle, keyframes, ThemeProvider, ServerStyleSheet };
-export default styled;
+export { styled, css, createGlobalStyle, keyframes, ThemeProvider, ThemeConsumer, ThemeContext, ServerStyleSheet };
