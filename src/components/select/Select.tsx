@@ -180,7 +180,7 @@ export const Select: SelectFunctionComponent<SelectProps> = (props) => {
         readOnly
         inputSuffix={
           <motion.span
-            style={{ height: '18px', width: '18px'}}
+            style={{ lineHeight: '0' }}
             initial={"closed"}
             exit={"closed"}
             animate={anchorElement == null ? 'closed' : 'open'}
