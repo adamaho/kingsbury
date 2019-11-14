@@ -1,5 +1,9 @@
 # Things to Do
 
+### Utils
+ - Add function for updating the theme
+ - Add theme types
+
 ### Stories
  - Make the stories nicer
  - Provide examples of code
