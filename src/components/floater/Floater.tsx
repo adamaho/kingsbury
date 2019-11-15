@@ -16,9 +16,9 @@ import {
   getRelativePosition
 } from '../../utils/getRelativePosition';
 
-import {
-  useResizeEffect
-} from "../../hooks/useResizeEffect";
+// import {
+//   useResizeEffect
+// } from "../../hooks/useResizeEffect";
 
 import {
   CSSProperties
@@ -35,7 +35,7 @@ interface FloaterProps {
   children: React.ReactNode;
 
   /** Floater node to mount against (defaults to document.body) */
-  container?: () => HTMLElement | undefined;
+  container?: () => HTMLElement | null;
 
   /** Disables floater behaviour and returns node to Parents DOM hierarchy */
   disableFloater?: boolean;
@@ -86,16 +86,19 @@ export const Floater: React.FunctionComponent<FloaterProps> = (props) => {
   },[setPortalElement]);
 
   // get the container for floater to mount to
-  const getContainer = React.useCallback<() => HTMLElement | undefined>(() => {
+  const getContainer = React.useCallback<() => HTMLElement | null>(() => {
     if (typeof container === 'function') {
       return container();
     }
+
+    return null
   }, [container]);
 
   // update the portal position
   const updatePortalPosition = React.useCallback(() => {
     if (portalElement && anchorElement) {
-      const portalPosition = getRelativePosition(anchorElement, portalElement, position, getContainer());
+      const container = getContainer();
+      const portalPosition = getRelativePosition(anchorElement, portalElement, position, container ? container : undefined);
       setPortalPosition(portalPosition);
     }
   }, [getContainer, position, portalElement, anchorElement]);

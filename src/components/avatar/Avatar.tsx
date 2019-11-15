@@ -37,3 +37,5 @@ export const Avatar: React.FunctionComponent<AvatarProps> = (props) => {
 Avatar.defaultProps = {
   className: ''
 };
+
+export default Avatar;

@@ -38,7 +38,7 @@ stories.add(
   () => {
     const foo = React.useRef(null);
 
-    const getContainer = React.useCallback<() => HTMLElement | null>(() => {
+    const getContainer = React.useCallback<any>(() => {
       return foo.current;
     }, [foo]);
 

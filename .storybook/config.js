@@ -4,13 +4,11 @@ import {
   configure
 } from '@storybook/react';
 
-import {
-  withInfo
-} from '@storybook/addon-info';
+import PropTable from './components/PropTable';
+import { DocsPage, DocsContainer } from '@storybook/addon-docs/blocks';
 
 import ThemeDecorator from './components/ThemeDecorator';
 import yourTheme from './yourTheme';
-import PropTable from './PropTable';
 
 addParameters({
   options: {
@@ -19,33 +17,16 @@ addParameters({
   },
 });
 
-function loadStories() {
-  const req = require.context('../src', true, /\.stories\.tsx$/);
-  req.keys().forEach(filename => req(filename));
-}
-
-addDecorator(withInfo({
-  inline: true,
-  excludedPropTypes: ['theme', 'style'],
-  source: false,
-  styles: (stylesheet) => ({
-    ...stylesheet,
-    infoBody: {
-      ...stylesheet.infoBody,
-      fontFamily: 'unset',
-    },
-    propTableHead: {
-      display: 'none'
-    },
-    source: {
-      h1: {
-        display: 'none'
-      },
-    },
-  }),
-  TableComponent: PropTable
-}));
+addParameters({
+  docs: {
+    // container: DocsContainer,
+    // page: DocsPage,
+    components: {
+      table: PropTable
+    }
+  },
+});
 
 addDecorator(ThemeDecorator);
 
-configure(loadStories, module);
+configure(require.context('../src', true, /\.stories\.(tsx|mdx)$/), module);

@@ -1,5 +1,8 @@
 # Things to Do
 
+## Get Docs Working
+ - Get the docs working
+
 ### Utils
  - Add function for updating the theme
  - Add theme types

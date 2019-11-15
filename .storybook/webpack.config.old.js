@@ -1,7 +1,6 @@
 const path = require("path");
 
 module.exports = ({ config, mode }) => {
-  console.log(__dirname);
   config.module.rules.push({
     test: /\.(ts|tsx)$/,
     include: [
@@ -21,6 +20,8 @@ module.exports = ({ config, mode }) => {
     ]
   });
   config.resolve.extensions.push(".ts", ".tsx");
+
+  console.log(config);
 
   return config ;
 };

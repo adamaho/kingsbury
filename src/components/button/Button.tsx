@@ -9,8 +9,8 @@ import {
 } from "react";
 
 import {
-  ThemeContext
-} from "../../styled";
+  useTheme
+} from "../../hooks/useTheme";
 
 export interface ButtonProps {
   /** Type of the button */
@@ -89,7 +89,7 @@ export const Button: React.FunctionComponent<ButtonProps> = React.forwardRef<HTM
     buttonType
   } = props;
 
-  const theme = React.useContext(ThemeContext);
+  const theme = useTheme();
 
   return (
     <StyledButton
@@ -110,3 +110,5 @@ Button.defaultProps = {
   disabled: false,
   onClick: undefined
 };
+
+export default Button;

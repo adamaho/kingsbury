@@ -7,7 +7,7 @@ const Container = styled.div<any>`
   position: relative;
 `;
 
-export const ComponentContainer: React.FunctionComponent = React.forwardRef(({ children }, ref) => {
+export const ComponentContainer: React.FunctionComponent<any> = React.forwardRef<any, any>(({ children }, ref) => {
   return (
     <Container id={'scroller'} ref={ref}>
       {children}
