@@ -1,6 +1,8 @@
 import * as React from "react";
 
-import {Button} from '../Button';
+import {
+  Button
+} from '../Button';
 
 // @ts-ignore
 import mdx from './Button.mdx';
@@ -9,6 +11,7 @@ export default {
   title: 'Components|Button',
   component: Button,
   parameters: {
+    componentSubtitle: 'asdfasdfasf',
     docs: {
       page: mdx
     },
@@ -16,11 +19,7 @@ export default {
 };
 
 export const basic = () => (
-  <>
-    <Button>Basic</Button>
-    <Button buttonType={'success'}>Basic</Button>
-    <Button buttonType={'info'}>Basic</Button>
-  </>
+  <Button>asdfasfd</Button>
 );
 
 //

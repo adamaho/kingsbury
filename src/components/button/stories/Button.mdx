@@ -1,12 +1,26 @@
-import { Story, Preview, Props, Meta } from '@storybook/addon-docs/blocks';
+import { Story, Preview, Props, Source } from '@storybook/addon-docs/blocks';
+import { Subtitle } from '../../../../.storybook/components';
 import {Button} from '../Button';
 
 # Button
+<Subtitle>adsfasf</Subtitle>
 
-I can embed a story (but not define one, since this file should not contain a `Meta`):
+### When to use
+ - Anytime you want to click something
+
+
+### Types
+
+You can modify the `buttonType` of a button to be stuff.
 
 <Preview>
-  <Story id="components-button--basic" />
+  <Story id="components-button--basic"/>
 </Preview>
 
+
+<Preview>
+  <Story id="components-button--basic"/>
+</Preview>
+
+## API
 <Props of={Button} />

@@ -110,5 +110,3 @@ Button.defaultProps = {
   disabled: false,
   onClick: undefined
 };
-
-export default Button;
