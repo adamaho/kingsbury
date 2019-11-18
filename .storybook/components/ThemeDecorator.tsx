@@ -16,15 +16,6 @@ import {
   GlobalTheme
 } from "../../src/theme/types";
 
-const testTheme: GlobalTheme = {
-  ...theme,
-  colors: {
-    ...theme.colors,
-    primary: '#ff00ff',
-    primaryRGB: '255,0,255'
-  }
-};
-
 interface Themes {
   [key: string]: GlobalTheme
 }
@@ -34,8 +25,8 @@ const themes: Themes = {
     ...theme,
     colors: {
       ...theme.colors,
-      primary: '#ff00ff',
-      primaryRGB: '255,0,255'
+      primary: '#24557d',
+      primaryRGB: '36,85,125'
     }
   },
   dark: {

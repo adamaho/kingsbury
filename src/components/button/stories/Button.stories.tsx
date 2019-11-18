@@ -23,7 +23,7 @@ export default {
   },
 };
 
-export const classic = () => (
+export const types = () => (
   <React.Fragment>
     <Button buttonType="primary">Primary</Button>
     <Spacer />

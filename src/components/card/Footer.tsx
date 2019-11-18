@@ -2,8 +2,8 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 import {
-  theme
-} from '../../theme';
+  useTheme
+} from "../../hooks/useTheme";
 
 export interface FooterProps {
   /** Content to show in the footer */
@@ -11,9 +11,6 @@ export interface FooterProps {
 
   /** classname for the footer */
   className?: string;
-
-  /** Global theme in ThemeProvider */
-  theme?: any;
 }
 
 const StyledFooter = styled.div`
@@ -31,8 +28,10 @@ export const Footer: React.FunctionComponent<FooterProps> = (props) => {
     children
   } = props;
 
+  const theme = useTheme();
+
   return (
-    <StyledFooter {...props}>
+    <StyledFooter {...props} theme={theme}>
       {children}
     </StyledFooter>
   );
@@ -40,6 +39,5 @@ export const Footer: React.FunctionComponent<FooterProps> = (props) => {
 
 Footer.defaultProps = {
   children: '',
-  className: '',
-  theme
+  className: ''
 };

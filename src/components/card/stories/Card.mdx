@@ -1,0 +1,35 @@
+import { Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { Title, SectionTitle } from '../../../../.storybook/components';
+import { Card } from '../Card';
+
+<Title
+  title="Card"
+  subtitle="Cards allow users to display information about a specific subject."
+/>
+
+<SectionTitle>Simple</SectionTitle>
+
+A simple card can be created about a specific subject without a header or footer.
+
+<Preview>
+  <Story id="components-card--simple"/>
+</Preview>
+
+<SectionTitle>Complex</SectionTitle>
+
+A complex card can be created about a specific subject simply by adding a header and footer.
+
+<Preview>
+  <Story id="components-card--complex"/>
+</Preview>
+
+<SectionTitle>Clickable</SectionTitle>
+
+In some cases. the cards may need to be clickable to allow users to navigate to more detailed information about that subject.
+
+<Preview>
+  <Story id="components-card--clickable"/>
+</Preview>
+
+<SectionTitle>Props</SectionTitle>
+<Props of={Card} />

@@ -18,7 +18,7 @@ const Container = styled.div`
   justify-content: center;
 
   border-radius: 50%;
-  background-color: grey;
+  background-color: lightgrey;
 `;
 
 export const Avatar: React.FunctionComponent<AvatarProps> = (props) => {

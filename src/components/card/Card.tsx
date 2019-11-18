@@ -5,8 +5,8 @@ import styled, {
 } from 'styled-components';
 
 import {
-  theme
-} from '../../theme';
+  useTheme
+} from "../../hooks/useTheme";
 
 import {
   Header,
@@ -18,12 +18,12 @@ import {
   FooterProps
 } from './Footer';
 
-interface CardFunctionComponent<T> extends React.FunctionComponent<T> {
+export interface CardFunctionComponent<T> extends React.FunctionComponent<T> {
   Header: React.FunctionComponent<HeaderProps>;
   Footer: React.FunctionComponent<FooterProps>;
 }
 
-interface CardProps {
+export interface CardProps {
   /** Content to show in the card */
   children?: React.ReactNode;
 
@@ -32,9 +32,6 @@ interface CardProps {
 
   /** Function to handle click event */
   onClick?: () => void;
-
-  /** Global theme in ThemeProvider */
-  theme?: any;
 }
 
 const Container = styled.div`
@@ -65,9 +62,10 @@ export const Card: CardFunctionComponent<CardProps> = (props) => {
   const {
     className,
     children,
-    onClick,
-    theme
+    onClick
   } = props;
+
+  const theme = useTheme();
 
   return (
     <Container
@@ -87,7 +85,6 @@ Card.Footer = Footer;
 Card.defaultProps = {
   children: '',
   className: '',
-  onClick: undefined,
-  theme,
+  onClick: undefined
 };
 

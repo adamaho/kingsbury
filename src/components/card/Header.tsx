@@ -2,8 +2,8 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 import {
-  theme
-} from '../../theme';
+  useTheme
+} from "../../hooks/useTheme";
 
 export interface HeaderProps {
   /** Content to show in the header */
@@ -11,9 +11,6 @@ export interface HeaderProps {
 
   /** classname for the header */
   className?: string;
-
-  /** Global theme in ThemeProvider */
-  theme?: any;
 }
 
 const StyledHeader = styled.div`
@@ -30,8 +27,10 @@ export const Header: React.FunctionComponent<HeaderProps> = (props) => {
     children
   } = props;
 
+  const theme = useTheme();
+
   return (
-    <StyledHeader {...props}>
+    <StyledHeader {...props} theme={theme}>
       {children}
     </StyledHeader>
   );
@@ -39,6 +38,5 @@ export const Header: React.FunctionComponent<HeaderProps> = (props) => {
 
 Header.defaultProps = {
   children: '',
-  className: '',
-  theme
+  className: ''
 };

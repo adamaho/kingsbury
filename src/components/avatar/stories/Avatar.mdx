@@ -1,0 +1,19 @@
+import { Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { Title, SectionTitle } from '../../../../.storybook/components';
+import { Avatar } from '../Avatar';
+
+<Title
+  title="Avatar"
+  subtitle="Avatars allow users represent a user."
+/>
+
+<SectionTitle>Source</SectionTitle>
+
+Using the source prop, you can pass a `ReactNode` to display in the middle of the avatar.
+
+<Preview>
+  <Story id="components-avatar--source"/>
+</Preview>
+
+<SectionTitle>Props</SectionTitle>
+<Props of={Avatar} />

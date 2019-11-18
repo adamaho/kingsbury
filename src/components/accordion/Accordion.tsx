@@ -20,13 +20,14 @@ import {
 import {
   useAfterMountEffect
 } from "../../hooks";
+import {ThemeContext} from "../../styled";
 
 
-interface AccordionFunctionComponent<T = {}> extends React.FunctionComponent<T> {
+export interface AccordionFunctionComponent<T = {}> extends React.FunctionComponent<T> {
   Item: React.FunctionComponent<AccordionItemProps>;
 }
 
-interface AccordionProps {
+export interface AccordionProps {
   /** Type of collapse. See Collapse. */
   accordionType?: AccordionType;
 

@@ -1,18 +1,22 @@
-import * as React from 'react';
-
-import {
-  storiesOf
-} from '@storybook/react';
+import * as React from "react";
 
 import {
   Avatar
 } from '../Avatar';
 
-const stories = storiesOf('Avatar', module);
+// @ts-ignore
+import mdx from './Avatar.mdx';
 
-stories.add(
-  'Default',
-  () => (
-  	<Avatar src={<div>A</div>} />
-  )
+export default {
+  title: 'Components|Avatar',
+  component: Avatar,
+  parameters: {
+    docs: {
+      page: mdx
+    },
+  },
+};
+
+export const source = () => (
+  <Avatar src={'A'} />
 );

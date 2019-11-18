@@ -1,8 +1,4 @@
-import * as React from 'react';
-
-import {
-  storiesOf
-} from '@storybook/react';
+import * as React from "react";
 
 import {
   Card
@@ -13,32 +9,41 @@ import {
   CardContent
 } from './story.components';
 
-const stories = storiesOf('Card', module);
+// @ts-ignore
+import mdx from './Card.mdx';
 
-stories.add(
-  'Default',
-  () => (
-    <Container>
-      <Card>
-        <Card.Header />
-        <CardContent />
-        <Card.Footer />
-      </Card>
-    </Container>
-  ),
-  { info: { propTablesExclude: [Container, CardContent] } }
+export default {
+  title: 'Components|Card',
+  component: Card,
+  parameters: {
+    docs: {
+      page: mdx
+    },
+  },
+};
+
+export const simple = () => (
+  <Container>
+    <Card>
+      <CardContent />
+    </Card>
+  </Container>
 );
 
-stories.add(
-  'Clickable',
-  () => (
-    <Container>
-      <Card onClick={() => undefined}>
-        <Card.Header />
-        <CardContent />
-        <Card.Footer />
-      </Card>
-    </Container>
-  ),
-  { info: { propTablesExclude: [Container, CardContent] } }
+export const complex = () => (
+  <Container>
+    <Card>
+      <Card.Header />
+      <CardContent />
+      <Card.Footer />
+    </Card>
+  </Container>
+);
+
+export const clickable = () => (
+  <Container>
+    <Card onClick={() => console.log('clicked')}>
+      <CardContent />
+    </Card>
+  </Container>
 );

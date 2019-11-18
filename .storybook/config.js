@@ -16,12 +16,6 @@ addParameters({
   },
 });
 
-addDecorator(story => (
-  <>
-    {ThemeDecorator(story)}
-  </>
-));
-
-addDecorator(ThemeDecorator);
+addDecorator(story => ThemeDecorator(story));
 
 configure(require.context('../src', true, /\.stories\.(tsx|mdx)$/), module);
