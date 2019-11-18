@@ -1,4 +1,5 @@
 import * as React from 'react';
+import styled from "styled-components";
 
 import {
   storiesOf
@@ -9,106 +10,74 @@ import {
 } from '../Input';
 
 import {
-  Container,
-  Spacer
+  Container
 } from './story.components';
 
 import {
   SVGClose
 } from '../../icons';
 
-const stories = storiesOf('Input', module);
+// @ts-ignore
+import mdx from './Input.mdx';
 
-stories.add(
-  'Default',
-  () => (
-    <Container>
-      <Input />
-    </Container>
-  ),
-  { info: { propTablesExclude: [Container] } }
+const Spacer = styled.span`
+  height: 1px;
+  padding: 5px;
+`;
+
+
+export default {
+  title: 'Components|Input',
+  component: Input,
+  parameters: {
+    docs: {
+      page: mdx
+    },
+  },
+};
+
+export const simple = () => (
+  <Container>
+    <Input />
+  </Container>
 );
 
-stories.add(
-  'Disabled',
-  () => (
-    <Container>
-      <Input onChange={(e) => console.log(e.target.value)} placeholder="placeholder" disabled/>
-    </Container>
-  ),
-  { info: { propTablesExclude: [Container] } }
+export const size = () => (
+  <Container>
+    <Input />
+    <Spacer />
+    <Input inputSize="large" />
+  </Container>
 );
 
-stories.add(
-  'Size',
-  () => (
-    <Container>
-      <Input />
-      <Spacer />
-      <Input inputSize="large" />
-    </Container>
-  ),
-  { info: { propTablesExclude: [Container, Spacer] } }
+export const border = () => (
+  <Container>
+    <Input placeholder="Input with border" />
+    <Spacer />
+    <Input borderType="bottom" placeholder="Input with bottom border" />
+    <Spacer />
+    <Input borderType="none" placeholder="Input without border" />
+  </Container>
 );
 
-stories.add(
-  'Border',
-  () => (
-    <Container>
-      <Input placeholder="Input with border" />
-      <Spacer />
-      <Input borderType="bottom" placeholder="Input with bottom border" />
-      <Spacer />
-      <Input borderType="none" placeholder="Input without border" />
-    </Container>
-  ),
-  { info: { propTablesExclude: [Container, Spacer] } }
+export const label = () => (
+  <Container>
+    <Input label="Label" />
+  </Container>
 );
 
-stories.add(
-  'Label',
-  () => (
-    <Container>
-      <Input label="This is a label" value="This is the value of the input" />
-    </Container>
-  ),
-  { info: { propTablesExclude: [Container] } }
+export const error = () => (
+  <Container>
+    <Input
+      label="Label"
+      error="This is an error"
+    />
+  </Container>
 );
 
-stories.add(
-  'Error',
-  () => (
-    <Container>
-      <Input
-        label="This is a label"
-        error="This is an error"
-      />
-    </Container>
-  ),
-  { info: { propTablesExclude: [Container] } }
-);
-
-stories.add(
-  'Prefix and Suffix',
-  () => (
-    <Container>
-      <Input placeholder="Input with border" inputPrefix={<SVGClose />} inputSuffix={<SVGClose />}/>
-      <Spacer />
-      <Input borderType="bottom" placeholder="Input with bottom border" inputPrefix={<SVGClose />} inputSuffix={<SVGClose />}/>
-      <Spacer />
-      <Input inputSize={'large'} borderType="none" placeholder="Input without border" inputPrefix={<SVGClose />} inputSuffix={<SVGClose />}/>
-    </Container>
-  ),
-  { info: { propTablesExclude: [Container] } }
-);
-
-stories.add(
-  'Read Only',
-  () => (
-    <Container>
-      <Input placeholder="I am readonly" readOnly />
-    </Container>
-  ),
-  { info: { propTablesExclude: [Container] } }
+export const affix = () => (
+  <Container>
+    <Input inputPrefix={<SVGClose />} inputSuffix={<SVGClose />}/>
+  </Container>
 );
 

@@ -9,7 +9,18 @@ import {
   Collapse
 } from '../Collapse';
 
-const stories = storiesOf('Collapse', module);
+// @ts-ignore
+import mdx from './Collapse.mdx';
+
+export default {
+  title: 'Components|Collapse',
+  component: Collapse,
+  parameters: {
+    docs: {
+      page: mdx
+    },
+  },
+};
 
 const Container = styled.div`
   max-width: 400px;
@@ -20,24 +31,29 @@ const StyledCollapseContent = styled.div`
   height: 200px;
 `;
 
-export const CollapseContent = ({ children }: any) => (
+const CollapseContent = ({ children }: any) => (
   <StyledCollapseContent>
     {children}
   </StyledCollapseContent>
 );
 
-stories.add(
-  'Default',
-  () => (
-    <Container>
-      <Collapse
-        header="Header"
-        onChange={() => console.log('change')}
-        itemKey={"test"}
-        defaultActive={true}
-      >
-        <CollapseContent />
-      </Collapse>
-    </Container>
-  )
+export const simple = () => (
+  <Container>
+    <Collapse
+      itemKey="default"
+    >
+      <CollapseContent />
+    </Collapse>
+  </Container>
+);
+
+export const open = () => (
+  <Container>
+    <Collapse
+      defaultActive
+      itemKey="default"
+    >
+      <CollapseContent />
+    </Collapse>
+  </Container>
 );

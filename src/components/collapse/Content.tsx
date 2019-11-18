@@ -44,7 +44,6 @@ export const ContentContainer: React.FunctionComponent<ContentContainerProps> = 
 
 const StyledContent = styled.div<ContentProps>`
   padding: ${(props) => props.theme.collapse.contentPadding};
-
   background: ${(props) => props.theme.collapse.contentBackground};
 
 

@@ -25,16 +25,16 @@ const themes: Themes = {
     ...theme,
     colors: {
       ...theme.colors,
-      primary: '#24557d',
-      primaryRGB: '36,85,125'
+      // primary: '#24557d',
+      // primaryRGB: '36,85,125'
     }
   },
   dark: {
     ...theme,
     colors: {
       ...theme.colors,
-      primary: '#ff0000',
-      primaryRGB: '255,0, 0'
+      // primary: '#ff0000',
+      // primaryRGB: '255,0, 0'
     }
   }
 };

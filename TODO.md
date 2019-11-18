@@ -19,4 +19,7 @@
 ### Select
  - Add filtering support
  - Add virtualized list support
+ 
+### Collapse
+ - Make default active not animate
 

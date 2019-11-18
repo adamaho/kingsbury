@@ -6,7 +6,7 @@ import {
 
 const SVGClose = (props: any) => (
   <svg width={18} height={18} fill="none" viewBox="0 0 18 18" {...props}>
-    <path d="M1 1l16 16M1 17L17 1" stroke={props.theme.icons.close.color} strokeWidth={2} />
+    <path d="M1 1l16 16M1 17L17 1" stroke={props.theme.colors.primary} strokeWidth={2} />
   </svg>
 );
 

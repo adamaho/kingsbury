@@ -1,0 +1,59 @@
+import { Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { Title, SectionTitle } from '../../../../.storybook/components';
+import { Input } from '../Input';
+
+<Title
+  title="Input"
+  subtitle="Inputs allow users to input data."
+/>
+
+<SectionTitle>Simple</SectionTitle>
+
+Many times a simple input is all that is needed.
+
+<Preview>
+  <Story id="components-input--simple"/>
+</Preview>
+
+<SectionTitle>Size</SectionTitle>
+
+Change the size of the input by modifying the `inputSize` prop.
+
+<Preview>
+  <Story id="components-input--size"/>
+</Preview>
+
+<SectionTitle>Border</SectionTitle>
+
+Modify how the `input` looks by changing the `borderType` prop;
+
+<Preview>
+  <Story id="components-input--border"/>
+</Preview>
+
+<SectionTitle>Label</SectionTitle>
+
+Provide a `label` for the input to use in a form.
+
+<Preview>
+  <Story id="components-input--label"/>
+</Preview>
+
+<SectionTitle>Error</SectionTitle>
+
+When using an `input` with form validation, provide the input with an `error` message and optional `errorComponent`.
+
+<Preview>
+  <Story id="components-input--error"/>
+</Preview>
+
+<SectionTitle>Affix</SectionTitle>
+
+Add a prefix and suffix to an input by providing the props `inputPrefix` and `inputSuffix`.
+
+<Preview>
+  <Story id="components-input--affix"/>
+</Preview>
+
+<SectionTitle>Props</SectionTitle>
+<Props of={Input} />

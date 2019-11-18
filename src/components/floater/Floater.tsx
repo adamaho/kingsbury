@@ -24,7 +24,7 @@ import {
   CSSProperties
 } from "react";
 
-interface FloaterProps {
+export interface FloaterProps {
   /** Element to anchor portal to */
   anchorElement: HTMLDivElement | null;
 

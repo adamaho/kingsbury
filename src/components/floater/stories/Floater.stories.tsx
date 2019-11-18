@@ -2,16 +2,25 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 import {
-  storiesOf
-} from '@storybook/react';
-
-import {
   Button
 } from '../..';
 
 import {
   Floater
 } from '../Floater';
+
+// @ts-ignore
+import mdx from './Floater.mdx';
+
+export default {
+  title: 'Components|Floater',
+  component: Floater,
+  parameters: {
+    docs: {
+      page: mdx
+    },
+  },
+};
 
 const Container = styled.div`
   background: white;
@@ -21,67 +30,90 @@ const Container = styled.div`
   box-shadow: 0 0 7px rgba(0, 0, 0, 0.20);
 `;
 
-const stories = storiesOf('Floater', module);
+export const simple = () => {
+  const [buttonRef, setRef] = React.useState(null);
+  const [open, setOpen] = React.useState(false);
 
-stories.add(
-  'Default',
-  () => {
-    const [hasMountedFloater, setHasMountedFloater] = React.useState(false);
-    const [anchorElement, setAnchorElement] = React.useState(null);
-    const [floaterPosition, setFloaterPosition] = React.useState<string[]>(['bc', 'tc']);
+  const handleClick = React.useCallback(() => {
+    if (open) {
+      setOpen(false);
+    } else {
+      setOpen(true);
+    }
+  }, [setOpen, open]);
 
-    const handleButtonClick = (e: any, position: string[]) => {
-      const element = e.target;
+  const handleRef = React.useCallback((node) => {
+    setRef(node);
+  }, [setRef]);
 
-      if (element === anchorElement) {
-        setAnchorElement(null);
-        setHasMountedFloater(false);
-      } else if (anchorElement) {
-        setAnchorElement(element);
-        setFloaterPosition(position);
-        setHasMountedFloater(true);
-      } else {
-        setAnchorElement(element);
-        setFloaterPosition(position);
-      }
-    };
+  return (
+    <React.Fragment>
+      <Button onClick={handleClick} ref={handleRef}>{open ? 'Hide' : 'Show'}</Button>
+      <Floater
+        anchorElement={buttonRef}
+        position={['bc', 'tc']}
+        open={open && buttonRef !== null}
+      >
+        I am the content
+      </Floater>
+    </React.Fragment>
+  );
+};
 
-    return (
-      <div>
-        <Button
-          onClick={(e) => handleButtonClick(e, ['tc', 'bc'])}
-        >
-          Move to Top
-        </Button>
-        <span style={{ display: 'inline-block', width: '20px' }} />
-        <Button
-          onClick={(e) => handleButtonClick(e, ['bc', 'tc'])}
-        >
-          Move to Bottom
-        </Button>
-        <span style={{ display: 'inline-block', width: '20px' }} />
-        <Button
-          onClick={(e) => handleButtonClick(e, ['cr', 'bl'])}
-        >
-          Move to Right
-        </Button>
-        <Floater
-          position={floaterPosition}
-          anchorElement={anchorElement}
-          open={anchorElement !== null}
-          animationProps={{
-            initial: { opacity: 0 },
-            animate: { opacity: 1 },
-            exit: { opacity: 0 },
-            positionTransition: hasMountedFloater
-          }}
-          matchAnchorWidth
-        >
-          <Container />
-        </Floater>
-      </div>
-    );
-  },
-  { info: { propTablesExclude: [Button] },
-  }
-);
+export const complex = () => {
+  const [hasMountedFloater, setHasMountedFloater] = React.useState(false);
+  const [anchorElement, setAnchorElement] = React.useState(null);
+  const [floaterPosition, setFloaterPosition] = React.useState<string[]>(['bc', 'tc']);
+
+  const handleButtonClick = (e: any, position: string[]) => {
+    const element = e.target;
+
+    if (element === anchorElement) {
+      setAnchorElement(null);
+      setHasMountedFloater(false);
+    } else if (anchorElement) {
+      setAnchorElement(element);
+      setFloaterPosition(position);
+      setHasMountedFloater(true);
+    } else {
+      setAnchorElement(element);
+      setFloaterPosition(position);
+    }
+  };
+
+  return (
+    <div>
+      <Button
+        onClick={(e) => handleButtonClick(e, ['tc', 'bc'])}
+      >
+        Move to Top
+      </Button>
+      <span style={{ display: 'inline-block', width: '20px' }} />
+      <Button
+        onClick={(e) => handleButtonClick(e, ['bc', 'tc'])}
+      >
+        Move to Bottom
+      </Button>
+      <span style={{ display: 'inline-block', width: '20px' }} />
+      <Button
+        onClick={(e) => handleButtonClick(e, ['cr', 'cl'])}
+      >
+        Move to Right
+      </Button>
+      <Floater
+        position={floaterPosition}
+        anchorElement={anchorElement}
+        open={anchorElement !== null}
+        animationProps={{
+          initial: { opacity: 0 },
+          animate: { opacity: 1 },
+          exit: { opacity: 0 },
+          positionTransition: hasMountedFloater ? { type: 'tween' } : false
+        }}
+        matchAnchorWidth
+      >
+        <Container />
+      </Floater>
+    </div>
+  );
+};

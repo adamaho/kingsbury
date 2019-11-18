@@ -1,0 +1,27 @@
+import { Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { Title, SectionTitle } from '../../../../.storybook/components';
+import { Collapse } from '../Collapse';
+
+<Title
+  title="Collapse"
+  subtitle="Collapses allow users to display information in a space efficient manner."
+/>
+
+<SectionTitle>Simple</SectionTitle>
+
+A simple collapse can be created without a header.
+
+<Preview>
+  <Story id="components-collapse--simple"/>
+</Preview>
+
+<SectionTitle>Active</SectionTitle>
+
+Setting `defaultActive` to `true` will have the `Collapse` start in the open state when mounted
+
+<Preview>
+  <Story id="components-collapse--open"/>
+</Preview>
+
+<SectionTitle>Props</SectionTitle>
+<Props of={Collapse} />
