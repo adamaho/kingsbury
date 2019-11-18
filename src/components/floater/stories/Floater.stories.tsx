@@ -61,7 +61,7 @@ stories.add(
         </Button>
         <span style={{ display: 'inline-block', width: '20px' }} />
         <Button
-          onClick={(e) => handleButtonClick(e, ['cl', 'br'])}
+          onClick={(e) => handleButtonClick(e, ['cr', 'bl'])}
         >
           Move to Right
         </Button>

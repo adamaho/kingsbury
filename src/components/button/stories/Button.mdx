@@ -1,26 +1,19 @@
 import { Story, Preview, Props, Source } from '@storybook/addon-docs/blocks';
-import { Subtitle } from '../../../../.storybook/components';
+import { Title, SectionTitle } from '../../../../.storybook/components';
 import {Button} from '../Button';
 
-# Button
-<Subtitle>adsfasf</Subtitle>
+<Title
+  title="Button"
+  subtitle="Buttons allow users to take actions, and make choices, with a single tap or click."
+/>
 
-### When to use
- - Anytime you want to click something
+<SectionTitle>Types</SectionTitle>
 
-
-### Types
-
-You can modify the `buttonType` of a button to be stuff.
+You can modify the `buttonType` to change the color depending on the use case. For example `danger` could be used for a delete action.
 
 <Preview>
-  <Story id="components-button--basic"/>
+  <Story id="components-button--classic"/>
 </Preview>
 
-
-<Preview>
-  <Story id="components-button--basic"/>
-</Preview>
-
-## API
+<SectionTitle>Props</SectionTitle>
 <Props of={Button} />

@@ -1,9 +1,11 @@
 import { StoryContainer} from "./StoryContainer";
 import { ComponentContainer} from "./ComponentContainer";
-import { Subtitle} from "./docs/Subtitle";
+import { Title } from "./docs/Title";
+import { SectionTitle } from "./docs/SectionTitle";
 
 export {
   StoryContainer,
   ComponentContainer,
-  Subtitle
+  Title,
+  SectionTitle
 };

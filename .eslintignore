@@ -8,3 +8,4 @@
 /src/**/*.stories.tsx
 /src/**/*.components.tsx
 /src/components/icons/*
+*.mdx
